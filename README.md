@@ -11,6 +11,9 @@ absorbance at 410 nm in a spectrophotometer, and work out reaction rates.
 
 **Open the lab**
 
+- Prelab review (about ten minutes, to read before the lab: the reaction, how the color becomes a
+  number, how an amount becomes a rate, and how the bench works):
+  https://neogio73.github.io/BCH3023/enzyme-lab/prelab/
 - Activities 1 to 3 (enzyme or no enzyme, temperature, pH):
   https://neogio73.github.io/BCH3023/enzyme-lab/
 - Activities 4 and 5 (enzyme concentration, substrate concentration):

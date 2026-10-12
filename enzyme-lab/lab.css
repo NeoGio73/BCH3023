@@ -375,7 +375,8 @@ select[data-state] { background-position: right 22px center; }
   font-weight: 400;
 }
 
-.sim-note {
+/* the link to the prelab review, under the title */
+.prelab-note {
   max-width: 78ch;
   margin: 12px 0 0;
   padding: 8px 12px;
@@ -384,6 +385,8 @@ select[data-state] { background-position: right 22px center; }
   border-radius: 0 6px 6px 0;
   font-size: 0.93rem;
 }
+
+.prelab-note a { color: var(--enamel-deep); font-weight: 600; }
 
 /* ---- Activities: tabs, and the parts of the page that belong to one activity ---- */
 
@@ -605,7 +608,7 @@ input[type="range"] { width: 100%; accent-color: var(--enamel); }
   .masthead { padding-bottom: 7px; flex-wrap: wrap; }
   .masthead h1 { font-size: 15pt; }
   .subtitle { font-size: 10pt; }
-  .sim-note { margin-top: 6px; padding: 3px 8px; font-size: 8.5pt; background: none; }
+  .prelab-note { display: none; }
   .print-header { display: flex; flex-basis: 100%; gap: 28px; margin: 2px 0 0; font-size: 10pt; }
   .bench-layout { display: block; }
   .data-column { max-width: none; columns: 2; column-gap: 8mm; }

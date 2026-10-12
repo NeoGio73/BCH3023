@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biofuel Enzyme Lab: Prelab Review</title>
+  <meta name="description" content="A short review before the Biofuel Enzyme Lab: the reaction you will watch, how a yellow color becomes an amount of product, how an amount becomes a rate, and how the virtual bench works.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c4c9a'/%3E%3Crect x='12' y='5' width='8' height='22' rx='1' fill='%23fff'/%3E%3Crect x='12' y='14' width='8' height='13' rx='1' fill='%23f2c81d'/%3E%3C/svg%3E">
+  <style>
+    /* Same look as the lab pages and the pH prelab: paper white, bench slate for ink, enamel blue. */
+    :root {
+      --paper: #ffffff;
+      --wash: #f3f6f4;
+      --ink: #17211e;
+      --ink-soft: #4b5854;
+      --ink-faint: #74807c;
+      --rule: #c7d1cc;
+      --rule-strong: #8d9994;
+      --enamel: #1c4c9a;
+      --enamel-deep: #153a78;
+      --enamel-wash: #e9eff9;
+      --good: #1b7a40;
+      --good-wash: #edf7f0;
+      --flag: #ab2a1c;
+      --flag-wash: #fdf1ee;
+      --yellow: #f2c81d;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .sheet { max-width: 1040px; margin: 0 auto; padding: 0 20px 64px; }
+
+    a { color: var(--enamel-deep); }
+    a:hover { color: var(--enamel); }
+
+    /* ---- Masthead ---- */
+
+    .masthead {
+      padding: 28px 20px 26px;
+      background: var(--wash);
+      border-bottom: 1px solid var(--rule);
+    }
+    .masthead-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 28px; }
+    .eyebrow { margin: 0 0 4px; color: var(--ink-faint); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    h1 { margin: 0; font-family: var(--serif); font-size: 2.1rem; font-weight: 600; line-height: 1.15; }
+    .dek { margin: 8px 0 0; max-width: 60ch; color: var(--ink-soft); }
+    .lab-button {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 6px;
+      background: var(--enamel); color: #fff; font-weight: 600; text-decoration: none; white-space: nowrap;
+    }
+    .lab-button:hover { background: var(--enamel-deep); color: #fff; }
+    .lab-button.second { background: #fff; color: var(--enamel-deep); box-shadow: inset 0 0 0 1.5px var(--enamel); }
+    .lab-button.second:hover { background: var(--enamel-wash); color: var(--enamel-deep); }
+
+    /* ---- Sections ---- */
+
+    section { margin-top: 44px; }
+    h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; font-family: var(--serif); font-size: 1.5rem; font-weight: 600; line-height: 1.25; }
+    .step {
+      display: inline-flex; flex: none; align-items: center; justify-content: center;
+      width: 1.75rem; height: 1.75rem; border-radius: 50%;
+      background: var(--enamel); color: #fff; font-family: var(--sans); font-size: 0.92rem; font-weight: 650;
+    }
+    h3 { margin: 22px 0 6px; font-family: var(--serif); font-size: 1.18rem; font-weight: 600; }
+    p { margin: 0 0 12px; }
+    .prose { max-width: 68ch; }
+    .prose ul { margin: 0 0 12px; padding-left: 1.2em; }
+    .prose li { margin-bottom: 4px; }
+    .soft { color: var(--ink-soft); }
+    .cite { color: var(--ink-soft); font-size: 0.85rem; }
+    .math { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .safety {
+      max-width: 68ch; margin: 6px 0 0; padding: 10px 14px;
+      border-left: 3px solid var(--flag); background: var(--flag-wash); border-radius: 0 6px 6px 0; font-size: 0.96rem;
+    }
+    .callout { padding: 16px 18px 6px; border-radius: 8px; background: var(--enamel-wash); border: 1px solid #cfdcf1; }
+    .callout h3 { margin-top: 0; }
+
+    /* ---- The reaction, as three boxes and two arrows ---- */
+
+    .flow { display: flex; align-items: stretch; max-width: 860px; margin: 18px 0 16px; }
+    .flow-box {
+      flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+      padding: 12px 10px; border: 1px solid var(--rule); border-radius: 8px; background: #fff; text-align: center; line-height: 1.3;
+    }
+    .flow-box b { font-weight: 650; }
+    .flow-box small { color: var(--ink-soft); font-size: 0.86rem; }
+    .flow-box.yellow { background: #fdf3c4; border-color: #e3c64a; }
+    .flow-arrow {
+      flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 0 12px; color: var(--enamel-deep); font-size: 0.86rem; font-weight: 600; text-align: center; line-height: 1.2;
+    }
+    .flow-arrow::after { content: "\2192"; font-size: 1.6rem; line-height: 1; }
+
+    /* ---- Standard curve explorer ---- */
+
+    .explorer { margin-top: 16px; padding: 18px 18px 16px; border: 1px solid var(--rule); border-radius: 10px; background: #fbfcfb; }
+    .explorer-help { max-width: 78ch; margin: 0 0 14px; color: var(--ink-soft); font-size: 0.95rem; }
+    .curve-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+    .chart-box { margin: 0; }
+    .chart-box svg { display: block; width: 100%; height: auto; }
+    .chart-box.pick svg { cursor: crosshair; }
+    .chart-box figcaption { margin-top: 4px; color: var(--ink-soft); font-size: 0.88rem; }
+
+    .grid { stroke: rgba(23, 33, 30, 0.09); stroke-width: 1; }
+    .axis { stroke: var(--ink-soft); stroke-width: 1.5; }
+    .tick { fill: var(--ink-soft); font-size: 13px; font-variant-numeric: tabular-nums; }
+    .axis-name { fill: var(--ink); font-size: 14px; font-weight: 600; }
+    .fit { stroke: var(--enamel); stroke-width: 2.5; fill: none; }
+    .point { fill: var(--enamel); stroke: #fff; stroke-width: 2; }
+    .point-name { fill: var(--enamel-deep); font-size: 13px; font-weight: 700; paint-order: stroke; stroke: #fbfcfb; stroke-width: 4px; stroke-linejoin: round; }
+    .guide { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 6 5; fill: none; }
+    .guide-dot { fill: #fff; stroke: var(--ink); stroke-width: 2.5; }
+    .chip rect { fill: var(--ink); }
+    .chip text { fill: #fff; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .rise { stroke: var(--flag); stroke-width: 2; stroke-dasharray: 5 4; fill: none; }
+    .rise-name { fill: var(--flag); font-size: 13px; font-weight: 700; paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+
+    .field-name { display: block; margin-bottom: 4px; font-weight: 600; }
+    input[type="range"] { width: 100%; margin: 0; accent-color: var(--enamel); }
+    .reading-row { display: flex; align-items: flex-end; gap: 14px; margin-top: 14px; }
+    .reading { display: flex; flex-direction: column; gap: 2px; }
+    .reading .label { color: var(--ink-soft); font-size: 0.84rem; font-weight: 600; }
+    .reading .value { font-family: var(--serif); font-size: 1.9rem; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .reading-arrow { padding-bottom: 2px; color: var(--ink-faint); font-size: 1.5rem; line-height: 1; }
+
+    /* the five standards in a row, with the sample slid in where its color belongs */
+    .rack-title { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--rule); font-weight: 600; }
+    .rack { display: flex; align-items: flex-end; gap: 9px; margin: 8px 0 8px; }
+    .cuv { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 0.8rem; line-height: 1.2; }
+    .cuv i {
+      display: block; width: 26px; height: 46px;
+      border: 1.5px solid rgba(23, 33, 30, 0.38); border-top: 0; border-radius: 0 0 4px 4px;
+      background: linear-gradient(to top, var(--c) 74%, transparent 74%);
+    }
+    .cuv b { font-weight: 700; }
+    .cuv small { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+    .cuv.sample i { border-color: var(--enamel); box-shadow: 0 0 0 3px var(--enamel-wash); }
+    .cuv.sample b { color: var(--enamel-deep); }
+    .eye { margin: 0; font-size: 0.95rem; }
+
+    /* ---- Rate ---- */
+
+    .rate-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+    .worked .math { white-space: normal; }
+    .worked { margin: 0 0 12px; padding: 8px 12px; border-left: 3px solid var(--enamel); background: var(--enamel-wash); border-radius: 0 6px 6px 0; }
+
+    /* ---- The five activities ---- */
+
+    .plan { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 8px 0 14px; padding: 0; list-style: none; }
+    .plan-page { margin: 18px 0 0; color: var(--ink-soft); font-size: 0.9rem; font-weight: 700; }
+    .plan li { padding: 12px 14px 10px; border: 1px solid var(--rule); border-top: 5px solid var(--enamel); border-radius: 8px; font-size: 0.96rem; }
+    .plan .num { display: block; color: var(--ink-faint); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .plan b { display: block; margin-bottom: 4px; font-family: var(--serif); font-size: 1.1rem; font-weight: 600; }
+    .plan .when { display: block; margin-top: 6px; color: var(--ink-soft); font-size: 0.9rem; }
+
+    /* ---- At the bench ---- */
+
+    .tips { max-width: 72ch; margin: 0; padding-left: 1.2em; }
+    .tips li { margin-bottom: 9px; }
+
+    /* ---- Self-check ---- */
+
+    .quiz { display: grid; gap: 14px; max-width: 760px; margin: 0; padding: 0; list-style: none; counter-reset: q; }
+    .q { padding: 14px 16px 12px; border: 1px solid var(--rule); border-radius: 8px; counter-increment: q; }
+    .q-text { margin: 0 0 10px; font-weight: 600; }
+    .q-text::before { content: counter(q) ". "; color: var(--ink-faint); }
+    .options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .options button {
+      padding: 7px 12px; border: 1.5px solid var(--rule-strong); border-radius: 6px; background: #fff;
+      color: var(--ink); font: inherit; font-size: 0.95rem; text-align: left; cursor: pointer;
+    }
+    .options button:hover { border-color: var(--enamel); background: var(--enamel-wash); }
+    .options button[data-state="right"] { border-color: var(--good); background: var(--good-wash); color: var(--good); font-weight: 600; }
+    .options button[data-state="wrong"] { border-color: var(--flag); background: var(--flag-wash); color: var(--flag); }
+    .feedback { margin: 10px 0 0; font-size: 0.95rem; }
+    .feedback:empty { display: none; }
+    .feedback b.right { color: var(--good); }
+    .feedback b.wrong { color: var(--flag); }
+    .score { margin: 16px 0 0; font-weight: 600; }
+    .score .done { color: var(--good); }
+
+    /* ---- Footer ---- */
+
+    .next { margin-top: 40px; padding: 18px 20px; border-radius: 10px; background: var(--wash); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
+    .next p { margin: 0; max-width: 56ch; }
+    .next-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+    .sources { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--rule); font-size: 0.86rem; color: var(--ink-soft); }
+    .sources h2 { font-size: 1.1rem; }
+    .sources ol { margin: 0; padding-left: 1.4em; }
+    .sources li { margin-bottom: 4px; }
+    .sources a { color: inherit; overflow-wrap: anywhere; }
+
+    /* ---- Narrow screens ---- */
+
+    @media (max-width: 820px) {
+      .curve-layout, .rate-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .flow { flex-direction: column; }
+      .flow-arrow { flex-direction: row; gap: 8px; padding: 6px 0; }
+      .flow-arrow::after { content: "\2193"; }
+    }
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .sheet { padding: 0 16px 48px; }
+      .masthead { padding: 22px 16px 20px; }
+      h1 { font-size: 1.7rem; }
+      .explorer { padding: 14px 10px 12px; }
+      .rack { gap: 6px; }
+      .cuv i { width: 22px; height: 40px; }
+    }
+    @media print {
+      .lab-button, .next, .curve-side .field-name, input[type="range"] { display: none !important; }
+      .masthead { background: none; }
+      section { break-inside: avoid-page; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <p class="eyebrow">Prelab review · Biofuel Enzyme Lab</p>
+        <h1>Catching an enzyme in the act</h1>
+        <p class="dek">About ten minutes. Read it before the lab, try the standard curve, then check yourself with the questions at the end.</p>
+      </div>
+      <a class="lab-button" href="../">Open the lab <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+<div class="sheet">
+  <main>
+    <section id="enzyme" aria-labelledby="enzyme-title">
+      <h2 id="enzyme-title"><span class="step" aria-hidden="true">1</span>The enzyme, and why anyone cares</h2>
+      <div class="prose">
+        <p>Corn stalks, wood chips and grass are mostly <strong>cellulose</strong>: long chains of glucose, the sugar that yeast can ferment into ethanol fuel. The hard part is getting the glucose out. Cellulose is tough, and it takes a team of <strong>enzymes</strong>, proteins that each speed up one particular chemical reaction, to take it apart.</p>
+        <p>Other enzymes on the team cut cellulose down to <strong>cellobiose</strong>, which is two glucose units joined together. <strong>Cellobiase</strong>, the enzyme in this lab, finishes the job: it splits each cellobiose into two molecules of glucose. The cellobiase you'll use comes from a fungus, <em>Aspergillus niger</em>.</p>
+        <p>Two words appear all through the lab. The <strong>substrate</strong> is the molecule an enzyme works on. The <strong>product</strong> is what the enzyme makes from it.</p>
+        <p class="cite">Sources: <a href="#src-manual">Bio-Rad manual</a>, <a href="#src-afdc">U.S. Department of Energy</a></p>
+      </div>
+    </section>
+
+    <section id="reaction" aria-labelledby="reaction-title">
+      <h2 id="reaction-title"><span class="step" aria-hidden="true">2</span>The reaction you'll watch</h2>
+      <div class="prose">
+        <p>There is a catch: cellobiose and glucose are both colorless, so you can't see cellobiase working. The kit gets around this with a stand-in substrate, <strong>p-nitrophenyl glucopyranoside</strong>. It is glucose joined to a small molecule called <strong>p-nitrophenol</strong>. Cellobiase cuts it the way it cuts cellobiose, and each cut sets free one glucose and one p-nitrophenol.</p>
+        <p>p-Nitrophenol has a useful habit: it turns <strong>yellow</strong> in a basic solution. That is where the <strong>stop solution</strong>, a strong base, comes in. When a sample of the reaction goes into it, two things happen at once:</p>
+        <ul>
+          <li>the reaction stops, so the sample stays as it was at that moment;</li>
+          <li>the p-nitrophenol in it turns yellow. The more product, the deeper the yellow.</li>
+        </ul>
+      </div>
+
+      <div class="flow" role="img" aria-label="The colorless substrate is cut by cellobiase into glucose and p-nitrophenol, which have almost no color. Stop solution then turns the p-nitrophenol yellow.">
+        <div class="flow-box"><b>Substrate</b><small>colorless</small></div>
+        <div class="flow-arrow">cellobiase</div>
+        <div class="flow-box"><b>Glucose + p-nitrophenol</b><small>almost no color yet</small></div>
+        <div class="flow-arrow">stop solution</div>
+        <div class="flow-box yellow"><b>p-Nitrophenol in base</b><small>yellow</small></div>
+      </div>
+
+      <div class="prose">
+        <p>So each cuvette of stop solution works like a snapshot. It shows how much product the enzyme had made when that sample was taken. A row of snapshots taken at different times shows the reaction moving along.</p>
+        <p class="cite">Sources: <a href="#src-manual">Bio-Rad manual</a>, <a href="#src-pubchem">PubChem</a></p>
+      </div>
+      <p class="safety"><strong>In a real lab</strong> the stop solution is handled with goggles and gloves: strong bases burn skin and eyes.</p>
+    </section>
+
+    <section id="measure" aria-labelledby="measure-title">
+      <h2 id="measure-title"><span class="step" aria-hidden="true">3</span>From yellow to a number</h2>
+      <div class="prose">
+        <p>The amount of product is counted in <strong>nanomoles (nmol)</strong>. You'll find it in two ways.</p>
+        <h3>By eye</h3>
+        <p>Five cuvettes, the <strong>standards</strong> S1 to S5, hold known amounts of p-nitrophenol: 0, 12.5, 25, 50 and 100&nbsp;nmol. Hold your cuvette beside them, pick the standard whose color is closest, and record that standard's amount. It is quick, but there are only five possible answers.</p>
+        <h3>By spectrophotometer</h3>
+        <p>A spectrophotometer shines violet light (410&nbsp;nm) through the cuvette and reports the <strong>absorbance</strong>: how much of that light the solution took in. The deeper the yellow, the higher the absorbance. Before reading anything else you <strong>blank</strong> the instrument with S1, the standard with no p-nitrophenol in it. That sets its zero.</p>
+        <h3>The standard curve</h3>
+        <p>Read the absorbance of the other four standards too. Plot the five readings against the amounts you already know, and they fall along a straight line: your <strong>standard curve</strong>. The line now works as a translator. Take any sample's absorbance, go across to the line, then straight down, and read off the amount.</p>
+      </div>
+
+      <div class="explorer">
+        <p class="explorer-help">Try it on this example curve. Move the slider, or click on the graph, to set a sample's absorbance. Follow the dashed line across to the curve and down to the amount. These are example readings; in the lab you'll measure your own standards.</p>
+        <div class="curve-layout">
+          <figure class="chart-box pick">
+            <div id="curve-chart"></div>
+          </figure>
+          <div class="curve-side">
+            <label class="field-name" for="abs">Absorbance of your sample</label>
+            <input type="range" id="abs" min="0" max="1.2" step="0.01" value="0.45">
+            <div class="reading-row">
+              <div class="reading"><span class="label">Absorbance</span><span class="value" id="read-abs">0.45</span></div>
+              <span class="reading-arrow" aria-hidden="true">→</span>
+              <div class="reading"><span class="label">p-Nitrophenol, from the curve</span><span class="value" id="read-nmol">37.5&nbsp;nmol</span></div>
+            </div>
+            <p class="rack-title">The same sample by eye</p>
+            <div class="rack" id="rack" aria-hidden="true"></div>
+            <p class="eye" id="read-eye" role="status"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rate" aria-labelledby="rate-title">
+      <h2 id="rate-title"><span class="step" aria-hidden="true">4</span>From amounts to a rate</h2>
+      <div class="rate-grid">
+        <div class="prose">
+          <p>A <strong>rate</strong> says how fast the product is appearing: nanomoles per minute. The lab asks for the <strong>initial rate</strong>, the rate at the start of the reaction.</p>
+          <h3>From several timed samples</h3>
+          <p>Plot the amount in each cuvette against the time its sample was taken. Where the points climb in a straight line, the slope of that line is the initial rate: the change in amount divided by the change in time.</p>
+          <p class="worked">In the example graph the amount goes from 9&nbsp;nmol at 1&nbsp;minute to 27&nbsp;nmol at 3&nbsp;minutes.<br><span class="math">(27 − 9) ÷ (3 − 1) = 18 ÷ 2 = <strong>9&nbsp;nmol per minute</strong></span></p>
+          <h3>From one sample</h3>
+          <p>Some reactions are sampled only once. Count the start as 0&nbsp;nmol at 0&nbsp;minutes, and the rate is the amount divided by the minutes.</p>
+          <p class="worked">A sample taken at 2&nbsp;minutes holds 22&nbsp;nmol.<br><span class="math">22 ÷ 2 = <strong>11&nbsp;nmol per minute</strong></span></p>
+          <p>The lab page draws these graphs from your tables as you fill them in, and it checks each number you enter.</p>
+        </div>
+        <figure class="chart-box">
+          <div id="rate-chart"></div>
+          <figcaption>An example. The slope of the line is the rise (18&nbsp;nmol) divided by the run (2&nbsp;minutes).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="plan" aria-labelledby="plan-title">
+      <h2 id="plan-title"><span class="step" aria-hidden="true">5</span>What you'll change</h2>
+      <p class="prose">Each activity changes <strong>one thing</strong> and keeps everything else the same, so any difference in the results comes from that one thing.</p>
+      <p class="plan-page">First page of the lab</p>
+      <ol class="plan">
+        <li><span class="num">Activity 1</span><b>Enzyme or no enzyme</b>One tube gets enzyme. A <strong>control</strong> tube gets buffer in its place.<span class="when">Samples at 1, 2, 4, 6 and 8&nbsp;minutes</span></li>
+        <li><span class="num">Activity 2</span><b>Temperature</b>The same reaction in an ice bath (0&nbsp;°C), on the bench (22&nbsp;°C) and in a warm bath (37&nbsp;°C).<span class="when">One sample each, at 2&nbsp;minutes</span></li>
+        <li><span class="num">Activity 3</span><b>pH</b>The same reaction at pH&nbsp;5.0, pH&nbsp;6.3 and pH&nbsp;8.6.<span class="when">One sample each, at 2&nbsp;minutes</span></li>
+      </ol>
+      <p class="plan-page">Second page of the lab</p>
+      <ol class="plan">
+        <li><span class="num">Activity 4</span><b>Enzyme concentration</b>A high and a low concentration of enzyme, with the same substrate.<span class="when">Samples at 1, 2 and 8&nbsp;minutes</span></li>
+        <li><span class="num">Activity 5</span><b>Substrate concentration</b>A high and a low concentration of substrate, with the same enzyme.<span class="when">Samples at 1, 2 and 8&nbsp;minutes</span></li>
+      </ol>
+      <p class="prose">Before you start each activity, decide what you expect to happen. Then let your results answer.</p>
+    </section>
+
+    <section id="bench" aria-labelledby="bench-title">
+      <h2 id="bench-title"><span class="step" aria-hidden="true">6</span>At the virtual bench</h2>
+      <ul class="tips">
+        <li><strong>Each pipet has one job</strong>, written on it: <em>Stop</em> for stop solution, <em>Sub</em> for substrate, <em>E</em> for enzyme, and so on. Click a pipet to pick it up, click a tube to draw liquid up, click where it goes, then click the bench to put the pipet back. Keeping one pipet to one job means nothing gets carried from one tube into another.</li>
+        <li><strong>Set how much the pipet draws:</strong> 250&nbsp;µL, 500&nbsp;µL or 1&nbsp;mL. One milliliter is 1,000&nbsp;µL, so 2&nbsp;mL is 1&nbsp;mL twice.</li>
+        <li><strong>Stop solution goes into the cuvettes first.</strong> Then each sample is stopped the moment it goes in.</li>
+        <li><strong>The timer starts by itself</strong> when enzyme and substrate meet. The note under the bench tells you the next step and when each sample is due.</li>
+        <li><strong>Fast forward</strong> runs the clock ten times faster, and drops back to normal speed 5&nbsp;seconds before a sample is due.</li>
+        <li><strong>Blank the spectrophotometer with S1</strong> before you read anything. You read the standards only once: the same standard curve serves all five activities.</li>
+        <li><strong>Made a mistake?</strong> "Wash up and set out again" empties the bench so you can run that activity again.</li>
+        <li><strong>Your work is saved in your browser.</strong> Use the same browser on the same computer for both pages, so your standard curve is there when you come back.</li>
+        <li><strong>It is a simulation.</strong> Its numbers follow the typical classroom results in the kit's manual, with a little scatter, so your results won't be exactly the same as anyone else's.</li>
+      </ul>
+    </section>
+
+    <section id="check" aria-labelledby="check-title">
+      <h2 id="check-title"><span class="step" aria-hidden="true">7</span>Check yourself</h2>
+      <p class="prose">Not graded. Pick an answer to see whether it's right and why; you can change your answer as often as you like.</p>
+      <ol class="quiz" id="quiz"></ol>
+      <p class="score" id="score" aria-live="polite"></p>
+    </section>
+
+    <div class="next">
+      <p><strong>Ready?</strong> Start with Activities 1 to 3. Activities 4 and 5 are on a second page; open it in the same browser and your standard curve will be waiting.</p>
+      <div class="next-buttons">
+        <a class="lab-button" href="../">Activities 1 to 3 <span aria-hidden="true">→</span></a>
+        <a class="lab-button second" href="../?part=2">Activities 4 and 5 <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources</h2>
+      <ol id="sources"></ol>
+    </section>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var SOURCES = [
+    { id: 'manual', text: 'Bio-Rad Laboratories. Biofuel Enzyme Kit instruction manual (catalog 166-5035EDU). The experiment, its reaction and its method come from this manual.' },
+    { id: 'afdc', text: 'U.S. Department of Energy, Alternative Fuels Data Center. "Ethanol Production."', url: 'https://afdc.energy.gov/fuels/ethanol-production' },
+    { id: 'pubchem', text: 'PubChem. "4-Nitrophenol" (another name for p-nitrophenol).', url: 'https://pubchem.ncbi.nlm.nih.gov/compound/980' }
+  ];
+
+  // The lab's five standards.
+  var STANDARDS = [
+    { id: 'S1', nmol: 0 }, { id: 'S2', nmol: 12.5 }, { id: 'S3', nmol: 25 }, { id: 'S4', nmol: 50 }, { id: 'S5', nmol: 100 }
+  ];
+  // The example curve's slope, in absorbance per nmol. An example only: each student's own
+  // standards read a little differently in the lab.
+  var SLOPE = 0.012;
+
+  var QUESTIONS = [
+    { q: 'What does the stop solution do to a sample?', answer: 1,
+      options: ['Starts the reaction', 'Stops the reaction and turns the product yellow', 'Waters the sample down so it is easier to see', 'Cools the sample to 0 °C'],
+      why: 'It is a strong base. It stops the enzyme at once, and p-nitrophenol is yellow in a basic solution.' },
+    { q: 'Where does the stop solution go?', answer: 2,
+      options: ['Into the reaction tube, before the enzyme', 'Into the standards', 'Into each cuvette, before its sample', 'Into the spectrophotometer'],
+      why: 'With stop solution already waiting in the cuvette, each sample is stopped the moment it goes in. In the reaction tube it would stop the whole reaction.' },
+    { q: 'In Activity 1, what is in the control tube?', answer: 0,
+      options: ['Substrate and buffer, but no enzyme', 'Enzyme and buffer, but no substrate', 'Only stop solution', 'The same as the reaction tube'],
+      why: 'The control has everything the reaction tube has except the enzyme. Comparing the two shows what the enzyme itself does.' },
+    { q: 'Your cuvette is darker than S3 (25 nmol) and lighter than S4 (50 nmol), but closer to S4. By eye, what amount do you record?', answer: 2,
+      options: ['25 nmol', '37.5 nmol', '50 nmol', '75 nmol'],
+      why: 'By eye you record the amount in the standard whose color is closest. For a number in between, you need the standard curve.' },
+    { q: 'What do you read in the spectrophotometer first?', answer: 0,
+      options: ['Standard S1, to blank it', 'Standard S5, the darkest', 'Your first sample', 'An empty cuvette'],
+      why: 'S1 has no p-nitrophenol in it. Blanking with it sets the zero, so every reading after that counts only the yellow product.' },
+    { q: 'On the example standard curve in section 3, a sample has an absorbance of 0.90. How much p-nitrophenol is in it?', answer: 1,
+      options: ['50 nmol', '75 nmol', '90 nmol', '100 nmol'],
+      why: 'Go across from 0.90 to the line and straight down: 75 nmol. You can check it with the slider.' },
+    { q: 'A reaction has made 8 nmol at 1 minute and 24 nmol at 3 minutes, climbing in a straight line. What is its initial rate?', answer: 1,
+      options: ['4 nmol per minute', '8 nmol per minute', '16 nmol per minute', '24 nmol per minute'],
+      why: 'The change in amount divided by the change in time: (24 − 8) ÷ (3 − 1) = 16 ÷ 2 = 8 nmol per minute.' },
+    { q: 'A reaction is sampled once, 2 minutes after it was mixed, and the cuvette holds 30 nmol. What is its initial rate?', answer: 2,
+      options: ['60 nmol per minute', '30 nmol per minute', '15 nmol per minute', '2 nmol per minute'],
+      why: 'Count the start as 0 nmol at 0 minutes. Then the rate is 30 nmol ÷ 2 minutes = 15 nmol per minute.' }
+  ];
+
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function trim(x, places) { return String(parseFloat(x.toFixed(places))); }
+
+  // ---- Sources ----
+  SOURCES.forEach(function (s) {
+    var li = el('li'); li.id = 'src-' + s.id;
+    li.appendChild(document.createTextNode(s.text));
+    if (s.url) {
+      li.appendChild(document.createTextNode(' '));
+      var a = el('a', null, s.url.replace(/^https:\/\//, '').replace(/\/$/, '')); a.href = s.url; a.rel = 'noopener'; a.target = '_blank';
+      li.appendChild(a);
+    }
+    $('sources').appendChild(li);
+  });
+
+  // ---- Drawing ----
+  var NS = 'http://www.w3.org/2000/svg';
+  function shape(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  // The frame of a graph: grid lines, the two axes and their numbers and names. It hands back
+  // the drawing and two functions that turn a value into a place on it.
+  function frame(o) {
+    var W = o.width, H = o.height, L = 74, R = 20, T = 18, B = 54;
+    var root = shape('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': o.label });
+    function x(v) { return L + (v - o.x0) / (o.x1 - o.x0) * (W - L - R); }
+    function y(v) { return H - B - (v - o.y0) / (o.y1 - o.y0) * (H - T - B); }
+    o.xTicks.forEach(function (v) {
+      root.appendChild(shape('line', { x1: x(v), x2: x(v), y1: y(o.y0), y2: y(o.y1), 'class': 'grid' }));
+      root.appendChild(shape('text', { x: x(v), y: H - B + 19, 'class': 'tick', 'text-anchor': 'middle' }, String(v)));
+    });
+    o.yTicks.forEach(function (v) {
+      root.appendChild(shape('line', { x1: x(o.x0), x2: x(o.x1), y1: y(v), y2: y(v), 'class': 'grid' }));
+      root.appendChild(shape('text', { x: L - 9, y: y(v) + 4.5, 'class': 'tick', 'text-anchor': 'end' }, o.yText(v)));
+    });
+    root.appendChild(shape('line', { x1: L, x2: W - R, y1: H - B, y2: H - B, 'class': 'axis' }));
+    root.appendChild(shape('line', { x1: L, x2: L, y1: T, y2: H - B, 'class': 'axis' }));
+    root.appendChild(shape('text', { x: (L + W - R) / 2, y: H - 12, 'class': 'axis-name', 'text-anchor': 'middle' }, o.xName));
+    var midY = (T + H - B) / 2;
+    root.appendChild(shape('text', { x: 15, y: midY, 'class': 'axis-name', 'text-anchor': 'middle', transform: 'rotate(-90 15 ' + midY + ')' }, o.yName));
+    return { root: root, x: x, y: y, left: L, top: T, bottom: H - B, height: H };
+  }
+
+  // ---- Graphs ----
+  // Both graphs are drawn smaller on a phone, so their lettering stays a readable size there.
+  var phone = window.matchMedia('(max-width: 600px)');
+  var Y_TOP = 1.4;          // the top of the absorbance axis
+  var absorbance = 0.45;    // where the reader is set
+  var curve, across, down, dot, absTag, nmolTag;
+
+  // A dark tag on an axis that shows the value the dashed line meets it at.
+  function tag(root) {
+    var g = shape('g', { 'class': 'chip' });
+    var box = shape('rect', { rx: 4, height: 22 }), text = shape('text', { 'text-anchor': 'middle' });
+    g.appendChild(box); g.appendChild(text);
+    root.appendChild(g);
+    return function (cx, cy, words) {
+      var w = words.length * 8.5 + 12;
+      text.textContent = words;
+      box.setAttribute('x', cx - w / 2); box.setAttribute('y', cy - 11); box.setAttribute('width', w);
+      text.setAttribute('x', cx); text.setAttribute('y', cy + 5);
+    };
+  }
+
+  function drawCurve() {
+    // the amount axis starts a little to the left of 0, so the name of S1 has room beside its point
+    curve = frame({
+      width: phone.matches ? 380 : 560, height: phone.matches ? 340 : 400, x0: -12, x1: 106, y0: 0, y1: Y_TOP,
+      xTicks: [0, 25, 50, 75, 100], yTicks: [0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4],
+      yText: function (v) { return v.toFixed(1); },
+      xName: 'p-Nitrophenol (nmol)', yName: 'Absorbance at 410 nm',
+      label: 'An example standard curve: the absorbance of the five standards against their amounts of p-nitrophenol falls on a straight line from 0 at 0 nmol to 1.20 at 100 nmol.'
+    });
+    var root = curve.root;
+    root.appendChild(shape('line', { x1: curve.x(0), y1: curve.y(0), x2: curve.x(106), y2: curve.y(106 * SLOPE), 'class': 'fit' }));
+    across = shape('line', { 'class': 'guide' });
+    down = shape('line', { 'class': 'guide' });
+    root.appendChild(across);
+    root.appendChild(down);
+    STANDARDS.forEach(function (s) {
+      var px = curve.x(s.nmol), py = curve.y(s.nmol * SLOPE);
+      root.appendChild(shape('circle', { cx: px, cy: py, r: 6, 'class': 'point' }));
+      // each name sits up and to the left of its point, clear of the line
+      root.appendChild(shape('text', { x: px - 9, y: py - 10, 'class': 'point-name', 'text-anchor': 'end' }, s.id));
+    });
+    dot = shape('circle', { r: 6.5, 'class': 'guide-dot' });
+    root.appendChild(dot);
+    absTag = tag(root);
+    nmolTag = tag(root);
+
+    // Clicking or dragging on the graph sets the absorbance from how high the pointer is.
+    function fromPointer(e) {
+      var box = root.getBoundingClientRect();
+      var py = (e.clientY - box.top) / box.height * curve.height;
+      return (curve.bottom - py) / (curve.bottom - curve.top) * Y_TOP;
+    }
+    var dragging = false;
+    root.addEventListener('pointerdown', function (e) {
+      setAbsorbance(fromPointer(e));
+      // a finger keeps its usual job of scrolling the page; a mouse or pen can drag
+      if (e.pointerType !== 'touch') { dragging = true; root.setPointerCapture(e.pointerId); e.preventDefault(); }
+    });
+    root.addEventListener('pointermove', function (e) { if (dragging) setAbsorbance(fromPointer(e)); });
+    root.addEventListener('pointerup', function () { dragging = false; });
+    root.addEventListener('pointercancel', function () { dragging = false; });
+
+    $('curve-chart').textContent = '';
+    $('curve-chart').appendChild(root);
+  }
+
+  // The example for working out a rate: three points on a line, and the rise and run between two of them.
+  function drawRate() {
+    var rate = frame({
+      width: phone.matches ? 380 : 460, height: phone.matches ? 310 : 340, x0: 0, x1: 4, y0: 0, y1: 40,
+      xTicks: [0, 1, 2, 3, 4], yTicks: [0, 10, 20, 30, 40],
+      yText: function (v) { return String(v); },
+      xName: 'Time (minutes)', yName: 'p-Nitrophenol (nmol)',
+      label: 'An example graph of product against time. The points at 1, 2 and 3 minutes are 9, 18 and 27 nmol and lie on a straight line. Between 1 and 3 minutes the line rises 18 nmol over 2 minutes.'
+    });
+    var root = rate.root;
+    root.appendChild(shape('line', { x1: rate.x(0), y1: rate.y(0), x2: rate.x(4), y2: rate.y(36), 'class': 'fit' }));
+    root.appendChild(shape('polyline', { points: rate.x(1) + ',' + rate.y(9) + ' ' + rate.x(3) + ',' + rate.y(9) + ' ' + rate.x(3) + ',' + rate.y(27), 'class': 'rise' }));
+    root.appendChild(shape('text', { x: rate.x(2), y: rate.y(9) + 18, 'class': 'rise-name', 'text-anchor': 'middle' }, 'run: 2 minutes'));
+    root.appendChild(shape('text', { x: rate.x(3) - 8, y: rate.y(9) - 9, 'class': 'rise-name', 'text-anchor': 'end' }, 'rise: 18 nmol'));
+    [[1, 9], [2, 18], [3, 27]].forEach(function (p) {
+      root.appendChild(shape('circle', { cx: rate.x(p[0]), cy: rate.y(p[1]), r: 6, 'class': 'point' }));
+    });
+    $('rate-chart').textContent = '';
+    $('rate-chart').appendChild(root);
+  }
+
+  // The color of a cuvette holding this much p-nitrophenol: the same recipe the lab's bench uses.
+  function tint(nmol) {
+    var t = 1 - Math.exp(-1.8 * 0.0165 * nmol);
+    var k = Math.min(1, t * 1.2), cover = 0.22 + 0.70 * t;
+    var clear = [0.74, 0.87, 0.97], yellow = [1.00, 0.84, 0.04];
+    var rgb = clear.map(function (c, i) { return Math.round(255 * ((c + (yellow[i] - c) * k) * cover + (1 - cover))); });
+    return 'rgb(' + rgb.join(', ') + ')';
+  }
+
+  var rack = $('rack');
+  STANDARDS.forEach(function (s, i) {
+    var c = el('div', 'cuv');
+    var liquid = el('i'); liquid.style.setProperty('--c', tint(s.nmol));
+    c.appendChild(liquid); c.appendChild(el('b', null, s.id)); c.appendChild(el('small', null, trim(s.nmol, 1)));
+    c.style.order = String(i * 2);
+    rack.appendChild(c);
+  });
+  var sample = el('div', 'cuv sample');
+  var sampleLiquid = el('i'), sampleAmount = el('small');
+  sample.appendChild(sampleLiquid); sample.appendChild(el('b', null, 'Yours')); sample.appendChild(sampleAmount);
+  rack.appendChild(sample);
+
+  var slider = $('abs');
+  function setAbsorbance(a) {
+    a = Math.max(0, Math.min(1.2, Math.round(a * 100) / 100));
+    absorbance = a;
+    var nmol = a / SLOPE;
+    var px = curve.x(nmol), py = curve.y(a);
+    slider.value = String(a);
+    slider.setAttribute('aria-valuetext', 'absorbance ' + a.toFixed(2) + ', ' + trim(nmol, 1) + ' nanomoles');
+    across.setAttribute('x1', curve.left); across.setAttribute('x2', px); across.setAttribute('y1', py); across.setAttribute('y2', py);
+    down.setAttribute('x1', px); down.setAttribute('x2', px); down.setAttribute('y1', py); down.setAttribute('y2', curve.y(0));
+    dot.setAttribute('cx', px); dot.setAttribute('cy', py);
+    absTag(curve.left - 29, py, a.toFixed(2));
+    nmolTag(px, curve.bottom + 16, trim(nmol, 1));
+
+    $('read-abs').textContent = a.toFixed(2);
+    $('read-nmol').textContent = trim(nmol, 1) + ' nmol';
+    sampleLiquid.style.setProperty('--c', tint(nmol));
+    sampleAmount.textContent = trim(nmol, 1);
+
+    // by eye: which standard matches, or which two the sample falls between
+    var match = -1, below = 0;
+    STANDARDS.forEach(function (s, i) {
+      if (Math.abs(nmol - s.nmol) <= Math.max(1, s.nmol * 0.04)) match = i;
+      if (s.nmol <= nmol) below = i;
+    });
+    var eye = $('read-eye');
+    if (match >= 0) {
+      sample.style.order = String(match * 2 + 1);
+      eye.textContent = 'Its color matches ' + STANDARDS[match].id + ', so by eye you would record ' + trim(STANDARDS[match].nmol, 1) + ' nmol. Here the two ways agree.';
+    } else {
+      var lo = STANDARDS[below], hi = STANDARDS[below + 1];
+      sample.style.order = String(below * 2 + 1);
+      eye.textContent = 'Its color falls between ' + lo.id + ' and ' + hi.id + '. By eye you would have to record ' + trim(lo.nmol, 1) + ' or ' + trim(hi.nmol, 1) + ' nmol, whichever looks closer. The curve gives ' + trim(nmol, 1) + ' nmol.';
+    }
+  }
+
+  slider.addEventListener('input', function () { setAbsorbance(parseFloat(slider.value)); });
+
+  function drawGraphs() { drawCurve(); drawRate(); setAbsorbance(absorbance); }
+  if (phone.addEventListener) phone.addEventListener('change', drawGraphs); else phone.addListener(drawGraphs);
+
+  // ---- Self-check ----
+  var quiz = $('quiz');
+  var state = QUESTIONS.map(function () { return null; });
+  QUESTIONS.forEach(function (q, qi) {
+    var li = el('li', 'q');
+    var text = el('p', 'q-text', q.q); text.id = 'q' + qi;
+    li.appendChild(text);
+    var opts = el('div', 'options'); opts.setAttribute('role', 'group'); opts.setAttribute('aria-labelledby', text.id);
+    var fb = el('p', 'feedback'); fb.setAttribute('aria-live', 'polite');
+    q.options.forEach(function (o, oi) {
+      var btn = el('button', null, o); btn.type = 'button';
+      btn.addEventListener('click', function () {
+        state[qi] = oi === q.answer;
+        Array.prototype.forEach.call(opts.children, function (other, j) {
+          other.removeAttribute('data-state');
+          other.setAttribute('aria-pressed', j === oi ? 'true' : 'false');
+        });
+        btn.setAttribute('data-state', state[qi] ? 'right' : 'wrong');
+        fb.textContent = '';
+        fb.appendChild(el('b', state[qi] ? 'right' : 'wrong', state[qi] ? 'Right. ' : 'Not quite. '));
+        fb.appendChild(document.createTextNode(state[qi] ? q.why : 'Try another answer.'));
+        score();
+      });
+      opts.appendChild(btn);
+    });
+    li.appendChild(opts);
+    li.appendChild(fb);
+    quiz.appendChild(li);
+  });
+  function score() {
+    var answered = state.filter(function (s) { return s !== null; }).length;
+    var right = state.filter(function (s) { return s === true; }).length;
+    var out = $('score');
+    out.textContent = '';
+    if (!answered) return;
+    if (right === QUESTIONS.length) { out.appendChild(el('span', 'done', 'All ' + right + ' right. You are ready for the lab.')); return; }
+    out.textContent = right + ' of ' + QUESTIONS.length + ' right so far.';
+  }
+
+  drawGraphs();
+})();
+</script>
+</body>
+</html>
