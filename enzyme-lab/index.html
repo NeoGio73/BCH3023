@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biofuel Enzyme Lab</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c4c9a'/%3E%3Crect x='12' y='5' width='8' height='22' rx='1' fill='%23fff'/%3E%3Crect x='12' y='14' width='8' height='13' rx='1' fill='%23f2c81d'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="lab.css">
+</head>
+<body data-activity="1" data-part="1">
+<main class="sheet">
+
+  <header class="masthead">
+    <h1>Biofuel Enzyme Lab <span class="subtitle" id="subtitle">Activities 1 to 3</span></h1>
+    <p class="print-header" aria-hidden="true"><span id="print-name"></span><span id="print-date"></span></p>
+  </header>
+
+  <p class="sim-note">This is a simulation of the Bio-Rad Biofuel Enzyme Kit experiment. Its numbers follow the typical classroom results in the kit's manual, with a little scatter, so your results will not be exactly the same as anyone else's.</p>
+
+  <nav class="activity-tabs" aria-label="Activity">
+    <button type="button" class="activity-tab" data-part="1" data-go="1" aria-pressed="true"><span class="tab-number">Activity 1</span> Enzyme or no enzyme</button>
+    <button type="button" class="activity-tab" data-part="1" data-go="2" aria-pressed="false"><span class="tab-number">Activity 2</span> Temperature</button>
+    <button type="button" class="activity-tab" data-part="1" data-go="3" aria-pressed="false"><span class="tab-number">Activity 3</span> pH</button>
+    <button type="button" class="activity-tab" data-part="2" data-go="4" aria-pressed="false"><span class="tab-number">Activity 4</span> Enzyme concentration</button>
+    <button type="button" class="activity-tab" data-part="2" data-go="5" aria-pressed="false"><span class="tab-number">Activity 5</span> Substrate concentration</button>
+    <a class="part-link" id="part-link" href="?part=2">Go to Activities 4 and 5</a>
+  </nav>
+
+  <section class="part" id="part-bench" aria-labelledby="bench-title">
+    <h2 id="bench-title"><span class="step" aria-hidden="true">1</span>At the bench</h2>
+    <p class="lede" data-activity="1">The enzyme cellobiase splits a colorless substrate into glucose and p-nitrophenol. You will run the reaction with the enzyme and without it, take a sample at each time, and stop each sample in a cuvette of stop solution, which also turns p-nitrophenol yellow. The more yellow, the more product.</p>
+    <p class="lede" data-activity="2">Does the enzyme work faster when it is warmer? You will run the same reaction in an ice bath (0 °C), on the bench (22 °C) and in a warm bath (37 °C), stop each one after 2 minutes, and compare how much product was made.</p>
+    <p class="lede" data-activity="3">Does the enzyme care about pH? You will run the same reaction at pH 5.0, pH 6.3 and pH 8.6, stop each one after 2 minutes, and compare how much product was made. This activity uses 3.0 mM substrate, because the pH buffer already in each tube dilutes it.</p>
+
+    <p class="lede" data-activity="4">Does more enzyme make the reaction faster, and does it make more product in the end? You will run the same amount of substrate with a high and a low concentration of enzyme, and sample each at 1, 2 and 8 minutes.</p>
+    <p class="lede" data-activity="5">Does more substrate make the reaction faster, and does it make more product in the end? You will run the same amount of enzyme with a high and a low concentration of substrate, and sample each at 1, 2 and 8 minutes.</p>
+
+    <div class="bench-layout">
+      <div class="stage-column">
+        <div class="stage" id="stage">
+          <canvas id="unity-canvas" tabindex="-1" aria-label="3D fume hood holding tubes of stock solutions, reaction tubes, transfer pipets, cuvettes, five color standards, a spectrophotometer and a timer"></canvas>
+          <div class="stage-cover" id="stage-cover">
+            <p id="stage-status">Setting up the fume hood</p>
+            <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+          <div class="timer" id="timer" hidden>
+            <span class="timer-label">Timer</span>
+            <span class="timer-time" id="timer-time" role="timer" aria-live="off">0:00</span>
+            <button type="button" class="timer-fast" id="fast-forward" aria-pressed="false" title="Makes time on the bench run ten times faster. It drops back to normal speed 5 seconds before each sample is due.">Fast forward</button>
+          </div>
+        </div>
+        <p class="stage-note" id="stage-note" role="status"></p>
+        <p class="stage-tip">Tip: turn your phone sideways for a bigger bench.</p>
+        <div class="stage-controls">
+          <div class="views" role="group" aria-label="Camera view">
+            <button type="button" class="view-button" data-view="hood" aria-pressed="false">Fume hood</button>
+            <button type="button" class="view-button" data-view="bench" aria-pressed="true">Bench</button>
+            <button type="button" class="view-button" data-view="standards" aria-pressed="false">Standards</button>
+            <button type="button" class="view-button" data-view="meter" aria-pressed="false">Spectrophotometer</button>
+          </div>
+          <div class="views" role="group" aria-label="How much the pipets draw up">
+            <span class="views-label">Pipet draws</span>
+            <button type="button" class="view-button volume-button" data-volume="250" aria-pressed="false">250 µL</button>
+            <button type="button" class="view-button volume-button" data-volume="500" aria-pressed="true">500 µL</button>
+            <button type="button" class="view-button volume-button" data-volume="1000" aria-pressed="false">1 mL</button>
+          </div>
+          <div class="reset-wrap">
+            <button type="button" class="quiet-button" id="reset-bench">Wash up and set out again</button>
+            <span class="confirm" id="reset-confirm" hidden>
+              Empty every tube and cuvette and start this activity again? Everything recorded for this activity will be cleared.
+              <button type="button" class="quiet-button danger" id="reset-yes">Wash up</button>
+              <button type="button" class="quiet-button" id="reset-no">Keep going</button>
+            </span>
+          </div>
+        </div>
+
+        <ol class="procedure" data-activity="1">
+          <li><strong>Using a pipet.</strong> Click a pipet to pick it up (or drag it). Click a tube to draw liquid up, then click the tube or cuvette it goes into. Click the bench to put the pipet back. Each pipet has its own job: <em>Stop</em> for stop solution, <em>Sub</em> for substrate, <em>C</em> for the buffer and the Control tube, <em>E</em> for the enzyme and the Enzyme Reaction tube.</li>
+          <li>Put 500 µL of stop solution in each of the seven cuvettes.</li>
+          <li>Put 2 mL of 1.5 mM substrate in the Enzyme Reaction tube and 1 mL in the Control tube.</li>
+          <li>With pipet C, add 500 µL of buffer to the Control tube. Then move 500 µL from the Control tube to the cuvette <em>Start</em>.</li>
+          <li>With pipet E, add 1 mL of enzyme to the Enzyme Reaction tube. The timer starts as the enzyme goes in.</li>
+          <li>With pipet E, move 500 µL from the Enzyme Reaction tube to cuvette E1 at 1 minute, E2 at 2 minutes, E3 at 4, E4 at 6 and E5 at 8.</li>
+          <li>With pipet C, move 500 µL from the Control tube to the cuvette <em>End</em>.</li>
+          <li><strong>By eye.</strong> Drag each cuvette to the stand of standards and slide it along to find the closest color. Fill in Table 2.</li>
+          <li><strong>By spectrophotometer.</strong> Drag standard S1 into the spectrophotometer to blank it. Then read S2 to S5 for Table 3 and your seven cuvettes for Table 4.</li>
+        </ol>
+
+        <ol class="procedure" data-activity="2">
+          <li><strong>Using a pipet.</strong> Click a pipet to pick it up, click a tube to draw liquid up, then click where it goes. Click the bench to put the pipet back. <em>Stop</em> is for stop solution, <em>Sub</em> for substrate and <em>E</em> for enzyme. The pipets marked <em>0 °C</em>, <em>22 °C</em> and <em>37 °C</em> each move one finished reaction into its cuvette.</li>
+          <li>Put 500 µL of stop solution in each of the three cuvettes.</li>
+          <li>Set the pipet to 250 µL. With pipet E, put 250 µL of enzyme in each of the three <em>Enzyme</em> tubes: in the ice bath, on the bench and in the warm bath.</li>
+          <li>Set the pipet to 500 µL. With the Sub pipet, put 500 µL of 1.5 mM substrate in each of the three <em>Substrate</em> tubes.</li>
+          <li>Wait at least 5 minutes for the tubes to reach the temperature of their baths. Point at a tube to see its temperature. Fast forward makes the wait shorter.</li>
+          <li>With pipet E, move the enzyme from each Enzyme tube into the Substrate tube in the same bath: ice bath first, then bench, then warm bath. The timer starts with the first.</li>
+          <li>Two minutes after each one was mixed, move 500 µL of it into its cuvette, using the pipet with that temperature on it.</li>
+          <li><strong>By eye.</strong> Drag each cuvette to the stand of standards and slide it along to find the closest color. Fill in Table 6.</li>
+          <li><strong>By spectrophotometer.</strong> Blank the spectrophotometer with standard S1, then read your three cuvettes for Table 7. Use your standard curve to turn each absorbance into an amount.</li>
+        </ol>
+
+        <ol class="procedure" data-activity="3">
+          <li><strong>Using a pipet.</strong> Click a pipet to pick it up, click a tube to draw liquid up, then click where it goes. Click the bench to put the pipet back. <em>Stop</em> is for stop solution, <em>Sub</em> for substrate and <em>E</em> for enzyme. The pipets marked <em>pH 5.0</em>, <em>pH 6.3</em> and <em>pH 8.6</em> each move one finished reaction into its cuvette.</li>
+          <li>Put 500 µL of stop solution in each of the three cuvettes.</li>
+          <li>The three small tubes already hold 250 µL of pH adjustment buffer each. Set the pipet to 250 µL. With the Sub pipet, add 250 µL of 3.0 mM substrate to each.</li>
+          <li>With pipet E, add 250 µL of enzyme to each small tube. The timer starts with the first.</li>
+          <li>Two minutes after the enzyme went into each tube, set the pipet to 500 µL and move 500 µL of it into its cuvette, using the pipet with that pH on it. Fast forward makes the wait shorter.</li>
+          <li><strong>By eye.</strong> Drag each cuvette to the stand of standards and slide it along to find the closest color. Fill in Table 9.</li>
+          <li><strong>By spectrophotometer.</strong> Blank the spectrophotometer with standard S1, then read your three cuvettes for Table 10. Use your standard curve to turn each absorbance into an amount.</li>
+        </ol>
+
+        <ol class="procedure" data-activity="4">
+          <li><strong>Using a pipet.</strong> Click a pipet to pick it up, click a tube to draw liquid up, then click where it goes. Click the bench to put the pipet back. <em>Stop</em> is for stop solution and <em>Mix</em> is for making the low concentration enzyme. <em>H</em> and <em>L</em> each belong to one reaction tube: for the substrate that goes into it, and for its samples.</li>
+          <li>Put 500 µL of stop solution in each of the six cuvettes.</li>
+          <li>The tube marked <em>High Enzyme</em> holds high concentration enzyme. Make the low concentration enzyme in the empty tube marked <em>Low Enzyme</em>: with the Mix pipet, put 1 mL of buffer in it, then move 1 mL of enzyme into it from the High Enzyme tube.</li>
+          <li>Set the pipet to 250 µL. With pipet H, add 250 µL of 1.5 mM substrate to the High Enzyme tube. The timer starts as it goes in.</li>
+          <li>Straight away, with pipet L, add 250 µL of 1.5 mM substrate to the Low Enzyme tube.</li>
+          <li>Set the pipet to 500 µL. At 1, 2 and 8 minutes, move 500 µL from the High tube to cuvettes H1, H2 and H3 with pipet H, and 500 µL from the Low tube to L1, L2 and L3 with pipet L. Each tube's minutes count from when its own substrate went in; the note under the bench tells you when each sample is due.</li>
+          <li><strong>By eye.</strong> Drag each cuvette to the stand of standards and slide it along to find the closest color. Fill in Table 12.</li>
+          <li><strong>By spectrophotometer.</strong> Blank the spectrophotometer with standard S1, then read your six cuvettes for Table 13. Use your standard curve to turn each absorbance into an amount.</li>
+        </ol>
+
+        <ol class="procedure" data-activity="5">
+          <li><strong>Using a pipet.</strong> Click a pipet to pick it up, click a tube to draw liquid up, then click where it goes. Click the bench to put the pipet back. <em>Stop</em> is for stop solution, <em>Sub</em> for substrate, <em>Buf</em> for buffer and <em>E</em> for enzyme. <em>H</em> and <em>L</em> each take the samples from one reaction tube.</li>
+          <li>Put 500 µL of stop solution in each of the six cuvettes.</li>
+          <li>The tubes marked <em>High Substrate</em> and <em>Low Substrate</em> start empty. With the Sub pipet, put 1.5 mL of 1.5 mM substrate in the High Substrate tube (1 mL, then 500 µL).</li>
+          <li>With the Buf pipet, put 1.25 mL of buffer in the <em>Low Substrate</em> tube (1 mL, then 250 µL). Then, with the Sub pipet, add 250 µL of 1.5 mM substrate to it.</li>
+          <li>With pipet E, add 750 µL of enzyme to the High Substrate tube (500 µL, then 250 µL). The timer starts as the enzyme goes in. Straight away, add 750 µL of enzyme to the Low Substrate tube.</li>
+          <li>Set the pipet to 500 µL. At 1, 2 and 8 minutes, move 500 µL from the High tube to cuvettes H1, H2 and H3 with pipet H, and 500 µL from the Low tube to L1, L2 and L3 with pipet L. Each tube's minutes count from when its own enzyme went in; the note under the bench tells you when each sample is due.</li>
+          <li><strong>By eye.</strong> Drag each cuvette to the stand of standards and slide it along to find the closest color. Fill in Table 15.</li>
+          <li><strong>By spectrophotometer.</strong> Blank the spectrophotometer with standard S1, then read your six cuvettes for Table 16. Use your standard curve to turn each absorbance into an amount.</li>
+        </ol>
+      </div>
+
+      <div class="data-column">
+        <table class="data-table" id="table-1">
+          <caption>Table 1. p-Nitrophenol standards</caption>
+          <thead><tr><th scope="col">Standard</th><th scope="col">S1</th><th scope="col">S2</th><th scope="col">S3</th><th scope="col">S4</th><th scope="col">S5</th></tr></thead>
+          <tbody><tr><th scope="row">p-Nitrophenol <span class="unit">(nmol)</span></th><td>0</td><td>12.5</td><td>25</td><td>50</td><td>100</td></tr></tbody>
+        </table>
+
+        <table class="data-table" id="table-3">
+          <caption>Table 3. Absorbance of the standards <span class="caption-note">(read once; it serves every activity)</span></caption>
+          <thead>
+            <tr>
+              <th scope="col" class="col-id">Standard</th>
+              <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span></th>
+              <th scope="col">Absorbance at 410 nm</th>
+            </tr>
+          </thead>
+          <tbody id="rows-std"></tbody>
+        </table>
+
+        <div class="panel" data-activity="1">
+          <h3 class="panel-title">Activity 1: enzyme or no enzyme</h3>
+          <table class="data-table">
+            <caption>Table 2. Comparing the cuvettes with the standards by eye</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-time">Time <span class="unit">(min)</span></th>
+                <th scope="col" class="col-id">Cuvette</th>
+                <th scope="col">Standard most similar</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span></th>
+              </tr>
+            </thead>
+            <tbody id="rows-a1-eye"></tbody>
+          </table>
+          <table class="data-table">
+            <caption>Table 4. p-Nitrophenol produced, from the standard curve</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-time">Time <span class="unit">(min)</span></th>
+                <th scope="col" class="col-id">Cuvette</th>
+                <th scope="col">Absorbance at 410 nm</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span> from the curve</th>
+              </tr>
+            </thead>
+            <tbody id="rows-a1-abs"></tbody>
+          </table>
+        </div>
+
+        <div class="panel" data-activity="2">
+          <h3 class="panel-title">Activity 2: temperature</h3>
+          <table class="data-table">
+            <caption>Table 6. p-Nitrophenol produced at three temperatures, by eye</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-cond">Temperature</th>
+                <th scope="col">Standard most similar</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span></th>
+              </tr>
+            </thead>
+            <tbody id="rows-a2-eye"></tbody>
+          </table>
+          <table class="data-table">
+            <caption>Table 7. p-Nitrophenol produced at three temperatures, from the standard curve</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-cond">Temperature</th>
+                <th scope="col">Absorbance at 410 nm</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span> from the curve</th>
+              </tr>
+            </thead>
+            <tbody id="rows-a2-abs"></tbody>
+          </table>
+        </div>
+
+        <div class="panel" data-activity="3">
+          <h3 class="panel-title">Activity 3: pH</h3>
+          <table class="data-table">
+            <caption>Table 9. p-Nitrophenol produced at three pH values, by eye</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-cond">pH</th>
+                <th scope="col">Standard most similar</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span></th>
+              </tr>
+            </thead>
+            <tbody id="rows-a3-eye"></tbody>
+          </table>
+          <table class="data-table">
+            <caption>Table 10. p-Nitrophenol produced at three pH values, from the standard curve</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-cond">pH</th>
+                <th scope="col">Absorbance at 410 nm</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span> from the curve</th>
+              </tr>
+            </thead>
+            <tbody id="rows-a3-abs"></tbody>
+          </table>
+        </div>
+        <div class="panel" data-activity="4">
+          <h3 class="panel-title">Activity 4: enzyme concentration</h3>
+          <table class="data-table">
+            <caption>Table 12. p-Nitrophenol produced with a high and a low enzyme concentration, by eye</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-time">Time <span class="unit">(min)</span></th>
+                <th scope="col" class="col-id">Cuvette</th>
+                <th scope="col">Standard most similar</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span></th>
+              </tr>
+            </thead>
+            <tbody id="rows-a4-eye"></tbody>
+          </table>
+          <table class="data-table">
+            <caption>Table 13. p-Nitrophenol produced with a high and a low enzyme concentration, from the standard curve</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-time">Time <span class="unit">(min)</span></th>
+                <th scope="col" class="col-id">Cuvette</th>
+                <th scope="col">Absorbance at 410 nm</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span> from the curve</th>
+              </tr>
+            </thead>
+            <tbody id="rows-a4-abs"></tbody>
+          </table>
+        </div>
+        <div class="panel" data-activity="5">
+          <h3 class="panel-title">Activity 5: substrate concentration</h3>
+          <table class="data-table">
+            <caption>Table 15. p-Nitrophenol produced with a high and a low substrate concentration, by eye</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-time">Time <span class="unit">(min)</span></th>
+                <th scope="col" class="col-id">Cuvette</th>
+                <th scope="col">Standard most similar</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span></th>
+              </tr>
+            </thead>
+            <tbody id="rows-a5-eye"></tbody>
+          </table>
+          <table class="data-table">
+            <caption>Table 16. p-Nitrophenol produced with a high and a low substrate concentration, from the standard curve</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="col-time">Time <span class="unit">(min)</span></th>
+                <th scope="col" class="col-id">Cuvette</th>
+                <th scope="col">Absorbance at 410 nm</th>
+                <th scope="col">p-Nitrophenol <span class="unit">(nmol)</span> from the curve</th>
+              </tr>
+            </thead>
+            <tbody id="rows-a5-abs"></tbody>
+          </table>
+        </div>
+        <p class="table-status" id="table-status" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="part-curve" aria-labelledby="curve-title">
+    <h2 id="curve-title"><span class="step" aria-hidden="true">2</span>Standard curve</h2>
+    <p class="lede">The graph plots your absorbance readings of the standards from Table 3 and draws the best straight line through them. To find how much p-nitrophenol is in a cuvette, find its absorbance on the upright axis, go across to the line, then down to the amount. Move the pointer over the graph, or use the slider, to read the line. The same curve serves every activity.</p>
+    <div class="chart-block">
+      <figure class="chart" id="curve-figure">
+        <div id="curve-chart"></div>
+        <figcaption>Figure 1. Standard curve: absorbance at 410 nm against the amount of p-nitrophenol.</figcaption>
+      </figure>
+      <div class="chart-side">
+        <label class="field curve-reader"><span class="field-name">Read the line at an absorbance of</span>
+          <input type="range" id="curve-slider" min="0" max="2" step="0.01" value="0.5">
+        </label>
+        <p class="readout" id="curve-readout" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="part-rate" aria-labelledby="rate-title">
+    <h2 id="rate-title"><span class="step" aria-hidden="true">3</span>Reaction rate</h2>
+
+    <div class="panel" data-activity="1">
+      <h3 class="panel-title">Activity 1: enzyme or no enzyme</h3>
+      <p class="lede">The graph plots the amount of product in each cuvette against the time its sample was taken, using Table 4 (or Table 2 for any cuvette you have not finished in Table 4). Where the points rise in a straight line, the slope of that line is the initial rate of the reaction: the change in nmol divided by the change in minutes.</p>
+      <div class="chart-block">
+        <figure class="chart">
+          <div id="a1-rate-chart"></div>
+          <figcaption>Figure 2. p-Nitrophenol produced over time, with the enzyme and without it.</figcaption>
+        </figure>
+        <div class="chart-side" id="a1-rates"></div>
+      </div>
+    </div>
+
+    <div class="panel" data-activity="2">
+      <h3 class="panel-title">Activity 2: temperature</h3>
+      <p class="lede">Each reaction was sampled once, at 2 minutes. Take the amount of p-nitrophenol at 0 minutes as 0 nmol, so the initial rate is the amount in the cuvette divided by 2 minutes. Use the amounts from Table 7 (or Table 6 if you have not finished Table 7). The graph plots your three rates against temperature.</p>
+      <div class="chart-block">
+        <figure class="chart">
+          <div id="a2-rate-chart"></div>
+          <figcaption>Figure 3. Initial rate of the reaction at three temperatures.</figcaption>
+        </figure>
+        <div class="chart-side" id="a2-rates"></div>
+      </div>
+    </div>
+
+    <div class="panel" data-activity="3">
+      <h3 class="panel-title">Activity 3: pH</h3>
+      <p class="lede">Each reaction was sampled once, at 2 minutes. Take the amount of p-nitrophenol at 0 minutes as 0 nmol, so the initial rate is the amount in the cuvette divided by 2 minutes. Use the amounts from Table 10 (or Table 9 if you have not finished Table 10). The graph plots your three rates against pH.</p>
+      <div class="chart-block">
+        <figure class="chart">
+          <div id="a3-rate-chart"></div>
+          <figcaption>Figure 4. Initial rate of the reaction at three pH values.</figcaption>
+        </figure>
+        <div class="chart-side" id="a3-rates"></div>
+      </div>
+    </div>
+
+    <div class="panel" data-activity="4">
+      <h3 class="panel-title">Activity 4: enzyme concentration</h3>
+      <p class="lede">The graph plots the amount of product in each cuvette against the time its sample was taken, for the high and the low enzyme concentration, using Table 13 (or Table 12 for any cuvette you have not finished there). For each reaction, take the amount of product at 0 minutes as 0 nmol, so the initial rate is the amount of product at 1 minute divided by 1 minute.</p>
+      <div class="chart-block">
+        <figure class="chart">
+          <div id="a4-rate-chart"></div>
+          <figcaption>Figure 5. p-Nitrophenol produced over time with a high and a low enzyme concentration.</figcaption>
+        </figure>
+        <div class="chart-side" id="a4-rates"></div>
+      </div>
+    </div>
+
+    <div class="panel" data-activity="5">
+      <h3 class="panel-title">Activity 5: substrate concentration</h3>
+      <p class="lede">The graph plots the amount of product in each cuvette against the time its sample was taken, for the high and the low substrate concentration, using Table 16 (or Table 15 for any cuvette you have not finished there). For each reaction, take the amount of product at 0 minutes as 0 nmol, so the initial rate is the amount of product at 1 minute divided by 1 minute.</p>
+      <div class="chart-block">
+        <figure class="chart">
+          <div id="a5-rate-chart"></div>
+          <figcaption>Figure 6. p-Nitrophenol produced over time with a high and a low substrate concentration.</figcaption>
+        </figure>
+        <div class="chart-side" id="a5-rates"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="part-questions" aria-labelledby="questions-title" hidden>
+    <h2 id="questions-title"><span class="step" aria-hidden="true">4</span>Questions</h2>
+    <p class="lede">Answer in your own words, using your results. Your answers are saved as you type and are printed with your report. The page does not check them.</p>
+    <div id="questions"></div>
+  </section>
+
+  <section class="part" id="part-report" aria-labelledby="report-title">
+    <h2 id="report-title"><span class="step" aria-hidden="true" id="report-step">4</span>Turn in</h2>
+    <div class="report-row">
+      <label class="field name-field"><span class="field-name">Your name</span><input type="text" id="student-name" autocomplete="name"></label>
+      <button type="button" class="primary-button" id="print-report">Print or save as PDF</button>
+    </div>
+    <p class="report-status" id="report-status" role="status"></p>
+    <p class="fine">
+      Your work is saved in this browser as you go. The report prints every activity you have started.
+      <button type="button" class="link-button" id="start-over">Start over</button>
+      <span class="confirm" id="start-confirm" hidden>
+        This erases everything you have recorded in every activity, on both pages, and sets the bench out again.
+        <button type="button" class="quiet-button danger" id="start-yes">Erase and start over</button>
+        <button type="button" class="quiet-button" id="start-no">Keep my work</button>
+      </span>
+    </p>
+  </section>
+
+  <footer class="print-footer" aria-hidden="true"><span id="print-checks"></span></footer>
+
+  <footer class="credits">
+    A simulation of the Biofuel Enzyme Kit experiment (Bio-Rad, catalog 166-5035EDU); its numbers follow the typical classroom results in the kit's manual.
+    Fume hood model: <a href="https://sketchfab.com/3d-models/dm3-004-08-a640c09386df411e8669ddb19e3fd40f" target="_blank" rel="noopener">&ldquo;Dm3-004-08&rdquo;</a> by foxart3d,
+    used under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.
+    Shown here with the sash raised and with different materials.
+  </footer>
+</main>
+
+<script src="model.js"></script>
+<script src="app.js"></script>
+<script>
+  (function () {
+    var lab = window.EnzymeLab;
+    if (lab.isMock) return;
+
+    var canvas = document.querySelector("#unity-canvas");
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/EnzymeLab.loader.js";
+    var config = {
+      arguments: [],
+      dataUrl: buildUrl + "/EnzymeLab.data.unityweb",
+      frameworkUrl: buildUrl + "/EnzymeLab.framework.js.unityweb",
+      codeUrl: buildUrl + "/EnzymeLab.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "Biofuel Enzyme Lab",
+      productVersion: "0.1.0",
+      showBanner: function (message, type) { lab.unityBanner(message, type); }
+    };
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = function () {
+      createUnityInstance(canvas, config, function (progress) { lab.unityProgress(progress); })
+        .then(function (instance) { lab.attachUnity(instance); })
+        .catch(function (error) { lab.unityFailed(error); });
+    };
+    script.onerror = function () { lab.unityFailed("The lab files did not load."); };
+    document.body.appendChild(script);
+  })();
+</script>
+</body>
+</html>
