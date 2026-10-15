@@ -20,6 +20,7 @@
   var params = new URLSearchParams(window.location.search);
   var PART = params.get('part') === '2' ? 2 : 1;
   var PAGE = M.PARTS[PART];          // the activities on this page
+  var PAGE_NAME = PART === 1 ? 'Activities 1 to 3' : 'Activities 4 and 5';
   // Automated tests of the page run it without the 3D lab, against a stand-in they supply.
   var standIn = typeof window.EnzymeLabStandIn === 'function' ? window.EnzymeLabStandIn : null;
 
@@ -59,6 +60,20 @@
     };
   }
 
+  var FLAG_GROUPS = ['match', 'amount', 'abs', 'curve', 'rate'];
+
+  function blankFlags() { return { match: 0, amount: 0, abs: 0, curve: 0, rate: 0 }; }
+
+  function flagText(f) {
+    return (f.match + f.amount) + ' by-eye entries, ' + f.abs + ' absorbances, ' + f.curve + ' amounts from the curve, ' + f.rate + ' rates';
+  }
+
+  function readFlags(saved) {
+    var f = blankFlags();
+    if (saved && typeof saved === 'object') FLAG_GROUPS.forEach(function (g) { if (typeof saved[g] === 'number' && saved[g] >= 0) f[g] = saved[g]; });
+    return f;
+  }
+
   function blankState(seed) {
     var s = {
       v: 2,
@@ -70,7 +85,8 @@
       std: {},                 // Table 3: absorbance of standards S2 to S5 as typed
       stdVerdicts: {},
       acts: {},
-      flags: { match: 0, amount: 0, abs: 0, curve: 0, rate: 0 }
+      flags: {},               // entries flagged before correction: for Table 3 ('std') and for each activity apart
+      earlierFlags: null       // work saved before that kept one count for both pages; it is kept as it was
     };
     STANDARDS.slice(1).forEach(function (st) { s.std[st.id] = ''; });
     NUMBERS.forEach(function (n) { s.acts[n] = blankActivity(n); });
@@ -88,7 +104,15 @@
         if (saved.last && M.PARTS[part].indexOf(saved.last[part]) >= 0) fresh.last[part] = saved.last[part];
       });
       fresh.volume = [250, 500, 1000].indexOf(saved.volume) >= 0 ? saved.volume : 500;
-      fresh.flags = Object.assign(fresh.flags, saved.flags || {});
+      // Flags are counted for Table 3 and each activity apart, so that each page's report counts
+      // only its own. Work saved before then has one count for everything.
+      if (saved.flags && typeof saved.flags === 'object') {
+        if (typeof saved.flags.match === 'number') fresh.earlierFlags = readFlags(saved.flags);
+        else Object.keys(saved.flags).forEach(function (place) {
+          if (place === 'std' || NUMBERS.indexOf(Number(place)) >= 0) fresh.flags[place] = readFlags(saved.flags[place]);
+        });
+      }
+      if (saved.earlierFlags && typeof saved.earlierFlags === 'object') fresh.earlierFlags = readFlags(saved.earlierFlags);
       Object.keys(fresh.std).forEach(function (id) { if (saved.std && typeof saved.std[id] === 'string') fresh.std[id] = saved.std[id]; });
       if (saved.stdVerdicts && typeof saved.stdVerdicts === 'object') fresh.stdVerdicts = saved.stdVerdicts;
       NUMBERS.forEach(function (n) {
@@ -135,7 +159,10 @@
     if (result.ok !== false) return;
     if (lastFlagged[field] === value) return;
     lastFlagged[field] = value;
-    state.flags[group] += 1;
+    // an activity's fields are named a<n>-..., Table 3's std-...
+    var match = /^a(\d)-/.exec(field), place = match ? match[1] : 'std';
+    if (!state.flags[place]) state.flags[place] = blankFlags();
+    state.flags[place][group] += 1;
   }
 
   // ---- What a bench looks like, from the 3D lab's last account of it -----------------------------
@@ -832,15 +859,22 @@
     var done = now.eye + now.abs + now.curve;
     $('table-status').textContent = done ? done + ' of ' + now.count * 4 + ' table entries accepted for this activity.' : '';
 
-    var f = state.flags;
+    // only the flags of this page's activities, and of Table 3, which both reports print
+    var f = blankFlags();
+    ['std'].concat(PAGE.map(String)).forEach(function (place) {
+      var c = state.flags[place];
+      if (c) FLAG_GROUPS.forEach(function (g) { f[g] += c[g]; });
+    });
+    var earlier = state.earlierFlags, earlierCount = 0;
+    if (earlier) FLAG_GROUPS.forEach(function (g) { earlierCount += earlier[g]; });
     $('print-name').textContent = 'Name: ' + (state.name || '________________');
     $('print-date').textContent = 'Printed ' + new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
     $('print-checks').textContent = 'Checked by the lab page. Table 3: ' + all[0].std + ' of 4 absorbances of the standards accepted. ' + all.map(function (p, i) {
       return 'Activity ' + PAGE[i] + ': ' + p.samples + ' of ' + p.count + ' samples taken; ' + p.eye + ' of ' + 2 * p.count + ' by-eye entries, ' +
         p.abs + ' of ' + p.count + ' absorbances, ' + p.curve + ' of ' + p.count + ' amounts from the curve and ' +
         p.rates + ' of ' + p.rateCount + ' rates accepted' + (p.questionCount ? '; ' + p.answers + ' of ' + p.questionCount + ' questions answered (not checked).' : '.');
-    }).join(' ') + ' Flagged before correction, in all: ' + (f.match + f.amount) + ' by-eye entries, ' + f.abs + ' absorbances, ' + f.curve +
-      ' amounts from the curve, ' + f.rate + ' rates.';
+    }).join(' ') + ' Flagged before correction, in Table 3 and ' + PAGE_NAME + ': ' + flagText(f) + '.' +
+      (earlierCount ? ' Flagged earlier, when one count covered both reports: ' + flagText(earlier) + '.' : '');
 
     // In print, leave out an activity that has not been started.
     PAGE.forEach(function (n, i) {
@@ -1100,8 +1134,8 @@
   function showActivity() {
     document.body.setAttribute('data-part', String(PART));
     document.body.setAttribute('data-activity', String(state.activity));
-    document.title = 'Biofuel Enzyme Lab: ' + (PART === 1 ? 'Activities 1 to 3' : 'Activities 4 and 5');
-    $('subtitle').textContent = PART === 1 ? 'Activities 1 to 3' : 'Activities 4 and 5';
+    document.title = 'Biofuel Enzyme Lab: ' + PAGE_NAME;
+    $('subtitle').textContent = PAGE_NAME;
     var link = $('part-link');
     link.textContent = PART === 1 ? 'Go to Activities 4 and 5' : 'Back to Activities 1 to 3';
     link.setAttribute('href', PART === 1 ? '?part=2' : '?part=1');
