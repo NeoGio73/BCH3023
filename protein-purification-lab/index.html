@@ -39,6 +39,7 @@
           <div class="views" role="group" aria-label="Camera view">
             <button type="button" class="view-button" data-view="room" aria-pressed="true">Room</button>
             <button type="button" class="view-button" data-view="cells" aria-pressed="false">Cells</button>
+            <button type="button" class="view-button" data-view="sonicator" aria-pressed="false">Sonicator screen</button>
             <button type="button" class="view-button" data-view="spin" aria-pressed="false">Centrifuge</button>
             <button type="button" class="view-button" data-view="column" aria-pressed="false">Column</button>
             <button type="button" class="view-button" data-view="column close" aria-pressed="false">Column, close up</button>
@@ -92,7 +93,7 @@
           </li>
           <li class="routine-step" data-done="sonicated">
             <span class="routine-name">Sonicate: six bursts of 10 s, 10 s on ice between them</span>
-            <span class="routine-why">The probe shakes the liquid with ultrasound and breaks the softened cells open. Each burst warms the sample.</span>
+            <span class="routine-why">The probe shakes the liquid with ultrasound and breaks the softened cells open. Each burst warms the sample: watch its temperature on the sonicator's screen ("Sonicator screen" under the room shows it close up).</span>
             <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="burst">One 10 s burst</button></span>
             <span class="routine-state" id="state-sonicated"></span>
           </li>

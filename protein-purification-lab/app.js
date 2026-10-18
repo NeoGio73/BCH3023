@@ -226,7 +226,8 @@
     var since = b.lysozymeAt >= 0 ? b.clock - b.lysozymeAt : -1;
     p.waited = { done: since >= 30 || b.bursts > 0, text: since < 0 ? '' : since >= 30 ? '30 minutes done' : M.clockText(30 - since) + ' to go' };
     var heat = Math.max(0, tick.heat || extra.heat || 0);
-    p.sonicated = { done: b.bursts >= 6, text: b.bursts > 0 ? b.bursts + (b.bursts === 1 ? ' burst' : ' bursts') + '; the sample is at about ' + Math.round(heat) + ' °C' : '' };
+    // as the sonicator's screen reads it: about 4 degrees on ice, plus what the bursts have added
+    p.sonicated = { done: b.bursts >= 6, text: b.bursts > 0 ? b.bursts + (b.bursts === 1 ? ' burst' : ' bursts') + '; the sample is at about ' + (4 + heat).toFixed(1) + ' °C' : '' };
     p['sample-lysate'] = { done: sampled(b, 'lysate'), text: sampled(b, 'lysate') ? 'Kept' : '' };
     p.transferred = { done: b.spin.ml > 0 || b.decanted, text: b.spin.ml > 0 && !b.decanted ? 'The spin tube holds ' + M.ml(b.spin.ml) : '' };
     var balanced = b.spin.ml > 0 && Math.abs(b.balanceMl - b.spin.ml) <= 0.3;
@@ -418,7 +419,9 @@
       btn.addEventListener('click', function () {
         var list = btn.closest('.routine');
         var v = list ? VIEW_OF[list.id] : null;
-        if (v && state.view !== v && !(v === 'column' && state.view === 'column close')) { state.view = v; showViews(); sendBench('SetView', v); }
+        // (a close-up of the same part of the bench is kept)
+        var closeUp = (v === 'column' && state.view === 'column close') || (v === 'cells' && state.view === 'sonicator');
+        if (v && state.view !== v && !closeUp) { state.view = v; showViews(); sendBench('SetView', v); }
         act(btn.getAttribute('data-steps'));
       });
     });
