@@ -407,7 +407,7 @@ select[data-state] { background-position: right 22px center; }
 
 .bench-layout {
   --stage-max: max(640px, calc((100vh - 110px) * 1.58));
-  grid-template-columns: minmax(0, var(--stage-max)) minmax(19rem, 30rem);
+  grid-template-columns: minmax(0, var(--stage-max)) minmax(17rem, 25rem);
 }
 .stage { aspect-ratio: 1500 / 950; max-height: calc(100dvh - 12px); }
 .lede { max-width: 86ch; }
