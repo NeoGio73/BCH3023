@@ -58,6 +58,9 @@ again.
   https://neogio73.github.io/BCH3023/protein-purification-lab/
 - Part 2 (the measurements, the gel, the purification table and the identification):
   https://neogio73.github.io/BCH3023/protein-purification-lab/?part=2
+- Guide to Part 2 (a PDF to keep open beside the lab: every step, what to see and why, what to do
+  when the bench objects, and a one-page quick reference):
+  https://neogio73.github.io/BCH3023/protein-purification-lab/guide/guide-to-part-2.pdf
 
 How it works
 
