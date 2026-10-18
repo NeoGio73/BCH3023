@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Purifying a Glowing Protein: Prelab Review</title>
+  <meta name="description" content="A review before the protein purification lab: His-tags and the nickel column, fusion tags, breaking cells, the centrifuge, running the column, fluorescence, the Bradford assay, SDS-PAGE and the purification table, all worked with a made-up protein.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c4c9a'/%3E%3Crect x='12' y='4' width='8' height='24' rx='1' fill='%23fff'/%3E%3Crect x='12' y='15' width='8' height='5' fill='%2334c08a'/%3E%3Crect x='12' y='20' width='8' height='8' rx='1' fill='%23d9e2ef'/%3E%3C/svg%3E">
+  <style>
+    /* Same look as the lab pages and the other prelabs: paper white, bench slate for ink, enamel blue. */
+    :root {
+      --paper: #ffffff;
+      --wash: #f3f6f4;
+      --ink: #17211e;
+      --ink-soft: #4b5854;
+      --ink-faint: #74807c;
+      --rule: #c7d1cc;
+      --rule-strong: #8d9994;
+      --enamel: #1c4c9a;
+      --enamel-deep: #153a78;
+      --enamel-wash: #e9eff9;
+      --good: #1b7a40;
+      --good-wash: #edf7f0;
+      --flag: #ab2a1c;
+      --flag-wash: #fdf1ee;
+      --glow: #b3261e;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; }
+    .sheet { max-width: 1040px; margin: 0 auto; padding: 0 20px 64px; }
+    a { color: var(--enamel-deep); }
+    a:hover { color: var(--enamel); }
+
+    .masthead { padding: 28px 20px 26px; background: var(--wash); border-bottom: 1px solid var(--rule); }
+    .masthead-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 28px; }
+    .eyebrow { margin: 0 0 4px; color: var(--ink-faint); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    h1 { margin: 0; font-family: var(--serif); font-size: 2.1rem; font-weight: 600; line-height: 1.15; }
+    .dek { margin: 8px 0 0; max-width: 62ch; color: var(--ink-soft); }
+    .lab-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 6px; background: var(--enamel); color: #fff; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .lab-button:hover { background: var(--enamel-deep); color: #fff; }
+
+    nav.contents { margin-top: 26px; padding: 12px 16px; border: 1px solid var(--rule); border-radius: 8px; font-size: 0.95rem; }
+    nav.contents ol { margin: 4px 0 0; padding-left: 1.4em; columns: 2 22rem; }
+
+    section { margin-top: 46px; }
+    h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; font-family: var(--serif); font-size: 1.5rem; font-weight: 600; line-height: 1.25; }
+    .step { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--enamel); color: #fff; font-family: var(--sans); font-size: 0.92rem; font-weight: 650; }
+    h3 { margin: 22px 0 6px; font-family: var(--serif); font-size: 1.18rem; font-weight: 600; }
+    p { margin: 0 0 12px; }
+    .prose { max-width: 70ch; }
+    .prose ul, .prose ol { margin: 0 0 12px; padding-left: 1.3em; }
+    .prose li { margin-bottom: 5px; }
+    .soft { color: var(--ink-soft); }
+    .small { font-size: 0.9rem; }
+    .cite { color: var(--ink-soft); font-size: 0.85rem; }
+    .math { font-variant-numeric: tabular-nums; }
+    .eq { display: inline-block; margin: 4px 0 12px; padding: 8px 14px; border-radius: 6px; background: var(--wash); font-family: var(--serif); font-size: 1.15rem; }
+    .callout { max-width: 72ch; margin: 14px 0; padding: 12px 16px 2px; border-radius: 8px; background: var(--enamel-wash); border: 1px solid #cfdcf1; }
+    .callout h3 { margin-top: 0; font-size: 1.05rem; }
+    .made-up { max-width: 72ch; margin: 18px 0 0; padding: 10px 14px; border-left: 3px solid var(--enamel); background: var(--enamel-wash); border-radius: 0 6px 6px 0; font-size: 0.96rem; }
+    .safety { max-width: 70ch; margin: 10px 0 0; padding: 10px 14px; border-left: 3px solid var(--flag); background: var(--flag-wash); border-radius: 0 6px 6px 0; font-size: 0.96rem; }
+    .worked { max-width: 70ch; margin: 0 0 12px; padding: 8px 12px; border-left: 3px solid var(--enamel); background: var(--enamel-wash); border-radius: 0 6px 6px 0; }
+
+    table.ref { border-collapse: collapse; margin: 8px 0 16px; font-size: 0.94rem; font-variant-numeric: tabular-nums; }
+    table.ref th, table.ref td { padding: 5px 10px; border: 1px solid var(--rule); text-align: left; vertical-align: top; }
+    table.ref thead th { background: var(--wash); font-size: 0.86rem; }
+    table.ref td.num, table.ref th.num { text-align: right; white-space: nowrap; }
+    .table-scroll { overflow-x: auto; max-width: 100%; }
+    .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: start; }
+
+    /* the protein and its tags, drawn as beads on a string */
+    .construct { display: flex; align-items: center; flex-wrap: nowrap; gap: 0; margin: 6px 0 4px; min-width: 0; }
+    .construct span { display: inline-flex; min-width: 0; overflow: hidden; align-items: center; justify-content: center; height: 2.1rem; padding: 0 10px; border: 1.5px solid var(--ink-soft); font-size: 0.86rem; font-weight: 650; white-space: nowrap; }
+    .construct span + span { margin-left: -1.5px; }
+    .construct .his { background: #fff3c9; }
+    .construct .helper { background: #e3ecf8; }
+    .construct .fp { background: #f6dcda; border-radius: 0 999px 999px 0; }
+    .construct .fp.alone { border-radius: 999px; }
+    .construct-row { display: grid; grid-template-columns: 11rem minmax(0, 1fr) 5.5rem; gap: 6px 14px; align-items: center; max-width: 780px; padding: 6px 0; border-bottom: 1px solid var(--rule); font-size: 0.95rem; }
+    .construct-row .mass { text-align: right; font-weight: 650; font-variant-numeric: tabular-nums; }
+
+    .tool { margin: 14px 0; padding: 16px 18px 12px; border: 1px solid var(--rule); border-radius: 10px; background: #fbfcfb; max-width: 820px; }
+    .tool h3 { margin-top: 0; font-family: var(--sans); font-size: 1.02rem; }
+    .tool label { font-weight: 600; }
+    .fields { display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: flex-end; }
+    .fields > div { display: flex; flex-direction: column; gap: 4px; }
+    .tool input[type="number"], .tool select { padding: 7px 10px; border: 1.5px solid var(--rule-strong); border-radius: 6px; font: inherit; width: 9rem; background: #fff; }
+    .tool .out { margin: 12px 0 4px; font-size: 1rem; }
+    .tool .out b { font-size: 1.15rem; }
+    .tool .warn { color: var(--flag); font-weight: 600; }
+    button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #f0b429; outline-offset: 2px; }
+
+    figure.chart { margin: 10px 0 16px; padding: 8px 10px 6px; border: 1px solid var(--rule); border-radius: 8px; background: #fff; }
+    figure.chart svg { display: block; width: 100%; height: auto; }
+    figure.chart figcaption { margin-top: 4px; font-size: 0.86rem; color: var(--ink-soft); }
+    .grid { stroke: rgba(23, 33, 30, 0.09); stroke-width: 1; }
+    .axis { stroke: var(--ink-soft); stroke-width: 1.5; }
+    .tick { fill: var(--ink-soft); font-size: 13px; font-variant-numeric: tabular-nums; }
+    .axis-name { fill: var(--ink); font-size: 14px; font-weight: 600; }
+    .lbl { font-size: 13px; font-weight: 700; paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+    .guide { stroke: var(--ink); stroke-width: 1.6; stroke-dasharray: 5 4; fill: none; }
+
+    /* the steps of the column */
+    .walk { margin: 10px 0 0; padding: 0; list-style: none; counter-reset: walk; max-width: 76ch; }
+    .walk li { position: relative; margin: 0 0 12px; padding: 0 0 0 2.3rem; counter-increment: walk; }
+    .walk li::before { content: counter(walk); position: absolute; left: 0; top: 0.1rem; display: flex; align-items: center; justify-content: center; width: 1.55rem; height: 1.55rem; border-radius: 50%; border: 1.5px solid var(--enamel); color: var(--enamel-deep); font-size: 0.86rem; font-weight: 700; }
+    .walk h4 { margin: 0 0 2px; font-size: 1rem; }
+    .walk p { margin: 0 0 4px; font-size: 0.97rem; }
+    .walk .tube { display: inline-block; margin-top: 2px; padding: 1px 8px; border-radius: 999px; background: var(--wash); border: 1px solid var(--rule); font-size: 0.84rem; font-weight: 600; color: var(--ink-soft); }
+
+    /* colour swatches for the made-up protein */
+    .swatches { display: flex; flex-wrap: wrap; gap: 14px 26px; margin: 10px 0 14px; }
+    .swatch { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+    .swatch i { display: block; width: 30px; height: 52px; border: 1.5px solid rgba(23, 33, 30, 0.4); border-top: 0; border-radius: 0 0 8px 8px; background: linear-gradient(to top, var(--c) 72%, transparent 72%); }
+    .swatch.dark i { background-color: #10151a; box-shadow: 0 0 14px 2px rgba(214, 40, 40, 0.55); }
+
+    /* quick checks after each section */
+    details.check { max-width: 72ch; margin: 14px 0 0; border: 1px solid var(--rule); border-radius: 8px; background: #fff; }
+    details.check summary { padding: 10px 14px; cursor: pointer; font-weight: 600; list-style: none; }
+    details.check summary::-webkit-details-marker { display: none; }
+    details.check summary::before { content: "Quick check"; display: inline-block; margin-right: 8px; padding: 0 8px; border-radius: 999px; background: var(--enamel-wash); color: var(--enamel-deep); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; vertical-align: 1px; }
+    details.check summary::after { content: "Show answer"; display: block; margin-top: 4px; color: var(--enamel-deep); font-size: 0.86rem; font-weight: 600; text-decoration: underline; }
+    details.check[open] summary::after { content: "Hide answer"; }
+    details.check .answer { margin: 0; padding: 0 14px 12px; color: var(--ink); font-size: 0.97rem; }
+    details.check .answer b.right { color: var(--good); }
+
+    /* the questions at the end */
+    .quiz { display: grid; gap: 14px; max-width: 780px; margin: 0; padding: 0; list-style: none; counter-reset: q; }
+    .q { padding: 14px 16px 12px; border: 1px solid var(--rule); border-radius: 8px; counter-increment: q; background: #fff; }
+    .q-text { margin: 0 0 10px; font-weight: 600; }
+    .q-text::before { content: counter(q) ". "; color: var(--ink-faint); }
+    .options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .options button { padding: 7px 12px; border: 1.5px solid var(--rule-strong); border-radius: 6px; background: #fff; color: var(--ink); font: inherit; font-size: 0.95rem; text-align: left; cursor: pointer; }
+    .options button:hover { border-color: var(--enamel); background: var(--enamel-wash); }
+    .options button[data-state="right"] { border-color: var(--good); background: var(--good-wash); color: var(--good); font-weight: 600; }
+    .options button[data-state="wrong"] { border-color: var(--flag); background: var(--flag-wash); color: var(--flag); }
+    .feedback { margin: 10px 0 0; font-size: 0.95rem; }
+    .feedback:empty { display: none; }
+    .feedback b.right { color: var(--good); }
+    .feedback b.wrong { color: var(--flag); }
+    .score { margin: 16px 0 0; font-weight: 600; }
+    .score .done { color: var(--good); }
+
+    .next { margin-top: 40px; padding: 18px 20px; border-radius: 10px; background: var(--wash); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
+    .next p { margin: 0; max-width: 60ch; }
+    .sources { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--rule); font-size: 0.86rem; color: var(--ink-soft); }
+    .sources h2 { font-size: 1.1rem; }
+    .sources ol { margin: 0; padding-left: 1.4em; }
+    .sources li { margin-bottom: 4px; }
+    .sources a { color: inherit; overflow-wrap: anywhere; }
+
+    @media (max-width: 820px) { .two { grid-template-columns: minmax(0, 1fr); } }
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
+      .sheet { padding: 0 16px 48px; }
+      .masthead { padding: 22px 16px 20px; }
+      h1 { font-size: 1.7rem; }
+      .tool { padding: 14px 12px 10px; }
+      .walk li { padding-left: 2rem; }
+      .construct-row { grid-template-columns: minmax(0, 1fr) 5rem; }
+      .construct-row .name { grid-column: 1 / -1; }
+      .construct span { padding: 0 7px; font-size: 0.8rem; }
+    }
+    @media print {
+      .lab-button, .next, nav.contents { display: none !important; }
+      .masthead { background: none; }
+      details.check summary::after { content: none; }
+      figure.chart, .tool, .q, details.check { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div>
+        <p class="eyebrow">Prelab review · Purifying a Glowing Protein · BCH 3023</p>
+        <h1>From a pellet of bacteria to a pure, glowing protein</h1>
+        <p class="dek">About 15 to 20 minutes. Why each step of the purification is done, and how the numbers of Part 2 are worked out. Each section ends with a quick check; there are more questions at the end.</p>
+      </div>
+      <a class="lab-button" href="../">Open the lab <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+  <main class="sheet">
+    <nav class="contents" aria-label="Contents">
+      <b>In this review</b>
+      <ol>
+        <li><a href="#plan">What you will do</a></li>
+        <li><a href="#his">The His-tag and the nickel column</a></li>
+        <li><a href="#fusion">Fusion tags</a></li>
+        <li><a href="#lysis">Breaking the cells</a></li>
+        <li><a href="#spin">Clearing the lysate</a></li>
+        <li><a href="#column">The column, step by step</a></li>
+        <li><a href="#glow">Finding the protein: fluorescence</a></li>
+        <li><a href="#bradford">How much protein: the Bradford assay</a></li>
+        <li><a href="#gel">How big, and how pure: SDS-PAGE</a></li>
+        <li><a href="#table">The purification table</a></li>
+        <li><a href="#check">Check yourself</a></li>
+      </ol>
+    </nav>
+
+    <section id="plan" aria-labelledby="plan-title">
+      <h2 id="plan-title"><span class="step" aria-hidden="true">1</span>What you will do</h2>
+      <div class="prose">
+        <p>You are given a pellet of <i>E. coli</i> bacteria that have been made to produce a fluorescent protein: a protein that glows when light of the right colour shines on it. Each student's bacteria make their own <b>unknown</b>: one fluorescent protein, carrying one tag. Your job is to get that protein out pure and find out what it is.</p>
+        <ul>
+          <li><b>Part 1</b>: break the cells open, spin out the debris, catch your protein on a nickel column, wash away everything else, and release it into a few small tubes.</li>
+          <li><b>Part 2</b>: measure how much protein each sample holds (Bradford assay), how much it glows (fluorescence), record its excitation and emission spectra, run a gel to see its size and purity, and sum it all up in a purification table.</li>
+        </ul>
+        <p>The spectra tell you which fluorescent protein you have; the gel tells you which tag it carries. A reference sheet in Part 2 lists the possible proteins and tags. Making the match is your work, and your instructor marks it.</p>
+      </div>
+      <p class="made-up"><b>Every example on this page is made up.</b> It uses an invented fluorescent protein, <b>Lanternin</b>, and an invented helper tag, <b>Solubin</b>. Neither is in the lab, so nothing here tells you what your unknown is.</p>
+    </section>
+
+    <section id="his" aria-labelledby="his-title">
+      <h2 id="his-title"><span class="step" aria-hidden="true">2</span>The His-tag and the nickel column</h2>
+      <div class="prose">
+        <p>A bacterium holds thousands of different proteins. To pull out just one, it is given a handle: a short string of <b>six histidines</b> joined to one end of the protein. This is a <b>His-tag</b>. It is tiny: six histidines weigh about 0.8&nbsp;kDa, against tens of kDa for the protein itself.</p>
+        <h3>Why histidine holds on to nickel</h3>
+        <p>Histidine's side chain is an <b>imidazole</b> ring, and one of its nitrogens can donate a lone pair to a metal ion, just as a ligand does in a metal complex. A nickel ion (Ni²⁺) has room for six such bonds.</p>
+        <p>The column is packed with tiny agarose beads, each covered with <b>NTA</b> (nitrilotriacetic acid) holding a nickel ion. NTA takes four of nickel's six places, which keeps the nickel firmly on the bead, and leaves <b>two places free</b>. Two histidines of the tag fill them. A single histidine on the surface of some other protein binds only weakly; six in a row, side by side, bind very strongly. This is <b>Ni-NTA</b> resin.</p>
+        <h3>Why imidazole lets go of it</h3>
+        <p>Free <b>imidazole</b> is the same ring as histidine's side chain, so it can sit in the same places on the nickel. It competes with the tag. How much imidazole is in a buffer decides what stays on the beads:</p>
+      </div>
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>Buffer</th><th class="num">Imidazole</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td>Lysis buffer</td><td class="num">10 mM</td><td>Enough to keep bacterial proteins with a stray histidine or two from settling on the nickel, too little to move the six-histidine tag. The cells are broken in it, and the column is first rinsed with it.</td></tr>
+            <tr><td>Wash buffer</td><td class="num">20 mM</td><td>A little stronger: rinses off more of the weakly held bacterial proteins while the tagged protein stays put.</td></tr>
+            <tr><td>Elution buffer</td><td class="num">250 mM</td><td>So much imidazole that it takes over the nickel's free places, and the tagged protein comes off.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <p>All three buffers also hold 50&nbsp;mM sodium phosphate at pH&nbsp;8.0 and 300&nbsp;mM NaCl. The salt stops proteins sticking to the beads just by their charge. The pH matters too: histidine's ring has a p<i>K</i>a of about 6, so at pH&nbsp;8 it is not protonated and its nitrogen is free to bind nickel. (Lowering the pH to about 5 would also release the protein; this lab uses imidazole.)</p>
+        <p>For an organic chemist: it is a column whose stationary phase binds one group specifically, eluted by a change of solvent that competes for the same site. It separates by one particular bond, not by polarity, which is why one column can give nearly pure protein.</p>
+        <p class="cite">Sources: <a href="#src-qiagen">QIAexpressionist</a></p>
+      </div>
+      <details class="check">
+        <summary>A classmate makes the wash buffer with 250 mM imidazole by mistake. What happens to their protein during the wash?</summary>
+        <p class="answer">It comes off the column and is lost in the wash tube. 250&nbsp;mM imidazole out-competes the tag for the nickel, which is exactly what the elution buffer is meant to do later.</p>
+      </details>
+    </section>
+
+    <section id="fusion" aria-labelledby="fusion-title">
+      <h2 id="fusion-title"><span class="step" aria-hidden="true">3</span>Fusion tags</h2>
+      <div class="prose">
+        <p>A <b>fusion tag</b> is a whole protein joined on, end to end, to the protein you want. The DNA for both is put together in one gene, so the bacterium makes one long chain: tag first, then the protein. The His-tag is usually put at the very front, so the fusion can still be caught on nickel.</p>
+        <p>Two fusion partners are used in this lab, as they are in many research labs:</p>
+        <ul>
+          <li><b>SUMO</b> (small ubiquitin-like modifier), a small protein from yeast;</li>
+          <li><b>MBP</b> (maltose-binding protein), a much bigger protein from <i>E. coli</i> itself.</li>
+        </ul>
+        <p><b>Why bother?</b> A bacterium making large amounts of a foreign protein often fails to fold some of it. Misfolded chains stick together into clumps that do not dissolve; when the broken cells are spun, those clumps go to the bottom with the debris, in the <b>pellet</b>, and are lost. SUMO and MBP fold quickly and are very soluble, and joined to the front of another protein they help it fold and stay dissolved. So more of it ends up in the clear liquid that goes onto the column. In research, the tag is often cut off afterwards with a protease; in this lab it stays on.</p>
+        <p><b>Every tag adds its mass.</b> A gel sorts proteins by size (section 9), so the same fluorescent protein runs at a different place with a different tag. Add the masses of the parts:</p>
+      </div>
+      <div role="img" aria-label="Three versions of the made-up protein Lanternin: alone, 46 kDa; with a His-tag, about 47 kDa; with a His-tag and the made-up helper Solubin, about 81 kDa.">
+        <div class="construct-row"><span class="name">Lanternin alone</span><div class="construct"><span class="fp alone" style="flex: 0 1 13rem">Lanternin</span></div><span class="mass">46 kDa</span></div>
+        <div class="construct-row"><span class="name">His-Lanternin</span><div class="construct"><span class="his">His₆</span><span class="fp" style="flex: 0 1 13rem">Lanternin</span></div><span class="mass">≈ 47 kDa</span></div>
+        <div class="construct-row"><span class="name">His-Solubin-Lanternin</span><div class="construct"><span class="his">His₆</span><span class="helper" style="flex: 0 1 9.5rem">Solubin</span><span class="fp" style="flex: 0 1 13rem">Lanternin</span></div><span class="mass">≈ 81 kDa</span></div>
+      </div>
+      <p class="worked small">Made up: Lanternin 46&nbsp;kDa, the His-tag with its short linker about 1&nbsp;kDa, Solubin 34&nbsp;kDa. <span class="math">46 + 1 + 34 = 81&nbsp;kDa</span>. A rule of thumb: an average amino acid in a protein weighs about 110&nbsp;Da, so a 46&nbsp;kDa protein is roughly 420 amino acids long. The masses of the real tags are on the reference sheet in Part 2.</p>
+      <p class="cite">Sources: <a href="#src-costa">Costa et al. 2014</a>, <a href="#src-marblestone">Marblestone et al. 2006</a></p>
+      <details class="check">
+        <summary>Two students make the same fluorescent protein, one with a His-tag only and one as a His-MBP fusion. Whose cells are likely to lose more of it to the pellet, and whose band runs higher on the gel?</summary>
+        <p class="answer">The His-tag-only protein is more likely to end up partly in the pellet, because nothing helps it fold and stay dissolved. The MBP fusion runs higher on the gel (it moves less far), because MBP adds a lot of mass.</p>
+      </details>
+    </section>
+
+    <section id="lysis" aria-labelledby="lysis-title">
+      <h2 id="lysis-title"><span class="step" aria-hidden="true">4</span>Breaking the cells</h2>
+      <div class="prose">
+        <p>The protein is inside the bacteria, so they must be broken open (<b>lysed</b>). The pellet is first stirred up evenly in cold lysis buffer (resuspended). Then two things break it:</p>
+        <ul>
+          <li><b>Lysozyme</b>, an enzyme (the one in egg white and tears), cuts the sugar chains of the bacterial cell wall, the rigid mesh that keeps a bacterium in shape. The protocol uses 1&nbsp;mg/mL for 30&nbsp;minutes on ice. Weakened cells break far more easily.</li>
+          <li>The <b>sonicator</b>, a metal probe dipped into the tube, vibrates about 20,000 times a second. It makes tiny bubbles in the liquid that collapse violently and tear the cells apart. The protocol is six bursts of 10&nbsp;seconds, with 10&nbsp;seconds of rest between them.</li>
+        </ul>
+        <h3>Why on ice, and why the rests</h3>
+        <p>Almost all the sonicator's energy ends up as <b>heat</b>. Heat makes a protein <b>unfold</b>: its chain loses the shape it needs to work. Most fluorescent proteins are shaped like a can, with the part that glows (the chromophore) held tightly inside. Once the can unfolds, the chromophore is no longer held and the protein <b>stops glowing</b>. So the tube sits in ice, and each 10&nbsp;second burst is followed by 10&nbsp;seconds for the sample to cool. Two bursts back to back warm the sample much more.</p>
+        <p>After lysis the liquid holds everything that was in the cells: your protein, thousands of bacterial proteins, DNA, and the broken walls and membranes. This mixture is the <b>lysate</b>.</p>
+        <p class="cite">Sources: <a href="#src-qiagen">QIAexpressionist</a> (lysis protocol)</p>
+      </div>
+      <p class="safety"><b>In a real lab</b> a sonicator gives off a piercing, high-pitched noise: wear ear protection, and keep fingers away from the probe while it runs.</p>
+      <details class="check">
+        <summary>Why is lysozyme added before the sonicator, rather than sonicating for longer?</summary>
+        <p class="answer">Lysozyme weakens the cell walls, so fewer bursts break the cells. Fewer bursts means less heat, and less of the protein unfolds and stops glowing.</p>
+      </details>
+    </section>
+
+    <section id="spin" aria-labelledby="spin-title">
+      <h2 id="spin-title"><span class="step" aria-hidden="true">5</span>Clearing the lysate</h2>
+      <div class="prose">
+        <p>The lysate is cloudy with broken walls, membranes and clumps of unfolded protein. Poured straight onto the column, all that would clog the beads, and the column would run very slowly or stop. So the lysate is spun in a <b>centrifuge</b> at about 10,000&nbsp;×&nbsp;<i>g</i> for 20 to 30 minutes, kept at 4&nbsp;°C. The solids pack into a <b>pellet</b> at the bottom; the clear liquid above, the <b>cleared lysate</b>, is poured off and goes onto the column.</p>
+        <h3>Balancing the rotor</h3>
+        <p>A rotor spins thousands of times a minute. If one side is heavier, it wobbles hard: at best the centrifuge stops, at worst the rotor is damaged. So tubes always go in <b>opposite</b> places, holding <b>equal volumes</b> (equal masses). With one sample, make a <b>balance tube</b> of water filled to the same level, and put it straight across from the sample.</p>
+        <h3>rpm or × g?</h3>
+        <p>What separates the solids is the force, given as <b>relative centrifugal force (RCF)</b>: how many times stronger than gravity, written "× <i>g</i>". The same speed in rpm (revolutions per minute) gives a stronger force in a bigger rotor, so protocols give × <i>g</i>, and you work out the speed for your own rotor:</p>
+        <p class="eq">RCF = 1.118 × 10⁻⁵ × <i>r</i> × rpm²</p>
+        <p><i>r</i> is the distance from the centre of the rotor to the sample, in centimetres.</p>
+        <p class="worked">A made-up rotor with <i>r</i> = 8.0&nbsp;cm, spun at 9,000&nbsp;rpm:<br><span class="math">RCF = 1.118 × 10⁻⁵ × 8.0 × 9,000² = 1.118 × 10⁻⁵ × 8.0 × 81,000,000 ≈ <b>7,200 × <i>g</i></b></span><br>To reach 10,000&nbsp;×&nbsp;<i>g</i> in the same rotor, turn the formula round:<br><span class="math">rpm = √(10,000 ÷ (1.118 × 10⁻⁵ × 8.0)) ≈ <b>10,600 rpm</b></span></p>
+        <p class="small soft">Notice that rpm is squared: doubling the speed gives four times the force. In the lab, use your own centrifuge's radius, which the lab page gives.</p>
+      </div>
+      <div class="tool" id="rcf-tool">
+        <h3>Try it: rpm and × g</h3>
+        <div class="fields">
+          <div><label for="rcf-r">Radius <i>r</i> (cm)</label><input type="number" id="rcf-r" value="8.0" min="1" max="30" step="0.1"></div>
+          <div><label for="rcf-rpm">Speed (rpm)</label><input type="number" id="rcf-rpm" value="9000" min="0" max="30000" step="100"></div>
+          <div><label for="rcf-want">Force wanted (× g)</label><input type="number" id="rcf-want" value="10000" min="0" max="100000" step="100"></div>
+        </div>
+        <p class="out" id="rcf-out" aria-live="polite"></p>
+      </div>
+      <p class="safety"><b>In a real lab</b> never start an unbalanced centrifuge, never open the lid while the rotor turns, and wait for it to stop completely.</p>
+      <details class="check">
+        <summary>A rotor has <i>r</i> = 10&nbsp;cm and is spun at 6,000&nbsp;rpm. About what force is that?</summary>
+        <p class="answer">1.118 × 10⁻⁵ × 10 × 6,000² = 1.118 × 10⁻⁵ × 10 × 36,000,000 ≈ <b class="right">4,000 × <i>g</i></b>. Not enough for a protocol that asks for 10,000&nbsp;×&nbsp;<i>g</i>.</p>
+      </details>
+    </section>
+
+    <section id="column" aria-labelledby="column-title">
+      <h2 id="column-title"><span class="step" aria-hidden="true">6</span>The column, step by step</h2>
+      <div class="prose">
+        <p>Ni-NTA resin is sold as a <b>50% slurry</b>: half beads, half liquid. One millilitre of slurry poured into a small column settles into a <b>bed</b> of 0.5&nbsp;mL of beads. Liquid then runs through the bed by gravity, out of the tip, into whatever tube is under it. A tube is put under the tip for each step, so every drop is kept and can be tested later.</p>
+      </div>
+      <ol class="walk">
+        <li><h4>Equilibrate</h4><p>Run lysis buffer through the bed (about five times its volume). This fills the bed with the same buffer, at the same pH and imidazole, as the sample about to go on.</p><span class="tube">into the waste beaker</span></li>
+        <li><h4>Load</h4><p>Pour on the cleared lysate. As it runs through, the tagged protein catches on the first beads it meets, at the top of the bed. A coloured protein shows there as a <b>band</b>. Everything that does not bind runs straight through.</p><span class="tube">collect: flow-through</span></li>
+        <li><h4>Wash</h4><p>Run wash buffer (20&nbsp;mM imidazole) through, twice. Bacterial proteins that stuck weakly are rinsed out; the tagged protein stays on the nickel.</p><span class="tube">collect: wash 1, wash 2</span></li>
+        <li><h4>Elute</h4><p>Add elution buffer (250&nbsp;mM imidazole) in small portions, each into its own tube. The imidazole takes the protein's places on the nickel, and the band slides down the bed and out of the tip.</p><span class="tube">collect: elution fractions E1, E2, E3, E4</span></li>
+      </ol>
+      <div class="callout">
+        <h3>Never let the bed run dry</h3>
+        <p>Always add the next liquid before the last has sunk into the beads. If the liquid drains below the top of the bed, air gets in, the beads dry and crack, and open <b>channels</b> form. The next liquid then rushes down the channels instead of flowing past every bead, so protein runs through without binding, and washing and eluting work badly. A column that ran dry has to be stirred up and packed again.</p>
+      </div>
+      <div class="prose">
+        <p>Keep every tube until the end. Which tubes hold your protein is something you find out at the bench, with a lamp (section 7) and later with the measurements of Part 2. If something went wrong, the tubes show where the protein went.</p>
+        <p class="cite">Sources: <a href="#src-qiagen">QIAexpressionist</a> (packed column protocol)</p>
+      </div>
+      <details class="check">
+        <summary>Why is the column rinsed with lysis buffer before the lysate goes on, and not with water?</summary>
+        <p class="answer">So the bed is already at the lysate's pH, salt and 10&nbsp;mM imidazole. Then the protein binds under the same conditions from the very first drop, and weakly binding bacterial proteins are kept off from the start.</p>
+      </details>
+    </section>
+
+    <section id="glow" aria-labelledby="glow-title">
+      <h2 id="glow-title"><span class="step" aria-hidden="true">7</span>Finding the protein: fluorescence</h2>
+      <div class="prose">
+        <p>A <b>fluorescent</b> molecule absorbs light of one colour and, a few billionths of a second later, gives off light of another colour. The light given off always has a <b>longer wavelength</b> (lower energy) than the light absorbed, because the molecule loses a little energy as heat in between. Blue light in can come out green; green light in can come out red; never the other way round.</p>
+        <h3>Two spectra</h3>
+        <ul>
+          <li>The <b>excitation spectrum</b>: the detector is set to one wavelength of emitted light, and the wavelength of the light shining in is scanned. It shows which colours make the protein glow, and how well.</li>
+          <li>The <b>emission spectrum</b>: the light shining in is set to one wavelength, and the detector is scanned. It shows which colours the protein gives off.</li>
+        </ul>
+        <p>Each spectrum has a peak, its <b>maximum</b>. The pair of maxima, excitation and emission, is like a fingerprint: comparing both with a table of known proteins is how a fluorescent protein is identified. To find a peak accurately, scan across it in small steps.</p>
+      </div>
+      <figure class="chart">
+        <svg id="spectra-svg" viewBox="0 0 640 300" role="img" aria-label="The made-up protein Lanternin: its excitation spectrum peaks at 655 nanometres and its emission spectrum at 680 nanometres, a little to the right."></svg>
+        <figcaption>The made-up protein Lanternin. Excitation maximum 655&nbsp;nm, emission maximum 680&nbsp;nm. Each curve is scaled so its peak is 1.</figcaption>
+      </figure>
+      <div class="prose">
+        <h3>One colour in room light, another under the lamp</h3>
+        <p>In ordinary white light, a solution of a fluorescent protein looks the colour that is <b>left over</b> after it absorbs its own band of colours. Under a lamp in the dark, it glows the colour it <b>emits</b>. These are usually different colours, so do not be surprised when a tube looks one colour on the bench and glows another.</p>
+        <p>Lanternin absorbs orange-red light (around 655&nbsp;nm). White light with its orange-red taken out looks blue-green, so a tube of Lanternin looks <b>blue-green</b> on the bench. Under a lamp whose light it absorbs, in the dark, it glows <b>deep red</b> (around 680&nbsp;nm). A lamp of a colour the protein does not absorb makes it glow weakly or not at all.</p>
+      </div>
+      <div class="swatches" aria-hidden="true">
+        <div class="swatch"><i style="--c: #6fc9c2"></i><span>Lanternin in room light:<br><b>blue-green</b></span></div>
+        <div class="swatch dark"><i style="--c: #c8232a"></i><span>Lanternin under a lamp, in the dark:<br><b>deep red glow</b></span></div>
+      </div>
+      <p class="cite">Sources: <a href="#src-lakowicz">Lakowicz</a></p>
+      <p class="safety"><b>In a real lab</b> an ultraviolet lamp burns eyes and skin like strong sun: wear UV-blocking glasses or a face shield, keep skin covered, and never look into the lamp.</p>
+      <details class="check">
+        <summary>A made-up protein has its excitation maximum at 412 nm. Could its emission maximum be at 400 nm?</summary>
+        <p class="answer">No. Emitted light always has a longer wavelength than the light absorbed, so the emission maximum must be above 412&nbsp;nm.</p>
+      </details>
+    </section>
+
+    <section id="bradford" aria-labelledby="bradford-title">
+      <h2 id="bradford-title"><span class="step" aria-hidden="true">8</span>How much protein: the Bradford assay</h2>
+      <div class="prose">
+        <p>The <b>Bradford</b> reagent holds a dye, Coomassie Brilliant Blue G-250, in acid. On its own the dye is reddish brown; when it binds protein it turns <b>blue</b>, and its absorbance peak moves from 465 to 595&nbsp;nm. The more protein, the more blue. In the lab, 20&nbsp;µL of sample is mixed with 1&nbsp;mL of dye, left at least 5&nbsp;minutes (and no longer than an hour), and read at 595&nbsp;nm.</p>
+        <h3>The standard curve</h3>
+        <p>The dye gives no number by itself, so it is calibrated with <b>standards</b>: solutions of a protein of known concentration, here BSA (bovine serum albumin), from 0.125 to 1&nbsp;mg/mL. Plot their absorbances against concentration to get a line; then any sample's absorbance can be turned into a concentration, as in the enzyme lab. The <b>blank</b> (zero) is the same buffer with no protein, so the buffer's own colour is not counted.</p>
+        <h3>Diluting, and the dilution factor</h3>
+        <p>Two reasons to dilute a sample before reading it:</p>
+        <ul>
+          <li><b>It reads above the top standard.</b> Beyond the standards the line is no longer known (it bends), so the number would be wrong.</li>
+          <li><b>Imidazole upsets the dye above 0.2&nbsp;M (200&nbsp;mM).</b> The elution fractions hold 250&nbsp;mM, so they must be diluted before they are read. A 1 in 5 dilution brings them to 50&nbsp;mM. (The blank should be elution buffer diluted the same way.)</li>
+        </ul>
+        <p>The curve gives the concentration in the <b>diluted</b> sample. Multiply by the <b>dilution factor</b> to get the concentration in the tube you started with:</p>
+        <p class="eq">dilution factor = total volume ÷ volume of sample</p>
+        <p class="worked">Made up: 10&nbsp;µL of an elution fraction plus 40&nbsp;µL of water makes 50&nbsp;µL, a dilution factor of 50 ÷ 10 = 5. The diluted sample reads 0.51; on a curve where 1&nbsp;mg/mL reads 0.85, that is<br><span class="math">0.51 ÷ 0.85 = 0.60&nbsp;mg/mL in the diluted sample, and 0.60 × 5 = <b>3.0&nbsp;mg/mL in the fraction</b></span></p>
+      </div>
+      <figure class="chart">
+        <svg id="bradford-svg" viewBox="0 0 640 320" role="img" aria-label="A made-up Bradford standard curve: five standards from 0.125 to 1 milligram per millilitre lie on a straight line rising to an absorbance of 0.85. A diluted sample reading 0.51 meets the line at 0.60 milligrams per millilitre."></svg>
+        <figcaption>A made-up standard curve. The dashed lines read the worked example: 0.51 across to the line, then down to 0.60&nbsp;mg/mL.</figcaption>
+      </figure>
+      <div class="tool" id="brad-tool">
+        <h3>Try it: from absorbance to the protein in your tube</h3>
+        <p class="small soft">Uses the made-up curve above. The sample is an elution fraction (250&nbsp;mM imidazole) diluted with water.</p>
+        <div class="fields">
+          <div><label for="brad-a">Absorbance at 595 nm</label><input type="number" id="brad-a" value="0.51" min="0" max="2" step="0.01"></div>
+          <div><label for="brad-df">Dilution</label>
+            <select id="brad-df">
+              <option value="1">Not diluted</option>
+              <option value="2">1 in 2</option>
+              <option value="5" selected>1 in 5</option>
+              <option value="10">1 in 10</option>
+              <option value="20">1 in 20</option>
+            </select>
+          </div>
+        </div>
+        <p class="out" id="brad-out" aria-live="polite"></p>
+      </div>
+      <p class="cite">Sources: <a href="#src-bradford">Bio-Rad Quick Start Bradford manual</a></p>
+      <details class="check">
+        <summary>A fraction diluted 1 in 10 reads 0.34 on the made-up curve (1 mg/mL reads 0.85). What is the protein concentration in the fraction?</summary>
+        <p class="answer">0.34 ÷ 0.85 = 0.40&nbsp;mg/mL in the diluted sample; × 10 = <b class="right">4.0&nbsp;mg/mL</b> in the fraction. Forgetting to multiply by the dilution factor is the commonest slip.</p>
+      </details>
+    </section>
+
+    <section id="gel" aria-labelledby="gel-title">
+      <h2 id="gel-title"><span class="step" aria-hidden="true">9</span>How big, and how pure: SDS-PAGE</h2>
+      <div class="prose">
+        <p><b>SDS-PAGE</b> (sodium dodecyl sulfate polyacrylamide gel electrophoresis) sorts proteins by size. Each protein in a sample becomes a <b>band</b>; one band in a lane means a pure protein, many bands mean a mixture.</p>
+        <h3>Preparing samples</h3>
+        <p>Each sample is mixed 1 to 1 with <b>Laemmli sample buffer</b> and heated at 95&nbsp;°C for 5 minutes. In the buffer:</p>
+        <ul>
+          <li><b>SDS</b>, a detergent with a negative charge. With the heat, it <b>unfolds</b> every protein into a floppy chain and coats it with negative charge, about the same amount per length for every protein. Shape and the protein's own charge no longer matter: only <b>size</b> does.</li>
+          <li><b>2-Mercaptoethanol</b>, which breaks disulfide (S–S) bridges, so the chain is fully undone.</li>
+          <li><b>Glycerol</b>, which makes the sample dense, so it sinks into the well.</li>
+          <li><b>Bromophenol blue</b>, a small blue dye that runs ahead of the proteins and shows how far the run has gone.</li>
+        </ul>
+        <h3>The gel and the run</h3>
+        <p>The gel is a mesh of polyacrylamide, cast between two glass plates. A <b>stacking gel</b> on top (4%, pH&nbsp;6.8) squeezes each sample into a thin line; the <b>resolving gel</b> below (10% here) does the sorting. Small proteins slip through the mesh quickly and run far; big ones are held back and stay near the top. With 200&nbsp;V applied, the negatively coated proteins move toward the <b>positive</b> electrode, the red lead: "run to red". Afterwards the gel is stained with Coomassie, so every protein band shows blue.</p>
+        <h3>Reading a mass from the ladder</h3>
+        <p>One lane holds a <b>ladder</b>: proteins of known mass. Measure how far each ladder band ran from the top of the resolving gel. Plotted against distance, the <b>log of the mass</b> falls on a nearly straight line. Measure your band's distance, go up to the line, and read across.</p>
+      </div>
+      <div class="two">
+        <figure class="chart">
+          <svg id="gel-pic" viewBox="0 0 300 330" role="img" aria-label="A drawing of a made-up gel: a ladder lane with six bands from 120 down to 25 kilodaltons, and a sample lane with one band at 22 millimetres."></svg>
+          <figcaption>A made-up gel: a ladder and one sample band, at 22&nbsp;mm.</figcaption>
+        </figure>
+        <figure class="chart">
+          <svg id="gel-plot" viewBox="0 0 420 330" role="img" aria-label="Log of mass against distance for the made-up ladder: the six bands lie close to a straight line. The sample band at 22 millimetres meets the line at about 82 kilodaltons."></svg>
+          <figcaption>Mass (on a log scale) against distance for the same ladder. The dashed line reads the sample band.</figcaption>
+        </figure>
+      </div>
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>Made-up ladder band (kDa)</th><td class="num">120</td><td class="num">85</td><td class="num">60</td><td class="num">45</td><td class="num">35</td><td class="num">25</td></tr></thead>
+          <tbody><tr><th>Distance run (mm)</th><td class="num">13</td><td class="num">21</td><td class="num">30</td><td class="num">37</td><td class="num">43</td><td class="num">51</td></tr></tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <p class="worked">The sample band ran 22&nbsp;mm, between the 85&nbsp;kDa band (21&nbsp;mm) and the 60&nbsp;kDa band (30&nbsp;mm). Work in logs: log 85 = 1.929 and log 60 = 1.778. The band is 1&nbsp;mm of the 9&nbsp;mm between them past the 85&nbsp;kDa band, so<br><span class="math">log mass = 1.929 − (1 ÷ 9) × (1.929 − 1.778) = 1.929 − 0.017 = 1.912, and mass = 10<sup>1.912</sup> ≈ <b>82&nbsp;kDa</b></span><br>The straight line through all six ladder bands gives about 83&nbsp;kDa. Either way, it fits His-Solubin-Lanternin (81&nbsp;kDa) and not His-Lanternin (47&nbsp;kDa). A gel reads a mass to within a few percent, no better.</p>
+        <p>Look at the other lanes too: the lysate lane shows many bands (all the bacterial proteins), and a clean elution lane shows few. That is how a gel shows purity.</p>
+        <p class="cite">Sources: <a href="#src-tetra">Mini-PROTEAN Tetra manual</a>, <a href="#src-guide">Bio-Rad Electrophoresis Guide</a>, <a href="#src-laemmli">Laemmli sample buffer</a></p>
+      </div>
+      <p class="safety"><b>In a real lab</b> acrylamide is a nerve poison until it has set into a gel: wear gloves and goggles while casting. The gel tank carries a high voltage: put the lid on before the power supply is switched on.</p>
+      <details class="check">
+        <summary>On the made-up gel above, a band runs 36 mm. About what mass is it?</summary>
+        <p class="answer">Between 60&nbsp;kDa (30&nbsp;mm) and 45&nbsp;kDa (37&nbsp;mm): log mass = 1.778 − (6 ÷ 7) × (1.778 − 1.653) = 1.671, so about <b class="right">47&nbsp;kDa</b>, the mass of His-Lanternin.</p>
+      </details>
+    </section>
+
+    <section id="table" aria-labelledby="table-title">
+      <h2 id="table-title"><span class="step" aria-hidden="true">10</span>The purification table</h2>
+      <div class="prose">
+        <p>A purification table sums up a protein prep: at each stage, how much protein there is in all, how much of <i>your</i> protein, and how pure it is. Total protein comes from the Bradford assay. Your protein is followed by its glow: <b>fluorescence</b> counts only the fluorescent protein, the way an enzyme's activity counts only that enzyme.</p>
+      </div>
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>Column</th><th>How it is worked out</th><th>What it tells you</th></tr></thead>
+          <tbody>
+            <tr><td>Total protein (mg)</td><td>concentration (mg/mL) × volume (mL)</td><td>all the protein at that stage</td></tr>
+            <tr><td>Total fluorescence</td><td>fluorescence per mL × volume (mL)</td><td>how much of your protein is there</td></tr>
+            <tr><td>Specific fluorescence</td><td>total fluorescence ÷ total protein (mg)</td><td>how pure it is: the more of the protein is yours, the higher</td></tr>
+            <tr><td>Yield (%)</td><td>total fluorescence ÷ total fluorescence of the cleared lysate × 100</td><td>how much of your protein you kept</td></tr>
+            <tr><td>Fold purification</td><td>specific fluorescence ÷ specific fluorescence of the cleared lysate</td><td>how many times purer it became</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="prose">The cleared lysate is the starting point, so its yield is 100% and its fold purification is 1. A worked example, with made-up numbers (fluorescence in the fluorimeter's own units):</p>
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>Stage</th><th class="num">Volume (mL)</th><th class="num">Protein (mg/mL)</th><th class="num">Total protein (mg)</th><th class="num">Fluorescence per mL</th><th class="num">Total fluorescence</th><th class="num">Specific fluorescence (per mg)</th><th class="num">Yield</th><th class="num">Fold</th></tr></thead>
+          <tbody>
+            <tr><td>Cleared lysate</td><td class="num">10.0</td><td class="num">6.0</td><td class="num">60</td><td class="num">1,500</td><td class="num">15,000</td><td class="num">250</td><td class="num">100%</td><td class="num">1</td></tr>
+            <tr><td>Pooled fractions</td><td class="num">2.0</td><td class="num">2.5</td><td class="num">5.0</td><td class="num">6,000</td><td class="num">12,000</td><td class="num">2,400</td><td class="num">80%</td><td class="num">9.6</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="worked">Pooled fractions: total protein 2.5 × 2.0 = 5.0&nbsp;mg; total fluorescence 6,000 × 2.0 = 12,000; specific fluorescence 12,000 ÷ 5.0 = 2,400 per mg; yield 12,000 ÷ 15,000 × 100 = 80%; fold purification 2,400 ÷ 250 = 9.6.</p>
+      <p class="prose">Yield and fold purification pull against each other: keeping only the cleanest fractions raises the purity and lowers the yield. In the lab the table also has rows for the flow-through and the washes, which account for the rest of the protein.</p>
+      <details class="check">
+        <summary>A made-up cleared lysate has 50 mg of protein and a total fluorescence of 20,000. The pooled fractions have 2.0 mg and 16,000. Work out the yield and the fold purification.</summary>
+        <p class="answer">Yield: 16,000 ÷ 20,000 × 100 = <b class="right">80%</b>. Specific fluorescence: lysate 20,000 ÷ 50 = 400 per mg; pooled 16,000 ÷ 2.0 = 8,000 per mg. Fold purification: 8,000 ÷ 400 = <b class="right">20</b>.</p>
+      </details>
+    </section>
+
+    <section id="check" aria-labelledby="check-title">
+      <h2 id="check-title"><span class="step" aria-hidden="true">11</span>Check yourself</h2>
+      <p class="prose">Not graded. Pick an answer to see whether it is right and why; you can change your answer as often as you like.</p>
+      <ol class="quiz" id="quiz"></ol>
+      <p class="score" id="score" aria-live="polite"></p>
+    </section>
+
+    <div class="next">
+      <p><b>Ready?</b> Open the lab and start with your pellet of cells, on ice. Keep this page open beside it if you like.</p>
+      <a class="lab-button" href="../">Open the lab <span aria-hidden="true">→</span></a>
+    </div>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources</h2>
+      <ol id="sources"></ol>
+      <p>Lanternin, Solubin, the ladder, the standard curve and every number in the worked examples are made up for this review.</p>
+    </section>
+  </main>
+
+<script>
+(function () {
+  'use strict';
+
+  var SOURCES = [
+    { id: 'qiagen', text: 'QIAGEN. The QIAexpressionist: a handbook for high-level expression and purification of 6xHis-tagged proteins, 5th ed., 2003. Ni-NTA and the His-tag, the imidazole in each buffer, the lysis and column protocols.', url: 'https://www.sjsu.edu/wang/docs/EN-The-QIAexpressionist.pdf' },
+    { id: 'costa', text: 'Costa S, Almeida A, Castro A, Domingues L. Fusion tags for protein solubility, purification and immunogenicity in Escherichia coli: the novel Fh8 system. Frontiers in Microbiology 5:63, 2014.', url: 'https://doi.org/10.3389/fmicb.2014.00063' },
+    { id: 'marblestone', text: 'Marblestone JG et al. Comparison of SUMO fusion technology with traditional gene fusion systems: enhanced expression and solubility with SUMO. Protein Science 15:182, 2006.', url: 'https://doi.org/10.1110/ps.051812706' },
+    { id: 'lakowicz', text: 'Lakowicz JR. Principles of Fluorescence Spectroscopy, 3rd ed. Springer, 2006. Chapter 1: absorption, emission, the shift to longer wavelength, excitation and emission spectra.' },
+    { id: 'bradford', text: 'Bio-Rad Laboratories. Quick Start Bradford Protein Assay instruction manual (4110065). The dye, the 1 mL cuvette method, the BSA standards and the 0.2 M imidazole limit.' },
+    { id: 'tetra', text: 'Bio-Rad Laboratories. Mini-PROTEAN Tetra Cell instruction manual (10007296). Casting 10% resolving and 4% stacking gels; running at 200 V.', url: 'https://www.bio-rad.com/webroot/web/pdf/lsr/literature/10007296.pdf' },
+    { id: 'guide', text: 'Bio-Rad Laboratories. Protein Electrophoresis Guide (Bulletin 6040). SDS, sample heating, the ladder and log(mass) against distance.', url: 'https://commerce.bio-rad.com/webroot/web/pdf/lsr/literature/Bulletin_6040.pdf' },
+    { id: 'laemmli', text: 'Bio-Rad Laboratories. 2x Laemmli Sample Buffer instructions (4006028). What is in the sample buffer.' }
+  ];
+
+  var QUESTIONS = [
+    { q: 'Why does a six-histidine tag bind Ni-NTA so much more strongly than a single histidine on another protein?', answer: 2,
+      options: ['Histidine is positively charged at pH 8', 'The tag is hydrophobic', 'Two of its histidines can fill both of nickel’s free places at once', 'Nickel reacts with histidine to form a covalent bond'],
+      why: 'NTA leaves two places free on each nickel. Six histidines side by side can fill both; a lone histidine elsewhere can only hold on by one, weakly.' },
+    { q: 'Why is there 10 mM imidazole in the lysis buffer?', answer: 1,
+      options: ['To break the cells', 'To keep weakly binding bacterial proteins off the nickel, without moving the tagged protein', 'To release the tagged protein', 'To keep the pH at 8.0'],
+      why: 'A little imidazole out-competes a stray histidine or two, but not a six-histidine tag. It gives a cleaner protein from the start.' },
+    { q: 'What does a fusion partner such as SUMO or MBP mainly do for the protein joined to it?', answer: 0,
+      options: ['Helps it fold and stay dissolved, so less is lost to the pellet', 'Makes it glow more brightly', 'Lets it bind nickel without a His-tag', 'Makes it smaller, so it runs further on a gel'],
+      why: 'Both fold quickly and are very soluble, and they carry the protein joined to them along. They also add mass, so the fusion runs higher on a gel.' },
+    { q: 'Why does the sample rest on ice for 10 seconds between sonicator bursts?', answer: 3,
+      options: ['To let the lysozyme work', 'To let the debris settle', 'To save the sonicator', 'Sonication heats the sample, and heat unfolds the protein so it stops glowing'],
+      why: 'Almost all the sonicator’s energy becomes heat. The rests let the sample cool so the protein keeps its shape, and its glow.' },
+    { q: 'You have one tube of lysate to spin. What do you do?', answer: 2,
+      options: ['Spin it alone, at a lower speed', 'Put an empty tube opposite it', 'Put a tube of water filled to the same level directly opposite it', 'Put a tube of water in the next slot'],
+      why: 'A balance tube of equal mass goes straight across from the sample, so the rotor stays balanced.' },
+    { q: 'The liquid in your column has sunk below the top of the resin. What is the risk?', answer: 1,
+      options: ['None, as long as you add buffer within an hour', 'Channels form, so liquid runs past the beads and protein can go through without binding', 'The nickel falls off the beads', 'The protein is eluted early'],
+      why: 'A dried, cracked bed lets liquid rush down channels instead of passing every bead. Always add the next liquid before the last has sunk in.' },
+    { q: 'A made-up protein has an excitation maximum at 700 nm. Where could its emission maximum be?', answer: 3,
+      options: ['660 nm', '685 nm', '700 nm exactly', '725 nm'],
+      why: 'Emitted light has a longer wavelength than the light absorbed, so the emission maximum lies above 700 nm.' },
+    { q: 'Why is an elution fraction diluted before the Bradford assay?', answer: 0,
+      options: ['Its 250 mM imidazole is above the 0.2 M the dye tolerates, and it may read above the top standard', 'The dye cannot see His-tagged proteins', 'Undiluted samples glow and confuse the reading', 'To make the sample warm up faster'],
+      why: 'Imidazole above 200 mM upsets the dye, and a concentrated sample may be off the end of the standard curve. Then multiply by the dilution factor.' },
+    { q: 'On a gel, protein A ran further than protein B. Which is true?', answer: 1,
+      options: ['A is bigger than B', 'A is smaller than B', 'A has more negative charge of its own', 'A was not heated'],
+      why: 'With SDS every protein carries charge in proportion to its length, so only size matters: smaller proteins slip through the mesh faster and run further.' },
+    { q: 'A pooled sample has 3.0 mg of protein and a total fluorescence of 9,000. The cleared lysate had 300 per mg. What is the fold purification?', answer: 2,
+      options: ['3', '3,000', '10', '30'],
+      why: 'Specific fluorescence of the pool: 9,000 ÷ 3.0 = 3,000 per mg. Fold purification: 3,000 ÷ 300 = 10.' }
+  ];
+
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function fmt(x, places) { return x.toLocaleString('en-US', { minimumFractionDigits: places, maximumFractionDigits: places }); }
+
+  // ---- Sources ----
+  SOURCES.forEach(function (s) {
+    var li = el('li'); li.id = 'src-' + s.id;
+    li.appendChild(document.createTextNode(s.text));
+    if (s.url) {
+      li.appendChild(document.createTextNode(' '));
+      var a = el('a', null, s.url.replace(/^https:\/\//, '')); a.href = s.url; a.rel = 'noopener'; a.target = '_blank';
+      li.appendChild(a);
+    }
+    $('sources').appendChild(li);
+  });
+
+  // ---- Drawing helpers ----
+  var NS = 'http://www.w3.org/2000/svg';
+  function shape(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  // The frame of a graph: grid, axes, numbers and names. Hands back two functions that turn a
+  // value into a place on the drawing.
+  function frame(svg, o) {
+    var W = o.width, H = o.height, L = o.left || 64, R = 18, T = 16, B = 50;
+    function x(v) { return L + (v - o.x0) / (o.x1 - o.x0) * (W - L - R); }
+    function y(v) { return H - B - (v - o.y0) / (o.y1 - o.y0) * (H - T - B); }
+    o.xTicks.forEach(function (v) {
+      svg.appendChild(shape('line', { x1: x(v), x2: x(v), y1: y(o.y0), y2: y(o.y1), 'class': 'grid' }));
+      svg.appendChild(shape('text', { x: x(v), y: H - B + 19, 'class': 'tick', 'text-anchor': 'middle' }, o.xText ? o.xText(v) : String(v)));
+    });
+    o.yTicks.forEach(function (v) {
+      svg.appendChild(shape('line', { x1: x(o.x0), x2: x(o.x1), y1: y(v), y2: y(v), 'class': 'grid' }));
+      svg.appendChild(shape('text', { x: L - 8, y: y(v) + 4.5, 'class': 'tick', 'text-anchor': 'end' }, o.yText ? o.yText(v) : String(v)));
+    });
+    svg.appendChild(shape('line', { x1: L, x2: W - R, y1: H - B, y2: H - B, 'class': 'axis' }));
+    svg.appendChild(shape('line', { x1: L, x2: L, y1: T, y2: H - B, 'class': 'axis' }));
+    svg.appendChild(shape('text', { x: (L + W - R) / 2, y: H - 10, 'class': 'axis-name', 'text-anchor': 'middle' }, o.xName));
+    var midY = (T + H - B) / 2;
+    svg.appendChild(shape('text', { x: 15, y: midY, 'class': 'axis-name', 'text-anchor': 'middle', transform: 'rotate(-90 15 ' + midY + ')' }, o.yName));
+    return { x: x, y: y, left: L, bottom: H - B };
+  }
+
+  function path(points) {
+    return points.map(function (p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' ');
+  }
+
+  // ---- The made-up protein's spectra ----
+  (function () {
+    var svg = $('spectra-svg');
+    var EX = 655, EM = 680;
+    var f = frame(svg, { width: 640, height: 300, x0: 560, x1: 760, y0: 0, y1: 1.1,
+      xTicks: [560, 600, 640, 680, 720, 760], yTicks: [0, 0.5, 1],
+      yText: function (v) { return v.toFixed(1); }, xName: 'Wavelength (nm)', yName: 'Relative signal' });
+    // smooth made-up shapes: excitation with a short-wavelength shoulder, emission with a long tail
+    function exShape(w) { return Math.exp(-Math.pow((w - EX) / 17, 2)) + 0.35 * Math.exp(-Math.pow((w - (EX - 42)) / 22, 2)); }
+    function emShape(w) { var s = w < EM ? 13 : 24; return Math.exp(-Math.pow((w - EM) / s, 2)) + 0.25 * Math.exp(-Math.pow((w - (EM + 42)) / 26, 2)); }
+    function curve(fn, cls, color) {
+      var pts = [], top = 0, w;
+      for (w = 560; w <= 760; w += 1) top = Math.max(top, fn(w));
+      for (w = 560; w <= 760; w += 1) pts.push([f.x(w), f.y(fn(w) / top)]);
+      svg.appendChild(shape('path', { d: path(pts), fill: 'none', stroke: color, 'stroke-width': 2.6, 'stroke-dasharray': cls === 'ex' ? '7 4' : 'none' }));
+    }
+    curve(exShape, 'ex', '#1c4c9a');
+    curve(emShape, 'em', '#b3261e');
+    [[EX, '#1c4c9a', 'excitation, 655 nm', 'end', -8], [EM, '#b3261e', 'emission, 680 nm', 'start', 8]].forEach(function (m) {
+      svg.appendChild(shape('line', { x1: f.x(m[0]), x2: f.x(m[0]), y1: f.y(0), y2: f.y(1), stroke: m[1], 'stroke-width': 1.2, 'stroke-dasharray': '3 3' }));
+      svg.appendChild(shape('text', { x: f.x(m[0]) + m[4], y: f.y(1.04), 'class': 'lbl', fill: m[1], 'text-anchor': m[3] }, m[2]));
+    });
+  })();
+
+  // ---- The made-up Bradford curve ----
+  var BRAD_SLOPE = 0.85;      // absorbance per mg/mL
+  var BRAD_TOP = 1.0;         // the top standard, mg/mL
+  (function () {
+    var svg = $('bradford-svg');
+    var f = frame(svg, { width: 640, height: 320, x0: 0, x1: 1.1, y0: 0, y1: 1.0,
+      xTicks: [0, 0.25, 0.5, 0.75, 1.0], yTicks: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
+      xText: function (v) { return v.toFixed(2); }, yText: function (v) { return v.toFixed(1); },
+      xName: 'BSA (mg/mL)', yName: 'Absorbance at 595 nm' });
+    svg.appendChild(shape('line', { x1: f.x(0), y1: f.y(0), x2: f.x(1.0), y2: f.y(BRAD_SLOPE), stroke: '#1c4c9a', 'stroke-width': 2.5 }));
+    [0.125, 0.25, 0.5, 0.75, 1.0].forEach(function (c) {
+      svg.appendChild(shape('circle', { cx: f.x(c), cy: f.y(c * BRAD_SLOPE), r: 5.5, fill: '#1c4c9a', stroke: '#fff', 'stroke-width': 2 }));
+    });
+    var a = 0.51, c = a / BRAD_SLOPE;
+    svg.appendChild(shape('polyline', { points: f.x(0) + ',' + f.y(a) + ' ' + f.x(c) + ',' + f.y(a) + ' ' + f.x(c) + ',' + f.y(0), 'class': 'guide' }));
+    svg.appendChild(shape('circle', { cx: f.x(c), cy: f.y(a), r: 6, fill: '#fff', stroke: '#17211e', 'stroke-width': 2.5 }));
+    svg.appendChild(shape('text', { x: f.x(c) + 10, y: f.y(a) + 22, 'class': 'lbl', fill: '#17211e' }, 'sample: 0.51 → 0.60 mg/mL'));
+  })();
+
+  (function () {
+    var a = $('brad-a'), df = $('brad-df'), out = $('brad-out');
+    function update() {
+      var abs = parseFloat(a.value), d = parseFloat(df.value);
+      out.textContent = '';
+      if (!(abs >= 0)) { out.textContent = 'Enter an absorbance.'; return; }
+      var inCuvette = abs / BRAD_SLOPE, inTube = inCuvette * d, imid = 250 / d;
+      out.appendChild(document.createTextNode('In the diluted sample: ' + fmt(abs, 2) + ' ÷ ' + BRAD_SLOPE + ' = ' + fmt(inCuvette, 2) + ' mg/mL. In the fraction: ' + fmt(inCuvette, 2) + ' × ' + d + ' = '));
+      out.appendChild(el('b', null, fmt(inTube, 2) + ' mg/mL'));
+      out.appendChild(document.createTextNode('. Imidazole in what was read: ' + fmt(imid, 0) + ' mM.'));
+      var notes = [];
+      if (imid > 200) notes.push('Above 200 mM imidazole: the dye reading cannot be trusted. Dilute it.');
+      if (inCuvette > BRAD_TOP) notes.push('Above the top standard (1 mg/mL): off the end of the curve. Dilute it more.');
+      notes.forEach(function (n) { out.appendChild(el('br')); out.appendChild(el('span', 'warn', n)); });
+    }
+    a.addEventListener('input', update); df.addEventListener('change', update);
+    update();
+  })();
+
+  // ---- The centrifuge ----
+  (function () {
+    var r = $('rcf-r'), rpm = $('rcf-rpm'), want = $('rcf-want'), out = $('rcf-out');
+    function update() {
+      var rv = parseFloat(r.value), sv = parseFloat(rpm.value), wv = parseFloat(want.value);
+      out.textContent = '';
+      if (!(rv > 0)) { out.textContent = 'Enter a radius.'; return; }
+      if (sv >= 0) {
+        out.appendChild(document.createTextNode(fmt(sv, 0) + ' rpm at ' + fmt(rv, 1) + ' cm gives '));
+        out.appendChild(el('b', null, fmt(Math.round(1.118e-5 * rv * sv * sv / 10) * 10, 0) + ' × g'));
+        out.appendChild(document.createTextNode('.'));
+      }
+      if (wv > 0) {
+        out.appendChild(el('br'));
+        out.appendChild(document.createTextNode('For ' + fmt(wv, 0) + ' × g at ' + fmt(rv, 1) + ' cm, set '));
+        out.appendChild(el('b', null, fmt(Math.round(Math.sqrt(wv / (1.118e-5 * rv)) / 10) * 10, 0) + ' rpm'));
+        out.appendChild(document.createTextNode('.'));
+      }
+    }
+    [r, rpm, want].forEach(function (i) { i.addEventListener('input', update); });
+    update();
+  })();
+
+  // ---- The made-up gel ----
+  var LADDER = [[120, 13], [85, 21], [60, 30], [45, 37], [35, 43], [25, 51]];
+  var BAND = 22;
+  (function () {
+    // the picture of the gel: 60 mm of resolving gel drawn 4 pixels to the mm
+    var svg = $('gel-pic'), top = 40, mm = 4.3;
+    svg.appendChild(shape('rect', { x: 40, y: 20, width: 220, height: 300, rx: 4, fill: '#eef2f8', stroke: '#8d9994' }));
+    svg.appendChild(shape('line', { x1: 40, x2: 260, y1: top, y2: top, stroke: '#8d9994', 'stroke-dasharray': '4 3' }));
+    svg.appendChild(shape('text', { x: 150, y: 34, 'class': 'tick', 'text-anchor': 'middle' }, 'top of resolving gel'));
+    [[95, 'Ladder'], [205, 'Sample']].forEach(function (l) {
+      svg.appendChild(shape('text', { x: l[0], y: 14, 'class': 'axis-name', 'text-anchor': 'middle' }, l[1]));
+    });
+    LADDER.forEach(function (b) {
+      var yy = top + b[1] * mm;
+      svg.appendChild(shape('rect', { x: 68, y: yy - 3, width: 54, height: 6, rx: 2, fill: '#1f3f8a', opacity: 0.85 }));
+      svg.appendChild(shape('text', { x: 34, y: yy + 4.5, 'class': 'tick', 'text-anchor': 'end' }, String(b[0])));
+    });
+    svg.appendChild(shape('rect', { x: 178, y: top + BAND * mm - 4, width: 54, height: 8, rx: 2, fill: '#1f3f8a' }));
+    svg.appendChild(shape('line', { x1: 248, x2: 248, y1: top, y2: top + BAND * mm, stroke: '#b3261e', 'stroke-width': 1.5 }));
+    svg.appendChild(shape('text', { x: 252, y: top + BAND * mm / 2 + 4, 'class': 'lbl', fill: '#b3261e', 'font-size': 12 }, '22'));
+    svg.appendChild(shape('text', { x: 34, y: 318, 'class': 'tick', 'text-anchor': 'end' }, 'kDa'));
+  })();
+
+  (function () {
+    var svg = $('gel-plot');
+    var lg = function (m) { return Math.log(m) / Math.LN10; };
+    var f = frame(svg, { width: 420, height: 330, left: 56, x0: 0, x1: 60, y0: lg(20), y1: lg(150),
+      xTicks: [0, 10, 20, 30, 40, 50, 60], yTicks: [20, 25, 35, 45, 60, 85, 120].map(lg),
+      yText: function (v) { return String(Math.round(Math.pow(10, v))); },
+      xName: 'Distance run (mm)', yName: 'Mass (kDa, log scale)' });
+    // the best straight line through the ladder
+    var n = LADDER.length, sx = 0, sy = 0, sxx = 0, sxy = 0;
+    LADDER.forEach(function (b) { var X = b[1], Y = lg(b[0]); sx += X; sy += Y; sxx += X * X; sxy += X * Y; });
+    var slope = (n * sxy - sx * sy) / (n * sxx - sx * sx), cut = (sy - slope * sx) / n;
+    svg.appendChild(shape('line', { x1: f.x(5), y1: f.y(cut + slope * 5), x2: f.x(58), y2: f.y(cut + slope * 58), stroke: '#1c4c9a', 'stroke-width': 2.2 }));
+    LADDER.forEach(function (b) {
+      svg.appendChild(shape('circle', { cx: f.x(b[1]), cy: f.y(lg(b[0])), r: 5, fill: '#1c4c9a', stroke: '#fff', 'stroke-width': 2 }));
+    });
+    var yb = cut + slope * BAND;
+    svg.appendChild(shape('polyline', { points: f.x(BAND) + ',' + f.y(lg(20)) + ' ' + f.x(BAND) + ',' + f.y(yb) + ' ' + f.x(0) + ',' + f.y(yb), 'class': 'guide' }));
+    svg.appendChild(shape('circle', { cx: f.x(BAND), cy: f.y(yb), r: 6, fill: '#fff', stroke: '#17211e', 'stroke-width': 2.5 }));
+    svg.appendChild(shape('text', { x: f.x(BAND) + 10, y: f.y(yb) - 10, 'class': 'lbl', fill: '#17211e' }, 'band: ≈ ' + Math.round(Math.pow(10, yb)) + ' kDa'));
+  })();
+
+  // ---- Check yourself ----
+  var quiz = $('quiz');
+  var state = QUESTIONS.map(function () { return null; });
+  QUESTIONS.forEach(function (q, qi) {
+    var li = el('li', 'q');
+    var text = el('p', 'q-text', q.q); text.id = 'q' + qi;
+    li.appendChild(text);
+    var opts = el('div', 'options'); opts.setAttribute('role', 'group'); opts.setAttribute('aria-labelledby', text.id);
+    var fb = el('p', 'feedback'); fb.setAttribute('aria-live', 'polite');
+    q.options.forEach(function (o, oi) {
+      var btn = el('button', null, o); btn.type = 'button';
+      btn.addEventListener('click', function () {
+        state[qi] = oi === q.answer;
+        Array.prototype.forEach.call(opts.children, function (other, j) {
+          other.removeAttribute('data-state');
+          other.setAttribute('aria-pressed', j === oi ? 'true' : 'false');
+        });
+        btn.setAttribute('data-state', state[qi] ? 'right' : 'wrong');
+        fb.textContent = '';
+        fb.appendChild(el('b', state[qi] ? 'right' : 'wrong', state[qi] ? 'Right. ' : 'Not quite. '));
+        fb.appendChild(document.createTextNode(state[qi] ? q.why : 'Try another answer.'));
+        score();
+      });
+      opts.appendChild(btn);
+    });
+    li.appendChild(opts);
+    li.appendChild(fb);
+    quiz.appendChild(li);
+  });
+  function score() {
+    var answered = state.filter(function (s) { return s !== null; }).length;
+    var right = state.filter(function (s) { return s === true; }).length;
+    var out = $('score');
+    out.textContent = '';
+    if (!answered) return;
+    if (right === QUESTIONS.length) { out.appendChild(el('span', 'done', 'All ' + right + ' right. You are ready for the lab.')); return; }
+    out.textContent = right + ' of ' + QUESTIONS.length + ' right so far.';
+  }
+})();
+</script>
+</body>
+</html>

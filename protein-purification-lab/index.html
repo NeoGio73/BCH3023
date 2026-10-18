@@ -15,7 +15,8 @@
     <p class="unknown-tag">Unknown <span id="unknown-code" class="code">&nbsp;</span></p>
     <p class="print-header" aria-hidden="true"><span id="print-name"></span><span id="print-date"></span></p>
   </header>
-  <p class="prelab-note">Part 1 of 2. Your bacteria have been made to produce a fluorescent protein with a His-tag. Today you break the cells open, clear the lysate in the centrifuge and purify the protein on a nickel column. Keep the samples the bench asks for: Part 2 measures them.</p>
+  <p class="prelab-note" data-part="1">Part 1 of 2. Your bacteria have been made to produce a fluorescent protein with a His-tag. Today you break the cells open, clear the lysate in the centrifuge and purify the protein on a nickel column. Keep the samples the bench asks for: Part 2 measures them. Before you start, read the <a href="prelab/index.html">prelab review</a>. <a href="?part=2">Go to Part 2</a></p>
+  <p class="prelab-note" data-part="2">Part 2 of 2. Today you measure what you purified in Part 1: how much protein each sample holds (the Bradford assay), how brightly it glows, and the protein's excitation and emission spectra. Your samples are on the bench to the right, beside the instruments. The <a href="prelab/index.html">prelab review</a> explains each method. <a href="?part=1">Back to Part 1</a></p>
 
   <section class="part" id="part-bench" aria-labelledby="bench-title">
     <h2 id="bench-title"><span class="step" aria-hidden="true">1</span>At the bench</h2>
@@ -38,11 +39,18 @@
         <div class="stage-controls">
           <div class="views" role="group" aria-label="Camera view">
             <button type="button" class="view-button" data-view="room" aria-pressed="true">Room</button>
-            <button type="button" class="view-button" data-view="cells" aria-pressed="false">Cells</button>
-            <button type="button" class="view-button" data-view="sonicator" aria-pressed="false">Sonicator screen</button>
-            <button type="button" class="view-button" data-view="spin" aria-pressed="false">Centrifuge</button>
-            <button type="button" class="view-button" data-view="column" aria-pressed="false">Column</button>
-            <button type="button" class="view-button" data-view="column close" aria-pressed="false">Column, close up</button>
+            <button type="button" class="view-button" data-view="cells" data-part="1" aria-pressed="false">Cells</button>
+            <button type="button" class="view-button" data-view="sonicator" data-part="1" aria-pressed="false">Sonicator screen</button>
+            <button type="button" class="view-button" data-view="spin" data-part="1" aria-pressed="false">Centrifuge</button>
+            <button type="button" class="view-button" data-view="column" data-part="1" aria-pressed="false">Column</button>
+            <button type="button" class="view-button" data-view="column close" data-part="1" aria-pressed="false">Column, close up</button>
+            <button type="button" class="view-button" data-view="meters" data-part="2" aria-pressed="false">Meters</button>
+            <button type="button" class="view-button" data-view="spec" data-part="2" aria-pressed="false">Spectrophotometer</button>
+            <button type="button" class="view-button" data-view="fluor" data-part="2" aria-pressed="false">Fluorimeter</button>
+            <button type="button" class="view-button" data-view="gel" data-part="2" aria-pressed="false">Gel bench</button>
+            <button type="button" class="view-button" data-view="cast" data-part="2" aria-pressed="false">Casting</button>
+            <button type="button" class="view-button" data-view="gel close" data-part="2" aria-pressed="false">Gel tank</button>
+            <button type="button" class="view-button" data-view="imager" data-part="2" aria-pressed="false">Imager</button>
           </div>
         </div>
         <div class="clock-bar">
@@ -61,6 +69,7 @@
       </div>
 
       <div class="routine-column">
+       <div data-part="1">
         <h3 class="routine-title">A. Break the cells open</h3>
         <ol class="routine" id="routine-a">
           <li class="routine-step" data-done="buffer">
@@ -184,6 +193,190 @@
             <span class="routine-state" id="state-eluted"></span>
           </li>
         </ol>
+       </div>
+
+       <div data-part="2">
+        <h3 class="routine-title">D. Your samples</h3>
+        <ol class="routine" id="routine-d">
+          <li class="routine-step" data-done="pooled">
+            <span class="routine-name">Pool the fractions you chose</span>
+            <span class="routine-why">The elution fractions ticked "Pool" in Table 1 of Part 1 go together into one tube: your purified protein. (To change your choice, go back to Part 1 and tick others.)</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" id="pool-button">Pool them</button></span>
+            <span class="routine-state" id="state-pooled"></span>
+          </li>
+          <li class="routine-step" data-done="diluted">
+            <span class="routine-name">Dilute the samples that need it</span>
+            <span class="routine-why">The Bradford assay is close to a straight line only up to about 1 mg/mL, and the dye tolerates no more than 0.2 M imidazole. A dilution is made in dilution buffer, 200 &micro;L in all. Write each dilution down: you multiply by it later.</span>
+            <span class="routine-buttons dilution-grid" id="dilution-grid"></span>
+            <span class="routine-state" id="state-diluted"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">E. How much protein: the Bradford assay</h3>
+        <p class="pick-line"><label for="cuvette">Cuvette</label> <select id="cuvette"></select></p>
+        <ol class="routine" id="routine-e">
+          <li class="routine-step" data-done="dyed">
+            <span class="routine-name">1 mL of dye into each cuvette <span class="soft">(13 of them)</span></span>
+            <span class="routine-why">One for the blank, one for each of the seven BSA standards, one for each sample. The dispenser on the dye bottle gives 1 mL a press.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-cuvette-step="dye">1 mL of dye</button></span>
+            <span class="routine-state" id="state-dyed"></span>
+          </li>
+          <li class="routine-step" data-done="pipetted">
+            <span class="routine-name">20 &micro;L of its sample into each cuvette</span>
+            <span class="routine-why">Set the micropipette to 20 &micro;L. The blank gets dilution buffer, S1 to S7 the BSA standards, each sample's cuvette its sample (its dilution, if you made one).</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-cuvette-step="pipet">Add its sample</button><button type="button" class="quiet-button" data-cuvette-step="empty">Empty it</button></span>
+            <span class="routine-state" id="state-pipetted"></span>
+          </li>
+          <li class="routine-step" data-done="developed">
+            <span class="routine-name">Wait at least 5 minutes <span class="soft">(read within the hour)</span></span>
+            <span class="routine-why">The dye turns from brown to blue as it binds protein, and the colour takes a few minutes to develop. "Speed up the wait" runs the bench clock faster.</span>
+            <span class="routine-state" id="state-developed"></span>
+          </li>
+          <li class="routine-step" data-done="zeroed">
+            <span class="routine-name">Zero the spectrophotometer on the blank</span>
+            <span class="routine-why">The blank is dye with no protein: zeroing on it means every reading after it is the colour the protein made.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="spec b">Blank in</button><button type="button" class="quiet-button" data-steps="zero">Zero</button></span>
+            <span class="routine-state" id="state-zeroed"></span>
+          </li>
+          <li class="routine-step" data-done="read">
+            <span class="routine-name">Read each cuvette at 595 nm, and record it</span>
+            <span class="routine-why">A cuvette put in is read at once: its absorbance is on the screen. Record it in Table 3 or 4.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-cuvette-step="spec">Into the spectrophotometer</button><button type="button" class="quiet-button" data-steps="spec out">Take it out</button></span>
+            <span class="routine-state" id="state-read"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">F. How brightly it glows: the fluorimeter</h3>
+        <p class="pick-line"><label for="quartz-sample">Sample</label> <select id="quartz-sample"></select></p>
+        <ol class="routine" id="routine-f">
+          <li class="routine-step" data-done="quartz">
+            <span class="routine-name">Quartz cuvette: 1 mL of buffer, then 20 &micro;L of a sample</span>
+            <span class="routine-why">The fluorimeter's beam crosses the cuvette about 1 cm up, so the buffer goes in first. Rinse the cuvette between samples.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="quartz buffer">1 mL of buffer</button><button type="button" class="quiet-button" id="quartz-add">20 &micro;L of the sample</button><button type="button" class="quiet-button" data-steps="quartz rinse">Empty and rinse</button></span>
+            <span class="routine-state" id="state-quartz"></span>
+          </li>
+          <li class="routine-step" data-done="quartz-in">
+            <span class="routine-name">Into the fluorimeter</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="fluor in">Put it in</button><button type="button" class="quiet-button" data-steps="fluor out">Take it out</button></span>
+            <span class="routine-state" id="state-quartz-in"></span>
+          </li>
+          <li class="routine-step" data-done="scanned">
+            <span class="routine-name">Find the peaks: scan the pooled fractions</span>
+            <span class="routine-why">First an emission scan, exciting at 370 nm (these proteins all take up a little light in the near ultraviolet). Then set the emission to the peak you found and scan the excitation. Last, excite at the excitation peak and scan the emission again. A scan that reaches the top of the detector is too concentrated: dilute more.</span>
+            <span class="routine-buttons wavelength-fields">
+              <label>Excitation <input type="text" inputmode="numeric" id="ex" class="num-input short"> nm</label>
+              <label>Emission <input type="text" inputmode="numeric" id="em" class="num-input short"> nm</label>
+              <button type="button" class="quiet-button" id="set-wavelengths">Set</button>
+              <button type="button" class="quiet-button" data-steps="fluor scan em">Emission scan</button>
+              <button type="button" class="quiet-button" data-steps="fluor scan ex">Excitation scan</button>
+            </span>
+            <span class="routine-state" id="state-scanned"></span>
+          </li>
+          <li class="routine-step" data-done="fluor-read">
+            <span class="routine-name">Read every sample at the two peaks, and record it</span>
+            <span class="routine-why">Set the fluorimeter to your excitation and emission peaks, and read each sample at that same setting (Table 5). A reading of OVER means: dilute more.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="fluor read">Read</button></span>
+            <span class="routine-state" id="state-fluor-read"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">G. Cast the gel</h3>
+        <ol class="routine" id="routine-g">
+          <li class="routine-step" data-done="res-mixed">
+            <span class="routine-name">Mix the resolving gel <span class="soft">(10%, 10 mL)</span></span>
+            <span class="routine-why">Acrylamide is a nerve poison until it has set: gloves on. The resolving gel uses the pH 8.8 Tris. APS and TEMED go in last: together they start the gel setting, so pour within a few minutes.</span>
+            <span class="routine-buttons reagent-buttons"><button type="button" class="quiet-button" data-steps="cast res water">Water 4.1 mL</button><button type="button" class="quiet-button" data-steps="cast res acrylamide">Acrylamide/bis 3.3 mL</button><button type="button" class="quiet-button" data-steps="cast res tris88">Tris pH 8.8, 2.5 mL</button><button type="button" class="quiet-button" data-steps="cast res tris68">Tris pH 6.8, 2.5 mL</button><button type="button" class="quiet-button" data-steps="cast res sds">SDS 0.1 mL</button><button type="button" class="quiet-button" data-steps="cast res aps">APS 50 &micro;L</button><button type="button" class="quiet-button" data-steps="cast res temed">TEMED 5 &micro;L</button></span>
+            <span class="routine-state" id="state-res-mixed"></span>
+          </li>
+          <li class="routine-step" data-done="res-poured">
+            <span class="routine-name">Pour it between the plates, and cover it with water</span>
+            <span class="routine-why">A thin layer of water on top keeps air off the gel (oxygen stops it setting) and makes its top edge flat.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="cast pour res">Pour</button><button type="button" class="quiet-button" data-steps="cast overlay">Cover with water</button></span>
+            <span class="routine-state" id="state-res-poured"></span>
+          </li>
+          <li class="routine-step" data-done="res-set">
+            <span class="routine-name">Let it set <span class="soft">(about 45 minutes)</span></span>
+            <span class="routine-state" id="state-res-set"></span>
+          </li>
+          <li class="routine-step" data-done="stack-mixed">
+            <span class="routine-name">Mix the stacking gel <span class="soft">(4%, 10 mL)</span></span>
+            <span class="routine-why">The stacking gel uses the pH 6.8 Tris and less acrylamide. APS and TEMED last again.</span>
+            <span class="routine-buttons reagent-buttons"><button type="button" class="quiet-button" data-steps="cast stack water">Water 6.1 mL</button><button type="button" class="quiet-button" data-steps="cast stack acrylamide">Acrylamide/bis 1.3 mL</button><button type="button" class="quiet-button" data-steps="cast stack tris88">Tris pH 8.8, 2.5 mL</button><button type="button" class="quiet-button" data-steps="cast stack tris68">Tris pH 6.8, 2.5 mL</button><button type="button" class="quiet-button" data-steps="cast stack sds">SDS 0.1 mL</button><button type="button" class="quiet-button" data-steps="cast stack aps">APS 50 &micro;L</button><button type="button" class="quiet-button" data-steps="cast stack temed">TEMED 10 &micro;L</button></span>
+            <span class="routine-state" id="state-stack-mixed"></span>
+          </li>
+          <li class="routine-step" data-done="stack-poured">
+            <span class="routine-name">Pour off the water, pour the stacking gel, put the comb in</span>
+            <span class="routine-why">The comb's teeth leave the wells the samples go into.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="cast pour stack">Pour</button><button type="button" class="quiet-button" data-steps="cast comb">Comb in</button></span>
+            <span class="routine-state" id="state-stack-poured"></span>
+          </li>
+          <li class="routine-step" data-done="stack-set">
+            <span class="routine-name">Let it set <span class="soft">(about 30 minutes)</span>, then take the comb out</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="cast combout">Comb out</button></span>
+            <span class="routine-state" id="state-stack-set"></span>
+          </li>
+          <li class="routine-step" data-done="in-tank">
+            <span class="routine-name">The gel into the tank, and running buffer in</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="gel tank">Into the tank</button><button type="button" class="quiet-button" data-steps="gel buffer">Fill with running buffer</button></span>
+            <span class="routine-state" id="state-in-tank"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">H. The samples</h3>
+        <ol class="routine" id="routine-h">
+          <li class="routine-step" data-done="laemmli">
+            <span class="routine-name">2x Laemmli buffer into every sample <span class="soft">(1:1)</span></span>
+            <span class="routine-why">SDS coats every protein with negative charge, the glycerol makes the sample sink into its well, and the blue dye shows where the run has got to.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="laemmli">Add it</button></span>
+            <span class="routine-state" id="state-laemmli"></span>
+          </li>
+          <li class="routine-step" data-done="heated">
+            <span class="routine-name">Heat at 95 &deg;C for 5 minutes</span>
+            <span class="routine-why">Heat with SDS unfolds every protein, so each runs by its size alone.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="heat in">Into the heat block</button><button type="button" class="quiet-button" data-steps="heat out">Out</button></span>
+            <span class="routine-state" id="state-heated"></span>
+          </li>
+          <li class="routine-step" data-done="loaded-wells">
+            <span class="routine-name">Load 10 &micro;L into each well <span class="soft">(the ladder in one)</span></span>
+            <span class="routine-why">Set the micropipette to 10 &micro;L. Ten wells, eleven samples: choose what goes where, and write the plan down (Table 6).</span>
+            <span class="routine-buttons well-grid" id="well-grid"></span>
+            <span class="routine-state" id="state-loaded-wells"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">I. Run the gel</h3>
+        <ol class="routine" id="routine-i">
+          <li class="routine-step" data-done="ran">
+            <span class="routine-name">Lid on, leads in, 200 V until the blue dye front nears the bottom <span class="soft">(about 40 minutes)</span></span>
+            <span class="routine-why">The proteins carry negative charge, so they run toward the positive electrode (red) at the bottom.</span>
+            <span class="routine-buttons run-fields">
+              <button type="button" class="quiet-button" data-steps="tanklid">Lid on or off</button>
+              <button type="button" class="quiet-button" data-steps="leads right">Red lead to the red jack</button>
+              <button type="button" class="quiet-button" data-steps="leads reversed">Red lead to the black jack</button>
+              <label>Volts <input type="text" inputmode="numeric" id="volts" class="num-input short"> V</label>
+              <button type="button" class="quiet-button" id="power-on">Power on</button>
+              <button type="button" class="quiet-button" data-steps="power off">Power off</button>
+            </span>
+            <span class="routine-state" id="state-ran"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">J. Stain it and take its picture</h3>
+        <ol class="routine" id="routine-j">
+          <li class="routine-step" data-done="stained">
+            <span class="routine-name">The gel into the tray: Coomassie for an hour, then destain for two</span>
+            <span class="routine-why">Coomassie dyes every protein blue, and the gel too; destaining takes the blue back out of the gel and leaves the bands.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="gel tray">Into the tray</button><button type="button" class="quiet-button" data-steps="stain">Coomassie</button><button type="button" class="quiet-button" data-steps="destain">Destain</button></span>
+            <span class="routine-state" id="state-stained"></span>
+          </li>
+          <li class="routine-step" data-done="photo">
+            <span class="routine-name">The gel imager: take its picture</span>
+            <span class="routine-why">White light for the stained gel. The blue light shows only what still glows.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="imager in">Into the imager</button><button type="button" class="quiet-button" data-steps="light white">White light</button><button type="button" class="quiet-button" data-steps="light blue">Blue light</button><button type="button" class="quiet-button" data-steps="photo">Take the picture</button><button type="button" class="quiet-button" data-steps="imager out">Out</button></span>
+            <span class="routine-state" id="state-photo"></span>
+          </li>
+        </ol>
+       </div>
         <div class="routine-foot">
           <span class="reset-wrap"><button type="button" class="quiet-button" id="start-over">Start over</button></span>
         </div>
@@ -191,7 +384,7 @@
     </div>
   </section>
 
-  <section class="part" id="part-fractions" aria-labelledby="fractions-title">
+  <section class="part" id="part-fractions" data-part="1" aria-labelledby="fractions-title">
     <h2 id="fractions-title"><span class="step" aria-hidden="true">2</span>Where did the protein go?</h2>
     <p class="lede">Look at the tubes under the lamp (click it on the bench to switch between UV, blue and off, or use the buttons). Record what you see in each tube, then choose the fractions to pool for Part 2, and keep a 20 &micro;L sample of each tube for the gel.</p>
     <p class="lamp-buttons"><span>Lamp:</span>
@@ -217,6 +410,130 @@
     </div>
   </section>
 
+  <section class="part" id="part-bradford" data-part="2" aria-labelledby="bradford-title">
+    <h2 id="bradford-title"><span class="step" aria-hidden="true">2</span>How much protein? The Bradford assay</h2>
+    <p class="lede">Record each reading exactly as the spectrophotometer shows it. The page draws your standard curve and fits a straight line through the blank and the standards up to 1 mg/mL, where the assay is close to a straight line. Use the line to work out the protein in what went into each cuvette, then multiply by the dilution to get the sample's own concentration.</p>
+    <div class="table-block">
+      <table class="data-table" id="standards-table">
+        <caption>Table 3. The blank and the BSA standards</caption>
+        <thead><tr><th scope="col">Cuvette</th><th scope="col">BSA (mg/mL)</th><th scope="col">A<sub>595</sub></th></tr></thead>
+        <tbody id="standard-rows"></tbody>
+      </table>
+    </div>
+    <figure class="figure-block">
+      <svg id="curve" class="chart" viewBox="0 0 560 330" role="img" aria-label="The standard curve: absorbance at 595 nm against BSA concentration"></svg>
+      <figcaption id="curve-caption">Figure 1. Standard curve.</figcaption>
+    </figure>
+    <div class="table-block">
+      <table class="data-table" id="bradford-table">
+        <caption>Table 4. Protein in each sample</caption>
+        <thead><tr><th scope="col">Sample</th><th scope="col">Volume</th><th scope="col">Dilution</th><th scope="col">A<sub>595</sub></th><th scope="col">From the curve (mg/mL)</th><th scope="col">In the sample (mg/mL)</th></tr></thead>
+        <tbody id="bradford-rows"></tbody>
+      </table>
+      <p class="table-foot"><span class="table-status" id="bradford-status"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-fluor" data-part="2" aria-labelledby="fluor-title">
+    <h2 id="fluor-title"><span class="step" aria-hidden="true">3</span>How brightly does it glow? Fluorescence</h2>
+    <p class="lede">Your latest excitation and emission scans are drawn below; point at a curve to read it. Find the two peaks, then read every sample at that one setting and record each reading. The fluorescence per mL of a sample is the reading times its dilution.</p>
+    <figure class="figure-block">
+      <svg id="spectra" class="chart" viewBox="0 0 560 330" role="img" aria-label="The excitation and emission scans"></svg>
+      <figcaption id="spectra-caption">Figure 2. Excitation and emission scans.</figcaption>
+    </figure>
+    <p class="peak-fields">
+      <label>Excitation peak <input type="text" inputmode="numeric" id="peak-ex" class="num-input short"> nm</label>
+      <label>Emission peak <input type="text" inputmode="numeric" id="peak-em" class="num-input short"> nm</label>
+      <span class="table-status" id="peak-status"></span>
+    </p>
+    <div class="table-block">
+      <table class="data-table" id="fluor-table">
+        <caption>Table 5. Fluorescence of each sample</caption>
+        <thead><tr><th scope="col">Sample</th><th scope="col">Dilution</th><th scope="col">Read at (nm)</th><th scope="col">Reading (counts)</th><th scope="col">Per mL of sample (counts &times; dilution)</th></tr></thead>
+        <tbody id="fluor-rows"></tbody>
+      </table>
+      <p class="table-foot"><span class="table-status" id="fluor-status"></span></p>
+    </div>
+  </section>
+
+
+  <section class="part" id="part-gel" data-part="2" aria-labelledby="gel-title">
+    <h2 id="gel-title"><span class="step" aria-hidden="true">4</span>What size is it? The gel</h2>
+    <p class="lede">Your latest picture from the imager is below; point at it to read how far a band ran from the bottom of its well. Measure the ladder's bands, plot the logarithm of each mass against its distance, and read your protein's mass off the line.</p>
+    <figure class="figure-block gel-figure">
+      <svg id="gel-picture" class="chart" viewBox="0 0 560 400" role="img" aria-label="The gel"></svg>
+      <figcaption id="gel-caption">Figure 3. The gel.</figcaption>
+    </figure>
+    <div class="table-block">
+      <table class="data-table" id="ladder-table">
+        <caption>Table 6. The ladder</caption>
+        <thead><tr><th scope="col">Band (kDa)</th><th scope="col">Distance (mm)</th><th scope="col">log<sub>10</sub>(mass)</th></tr></thead>
+        <tbody id="ladder-rows"></tbody>
+      </table>
+    </div>
+    <figure class="figure-block">
+      <svg id="mass-curve" class="chart" viewBox="0 0 560 330" role="img" aria-label="log of the mass against distance"></svg>
+      <figcaption id="mass-caption">Figure 4. log<sub>10</sub>(mass) against distance.</figcaption>
+    </figure>
+    <div class="table-block">
+      <table class="data-table" id="protein-table">
+        <caption>Table 7. Your protein's band</caption>
+        <thead><tr><th scope="col">Lane</th><th scope="col">Distance (mm)</th><th scope="col">log<sub>10</sub>(mass), from the line</th><th scope="col">Mass (kDa)</th></tr></thead>
+        <tbody id="protein-rows"></tbody>
+      </table>
+      <p class="table-foot"><span class="table-status" id="gel-status"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-table" data-part="2" aria-labelledby="table-title">
+    <h2 id="table-title"><span class="step" aria-hidden="true">5</span>How well did it work? The purification table</h2>
+    <p class="lede">The standard summary of a protein purification. For each sample: the total protein in it (its concentration from Table 4 times its volume), its total fluorescence (fluorescence per mL from Table 5 times its volume), the fluorescence per mg of protein (how pure it is), the yield (how much of the cleared lysate's fluorescence is in it) and the fold purification (how many times purer it is than the cleared lysate). The cleared lysate is the starting point: its yield is 100% and its purification 1.</p>
+    <div class="table-block">
+      <table class="data-table" id="purif-table">
+        <caption>Table 8. Purification table</caption>
+        <thead><tr><th scope="col">Sample</th><th scope="col">Volume</th><th scope="col">Total protein (mg)</th><th scope="col">Total fluorescence (counts)</th><th scope="col">Fluorescence per mg</th><th scope="col">Yield (%)</th><th scope="col">Purification (fold)</th></tr></thead>
+        <tbody id="purif-rows"></tbody>
+      </table>
+      <p class="table-foot"><span class="table-status" id="purif-status"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-identify" data-part="2" aria-labelledby="identify-title">
+    <h2 id="identify-title"><span class="step" aria-hidden="true">6</span>Which protein is it?</h2>
+    <p class="lede">Your unknown is one of the nine fluorescent proteins below, carrying one of the three tags. Match your excitation and emission peaks (Figure 2) to the proteins, and the mass from your gel (Table 7) to the protein plus its tag. This is not checked by the page: your instructor marks it.</p>
+    <div class="reference-sheet" id="reference-sheet">
+      <div class="table-block">
+        <table class="data-table">
+          <caption>Reference 1. The fluorescent proteins (peaks from FPbase)</caption>
+          <thead><tr><th scope="col">Protein</th><th scope="col">Excitation peak (nm)</th><th scope="col">Emission peak (nm)</th><th scope="col">Mass alone (kDa)</th></tr></thead>
+          <tbody><tr><th scope="row">EBFP2</th><td>383</td><td>448</td><td>26.8</td></tr><tr><th scope="row">mTurquoise2</th><td>434</td><td>474</td><td>26.8</td></tr><tr><th scope="row">EGFP</th><td>488</td><td>507</td><td>26.8</td></tr><tr><th scope="row">mNeonGreen</th><td>506</td><td>517</td><td>26.5</td></tr><tr><th scope="row">EYFP</th><td>513</td><td>527</td><td>26.9</td></tr><tr><th scope="row">mOrange</th><td>548</td><td>562</td><td>26.6</td></tr><tr><th scope="row">tdTomato</th><td>554</td><td>581</td><td>54.1</td></tr><tr><th scope="row">mCherry</th><td>587</td><td>610</td><td>26.6</td></tr><tr><th scope="row">mKate2</th><td>588</td><td>633</td><td>25.9</td></tr></tbody>
+        </table>
+      </div>
+      <div class="table-block">
+        <table class="data-table">
+          <caption>Reference 2. The tags, at the front of the protein</caption>
+          <thead><tr><th scope="col">Tag</th><th scope="col">What it is</th><th scope="col">Adds (kDa)</th></tr></thead>
+          <tbody><tr><th scope="row">His</th><td>Six histidines and a protease site</td><td>2.2</td></tr><tr><th scope="row">His-SUMO</th><td>Six histidines, then the yeast protein SUMO (Smt3)</td><td>13.4</td></tr><tr><th scope="row">His-MBP</th><td>Six histidines, then maltose-binding protein</td><td>43.2</td></tr></tbody>
+        </table>
+      </div>
+      <ul class="reference-notes">
+        <li>The mass of a tagged protein is the protein's mass plus the tag's. tdTomato is two copies of one protein joined end to end, so it is about twice as heavy as the others.</li>
+        <li>A gel cannot tell masses apart that are within a few kDa of each other: the spectra decide between proteins of the same size.</li>
+        <li>Two of the bacteria's own proteins stick to nickel and come off with the protein as faint bands: SlyD (it runs at about 27 kDa) and ArnA (74 kDa).</li>
+        <li>Some proteins have peaks close together. Use both peaks, and read them as closely as your scans allow.</li>
+      </ul>
+    </div>
+    <div class="identify-fields">
+      <label>The protein <select id="ident-protein"><option value="">Choose</option><option value="EBFP2">EBFP2</option><option value="mTurquoise2">mTurquoise2</option><option value="EGFP">EGFP</option><option value="mNeonGreen">mNeonGreen</option><option value="EYFP">EYFP</option><option value="mOrange">mOrange</option><option value="tdTomato">tdTomato</option><option value="mCherry">mCherry</option><option value="mKate2">mKate2</option></select></label>
+      <label>The tag <select id="ident-tag"><option value="">Choose</option><option value="His">His</option><option value="His-SUMO">His-SUMO</option><option value="His-MBP">His-MBP</option></select></label>
+    </div>
+    <div class="question">
+      <label for="ident-why">Your evidence: which of your measurements point to this protein and this tag, and which other proteins did you rule out, and how?</label>
+      <textarea id="ident-why" rows="5"></textarea>
+      <div class="print-copy" id="ident-why-copy"></div>
+    </div>
+  </section>
+
   <section class="part" id="part-questions" aria-labelledby="questions-title">
     <h2 id="questions-title"><span class="step" aria-hidden="true">3</span>Questions</h2>
     <p class="lede">Answer in your own words. These are not checked by the page: your instructor reads them.</p>
@@ -231,7 +548,7 @@
       <input type="text" id="student-name" autocomplete="name">
       <button type="button" class="primary-button" id="print-report">Print or save as PDF</button>
     </div>
-    <p class="fine">Your work is kept in this browser as you go. Part 2 opens from the same page with the same code.</p>
+    <p class="fine">Your work is kept in this browser as you go. Part 1 and Part 2 open from the same page with the same code.</p>
     <p class="erase-confirm" id="erase-confirm" hidden>Start over with a fresh pellet and an empty bench? Your tables and answers are erased too.
       <span class="erase-buttons">
         <button type="button" class="quiet-button danger" id="erase-yes">Start over</button>
