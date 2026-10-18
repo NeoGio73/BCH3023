@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Purifying a Glowing Protein</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317211e'/%3E%3Cpath d='M13 4 H19 V10 L22 13 V27 Q16 30 10 27 V13 L13 10 Z' fill='none' stroke='%23c9d6d1' stroke-width='1.6'/%3E%3Crect x='11' y='18' width='10' height='4' fill='%2366e08a'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="lab.css">
+</head>
+<body>
+<main class="sheet">
+
+  <header class="masthead">
+    <h1>Purifying a Glowing Protein</h1>
+    <p class="unknown-tag">Unknown <span id="unknown-code" class="code">&nbsp;</span></p>
+    <p class="print-header" aria-hidden="true"><span id="print-name"></span><span id="print-date"></span></p>
+  </header>
+  <p class="prelab-note">Part 1 of 2. Your bacteria have been made to produce a fluorescent protein with a His-tag. Today you break the cells open, clear the lysate in the centrifuge and purify the protein on a nickel column. Keep the samples the bench asks for: Part 2 measures them.</p>
+
+  <section class="part" id="part-bench" aria-labelledby="bench-title">
+    <h2 id="bench-title"><span class="step" aria-hidden="true">1</span>At the bench</h2>
+    <p class="lede">Work in the room itself (click a bottle to take a pipetful, then click where it goes; click a tube to pick it up, then click where it goes) or with the buttons beside it. If a step is about to go wrong, the bench warns you first; if something does go wrong, it tells you what it did and lets you start that part again.</p>
+
+    <div class="bench-layout">
+      <div class="stage-column">
+        <div class="stage" id="stage">
+          <canvas id="unity-canvas" tabindex="-1" aria-label="3D lab bench: the cells in an ice bucket under a sonicator, a centrifuge, a nickel column on a stand over a rack of tubes, and the instruments for Part 2 on the bench to the right"></canvas>
+          <div class="stage-cover" id="stage-cover">
+            <p id="stage-status">Setting up the bench</p>
+            <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="alert-box" id="alert-box" hidden>
+          <p class="alert-text" id="alert-text"></p>
+          <p class="alert-buttons" id="alert-buttons"></p>
+        </div>
+        <p class="stage-note" id="stage-note" role="status"></p>
+        <div class="stage-controls">
+          <div class="views" role="group" aria-label="Camera view">
+            <button type="button" class="view-button" data-view="room" aria-pressed="true">Room</button>
+            <button type="button" class="view-button" data-view="cells" aria-pressed="false">Cells</button>
+            <button type="button" class="view-button" data-view="spin" aria-pressed="false">Centrifuge</button>
+            <button type="button" class="view-button" data-view="column" aria-pressed="false">Column</button>
+            <button type="button" class="view-button" data-view="column close" aria-pressed="false">Column, close up</button>
+          </div>
+        </div>
+        <div class="clock-bar">
+          <span class="clock-label">Bench clock</span>
+          <span class="clock" id="clock">0:00</span>
+          <span class="clock-status" id="clock-status"></span>
+          <button type="button" class="quiet-button toggle" id="speed-toggle" aria-pressed="false">Speed up the wait</button>
+        </div>
+        <div class="pipette-bar">
+          <label for="pipette">Micropipette set to</label>
+          <input type="text" inputmode="numeric" id="pipette" class="num-input" value="1000" aria-describedby="pipette-note">
+          <span>&micro;L</span>
+          <span class="soft" id="pipette-note">(10 to 1000 &micro;L: every pipetful you add uses this volume)</span>
+        </div>
+        <p class="held-note" id="held-note"></p>
+      </div>
+
+      <div class="routine-column">
+        <h3 class="routine-title">A. Break the cells open</h3>
+        <ol class="routine" id="routine-a">
+          <li class="routine-step" data-done="buffer">
+            <span class="routine-name">Lysis buffer onto the pellet <span class="soft">(4 mL)</span></span>
+            <span class="routine-why">The pellet is taken up in about 4 mL. The buffer's 10 mM imidazole keeps weakly sticky bacterial proteins off the column later.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="add lysis cells">Add a pipetful</button></span>
+            <span class="routine-state" id="state-buffer"></span>
+          </li>
+          <li class="routine-step" data-done="resuspended">
+            <span class="routine-name">Resuspend the pellet</span>
+            <span class="routine-why">Pipet up and down until no lumps are left, so every cell meets the buffer.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="resuspend">Pipet up and down</button></span>
+            <span class="routine-state" id="state-resuspended"></span>
+          </li>
+          <li class="routine-step" data-done="sample-cells">
+            <span class="routine-name">Keep a sample: whole cells <span class="soft">(20 &micro;L)</span></span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="sample cells">Keep the sample</button></span>
+            <span class="routine-state" id="state-sample-cells"></span>
+          </li>
+          <li class="routine-step" data-done="lysozyme">
+            <span class="routine-name">Lysozyme <span class="soft">(1 mg/mL in the tube, from the 10 mg/mL stock)</span></span>
+            <span class="routine-why">Lysozyme digests the cell wall. Work out the volume, set the micropipette to it, then add it.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="lysozyme">Add lysozyme</button></span>
+            <span class="routine-state" id="state-lysozyme"></span>
+          </li>
+          <li class="routine-step" data-done="waited">
+            <span class="routine-name">30 minutes on ice</span>
+            <span class="routine-why">The bench clock runs on its own; "Speed up the wait" makes it run 60 times faster.</span>
+            <span class="routine-state" id="state-waited"></span>
+          </li>
+          <li class="routine-step" data-done="sonicated">
+            <span class="routine-name">Sonicate: six bursts of 10 s, 10 s on ice between them</span>
+            <span class="routine-why">The probe shakes the liquid with ultrasound and breaks the softened cells open. Each burst warms the sample.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="burst">One 10 s burst</button></span>
+            <span class="routine-state" id="state-sonicated"></span>
+          </li>
+          <li class="routine-step" data-done="sample-lysate">
+            <span class="routine-name">Keep a sample: lysate</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="sample lysate">Keep the sample</button></span>
+            <span class="routine-state" id="state-sample-lysate"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">B. Clear the lysate</h3>
+        <ol class="routine" id="routine-b">
+          <li class="routine-step" data-done="transferred">
+            <span class="routine-name">Pour the lysate into the spin tube</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="transfer">Pour it in</button></span>
+            <span class="routine-state" id="state-transferred"></span>
+          </li>
+          <li class="routine-step" data-done="balanced">
+            <span class="routine-name">Make a balance tube</span>
+            <span class="routine-why">Water in the balance tube, to the same volume as your lysate. A centrifuge spun unbalanced shakes itself apart, so it refuses to start.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="water">Squirt 0.5 mL of water</button></span>
+            <span class="routine-state" id="state-balanced"></span>
+          </li>
+          <li class="routine-step" data-done="loaded-rotor">
+            <span class="routine-name">Both tubes into the rotor, opposite each other</span>
+            <span class="routine-buttons rotor-buttons" id="rotor-buttons"></span>
+            <span class="routine-state" id="state-loaded-rotor"></span>
+          </li>
+          <li class="routine-step" data-done="spun">
+            <span class="routine-name">Close the lid, set the speed and the time, start</span>
+            <span class="routine-why">The rotor's radius is 6.2 cm. The force is RCF = 1.118 &times; 10<sup>&minus;5</sup> &times; r (cm) &times; rpm<sup>2</sup>, in times the force of gravity (&times; g).</span>
+            <span class="routine-buttons spin-fields">
+              <button type="button" class="quiet-button" data-steps="lid">Open or close the lid</button>
+              <label>Speed <input type="text" inputmode="numeric" id="rpm" class="num-input" placeholder="rpm"> rpm</label>
+              <label>Time <input type="text" inputmode="numeric" id="minutes" class="num-input short" placeholder="min"> min</label>
+              <button type="button" class="quiet-button" id="spin-start">Start</button>
+            </span>
+            <span class="routine-state" id="state-spun"></span>
+          </li>
+          <li class="routine-step" data-done="unloaded">
+            <span class="routine-name">Open the lid and take the tubes out</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="lid open|unrotor all">Take them out</button></span>
+            <span class="routine-state" id="state-unloaded"></span>
+          </li>
+          <li class="routine-step" data-done="decanted">
+            <span class="routine-name">Pour the cleared lysate off the pellet</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="decant">Pour it off</button></span>
+            <span class="routine-state" id="state-decanted"></span>
+          </li>
+          <li class="routine-step" data-done="sample-cleared">
+            <span class="routine-name">Keep samples: cleared lysate and pellet</span>
+            <span class="routine-why">The pellet is taken up in lysis buffer to the lysate's volume before its sample is taken, so its lane can be compared.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="sample cleared">Cleared lysate</button><button type="button" class="quiet-button" data-steps="sample pellet">Pellet</button></span>
+            <span class="routine-state" id="state-sample-cleared"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">C. The nickel column</h3>
+        <ol class="routine" id="routine-c">
+          <li class="routine-step" data-done="resin">
+            <span class="routine-name">Swirl the resin, then 1 mL of slurry into the closed column</span>
+            <span class="routine-why">The Ni-NTA beads settle in their bottle. 1 mL of 50% slurry gives a 0.5 mL bed, which holds about 4 mg of His-tagged protein.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="swirl">Swirl the bottle</button><button type="button" class="quiet-button" data-steps="slurry">Pour 1 mL in</button></span>
+            <span class="routine-state" id="state-resin"></span>
+          </li>
+          <li class="routine-step" data-done="equilibrated">
+            <span class="routine-name">Equilibrate: 2.5 mL of lysis buffer, to the waste</span>
+            <span class="routine-why">Five column volumes rinse the resin into the same buffer as the lysate. Never let the liquid fall below the top of the bed.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="under waste">Waste beaker under</button><button type="button" class="quiet-button" data-steps="outlet">Open or close the outlet</button><button type="button" class="quiet-button" data-steps="add lysis column">Add a pipetful of lysis buffer</button></span>
+            <span class="routine-state" id="state-equilibrated"></span>
+          </li>
+          <li class="routine-step" data-done="loaded">
+            <span class="routine-name">Load the cleared lysate, collecting the flow-through</span>
+            <span class="routine-why">Watch the top of the bed: the His-tagged protein binds to the nickel there.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="under ft">Flow-through tube under</button><button type="button" class="quiet-button" data-steps="load">Pour the lysate in</button></span>
+            <span class="routine-state" id="state-loaded"></span>
+          </li>
+          <li class="routine-step" data-done="washed">
+            <span class="routine-name">Wash twice with 4 mL of wash buffer</span>
+            <span class="routine-why">20 mM imidazole washes off bacterial proteins that stuck weakly; your protein stays bound.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="under w1">Wash 1 tube under</button><button type="button" class="quiet-button" data-steps="under w2">Wash 2 tube under</button><button type="button" class="quiet-button" data-steps="add wash column">Add a pipetful of wash buffer</button></span>
+            <span class="routine-state" id="state-washed"></span>
+          </li>
+          <li class="routine-step" data-done="eluted">
+            <span class="routine-name">Elute: four fractions of 0.5 mL of elution buffer</span>
+            <span class="routine-why">250 mM imidazole competes the protein off the nickel. Set the micropipette to 500 &micro;L and move the next tube under for each fraction.</span>
+            <span class="routine-buttons elute-buttons"><button type="button" class="quiet-button" data-steps="under e1">E1 under</button><button type="button" class="quiet-button" data-steps="under e2">E2 under</button><button type="button" class="quiet-button" data-steps="under e3">E3 under</button><button type="button" class="quiet-button" data-steps="under e4">E4 under</button><button type="button" class="quiet-button" data-steps="add elution column">Add a pipetful of elution buffer</button></span>
+            <span class="routine-state" id="state-eluted"></span>
+          </li>
+        </ol>
+        <div class="routine-foot">
+          <span class="reset-wrap"><button type="button" class="quiet-button" id="start-over">Start over</button></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="part-fractions" aria-labelledby="fractions-title">
+    <h2 id="fractions-title"><span class="step" aria-hidden="true">2</span>Where did the protein go?</h2>
+    <p class="lede">Look at the tubes under the lamp (click it on the bench to switch between UV, blue and off, or use the buttons). Record what you see in each tube, then choose the fractions to pool for Part 2, and keep a 20 &micro;L sample of each tube for the gel.</p>
+    <p class="lamp-buttons"><span>Lamp:</span>
+      <button type="button" class="quiet-button" data-steps="lamp uv">UV (365 nm)</button>
+      <button type="button" class="quiet-button" data-steps="lamp blue">Blue (470 nm)</button>
+      <button type="button" class="quiet-button" data-steps="lamp off">Off</button>
+      <button type="button" class="quiet-button" data-view-go="column">Look at the column</button>
+    </p>
+    <div class="table-block">
+      <table class="data-table" id="fraction-table">
+        <caption>Table 1. The tubes under the column</caption>
+        <thead><tr><th scope="col">Tube</th><th scope="col">Volume</th><th scope="col">What you see under the lamp</th><th scope="col">Pool for Part 2</th><th scope="col">Sample for the gel</th></tr></thead>
+        <tbody id="fraction-rows"></tbody>
+      </table>
+      <p class="table-foot"><button type="button" class="quiet-button" id="check-glow">Check what I recorded</button> <span class="table-status" id="glow-status"></span></p>
+    </div>
+    <div class="table-block">
+      <table class="data-table" id="sample-table">
+        <caption>Table 2. Samples kept for the gel</caption>
+        <thead><tr><th scope="col">Sample</th><th scope="col">Kept</th></tr></thead>
+        <tbody id="sample-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="part" id="part-questions" aria-labelledby="questions-title">
+    <h2 id="questions-title"><span class="step" aria-hidden="true">3</span>Questions</h2>
+    <p class="lede">Answer in your own words. These are not checked by the page: your instructor reads them.</p>
+    <div id="mistake-list" class="mistake-list"></div>
+    <div id="questions" class="questions"></div>
+  </section>
+
+  <section class="part" id="part-turnin" aria-labelledby="turnin-title">
+    <h2 id="turnin-title"><span class="step" aria-hidden="true">4</span>Turn in</h2>
+    <div class="report-row">
+      <label for="student-name">Your name</label>
+      <input type="text" id="student-name" autocomplete="name">
+      <button type="button" class="primary-button" id="print-report">Print or save as PDF</button>
+    </div>
+    <p class="fine">Your work is kept in this browser as you go. Part 2 opens from the same page with the same code.</p>
+    <p class="erase-confirm" id="erase-confirm" hidden>Start over with a fresh pellet and an empty bench? Your tables and answers are erased too.
+      <span class="erase-buttons">
+        <button type="button" class="quiet-button danger" id="erase-yes">Start over</button>
+        <button type="button" class="quiet-button" id="erase-no">Keep my work</button>
+      </span>
+    </p>
+  </section>
+
+  <footer class="print-footer" aria-hidden="true"><span id="print-checks"></span></footer>
+
+  <footer class="credits">
+    A simulation. Its protocol follows QIAGEN's <i>The QIAexpressionist</i> (5th ed., 2003), Bio-Rad's Quick Start Bradford and Mini-PROTEAN manuals; the fluorescent proteins' properties are from FPbase (fpbase.org).
+    Centrifuge model: "Table centrifuge with blood samples" by Steffen, from BlendKit (royalty-free license), adapted.
+  </footer>
+</main>
+
+<script src="model.js"></script>
+<script src="app.js"></script>
+<script>
+  (function () {
+    var lab = window.ProteinLab;
+    if (lab.isMock) return;
+
+    var canvas = document.querySelector("#unity-canvas");
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/ProteinLab.loader.js";
+    var config = {
+      arguments: [],
+      dataUrl: buildUrl + "/ProteinLab.data.unityweb",
+      frameworkUrl: buildUrl + "/ProteinLab.framework.js.unityweb",
+      codeUrl: buildUrl + "/ProteinLab.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "Purifying a Glowing Protein",
+      productVersion: "0.1.0",
+      showBanner: function (message, type) { lab.unityBanner(message, type); }
+    };
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = function () {
+      createUnityInstance(canvas, config, function (progress) { lab.unityProgress(progress); })
+        .then(function (instance) { lab.attachUnity(instance); })
+        .catch(function (error) { lab.unityFailed(error); });
+    };
+    script.onerror = function () { lab.unityFailed("The lab files did not load."); };
+    document.body.appendChild(script);
+  })();
+</script>
+</body>
+</html>
