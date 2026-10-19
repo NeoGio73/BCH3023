@@ -102,8 +102,10 @@ something does go wrong the result shows it, as it would on a real bench.
 
 **Open the lab**
 
-- Prelab review (to read before the lab: reverse complements, primer rules, a PCR recipe,
-  restriction digests, reading a gel and a trace, and translation, with made-up examples):
+- Prelab review (30 to 40 minutes, to read before the lab: hemoglobin and its genes, DNA strands,
+  BLAST, PCR and primer design, setting up a reaction, restriction digests, agarose gels, Sanger
+  sequencing, from gene to protein, naming a change and looking it up in ClinVar, and a protein in
+  3D; with figures, small tools, practice boxes and a quiz, all on made-up examples):
   https://neogio73.github.io/BCH3023/hemoglobin-clinic/prelab/
 - Session 1 (BLAST, primer design and the PCR):
   https://neogio73.github.io/BCH3023/hemoglobin-clinic/
