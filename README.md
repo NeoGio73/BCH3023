@@ -85,7 +85,7 @@ How it works
 - "Print or save as PDF" on each part gives its report.
 
 Centrifuge model: "Table centrifuge with blood samples" by Steffen, from BlendKit (royalty-free
-license), adapted.
+license), adapted. Lab chair: "Laboratories - Big Pack" by Mixall (Unity Asset Store).
 
 ## The Hemoglobin Clinic
 
@@ -134,4 +134,5 @@ How it works
 - "Print the report, or save it as a PDF" at the end of Session 2 gives the report.
 
 Models from BlendKit (royalty-free license): "Microwave Oven" by hd poly, "Disposable Gloves Box"
-by 3D Addicts, "Paper Towel Dispenser" by Joyble.
+by 3D Addicts, "Paper Towel Dispenser" by Joyble. Lab chair, vortex, balance, power supply and the
+tubes on the shelf: "Laboratories - Big Pack" by Mixall (Unity Asset Store).
