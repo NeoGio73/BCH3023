@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hemoglobin Clinic: prelab review</title>
+<style>
+  :root { --ink: #17211e; --soft: #4b5854; --rule: #c7d1cc; --enamel: #1c4c9a; --wash: #e9eff9; --ok: #1f7a3a; --no: #b03a2e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 16px/1.55 "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 22px 16px 60px; }
+  h1 { font-size: 1.7rem; margin: 0 0 6px; }
+  h2 { font-size: 1.25rem; margin: 34px 0 8px; border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
+  h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--enamel); }
+  p, li { max-width: 46rem; }
+  .note { background: var(--wash); border-left: 3px solid var(--enamel); padding: 8px 12px; }
+  code, .seq { font-family: ui-monospace, Consolas, "Courier New", monospace; }
+  .seq { display: block; background: #f4f7f6; border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; overflow-wrap: anywhere; font-size: 0.92rem; }
+  .practice { border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; margin: 14px 0; }
+  .practice label { display: block; margin: 8px 0 4px; font-weight: 600; }
+  input[type=text] { font: inherit; padding: 5px 8px; border: 1px solid #8d9994; border-radius: 4px; width: 100%; max-width: 32rem; }
+  input.short { max-width: 8rem; }
+  input[data-state=ok] { border-color: var(--ok); background: #eef8f1; }
+  input[data-state=no] { border-color: var(--no); background: #fbefed; }
+  .msg { display: block; font-size: 0.88rem; color: var(--no); min-height: 1.2em; }
+  .msg.ok { color: var(--ok); }
+  table { border-collapse: collapse; margin: 8px 0; font-size: 0.92rem; }
+  th, td { border: 1px solid var(--rule); padding: 4px 8px; text-align: left; }
+  th { background: #eef2f0; }
+  svg { max-width: 100%; height: auto; }
+  .back { font-size: 0.92rem; }
+  footer { margin-top: 40px; font-size: 0.85rem; color: var(--soft); }
+</style>
+</head>
+<body>
+<main>
+<p class="back"><a href="../index.html">Back to the lab</a></p>
+<h1>The Hemoglobin Clinic: prelab review</h1>
+<p>This review explains the methods you will use: BLAST, PCR and its primers, setting up a reaction, a restriction digest, an agarose gel, Sanger sequencing, and reading a gene into a protein. Every sequence and number you practise on here is made up: none of it is the gene or the patient you will work on.</p>
+
+<h2>1. The plan of the lab</h2>
+<p>A patient's blood has come to the clinic's laboratory. Hemoglobin is made of two &alpha; chains and two &beta; chains; the &beta; chain is coded by one gene, and changes in it cause some of the commonest inherited diseases in the world. You will find out which form of that gene the patient carries on each of their two chromosomes.</p>
+<ul>
+  <li><b>Session 1.</b> Identify the gene from a read of the patient's DNA (BLAST). Design primers. Set up a PCR of the patient's DNA beside a control and a tube with no DNA, and run it. Set up a digest of the products with a restriction enzyme, and send a tube of product for sequencing.</li>
+  <li><b>Session 2.</b> Run the digests on an agarose gel and read the size of every band. Read the sequencing trace. Work out the protein, and the diagnosis.</li>
+</ul>
+
+<h2>2. BLAST: which gene is this?</h2>
+<p>BLAST (Basic Local Alignment Search Tool, at NCBI) compares your sequence with every sequence in a database and lists the best matches. For each hit, read:</p>
+<ul>
+  <li><b>Description</b>: the gene and the organism the hit comes from.</li>
+  <li><b>Per. Ident.</b>: the share of aligned bases that are the same. 100% is a perfect match.</li>
+  <li><b>Query Cover</b>: how much of your sequence the alignment covers.</li>
+  <li><b>E value</b>: how many hits this good you would expect by chance in a database this size. The smaller, the more certain the match; for a long perfect match BLAST prints 0.0.</li>
+  <li><b>Accession</b>: the database's name for the record (for example NM_ for an mRNA, NG_ for a gene's reference record).</li>
+</ul>
+<p class="note">A good identification has a high identity over nearly all of your sequence, a tiny E value, and a description that makes sense. A hit that matches only a short stretch, however well, is weaker evidence.</p>
+
+<h2>3. PCR and its primers</h2>
+<p>The polymerase chain reaction copies one stretch of DNA millions of times. Each cycle has three steps:</p>
+<ol>
+  <li><b>Denature</b> (about 95 &deg;C): the two strands separate.</li>
+  <li><b>Anneal</b> (about 50 to 65 &deg;C): the two primers bind to their places, one on each strand.</li>
+  <li><b>Extend</b> (72 &deg;C): Taq polymerase adds nucleotides to each primer's 3&prime; end, copying the strand. Taq adds about 1000 bases a minute.</li>
+</ol>
+<p>Each cycle roughly doubles the product, so 30 cycles turn a few thousand copies into far more than you need. Because both strands are copied from opposite ends, the product runs from the 5&prime; end of one primer to the 5&prime; end of the other.</p>
+
+<h3>Writing primers 5&prime; to 3&prime;</h3>
+<p>Primers are written 5&prime; to 3&prime;, like every DNA sequence. The <b>forward primer</b> is copied straight from the top strand, at the start of the stretch you want. The <b>reverse primer</b> binds the top strand at the far end, so it is the <b>reverse complement</b> of the top strand there: write the top-strand bases backwards, then swap A for T and G for C.</p>
+<div class="practice">
+  <p>A made-up top strand reads, at the far end of a stretch you want to copy, <code>5&prime;-GATTCCAGTTGCAAGCTGAC-3&prime;</code>.</p>
+  <label for="p-rc">Write the reverse primer that binds there (5&prime; to 3&prime;)</label>
+  <input type="text" id="p-rc" autocomplete="off" spellcheck="false"><span class="msg" id="p-rc-msg"></span>
+</div>
+
+<h3>Good primers</h3>
+<ul>
+  <li>18 to 25 bases, 40 to 60% G and C.</li>
+  <li>A melting temperature (Tm, where half the primer is bound) of about 57 to 63 &deg;C, and the two primers within 2 to 3 &deg;C of each other. Anneal a few degrees below the lower Tm: too hot and the primers do not stay bound; too cool and they also bind places that only nearly match.</li>
+  <li>A G or C at the 3&prime; end (a "clamp"), but not too many: the 3&prime; end is where the polymerase starts.</li>
+  <li>No runs of four or more of one base.</li>
+  <li>No pairing of the primers' 3&prime; ends with each other or themselves: such primers copy each other and make a short "primer-dimer".</li>
+  <li>Only one place in the genome. A related gene that is almost the same sequence is a trap: check every pair with Primer-BLAST, which searches the genome for other places the pair would copy.</li>
+  <li>Not on a base that differs between people, if you want to copy every version alike: a mismatch at a primer's 3&prime; end stops it.</li>
+</ul>
+<div class="practice">
+  <p>Four made-up primers. Which one breaks a rule? (Type its letter.)</p>
+  <table>
+    <tr><th>A</th><td><code>TTGACCAGGCTTCAGGATCC</code></td></tr>
+    <tr><th>B</th><td><code>GGCAAATTTTCAGGTCAAGC</code></td></tr>
+    <tr><th>C</th><td><code>CAGCTTGACAGTCCAGGAAC</code></td></tr>
+    <tr><th>D</th><td><code>ATCCTGGACTGTCAAGCTGG</code></td></tr>
+  </table>
+  <label for="p-rule">The one with a run of four of one base</label>
+  <input type="text" id="p-rule" class="short" autocomplete="off"><span class="msg" id="p-rule-msg"></span>
+  <label for="p-dimer">Two of them are reverse complements of each other's 3&prime; halves and would pair: which two? (two letters)</label>
+  <input type="text" id="p-dimer" class="short" autocomplete="off"><span class="msg" id="p-dimer-msg"></span>
+</div>
+
+<h2>4. Setting up a reaction</h2>
+<p>Every volume comes from C<sub>1</sub>V<sub>1</sub> = C<sub>2</sub>V<sub>2</sub>: the stock's concentration times the volume you take equals the final concentration times the final volume. Water makes up the rest.</p>
+<div class="practice">
+  <p>A made-up reaction of 50 &micro;L needs a 5x buffer at 1x, a primer at 0.2 &micro;M from a 10 &micro;M stock, and 10 ng of DNA from a stock of 5 ng/&micro;L.</p>
+  <label for="p-buf">The 5x buffer (&micro;L)</label><input type="text" id="p-buf" class="short"><span class="msg" id="p-buf-msg"></span>
+  <label for="p-pri">The primer (&micro;L)</label><input type="text" id="p-pri" class="short"><span class="msg" id="p-pri-msg"></span>
+  <label for="p-dna">The DNA (&micro;L)</label><input type="text" id="p-dna" class="short"><span class="msg" id="p-dna-msg"></span>
+</div>
+
+<h3>Pipettes, tips and contamination</h3>
+<p>Choose the smallest pipette whose range holds the volume. A used tip carries a film of what it touched: put it into a stock and the stock now holds a trace of it, and every tube made from that stock afterwards. PCR finds even a few copies of DNA, so a fresh tip for every liquid is the rule. This is also why every PCR has a <b>no-template control</b> (all the reagents, no DNA): a band in it means something was contaminated. A <b>positive control</b>, DNA whose answer is already known, shows that the whole method works.</p>
+
+<h2>5. Restriction enzymes</h2>
+<p>A restriction enzyme cuts DNA wherever it finds its recognition sequence. A single changed base can create a site or destroy one, so cutting a PCR product and looking at the pieces on a gel can show which version of a gene a person carries.</p>
+<div class="practice">
+  <p>HinfI cuts G^ANTC (N is any base; the cut is after the G). A made-up PCR product of 240 bp has HinfI sites whose cuts fall after base 70 and after base 190.</p>
+  <label for="p-hinf">The fragments after a full digest (bp, largest first)</label>
+  <input type="text" id="p-hinf" autocomplete="off"><span class="msg" id="p-hinf-msg"></span>
+  <label for="p-hinf2">A version of the gene has a changed base that destroys the first site. Its fragments?</label>
+  <input type="text" id="p-hinf2" autocomplete="off"><span class="msg" id="p-hinf2-msg"></span>
+  <label for="p-hinf3">A person carrying one of each version: which fragments does their digest show?</label>
+  <input type="text" id="p-hinf3" autocomplete="off"><span class="msg" id="p-hinf3-msg"></span>
+</div>
+<p>Restriction enzymes need their own buffer, their temperature (often 37 &deg;C) and enough time; too little of any leaves some sites uncut, and a partial digest shows extra bands, the uncut pieces joined.</p>
+
+<h2>6. The agarose gel</h2>
+<p>DNA is negatively charged, so in an electric field it runs toward the positive (red) electrode: the wells go at the negative (black) end. The gel is a mesh: short pieces slip through faster than long ones. A weaker gel (1%) separates long DNA; a stronger one (2 to 3%) separates short DNA. The stain in the gel binds DNA and glows under blue light; an amber filter blocks the blue so the glow shows. Each sample goes in with loading dye, which is dense (it makes the sample sink into the well) and coloured (you can watch it run).</p>
+<h3>Reading sizes against the ladder</h3>
+<p>A ladder is a mixture of pieces of known sizes. Over the gel's useful range, the distance a piece runs is close to a straight line against the logarithm of its size. Measure every ladder band, fit log<sub>10</sub>(size) against distance, and read each unknown band's size from the line.</p>
+<div class="practice">
+  <p>On a made-up gel, the ladder's 1000 bp band ran 20 mm and its 100 bp band 50 mm (a straight line of log<sub>10</sub>(size) against distance through these two).</p>
+  <label for="p-lad">A band at 35 mm is about how many bp? (to the nearest 10)</label>
+  <input type="text" id="p-lad" class="short" autocomplete="off"><span class="msg" id="p-lad-msg"></span>
+</div>
+
+<h2>7. Sanger sequencing</h2>
+<p>The core extends one primer along the template with a little of each of four fluorescent dideoxy-nucleotides: each stops a strand at an A, C, G or T, with its own colour. The stopped strands are sorted by length in a capillary, and a detector reads the colours as they pass: a trace of peaks, one base after another, read from the primer onward.</p>
+<ul>
+  <li>Before sequencing, a PCR product is cleaned up: an enzyme eats the leftover single-stranded primers, another spends the leftover dNTPs. The enzymes must then be killed by heat before the sequencing primer goes in, or they eat that too. Leftover PCR primers would read from both ends at once and make the trace a mixture.</li>
+  <li>The first 20 or so bases are poorly read; the trace fades after several hundred.</li>
+  <li><b>Heterozygote</b>: where the two copies of a gene differ by one base, the trace shows two peaks of about half height at that position.</li>
+  <li><b>Homozygote</b>: where both copies carry the same change, the trace shows one clean peak of the changed base. Only comparing with the reference sequence finds it.</li>
+  <li><b>A deletion in one copy</b>: from the deletion on, the two copies are out of step and the trace becomes a mixture of two sequences.</li>
+</ul>
+<div class="practice">
+  <p>A made-up trace. Where does it show a double peak, and of which two bases?</p>
+  <svg id="p-trace" viewBox="0 0 520 150" role="img" aria-label="A short made-up sequencing trace"></svg>
+  <label for="p-tr">Position and bases (e.g. "7 C/G")</label>
+  <input type="text" id="p-tr" class="short" autocomplete="off"><span class="msg" id="p-tr-msg"></span>
+</div>
+
+<h2>8. From gene to protein</h2>
+<p>Most human genes are split: <b>exons</b>, which reach the mature mRNA, and <b>introns</b> between them, which are spliced out. Almost every intron begins with GT and ends with AG. Read the spliced message from the ATG in threes (codons) with the genetic code; a stop codon (TAA, TAG, TGA) ends the protein. A change can swap one amino acid for another, make a stop codon early, shift the reading frame (a deletion not a multiple of three), or break a splice site.</p>
+<p class="note">Many proteins lose their first methionine after they are made. Textbooks (Lehninger among them) number such a protein from the amino acid after it, so amino acid <i>n</i> is coded by codon <i>n</i> + 1 counted from the ATG.</p>
+<div class="practice">
+  <p>A made-up gene: <code>ATG GCC AAG</code> | intron <code>GTAAGTCTTTCAG</code> | <code>TGG GAA TAA</code></p>
+  <label for="p-prot">Its protein in one-letter codes, from the methionine (e.g. MAK...)</label>
+  <input type="text" id="p-prot" class="short" autocomplete="off"><span class="msg" id="p-prot-msg"></span>
+  <label for="p-num">After the methionine is removed, what is amino acid 3 (one letter)?</label>
+  <input type="text" id="p-num" class="short" autocomplete="off"><span class="msg" id="p-num-msg"></span>
+</div>
+
+<footer>A review for the simulated lab. The made-up sequences and numbers are for practice only.</footer>
+</main>
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+  function clean(s) { return String(s || '').toUpperCase().replace(/[^A-Z]/g, ''); }
+  function nums(s) { return String(s || '').split(/[^0-9.]+/).filter(Boolean).map(Number); }
+  function same(a, b) { if (a.length !== b.length) return false; var x = a.slice().sort(function (p, q) { return p - q; }), y = b.slice().sort(function (p, q) { return p - q; }); return x.every(function (v, i) { return Math.abs(v - y[i]) <= 1; }); }
+  function wire(id, test, hintNo) {
+    var input = $(id), msg = $(id + '-msg');
+    input.addEventListener('input', function () {
+      var t = input.value.trim();
+      if (!t) { input.removeAttribute('data-state'); msg.textContent = ''; msg.className = 'msg'; return; }
+      var ok = test(t);
+      input.setAttribute('data-state', ok ? 'ok' : 'no');
+      msg.textContent = ok ? 'Right.' : hintNo;
+      msg.className = ok ? 'msg ok' : 'msg';
+    });
+  }
+  // the reverse complement of GATTCCAGTTGCAAGCTGAC
+  wire('p-rc', function (t) { return clean(t) === 'GTCAGCTTGCAACTGGAATC'; }, 'Write the bases backwards, then swap A for T and G for C.');
+  wire('p-rule', function (t) { return clean(t) === 'B'; }, 'Look for four of the same base in a row.');
+  // the two letters named (A to D standing alone), in any order
+  wire('p-dimer', function (t) { var c = (t.toUpperCase().match(/\b[A-D]\b/g) || []).sort().join(''); return c === 'CD'; }, 'Write each primer’s reverse complement and compare it with the others.');
+  // 50 uL: 5x to 1x -> 10; 0.2 from 10 uM -> 1; 10 ng from 5 ng/uL -> 2
+  wire('p-buf', function (t) { return Math.abs(Number(t) - 10) < 0.01; }, 'C1V1 = C2V2: 5 x V1 = 1 x 50.');
+  wire('p-pri', function (t) { return Math.abs(Number(t) - 1) < 0.01; }, 'C1V1 = C2V2: 10 x V1 = 0.2 x 50.');
+  wire('p-dna', function (t) { return Math.abs(Number(t) - 2) < 0.01; }, 'Volume = amount / concentration.');
+  // HinfI: cuts after 70 and 190 in 240 -> 70, 120, 50; first site lost -> 190, 50; heterozygote -> 190, 120, 70, 50
+  wire('p-hinf', function (t) { return same(nums(t), [120, 70, 50]); }, 'From the start to the first cut, from cut to cut, and from the last cut to the end.');
+  wire('p-hinf2', function (t) { return same(nums(t), [190, 50]); }, 'Without the first site, the first two pieces stay joined.');
+  wire('p-hinf3', function (t) { return same(nums(t), [190, 120, 70, 50]); }, 'Each copy of the gene gives its own pieces; the gel shows them all.');
+  // ladder: log10(1000)=3 at 20 mm, 2 at 50 mm -> at 35 mm log = 2.5 -> 316
+  wire('p-lad', function (t) { var v = Number(t); return v >= 300 && v <= 330; }, 'Halfway between 20 and 50 mm is halfway between log 3 and log 2.');
+  wire('p-tr', function (t) { var m = t.toUpperCase().match(/(\d+)\s*([ACGT])\s*\/\s*([ACGT])/); return !!m && Number(m[1]) === 9 && [m[2], m[3]].sort().join('') === 'CT'; }, 'Look for two peaks of different colours at the same place.');
+  wire('p-prot', function (t) { return clean(t) === 'MAKWE'; }, 'Splice out the intron (from its GT to its AG), then read the codons up to the stop.');
+  wire('p-num', function (t) { return clean(t) === 'W'; }, 'Without M, the protein reads A, K, W, E.');
+
+  // the made-up trace: 16 bases, a C/T double peak at position 9
+  var seq = 'GATCAGTTYAGCCTAG', colours = { A: '#1f9d3a', C: '#1f4fd1', G: '#17211e', T: '#d43c2c' };
+  var g = $('p-trace'), NS = 'http://www.w3.org/2000/svg';
+  function add(tag, attrs, text) { var n = document.createElementNS(NS, tag); for (var k in attrs) n.setAttribute(k, attrs[k]); if (text) n.textContent = text; g.appendChild(n); }
+  'ACGT'.split('').forEach(function (b) {
+    var pts = [];
+    for (var i = 0; i < seq.length; i++) {
+      var here = seq[i], h = here === b ? 95 : here === 'Y' && (b === 'C' || b === 'T') ? 52 : 3;
+      [-0.5, -0.25, 0, 0.25, 0.5].forEach(function (d) { pts.push((20 + (i + d) * 30).toFixed(1) + ',' + (130 - h * Math.exp(-Math.pow(d / 0.22, 2))).toFixed(1)); });
+    }
+    add('polyline', { points: pts.join(' '), fill: 'none', stroke: colours[b], 'stroke-width': 1.5 });
+  });
+  for (var i = 0; i < seq.length; i++) {
+    add('text', { x: 20 + i * 30, y: 14, 'text-anchor': 'middle', 'font-family': 'monospace', 'font-size': 12, fill: seq[i] === 'Y' ? '#b03a2e' : '#17211e' }, seq[i]);
+    add('text', { x: 20 + i * 30, y: 146, 'text-anchor': 'middle', 'font-size': 9, fill: '#4b5854' }, String(i + 1));
+  }
+})();
+</script>
+</body>
+</html>

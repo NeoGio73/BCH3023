@@ -86,3 +86,50 @@ How it works
 
 Centrifuge model: "Table centrifuge with blood samples" by Steffen, from BlendKit (royalty-free
 license), adapted.
+
+## The Hemoglobin Clinic
+
+A virtual molecular biology lab in two sessions. Each student is given a patient (one of thirty,
+each with two copies of the beta-globin gene, HBB) and works out from the patient's DNA which
+hemoglobin variants they carry. In Session 1 the student identifies a read with BLAST, designs a
+pair of PCR primers (checked against the page's rules and with Primer-BLAST), and sets up and runs
+the PCR by hand at the bench: the recipe, the pipettes and tips, the thermocycler's program. In
+Session 2 they digest the product with DdeI, cast and run an agarose gel and size the bands from
+the ladder, clean up the product and send it for Sanger sequencing, read the trace for double
+peaks, translate the gene, look at normal and sickle hemoglobin in 3D, and write a diagnosis and a
+report. Every step is done by hand. When a step is about to go wrong the bench warns first; when
+something does go wrong the result shows it, as it would on a real bench.
+
+**Open the lab**
+
+- Prelab review (to read before the lab: reverse complements, primer rules, a PCR recipe,
+  restriction digests, reading a gel and a trace, and translation, with made-up examples):
+  https://neogio73.github.io/BCH3023/hemoglobin-clinic/prelab/
+- Session 1 (BLAST, primer design and the PCR):
+  https://neogio73.github.io/BCH3023/hemoglobin-clinic/
+- Session 2 (the digest, the gel, the sequencing, the protein and the diagnosis):
+  https://neogio73.github.io/BCH3023/hemoglobin-clinic/?part=2
+- Guide (a PDF to keep open beside the lab: every step, what to see and what to do when the bench
+  objects): https://neogio73.github.io/BCH3023/hemoglobin-clinic/guide/how-to-run-the-clinic.pdf
+
+How it works
+
+- Each student has their own patient, shown as a five-character code at the top of the page (an
+  address ending in `?code=` and a code opens a chosen one). The patient's alleles and diagnosis
+  are never checked on the page: the student gives them with their evidence, and the instructor
+  marks them.
+- The PCR is worked out from the student's own primers on the real human beta-globin locus
+  (GenBank NG_000007.3, which also holds the closely related delta-globin gene, HBD), with melting
+  temperatures as Primer-BLAST computes them. Primers that also fit HBD, bind poorly or pair with
+  each other give the products they would give.
+- The page checks each recipe, program, band size, sequencing position and translation as it is
+  entered, against the student's own gel and trace, with a hint for the commonest slips. The
+  report's footer says how many entries were wrong before they were right.
+- The 3D structures are PDB entries 2HHB and 2HBS, shown with 3Dmol.js; they need an internet
+  connection.
+- Work is saved in the student's own browser, and the two sessions share it: Session 2 uses the
+  PCR product made in Session 1. A different browser or computer starts afresh.
+- "Print the report, or save it as a PDF" at the end of Session 2 gives the report.
+
+Models from BlendKit (royalty-free license): "Microwave Oven" by hd poly, "Disposable Gloves Box"
+by 3D Addicts, "Paper Towel Dispenser" by Joyble.

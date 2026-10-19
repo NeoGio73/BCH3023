@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Hemoglobin Clinic</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317211e'/%3E%3Cpath d='M12 26 V12 Q12 8 16 8 Q20 8 20 12 V26' fill='none' stroke='%23c9d6d1' stroke-width='1.6'/%3E%3Cpath d='M13.5 22 L16 25 L18.5 22 Z' fill='%23d64545'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="lab.css">
+</head>
+<body>
+<main class="sheet">
+
+  <header class="masthead">
+    <h1>The Hemoglobin Clinic</h1>
+    <p class="unknown-tag">Patient <span id="unknown-code" class="code">&nbsp;</span></p>
+    <p class="print-header" aria-hidden="true"><span id="print-name"></span><span id="print-date"></span></p>
+  </header>
+  <p class="prelab-note" data-part="1">Session 1 of 2. A patient's blood sample has come to the clinic's laboratory. Today you amplify the part of the patient's &beta;-globin gene (<i>HBB</i>) where the common hemoglobin variants lie, with primers you design yourself, alongside the clinic's control DNA and a tube with no DNA at all, and you set up a DdeI digest of the products and a tube for sequencing for next time. Before you start, read the <a href="prelab/index.html">prelab review</a>; the <a href="guide/how-to-run-the-clinic.pdf">guide</a> (a PDF) takes you through every step at the bench. <a href="?part=2">Go to Session 2</a></p>
+  <p class="prelab-note" data-part="2">Session 2 of 2. Your PCR products and their digests are on the bench from Session 1. Today you cast an agarose gel, run them on it beside a ladder, photograph it on the blue-light box and read the size of every band; then you read the sequencing trace, work from the gene to the protein, and make your diagnosis. The <a href="prelab/index.html">prelab review</a> explains each method, and the <a href="guide/how-to-run-the-clinic.pdf">guide</a> (a PDF) every step. <a href="?part=1">Back to Session 1</a></p>
+
+  <section class="part" id="part-blast" data-part="1" aria-labelledby="blast-title">
+    <h2 id="blast-title"><span class="step" aria-hidden="true">1</span>Which gene?</h2>
+    <p class="lede">The laboratory has read 500 bases of DNA from the patient's sample. Find out which gene it comes from: copy the read, paste it into NCBI's nucleotide BLAST (blastn, database "Nucleotide collection (nr/nt)" or "RefSeq Select"), run it, and read the top hit.</p>
+    <pre class="read-box" id="read-box"></pre>
+    <p class="read-buttons">
+      <button type="button" class="quiet-button" id="read-copy">Copy the read</button>
+      <a class="quiet-button" id="read-blast" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&amp;PAGE_TYPE=BlastSearch&amp;LINK_LOC=blasthome" target="_blank" rel="noopener">Open NCBI BLAST</a>
+      <span class="msg" id="read-msg" role="status"></span>
+    </p>
+    <table class="data-table blast-table">
+      <tbody id="blast-body"></tbody>
+    </table>
+  </section>
+
+  <section class="part" id="part-primers" data-part="1" aria-labelledby="primers-title">
+    <h2 id="primers-title"><span class="step" aria-hidden="true">1</span>Your primers</h2>
+    <p class="lede">Design two primers that amplify <i>HBB</i> from before its first codon to past codon 42, where every variant the clinic tests for lies. Use NCBI's Primer-BLAST on the gene's reference record, NG_059281.1, and check each pair here: the page tests it against the rules below and the reference sequence. Write each primer 5&prime; to 3&prime;. The bench makes a tube of each at 10 &micro;M.</p>
+    <div class="primer-fields">
+      <label for="primer-fwd">Forward primer</label>
+      <input type="text" id="primer-fwd" class="seq-input" spellcheck="false" autocomplete="off" aria-describedby="tm-fwd">
+      <span class="soft" id="tm-fwd"></span>
+      <label for="primer-rev">Reverse primer</label>
+      <input type="text" id="primer-rev" class="seq-input" spellcheck="false" autocomplete="off" aria-describedby="tm-rev">
+      <span class="soft" id="tm-rev"></span>
+    </div>
+    <ul class="checklist" id="primer-checks"></ul>
+    <div class="pb-fields">
+      <label for="pb-length">Primer-BLAST's product length for your pair</label>
+      <input type="text" inputmode="numeric" id="pb-length" class="num-input"> <span>bp</span> <span class="msg" id="pb-length-msg"></span>
+      <label for="pb-other">Other targets Primer-BLAST found in the human genome</label>
+      <input type="text" id="pb-other" class="seq-input" autocomplete="off" placeholder="none, or the genes it named">
+    </div>
+    <p><button type="button" class="primary-button" id="primers-use">Use these primers</button> <span class="msg" id="primers-msg" role="status"></span></p>
+  </section>
+
+  <section class="part" id="part-recipe" data-part="1" aria-labelledby="recipe-title">
+    <h2 id="recipe-title"><span class="step" aria-hidden="true">2</span>The reaction</h2>
+    <p class="lede">Each tube holds 25 &micro;L: the master mix at 1x (its stock is 2x; it carries the polymerase, the dNTPs, the Mg<sup>2+</sup> and the buffer), each primer at 0.4 &micro;M (from 10 &micro;M), 20 ng of DNA (from 20 ng/&micro;L), and water to make up the rest. The tube with no DNA gets water in place of DNA. Work out each volume.</p>
+    <table class="data-table recipe-table">
+      <thead><tr><th scope="col">Into the tube (&micro;L)</th><th scope="col">Patient</th><th scope="col">Control</th><th scope="col">No DNA</th></tr></thead>
+      <tbody id="recipe-body"></tbody>
+    </table>
+    <p class="msg" id="recipe-msg" role="status"></p>
+  </section>
+
+  <section class="part" id="part-digest" data-part="1" aria-labelledby="digest-title">
+    <h2 id="digest-title"><span class="step" aria-hidden="true">3</span>The digest</h2>
+    <p class="lede">DdeI cuts DNA wherever it reads C^TNAG (N is any base). The sickle-cell mutation (HbS, codon 6 GAG to GTG) changes one such site. Each digest holds 20 &micro;L: 10 &micro;L of PCR product, the digest buffer at 1x (from 10x), 10 units of DdeI (from 10 units/&micro;L), and water. It goes an hour into the heat block at 37 &deg;C.</p>
+    <table class="data-table recipe-table digest-table">
+      <thead><tr><th scope="col">Into each digest (&micro;L)</th><th scope="col">Patient's and control's</th></tr></thead>
+      <tbody id="digest-body"></tbody>
+    </table>
+    <p class="msg" id="digest-msg" role="status"></p>
+    <h3 class="routine-title">What to expect</h3>
+    <p class="lede">From the reference sequence of <i>HBB</i>, work out what your own primers make and what DdeI does to it. List the fragments of 50 bp or more, largest first (smaller ones are too faint to read).</p>
+    <p class="soft" id="pred-product"></p>
+    <div class="pred-fields">
+      <label for="pred-a">An HbA allele after DdeI (bp)</label>
+      <input type="text" id="pred-a" class="seq-input" autocomplete="off"><span class="msg" id="pred-a-msg"></span>
+      <label for="pred-s">An HbS allele after DdeI (bp)</label>
+      <input type="text" id="pred-s" class="seq-input" autocomplete="off"><span class="msg" id="pred-s-msg"></span>
+    </div>
+  </section>
+
+  <section class="part" id="part-seqprep" data-part="1" aria-labelledby="seqprep-title">
+    <h2 id="seqprep-title"><span class="step" aria-hidden="true">5</span>For the sequencing core</h2>
+    <p class="lede">The core reads one strand of the patient's product by Sanger sequencing, from one primer. First the leftover primers and dNTPs of the PCR must go: the clean-up enzymes (an exonuclease that eats single-stranded DNA and a phosphatase) work for 15 minutes at 37 &deg;C and are killed by 15 minutes at 80 &deg;C. Only then does the sequencing primer go in. The tube holds 10 &micro;L.</p>
+    <table class="data-table recipe-table seq-table">
+      <thead><tr><th scope="col">Into the tube (&micro;L)</th><th scope="col">In this order</th></tr></thead>
+      <tbody id="seqprep-body"></tbody>
+    </table>
+    <p class="msg" id="seqprep-msg" role="status"></p>
+  </section>
+
+  <section class="part" id="part-cast" data-part="2" aria-labelledby="cast-title">
+    <h2 id="cast-title"><span class="step" aria-hidden="true">1</span>The gel</h2>
+    <p class="lede">The gel is cast from agarose in 50 mL of 1x TAE. Choose its strength: a weaker gel separates long DNA, a stronger one short DNA. Then work out how much agarose it takes.</p>
+    <p class="gel-choice">
+      <label for="gel-percent">Agarose</label>
+      <select id="gel-percent"><option value="1">1%</option><option value="1.5">1.5%</option><option value="2">2%</option><option value="2.5">2.5%</option><option value="3">3%</option></select>
+      <label for="gel-grams">in 50 mL of TAE takes</label>
+      <input type="text" inputmode="decimal" id="gel-grams" class="num-input"> <span>g</span>
+      <span class="msg" id="gel-grams-msg"></span>
+    </p>
+  </section>
+
+  <section class="part" id="part-bench" aria-labelledby="bench-title">
+    <h2 id="bench-title"><span class="step" aria-hidden="true">6</span>At the bench</h2>
+    <p class="lede" data-part="1">Work in the room itself (click a pipette to pick it up; then click a tip box, a stock, a tube or the bin) or with the controls beside it. With nothing in hand, a click on a PCR tube caps or uncaps it. If a step is about to go wrong, the bench warns you first; if something does go wrong, it tells you what it did, and you can start the set-up again.</p>
+    <p class="lede" data-part="2">Work in the room or with the controls beside it, as in Session 1. Every sample goes into its well with a pipette, and needs loading dye first (the ladder comes ready to load). DNA is negatively charged: it runs toward the red (+) electrode.</p>
+
+    <div class="bench-layout">
+      <div class="stage-column">
+        <div class="stage" id="stage">
+          <canvas id="unity-canvas" tabindex="-1" aria-label="3D lab bench: an ice bucket with the stocks and three PCR tubes, micropipettes, tips, a microcentrifuge, a thermocycler, a heat block, and on the right the gel bench: a balance, a flask, a microwave, a casting tray, a gel box with its power supply and a blue-light box"></canvas>
+          <div class="stage-cover" id="stage-cover">
+            <p id="stage-status">Setting up the bench</p>
+            <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="alert-box" id="alert-box" hidden>
+          <p class="alert-text" id="alert-text"></p>
+          <p class="alert-buttons" id="alert-buttons"></p>
+        </div>
+        <p class="stage-note" id="stage-note" role="status"></p>
+        <div class="stage-controls">
+          <div class="views" role="group" aria-label="Camera view">
+            <button type="button" class="view-button" data-view="room" aria-pressed="true">Room</button>
+            <button type="button" class="view-button" data-view="setup" data-part="1" aria-pressed="false">PCR set-up</button>
+            <button type="button" class="view-button" data-view="ice" data-part="1" aria-pressed="false">Ice bucket</button>
+            <button type="button" class="view-button" data-view="cycler" data-part="1" aria-pressed="false">Thermocycler</button>
+            <button type="button" class="view-button" data-view="digest" aria-pressed="false">Digest</button>
+            <button type="button" class="view-button" data-view="agarose" data-part="2" aria-pressed="false">Agarose</button>
+            <button type="button" class="view-button" data-view="gel" data-part="2" aria-pressed="false">Gel box</button>
+            <button type="button" class="view-button" data-view="gel close" data-part="2" aria-pressed="false">Wells, close up</button>
+            <button type="button" class="view-button" data-view="imager" data-part="2" aria-pressed="false">Blue light</button>
+            <button type="button" class="view-button" data-view="computer" aria-pressed="false">Computer</button>
+          </div>
+        </div>
+        <div class="clock-bar">
+          <span class="clock-label">Bench clock</span>
+          <span class="clock" id="clock">0:00</span>
+          <span class="clock-status" id="clock-status"></span>
+          <button type="button" class="quiet-button toggle" id="speed-toggle" aria-pressed="false">Speed up the wait</button>
+        </div>
+        <div class="pipette-bar" id="pipette-bar">
+          <span class="pipette-label">Pipette</span>
+          <span class="pipette-choice" role="group" aria-label="Pipette in hand" id="pipette-choice"></span>
+          <label for="pipette-ul">set to</label>
+          <input type="text" inputmode="decimal" id="pipette-ul" class="num-input" aria-describedby="pipette-range">
+          <span>&micro;L</span>
+          <button type="button" class="quiet-button" id="pipette-set">Set</button>
+          <span class="soft" id="pipette-range"></span>
+        </div>
+        <p class="held-note" id="held-note"></p>
+        <div class="pipette-moves">
+          <button type="button" class="quiet-button" data-steps="tip">Put on a tip</button>
+          <label class="inline-select">Draw from <select id="draw-stock"></select></label>
+          <button type="button" class="quiet-button" id="draw-go">Draw</button>
+          <label class="inline-select">Dispense into <select id="dispense-tube"></select></label>
+          <button type="button" class="quiet-button" id="dispense-go">Dispense</button>
+          <button type="button" class="quiet-button" data-steps="eject">Eject the tip</button>
+          <button type="button" class="quiet-button" data-steps="pipette none">Put the pipette back</button>
+        </div>
+      </div>
+
+      <div class="routine-column">
+       <div data-part="1">
+        <h3 class="routine-title">A. Fill the three tubes</h3>
+        <p class="routine-why">Set the pipette to the volume, put on a tip, draw from the stock and dispense into the tube (the controls are under the room). A tip that has touched one liquid carries a trace of it: use a fresh one each time it would go into something else.</p>
+        <table class="data-table tube-table">
+          <thead><tr><th scope="col">In the tube (&micro;L)</th><th scope="col">Patient</th><th scope="col">Control</th><th scope="col">No DNA</th></tr></thead>
+          <tbody id="tube-body"></tbody>
+        </table>
+
+        <h3 class="routine-title">B. Cap, mix, spin</h3>
+        <ol class="routine">
+          <li class="routine-step">
+            <span class="routine-name">Cap each tube and flick it to mix</span>
+            <span class="routine-buttons" id="tube-buttons"></span>
+          </li>
+          <li class="routine-step">
+            <span class="routine-name">A quick spin</span>
+            <span class="routine-why">A few seconds in the microcentrifuge brings every drop down to the bottom of the tube.</span>
+            <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="spin">Spin the tubes</button></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">C. The thermocycler</h3>
+        <ol class="routine">
+          <li class="routine-step">
+            <span class="routine-name">Put the tubes in and close the lid</span>
+            <span class="routine-buttons">
+              <button type="button" class="quiet-button" data-steps="load patient|load control|load none">Put all three in</button>
+              <button type="button" class="quiet-button" data-steps="unload patient|unload control|unload none">Take all three out</button>
+              <button type="button" class="quiet-button" data-steps="lid">Open or close the lid</button>
+            </span>
+          </li>
+          <li class="routine-step">
+            <span class="routine-name">The program</span>
+            <span class="routine-why">Choose the annealing temperature from your primers' Tm, the extension time from the length of your product (Taq adds about 1000 bases a minute), and the number of cycles.</span>
+            <span class="program-grid" id="program-grid"></span>
+            <span class="routine-buttons">
+              <button type="button" class="quiet-button" id="program-send">Send the program</button>
+              <button type="button" class="primary-button" data-steps="run">Run</button>
+            </span>
+            <span class="msg" id="program-msg" role="status"></span>
+          </li>
+        </ol>
+        <div class="cycler-display" id="cycler-display" aria-live="polite">
+          <p class="cycler-line"><span class="cycler-key">Status</span> <span id="cy-phase">Idle</span></p>
+          <p class="cycler-line"><span class="cycler-key">Block</span> <span id="cy-temp">25.0 &deg;C</span></p>
+          <p class="cycler-line"><span class="cycler-key">Cycle</span> <span id="cy-cycle">&ndash;</span></p>
+          <p class="cycler-line"><span class="cycler-key">Time left</span> <span id="cy-left">&ndash;</span></p>
+        </div>
+
+        <h3 class="routine-title">E. The tubes for sequencing</h3>
+        <ol class="routine">
+          <li class="routine-step">
+            <span class="routine-name">Product and clean-up into "Sequencing: patient" (and the control, if you like)</span>
+          </li>
+          <li class="routine-step">
+            <span class="routine-name">15 minutes at 37 &deg;C, then 15 at 80 &deg;C</span>
+            <span class="routine-why">Take the digests out of the heat block before you set it to 80 &deg;C: the heat kills DdeI too.</span>
+            <span class="routine-buttons">
+              <button type="button" class="quiet-button" data-steps="heat seq-patient|heat seq-control">Into the heat block</button>
+              <button type="button" class="quiet-button" data-steps="unheat seq-patient|unheat seq-control">Out</button>
+              <button type="button" class="quiet-button" data-steps="heatset 37">Set to 37 &deg;C</button>
+              <button type="button" class="quiet-button" data-steps="heatset 80">Set to 80 &deg;C</button>
+            </span>
+            <span class="routine-state" id="seq-state"></span>
+          </li>
+          <li class="routine-step">
+            <span class="routine-name">The primer, the water, and into the drop-off</span>
+            <span class="routine-buttons">
+              <button type="button" class="primary-button" data-steps="send seq-patient">Send the patient's tube</button>
+              <button type="button" class="quiet-button" data-steps="send seq-control">Send the control's</button>
+            </span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">D. The digests</h3>
+        <ol class="routine">
+          <li class="routine-step">
+            <span class="routine-name">Fill the two digest tubes</span>
+            <span class="routine-why">Uncap the PCR tubes once they are out of the thermocycler. Draw from "PCR tube: Patient" into "Digest: patient", and the same for the control; then the buffer, the water and the enzyme (the enzyme last).</span>
+          </li>
+          <li class="routine-step">
+            <span class="routine-name">An hour at 37 &deg;C</span>
+            <span class="routine-buttons">
+              <button type="button" class="quiet-button" data-steps="heat digest-patient|heat digest-control">Both into the heat block</button>
+              <button type="button" class="quiet-button" data-steps="unheat digest-patient|unheat digest-control">Both out</button>
+            </span>
+          </li>
+        </ol>
+       </div>
+
+       <div data-part="2">
+        <h3 class="routine-title">E. Cast the gel</h3>
+        <ol class="routine">
+          <li class="routine-step">
+            <span class="routine-name">Agarose and TAE into the flask</span>
+            <span class="routine-buttons">
+              <label>Weigh <input type="text" inputmode="decimal" id="in-agarose" class="num-input short"> g</label>
+              <button type="button" class="quiet-button" id="go-agarose">Into the flask</button>
+              <label>TAE <input type="text" inputmode="decimal" id="in-tae" class="num-input short" value="50"> mL</label>
+              <button type="button" class="quiet-button" id="go-tae">Into the flask</button>
+            </span>
+          </li>
+          <li class="routine-step">
+            <span class="routine-name">Melt it in the microwave</span>
+            <span class="routine-why">In short bursts, with a swirl between them, until no grains float in it.</span>
+            <span class="routine-buttons">
+              <label><input type="text" inputmode="decimal" id="in-microwave" class="num-input short" value="30"> s</label>
+              <button type="button" class="quiet-button" id="go-microwave">Microwave</button>
+              <button type="button" class="quiet-button" data-steps="swirl">Swirl</button>
+            </span>
+            <span class="routine-state" id="flask-state"></span>
+          </li>
+          <li class="routine-step">
+            <span class="routine-name">Cool, stain, pour</span>
+            <span class="routine-why">Let it cool to about 55 &deg;C. Add the stain with a pipette (10,000x: 1 &micro;L for every 10 mL), set the comb in the tray, and pour.</span>
+            <span class="routine-buttons">
+              <button type="button" class="quiet-button" data-steps="comb">Comb in or out of the tray</button>
+              <button type="button" class="quiet-button" data-steps="pour">Pour</button>
+              <button type="button" class="quiet-button" data-steps="combout">Take out the comb</button>
+            </span>
+            <span class="routine-state" id="set-state"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">F. Into the gel box, and load it</h3>
+        <ol class="routine">
+          <li class="routine-step">
+            <span class="routine-name">The gel into the box</span>
+            <span class="routine-buttons">
+              <button type="button" class="quiet-button" data-steps="gelbox black">Wells at the black (&minus;) end</button>
+              <button type="button" class="quiet-button" data-steps="gelbox red">Wells at the red (+) end</button>
+              <button type="button" class="quiet-button" data-steps="buffer">Cover it with TAE</button>
+            </span>
+          </li>
+          <li class="routine-step">
+            <span class="routine-name">Loading dye, then the wells</span>
+            <span class="routine-why">Loading dye into each tube you will load (6x: 1 &micro;L for every 5 &micro;L of sample), then each sample into its well. Keep a note of what goes where.</span>
+          </li>
+        </ol>
+        <table class="data-table well-table">
+          <thead><tr><th scope="col">Well</th><th scope="col">Holds</th></tr></thead>
+          <tbody id="well-body"></tbody>
+        </table>
+
+        <h3 class="routine-title">G. Run it</h3>
+        <ol class="routine">
+          <li class="routine-step">
+            <span class="routine-buttons">
+              <button type="button" class="quiet-button" data-steps="boxlid">Lid on or off</button>
+              <button type="button" class="quiet-button" data-steps="leads right">Leads: red to red, black to black</button>
+              <button type="button" class="quiet-button" data-steps="leads reversed">Leads crossed</button>
+              <label><input type="text" inputmode="numeric" id="in-volts" class="num-input short" value="100"> V</label>
+              <button type="button" class="quiet-button" id="go-volts">Set</button>
+              <button type="button" class="primary-button" data-steps="power on">Power on</button>
+              <button type="button" class="quiet-button" data-steps="power off">Power off</button>
+            </span>
+            <span class="routine-state" id="run-state"></span>
+          </li>
+        </ol>
+
+        <h3 class="routine-title">H. The picture</h3>
+        <ol class="routine">
+          <li class="routine-step">
+            <span class="routine-buttons">
+              <button type="button" class="quiet-button" data-steps="image">Gel onto the blue-light box</button>
+              <button type="button" class="quiet-button" data-steps="blue on">Blue light on</button>
+              <button type="button" class="quiet-button" data-steps="cover">Amber cover on or off</button>
+              <button type="button" class="primary-button" data-steps="photo">Take the picture</button>
+            </span>
+          </li>
+        </ol>
+        <p class="start-over"><button type="button" class="quiet-button" data-steps="redogel">Start the gel again</button></p>
+       </div>
+
+        <p class="start-over"><button type="button" class="quiet-button" id="redo" data-part="1">Start the set-up again</button>
+          <button type="button" class="quiet-button" id="start-over">Start over (clears all your work)</button></p>
+        <div class="erase-confirm" id="erase-confirm" hidden>
+          <p>This clears everything: your primers, your recipes, the bench and the gel. Your patient stays the same.</p>
+          <p><button type="button" class="primary-button" id="erase-yes">Clear it all</button> <button type="button" class="quiet-button" id="erase-no">Keep my work</button></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="part-picture" data-part="2" aria-labelledby="picture-title">
+    <h2 id="picture-title"><span class="step" aria-hidden="true">3</span>The picture</h2>
+    <p class="lede">Your gel on the blue light, as the camera took it. The ruler on the left measures from the bottom of the wells, in mm.</p>
+    <div class="gel-picture" id="gel-picture"><p class="soft">No picture yet: put the gel on the blue-light box and take one.</p></div>
+  </section>
+
+  <section class="part" id="part-sizes" data-part="2" aria-labelledby="sizes-title">
+    <h2 id="sizes-title"><span class="step" aria-hidden="true">4</span>The sizes</h2>
+    <p class="lede">Measure how far each band of the ladder ran. The page fits a straight line of log(size) against distance through them; then measure each band in your lanes and read its size from the line.</p>
+    <div class="sizes-layout">
+      <table class="data-table ladder-table">
+        <thead><tr><th scope="col">Ladder band (bp)</th><th scope="col">Distance (mm)</th></tr></thead>
+        <tbody id="ladder-body"></tbody>
+      </table>
+      <div class="ladder-plot" id="ladder-plot"></div>
+    </div>
+    <p class="msg" id="ladder-msg" role="status"></p>
+    <h3 class="routine-title">Your bands</h3>
+    <table class="data-table band-table">
+      <thead><tr><th scope="col">Lane</th><th scope="col">Distance (mm)</th><th scope="col">Size from your line (bp)</th><th scope="col"></th></tr></thead>
+      <tbody id="band-body"></tbody>
+    </table>
+    <p><button type="button" class="quiet-button" id="band-add">Add a band</button></p>
+  </section>
+
+  <section class="part" id="part-trace" data-part="2" aria-labelledby="trace-title">
+    <h2 id="trace-title"><span class="step" aria-hidden="true">5</span>The sequence</h2>
+    <p class="lede">The core has read your tubes. Each trace shows four colours of peak, one for each base (A green, C blue, G black, T red), from the base after your sequencing primer; the letters above are the bases called, with an IUPAC letter (R, Y, W, S, K, M) where two peaks stand together. Where the patient carries two different alleles, the trace shows two peaks at the same place. Where both alleles carry the same change, there is no double peak at all: only comparing the bases called with the reference sequence finds it (NCBI's "Align two or more sequences" in BLAST does this, against NG_059281.1).</p>
+    <p><button type="button" class="primary-button" id="results-go">Collect the results</button> <span class="msg" id="results-msg" role="status"></span></p>
+    <div id="traces"></div>
+  </section>
+
+  <section class="part" id="part-protein" data-part="2" aria-labelledby="protein-title">
+    <h2 id="protein-title"><span class="step" aria-hidden="true">6</span>From gene to protein</h2>
+    <p class="lede"><i>HBB</i>'s message is made from three exons; the introns between them begin with GT and end with AG and are spliced out. Lehninger numbers the &beta; chain from its first amino acid, valine, after the starting methionine is removed.</p>
+    <div class="translate-tool">
+      <label for="tr-in">Translate a stretch of DNA (from its first base; the tool does no splicing)</label>
+      <textarea id="tr-in" rows="3" spellcheck="false"></textarea>
+      <p class="soft" id="tr-out"></p>
+    </div>
+    <div class="protein-fields">
+      <label for="prot-10">The normal &beta; chain's first ten amino acids (one-letter codes)</label>
+      <input type="text" id="prot-10" class="seq-input" autocomplete="off"><span class="msg" id="prot-10-msg"></span>
+    </div>
+    <div class="viewer-wrap">
+      <div class="viewer" id="viewer" aria-label="3D structure of deoxyhemoglobin"></div>
+      <p class="viewer-buttons">
+        <button type="button" class="quiet-button" data-pdb="2HHB" aria-pressed="true">HbA (PDB 2HHB)</button>
+        <button type="button" class="quiet-button" data-pdb="2HBS" aria-pressed="false">HbS (PDB 2HBS)</button>
+        <span class="soft" id="viewer-msg">Residue 6 of each &beta; chain is drawn as sticks.</span>
+      </p>
+    </div>
+    <p class="lede">In deoxygenated HbS, the valine at position 6 of each &beta; chain is a sticky, hydrophobic patch on the surface. It fits a pocket (Phe85 and Leu88) on a &beta; chain of another deoxy-HbS molecule, so the molecules join into long fibers that bend red cells into sickles.</p>
+  </section>
+
+  <section class="part" id="part-diagnosis" data-part="2" aria-labelledby="diagnosis-title">
+    <h2 id="diagnosis-title"><span class="step" aria-hidden="true">7</span>Your diagnosis</h2>
+    <p class="lede">Put the evidence together: which allele of <i>HBB</i> is on each of the patient's chromosomes, and what that means for the patient. Look up each change you found in ClinVar or the HbVar database. The page checks only that your answer agrees with your own gel and trace; your instructor marks the diagnosis.</p>
+    <div class="dx-fields">
+      <label for="dx-a1">Allele 1</label><input type="text" id="dx-a1" class="seq-input" autocomplete="off" placeholder="its name and the change, e.g. as ClinVar gives it">
+      <label for="dx-a2">Allele 2</label><input type="text" id="dx-a2" class="seq-input" autocomplete="off">
+      <label for="dx-name">Diagnosis</label><input type="text" id="dx-name" class="seq-input" autocomplete="off">
+    </div>
+    <ul class="checklist" id="dx-checks"></ul>
+    <label for="dx-gel">The evidence from your gel</label>
+    <textarea id="dx-gel" rows="3"></textarea>
+    <label for="dx-trace">The evidence from your trace</label>
+    <textarea id="dx-trace" rows="3"></textarea>
+    <label for="dx-why">Why the diagnosis follows</label>
+    <textarea id="dx-why" rows="3"></textarea>
+    <p class="report-buttons">
+      <label for="student-name">Your name</label> <input type="text" id="student-name" class="seq-input" autocomplete="name">
+      <button type="button" class="primary-button" id="print-report">Print the report, or save it as a PDF</button>
+    </p>
+  </section>
+
+  <footer class="print-footer" aria-hidden="true"><span id="print-checks"></span></footer>
+
+  <footer class="credits">
+    A simulation. The &beta;-globin locus is NCBI's reference sequence NG_000007.3, and the variants are those in ClinVar. Structures: PDB 2HHB (Fermi et al., 1984) and 2HBS (Harrington et al., 1997), drawn with 3Dmol.js.
+    Models from BlendKit (royalty-free license): "Microwave Oven" by hd poly, "Disposable Gloves Box" by 3D Addicts, "Paper Towel Dispenser" by Joyble.
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.5.5/3Dmol-min.js"></script>
+<script src="locus.js"></script>
+<script src="model.js"></script>
+<script src="app.js"></script>
+<script>
+  (function () {
+    var lab = window.DnaLab;
+    if (lab.isMock) return;
+
+    var canvas = document.querySelector("#unity-canvas");
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/DnaLab.loader.js";
+    var config = {
+      arguments: [],
+      dataUrl: buildUrl + "/DnaLab.data.unityweb",
+      frameworkUrl: buildUrl + "/DnaLab.framework.js.unityweb",
+      codeUrl: buildUrl + "/DnaLab.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "The Hemoglobin Clinic",
+      productVersion: "0.1.0",
+      showBanner: function (message, type) { lab.unityBanner(message, type); }
+    };
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = function () {
+      createUnityInstance(canvas, config, function (progress) { lab.unityProgress(progress); })
+        .then(function (instance) { lab.attachUnity(instance); })
+        .catch(function (error) { lab.unityFailed(error); });
+    };
+    script.onerror = function () { lab.unityFailed("The lab files did not load."); };
+    document.body.appendChild(script);
+  })();
+</script>
+</body>
+</html>
