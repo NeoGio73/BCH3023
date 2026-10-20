@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ubiquitous, Yet Hard to See</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317211e'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23c9d6d1' stroke-width='1.6'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23d64545'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="lab.css">
+</head>
+<body>
+<main class="sheet">
+
+  <header class="masthead">
+    <h1>Ubiquitous, Yet Hard to See</h1>
+    <p class="unknown-tag">Your code <span id="unknown-code" class="code">&nbsp;</span></p>
+    <p class="print-header" aria-hidden="true"><span id="print-name"></span><span id="print-date"></span></p>
+  </header>
+  <p class="prelab-note" data-part="1">Session 1 of 2: why a protein is hard. Ubiquitin is a small protein of 76 amino acids found in every cell of every animal, plant and fungus (its name comes from &ldquo;ubiquitous&rdquo;). Today you put it into a 1.2 GHz magnet and record the spectra that NMR spectroscopists use to study a protein, and you see why a molecule this small was so hard to work out. Each part below gives you your own residues, masses and peaks to work on, from your code. Before you start, read Parts A and B of the <a href="prelab/index.html">prelab review</a>; the <a href="guide/guide-to-session-1.pdf">guide</a> (a PDF) takes you through every step. <a href="?part=2">Go to Session 2</a></p>
+  <p class="prelab-note" data-part="2">Session 2 of 2: from signals to a structure, and the crystal. Today you watch two partners bind ubiquitin in the NMR hall, see how NOEs become a structure, then grow, freeze and shoot a crystal in the X-ray room, read its resolution and its electron density, and lay the crystal, the NMR structure and a prediction over one another. The same code as in Session 1. Before you start, read Part C of the <a href="prelab/index.html">prelab review</a>; the <a href="guide/guide-to-session-2.pdf">guide to Session 2</a> (a PDF) takes you through every step. <a href="?part=1">Back to Session 1</a></p>
+
+  <section class="part" id="part-hall" aria-labelledby="hall-title">
+    <h2 id="hall-title"><span class="step" aria-hidden="true">1</span><span data-part="1">At the magnet</span><span data-part="2">At the magnet, and in the X-ray room</span></h2>
+    <p class="lede" data-part="2">Start in the NMR hall: samples D and E each go into the magnet as in Session 1 (lock, shim, tune, 25 &deg;C), and each records an HSQC titration. Then go to the X-ray room (the button under the room) and work at the crystal bench and the diffractometer: the steps are in the list beside the room. The doors of the diffractometer’s cabinet will not open while its X-rays are on.</p>
+    <p class="lede" data-part="1">The samples were made the way you made a protein in the purification lab (a His-tagged protein on a nickel column), except that the bacteria grew on <sup>15</sup>NH<sub>4</sub>Cl and <sup>13</sup>C-glucose as their only nitrogen and carbon, so that every nitrogen and carbon in the protein is the kind NMR can see. Work in the room (click a tube in the rack, the stair, the top of the magnet) or with the buttons beside it. Before every experiment the spectrometer must be locked, shimmed, tuned and set to 25 &deg;C, and it must be done again for every new tube.</p>
+
+    <div class="bench-layout">
+      <div class="stage-column">
+        <div class="stage" id="stage">
+          <canvas id="unity-canvas" tabindex="-1" aria-label="3D NMR hall: a 1.2 GHz magnet on four legs with a timber platform and stair round its top, the console cabinet, the cryoprobe's cooling unit, the operator's desk and the sample bench with three tubes in a rack"></canvas>
+          <div class="stage-cover" id="stage-cover">
+            <p id="stage-status">Setting up the hall</p>
+            <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+        </div>
+        <p class="stage-note" id="stage-note" role="status"></p>
+        <div class="stage-controls">
+          <div class="views" role="group" aria-label="Camera view">
+            <button type="button" class="view-button" data-view="hall" aria-pressed="true">The hall</button>
+            <button type="button" class="view-button" data-view="bench" aria-pressed="false">Sample bench</button>
+            <button type="button" class="view-button" data-view="magnet" aria-pressed="false">The magnet</button>
+            <button type="button" class="view-button" data-view="top" aria-pressed="false">Platform</button>
+            <button type="button" class="view-button" data-view="desk" aria-pressed="false">Desk</button>
+            <button type="button" class="view-button" data-view="xroom" data-part="2" aria-pressed="false">X-ray room</button>
+            <button type="button" class="view-button" data-view="crystals" data-part="2" aria-pressed="false">Crystal bench</button>
+            <button type="button" class="view-button" data-view="diffractometer" data-part="2" aria-pressed="false">Diffractometer</button>
+            <button type="button" class="view-button" data-view="inside" data-part="2" aria-pressed="false">Inside</button>
+            <button type="button" class="view-button" data-view="xdesk" data-part="2" aria-pressed="false">X-ray desk</button>
+          </div>
+        </div>
+        <div class="run-bar" id="run-bar" hidden>
+          <span class="run-label" id="run-label"></span>
+          <span class="run-track" aria-hidden="true"><span class="run-fill" id="run-fill"></span></span>
+        </div>
+      </div>
+
+      <div class="routine-column">
+        <h3 class="routine-title">The samples</h3>
+        <ul class="tube-list" id="tube-list"></ul>
+        <h3 class="routine-title">Into the magnet</h3>
+        <ol class="routine" id="routine-in"></ol>
+        <h3 class="routine-title">The spectrometer</h3>
+        <ol class="routine" id="routine-setup"></ol>
+        <h3 class="routine-title">The experiments</h3>
+        <ul class="exp-list" id="exp-list"></ul>
+        <h3 class="routine-title" data-part="2">In the X-ray room</h3>
+        <ol class="routine" id="routine-xray" data-part="2"></ol>
+        <p class="soft small">The times are typical for a 1 mM sample on a 1.2 GHz magnet with a cryogenically cooled probe; the room plays each in a few seconds.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="part-1d" data-part="1" aria-labelledby="oned-title">
+    <h2 id="oned-title"><span class="step" aria-hidden="true">2</span>The 1D proton spectrum</h2>
+    <p class="lede">Every one of ubiquitin's 600-odd hydrogens gives a signal. In a small molecule each would stand alone; here they pile up. Worse, a protein tumbles slowly in water, and the slower a molecule tumbles, the faster its signal dies away and the broader its lines. A rule of thumb for a globular protein near room temperature: the tumbling time, &tau;<sub>c</sub>, is about 0.6 ns for every kDa of mass (ubiquitin, 8.6 kDa, measures 4.1 ns). Use the slider to see a bigger protein: the page draws ubiquitin's protons copied as many times as the mass asks, with the lines its slower tumbling gives.</p>
+    <div class="figure-wait" data-needs="1d">Record the 1D <sup>1</sup>H spectrum of sample A at the magnet first.</div>
+    <figure class="spectrum" data-shows="1d">
+      <canvas id="oned-canvas" width="1600" height="420"></canvas>
+      <figcaption class="row"><label for="mass-slider">Mass</label><input type="range" id="mass-slider" min="8.6" max="100" step="0.2" value="8.6"><output id="mass-out"></output></figcaption>
+    </figure>
+    <div class="question-grid">
+      <p class="q-text">Your protein: <b id="own-mass"></b> kDa. By the rule of thumb, its &tau;<sub>c</sub> is</p>
+      <p><input type="text" inputmode="decimal" id="q-tau" class="num-input"> ns <span class="msg" id="q-tau-msg"></span></p>
+      <p class="q-text">Set the slider to your protein&rsquo;s mass. Its amide peaks are broader than ubiquitin&rsquo;s by about how many times?</p>
+      <p><input type="text" inputmode="decimal" id="q-ratio" class="num-input"> times <span class="msg" id="q-ratio-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-tocsy" data-part="1" aria-labelledby="tocsy-title">
+    <h2 id="tocsy-title"><span class="step" aria-hidden="true">3</span>The homonuclear way: TOCSY</h2>
+    <p class="lede">Before isotope labelling, proteins were worked out from proton spectra alone (Kurt W&uuml;thrich&rsquo;s method, Nobel Prize 2002). A TOCSY passes magnetization along the chain of coupled protons inside one amino acid, so a column of the 2D spectrum at one residue&rsquo;s amide proton shows every proton of its side chain: its spin system, a fingerprint of the amino acid. Below, the whole amide region, then the strip at your residue.</p>
+    <div class="figure-wait" data-needs="tocsy">Record the 2D TOCSY of sample A at the magnet first.</div>
+    <div class="strip-layout" data-shows="tocsy">
+      <figure class="spectrum"><canvas id="tocsy-canvas" width="1100" height="900"></canvas><figcaption class="soft">The amide region of the TOCSY: each column of peaks is one residue&rsquo;s spin system. Your residue&rsquo;s column is in blue.</figcaption><p class="point-read" id="tocsy-point"></p></figure>
+      <figure class="spectrum strip"><canvas id="tocsy-strip" width="300" height="900"></canvas><figcaption class="soft">Your strip, at <span id="tocsy-hn"></span> ppm.</figcaption></figure>
+      <div class="strip-table">
+        <table class="data-table" id="tocsy-peaks"><caption>The peaks in your strip</caption><thead><tr><th scope="col">&delta; <sup>1</sup>H (ppm)</th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+    <details class="typical">
+      <summary>Typical proton shifts of each amino acid (BMRB statistics)</summary>
+      <table class="data-table" id="typical-table"></table>
+    </details>
+    <div class="question-grid">
+      <p class="q-text">Which amino acid is your residue?</p>
+      <p><select id="q-aa"></select> <span class="msg" id="q-aa-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-noesy" data-part="1" aria-labelledby="noesy-title">
+    <h2 id="noesy-title"><span class="step" aria-hidden="true">4</span>NOESY, and the crowd</h2>
+    <p class="lede">A NOESY shows a peak between two protons that are close in space (under about 5 &Aring;), whether or not they are in the same residue, with heights falling off as the distance to the sixth power. From an amide proton, the strongest are often to the residue before: that is how W&uuml;thrich walked along the chain. The trouble is telling which amide a column belongs to: in a protein many amide protons have almost the same shift.</p>
+    <div class="figure-wait" data-needs="noesy">Record the 2D NOESY of sample A at the magnet first.</div>
+    <figure class="spectrum" data-shows="noesy"><canvas id="noesy-canvas" width="1400" height="900"></canvas><figcaption class="soft">The amide region of the NOESY (heights from the distances in the NMR structure, PDB 1D3Z). The band shows 0.03 ppm either side of your residue&rsquo;s amide proton.</figcaption><p class="point-read" id="noesy-point"></p></figure>
+    <div class="question-grid">
+      <p class="q-text">How many <em>other</em> amide protons lie within 0.03 ppm of your residue&rsquo;s (<span id="noesy-hn"></span> ppm)? Read them from the HSQC&rsquo;s list once you have it, or from the 1D band here.</p>
+      <p><input type="text" inputmode="numeric" id="q-crowd" class="num-input"> <span class="msg" id="q-crowd-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-hsqc" data-part="1" aria-labelledby="hsqc-title">
+    <h2 id="hsqc-title"><span class="step" aria-hidden="true">5</span>The fingerprint: the <sup>1</sup>H&ndash;<sup>15</sup>N HSQC</h2>
+    <p class="lede">Today a protein study starts here. The HSQC spreads every N&ndash;H across two axes, the proton&rsquo;s shift and its nitrogen&rsquo;s, so one peak stands for one bond: each residue&rsquo;s backbone amide, and the side-chain NH<sub>2</sub> of asparagine and glutamine (two protons on one nitrogen: two peaks at the same <sup>15</sup>N). Point at a peak to see whose it is.</p>
+    <div class="figure-wait" data-needs="hsqc">Record the HSQC of sample A at the magnet first.</div>
+    <figure class="spectrum" data-shows="hsqc"><canvas id="hsqc-canvas" width="1200" height="900"></canvas><figcaption class="soft" id="hsqc-hover">Point at a peak.</figcaption></figure>
+    <div class="question-grid">
+      <p class="q-text">For ubiquitin, Met1 and the three prolines (19, 37, 38) give no backbone peak. Why?</p>
+      <p><select id="q-why"></select> <span class="msg" id="q-why-msg"></span></p>
+      <p class="q-text wide">Your protein (made up, written N- to C-terminus):</p>
+      <p class="seq-box wide" id="own-seq"></p>
+      <p class="q-text">How many backbone amide peaks will its HSQC show?</p>
+      <p><input type="text" inputmode="numeric" id="q-bb" class="num-input"> <span class="msg" id="q-bb-msg"></span></p>
+      <p class="q-text">How many side-chain peaks (Asn and Gln NH<sub>2</sub>, and the ring N&ndash;H of Trp)?</p>
+      <p><input type="text" inputmode="numeric" id="q-sc" class="num-input"> <span class="msg" id="q-sc-msg"></span></p>
+      <p class="q-text">How many peaks in all?</p>
+      <p><input type="text" inputmode="numeric" id="q-total" class="num-input"> <span class="msg" id="q-total-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-mystery" data-part="1" aria-labelledby="mystery-title">
+    <h2 id="mystery-title"><span class="step" aria-hidden="true">6</span>Folded or unfolded?</h2>
+    <p class="lede">A folded protein&rsquo;s amide peaks spread widely, because each N&ndash;H sits in its own surroundings. Unfold it and every residue sees much the same water around it: the peaks crowd into a narrow band near 8.0 to 8.5 ppm. Ubiquitin is so stable that it unfolds only in acid with 8 M urea. Unfolding and folding are slow on the NMR time scale, so a sample that is partly unfolded shows both sets of peaks at once, each as tall as its share. Sample B is your mystery: click a peak to read its height, where a peak of the fully folded protein would be 1.00. Point at a peak and dotted lines run to its two shifts, and to the same N&ndash;H&rsquo;s peak in the other form.</p>
+    <div class="figure-wait" data-needs="mystery">Record the HSQC of sample B at the magnet first.</div>
+    <figure class="spectrum" data-shows="mystery"><canvas id="mystery-canvas" width="1200" height="900"></canvas><figcaption class="soft" id="mystery-read">Click a peak to read its height.</figcaption></figure>
+    <div class="question-grid">
+      <p class="q-text">What share of the molecules in sample B is unfolded?</p>
+      <p><input type="text" inputmode="numeric" id="q-share" class="num-input"> % <span class="msg" id="q-share-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-hx" data-part="1" aria-labelledby="hx-title">
+    <h2 id="hx-title"><span class="step" aria-hidden="true">7</span>The D<sub>2</sub>O shake</h2>
+    <p class="lede">As in the organic unknown lab, D<sub>2</sub>O trades deuterium for the hydrogens on N and O, and a deuterium gives no peak in a <sup>1</sup>H spectrum. An amide at the surface trades in seconds; one held in a hydrogen bond deep in the fold may wait for weeks, because it trades only when the protein opens up for a moment. Sample C was dissolved in D<sub>2</sub>O just before it went into the magnet; its HSQCs were taken over four weeks. Your three amides are ringed in red. Click a peak to read its height (1.00 is its height before any exchange).</p>
+    <div class="figure-wait" data-needs="hx">Record the HSQCs of sample C at the magnet first.</div>
+    <div data-shows="hx">
+      <p class="row"><label for="hx-time">Spectrum taken</label> <select id="hx-time"></select> <span class="soft" id="hx-left"></span></p>
+      <figure class="spectrum"><canvas id="hx-canvas" width="1200" height="900"></canvas><figcaption class="soft" id="hx-read">Click a peak to read its height.</figcaption></figure>
+      <figure class="spectrum"><canvas id="hx-plot" width="1200" height="380"></canvas><figcaption class="soft">Your readings of your three amides, against time (a log scale).</figcaption></figure>
+    </div>
+    <table class="data-table hx-table" id="hx-table">
+      <thead><tr><th scope="col">Amide</th><th scope="col">Half-life (hours)</th><th scope="col">Hydrogen-bonded in the structure?</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="structure-box" id="structure-box">
+      <div id="viewer" class="viewer" aria-label="The NMR structure of ubiquitin, PDB 1D3Z, with your three amides marked"></div>
+      <p class="soft" id="viewer-msg">The structure (PDB 1D3Z) with your three amides, in red, orange and blue (fastest to slowest). Drag to turn it.</p>
+    </div>
+  </section>
+
+  <section class="part" id="part-walk" data-part="1" aria-labelledby="walk-title">
+    <h2 id="walk-title"><span class="step" aria-hidden="true">8</span>A short sequential walk</h2>
+    <p class="lede">With <sup>13</sup>C and <sup>15</sup>N in the protein, the HNCACB links each amide to the carbons around it. At one residue&rsquo;s N&ndash;H, its strip shows that residue&rsquo;s own C&alpha; (up) and C&beta; (down) strongly, and the C&alpha; and C&beta; of the residue before it weakly. Find, for each strip, the strip whose strong peaks match its weak ones: that one comes just before it. Your seven strips are a stretch of ubiquitin, shuffled.</p>
+    <div class="figure-wait" data-needs="hncacb">Record the 3D HNCACB of sample A at the magnet first.</div>
+    <figure class="spectrum" data-shows="hncacb"><canvas id="walk-canvas" width="1400" height="760"></canvas><figcaption class="soft">Strong peaks are drawn full, weak ones pale; C&alpha; up (black), C&beta; down (red). Glycine has no C&beta;.</figcaption><p class="point-read" id="walk-point"></p></figure>
+    <div class="walk-order" id="walk-order"></div>
+    <p class="msg" id="walk-msg"></p>
+    <p class="soft" id="walk-count"></p>
+  </section>
+
+  <section class="part" id="part-noe" data-part="2" aria-labelledby="noe-title">
+    <h2 id="noe-title"><span class="step" aria-hidden="true">2</span>From NOEs to a structure</h2>
+    <p class="lede">A structure calculation starts from a list of restraints: thousands of NOEs, each saying that two protons are within about 5 &Aring; of each other (stronger peaks, closer), with angles from the shifts and couplings. A computer folds a chain until it satisfies them all, many times over from different starts; the best few dozen solutions are kept as the structure, a <b>bundle</b> of models. Where the restraints are many, the models agree; where they are few, they spread. Below: your residue&rsquo;s own amide NOEs drawn as lines on the NMR structure (PDB 1D3Z).</p>
+    <div class="viewer-row">
+      <div><div id="noe-viewer" class="viewer" aria-label="The NMR structure with one residue's NOEs drawn as lines"></div>
+      <p class="soft" id="noe-caption"></p></div>
+    </div>
+    <p class="row"><span class="seg" role="group" aria-label="What to show">
+      <button type="button" class="quiet-button" data-bundle="noe" aria-pressed="true">Your NOEs</button>
+      <button type="button" class="quiet-button" data-bundle="bundle" aria-pressed="false">The bundle (10 models)</button>
+      <button type="button" class="quiet-button" data-bundle="motion" aria-pressed="false">The motion ensemble (116 models)</button>
+    </span></p>
+    <p class="soft small" id="bundle-note"></p>
+    <div class="question-grid">
+      <p class="q-text">Of your residue&rsquo;s amide NOEs, how many reach a residue five or more along the chain (long-range NOEs, the ones that hold the fold together)?</p>
+      <p><input type="text" inputmode="numeric" id="q2-long" class="num-input"> <span class="msg" id="q2-long-msg"></span></p>
+      <p class="q-text">Show the bundle. Which of these two residues spreads more across the ten models?</p>
+      <p><select id="q2-spread"></select> <span class="msg" id="q2-spread-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-bind" data-part="2" aria-labelledby="bind-title">
+    <h2 id="bind-title"><span class="step" aria-hidden="true">3</span>Binding: where does a partner touch?</h2>
+    <p class="lede">Ubiquitin works by being recognised: hundreds of proteins carry small domains that bind it. Samples D and E were titrated with two of them, the SH3-A and SH3-C domains of the adaptor protein CD2AP (Ortega Roldan and colleagues, 2013): an HSQC after each addition. Binding here is fast on the NMR time scale, so each peak walks from its free place toward its bound place as more of the protein is bound. The peaks that move are the residues the partner touches, or that the binding disturbs. Move the slider; point at a peak and a dotted line runs back to where it started; click it to read its shifts.</p>
+    <div class="figure-wait" data-needs-any="sh3a sh3c">Record the HSQC titration of sample D or E at the magnet first.</div>
+    <div data-shows-any="sh3a sh3c">
+      <p class="row"><label for="bind-partner">Partner</label> <select id="bind-partner"></select>
+        <label for="bind-ratio">Partner : ubiquitin</label> <input type="range" id="bind-ratio" min="0" max="3" step="0.05" value="0"> <output id="bind-ratio-out"></output></p>
+      <figure class="spectrum"><canvas id="bind-canvas" width="1200" height="900"></canvas><figcaption class="soft" id="bind-read">Click a peak to read its shifts.</figcaption></figure>
+      <div id="bind-viewer" class="viewer" aria-label="The structure coloured by how far each residue's peak moves"></div>
+      <p class="soft small">The structure (PDB 1UBQ), each residue coloured by how far its peak moves with the chosen partner: grey for less than 0.05 ppm, then from pale to deep red.</p>
+    </div>
+    <div class="question-grid">
+      <p class="q-text">Your residue: <b id="own-mover"></b> with <b id="own-partner"></b>. By how much does its peak move at saturation, &radic;(&Delta;&delta;H&sup2; + (0.14 &Delta;&delta;N)&sup2;)?</p>
+      <p><input type="text" inputmode="decimal" id="q2-shift" class="num-input"> ppm <span class="msg" id="q2-shift-msg"></span></p>
+      <p class="q-text">Which residue&rsquo;s peak moves furthest with SH3-A? (its number)</p>
+      <p><input type="text" inputmode="numeric" id="q2-topa" class="num-input"> <span class="msg" id="q2-topa-msg"></span></p>
+      <p class="q-text">And with SH3-C?</p>
+      <p><input type="text" inputmode="numeric" id="q2-topc" class="num-input"> <span class="msg" id="q2-topc-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-crystals" data-part="2" aria-labelledby="crystals-title">
+    <h2 id="crystals-title"><span class="step" aria-hidden="true">4</span>Growing a crystal</h2>
+    <p class="lede">For X-ray crystallography the protein must first form a crystal: billions of molecules packed in the same order. Nobody can predict the conditions, so a robot sets hundreds of drops of a few hundred nanolitres each, protein mixed with different salts, buffers and polymers, and an imaging incubator photographs them for weeks. Most drops stay clear or turn to sludge. Your plate (made up, as its conditions are) has 24 drops: click each to look at it under the microscope, then fish from the one with a single good crystal.</p>
+    <div class="plate-layout">
+      <div class="plate" id="plate" role="group" aria-label="The 24 drops of the plate"></div>
+      <figure class="spectrum drop-view"><canvas id="drop-canvas" width="600" height="600"></canvas><figcaption class="soft" id="drop-text">Click a drop.</figcaption></figure>
+    </div>
+    <div class="question-grid">
+      <p class="q-text">The drop you fish your crystal from:</p>
+      <p><span id="q2-drop-show">none yet</span> <span class="msg" id="q2-drop-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-diffraction" data-part="2" aria-labelledby="diffraction-title">
+    <h2 id="diffraction-title"><span class="step" aria-hidden="true">5</span>Diffraction and resolution</h2>
+    <p class="lede">X-rays scatter from the electrons of every atom; the crystal&rsquo;s order makes the scattered waves add up only in certain directions, as spots on the detector (Bragg&rsquo;s law: a family of planes d apart gives spots at an angle 2&theta; from the beam where &lambda; = 2d sin &theta;). Spots far from the middle come from finely spaced planes, so the furthest spots set the <b>resolution</b>: the finest detail the map can show. The home machine&rsquo;s source gives gallium K&alpha; X-rays, &lambda; = 1.34 &Aring;.</p>
+    <div class="figure-wait" data-needs="frame">Collect a frame in the X-ray room first.</div>
+    <div data-shows="frame">
+      <figure class="spectrum"><canvas id="frame-canvas" width="900" height="900"></canvas><figcaption class="soft" id="frame-caption"></figcaption></figure>
+    </div>
+    <div class="question-grid">
+      <p class="q-text">The detector is <b id="own-dist"></b> mm from the crystal, and the furthest spots lie <b id="own-spot"></b> mm from the beam&rsquo;s centre. The resolution of your crystal (tan 2&theta; = r / D):</p>
+      <p><input type="text" inputmode="decimal" id="q2-res" class="num-input"> &Aring; <span class="msg" id="q2-res-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-density" data-part="2" aria-labelledby="density-title">
+    <h2 id="density-title"><span class="step" aria-hidden="true">6</span>The electron density</h2>
+    <p class="lede">The spots give the strength of each scattered wave but not its phase (when its crests arrive); the phases have to be found another way (from a known similar structure, or from heavy atoms), and with them the spots turn into a map of the electron density, into which the atoms are built. Hydrogens, with one electron each, barely show. Below: three maps of the same few residues of ubiquitin&rsquo;s crystal at three resolutions, in a shuffled order (computed from the atoms of PDB 1UBQ, as the real maps would look; not the measured maps).</p>
+    <div class="maps" id="maps"></div>
+    <div class="question-grid" id="map-questions"></div>
+    <h3 class="routine-title">How well ordered? The B-factor</h3>
+    <p class="lede">Each atom in a crystal structure carries a B-factor: how much it is smeared out, by vibration and by small differences from one molecule of the crystal to the next. Low B, well ordered; high B, mobile or disordered.</p>
+    <div id="b-viewer" class="viewer" aria-label="The crystal structure coloured by B-factor"></div>
+    <p class="soft small">PDB 1UBQ, coloured by B-factor: blue low, through white, to red high.</p>
+    <div class="question-grid">
+      <p class="q-text">Which of these two residues is better ordered in the crystal?</p>
+      <p><select id="q2-ordered"></select> <span class="msg" id="q2-ordered-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-compare" data-part="2" aria-labelledby="compare-title">
+    <h2 id="compare-title"><span class="step" aria-hidden="true">7</span>Crystal, solution, prediction</h2>
+    <p class="lede">The same protein, three ways: the crystal structure (PDB 1UBQ), the NMR structure in solution (PDB 1D3Z, model 1), and AlphaFold&rsquo;s prediction from the sequence alone. Each is laid on the crystal by its C&alpha; atoms of residues 1 to 70.</p>
+    <div id="compare-viewer" class="viewer" aria-label="Three structures of ubiquitin laid over one another"></div>
+    <p class="row soft small"><span class="key" style="background:#1c4c9a"></span> crystal &nbsp; <span class="key" style="background:#d9822b"></span> NMR &nbsp; <span class="key" style="background:#1b7a40"></span> AlphaFold</p>
+    <table class="data-table" id="rmsd-table"><caption>How far apart they lie: C&alpha; RMSD</caption><thead><tr><th scope="col">Pair</th><th scope="col">Residues 1&ndash;70</th><th scope="col">All 76</th></tr></thead><tbody></tbody></table>
+  </section>
+
+  <section class="part" id="part-now" data-part="2" aria-labelledby="now-title">
+    <h2 id="now-title"><span class="step" aria-hidden="true">8</span>Where the field is now</h2>
+    <div class="now">
+      <h3>Bigger proteins</h3>
+      <p>Proton spectra alone reach proteins of about 10 kDa; with <sup>13</sup>C and <sup>15</sup>N, about 25 to 30 kDa. TROSY (Pervushin, Riek, Wider and W&uuml;thrich, 1997) keeps the one line of each N&ndash;H whose two relaxation mechanisms cancel, so it stays narrow in a slowly tumbling protein; with deuterium in place of most hydrogens, 100 kDa and more. Labelling only the methyls of Ile, Leu and Val in an otherwise deuterated protein (Lewis Kay&rsquo;s group) reaches complexes of up to about a megadalton, such as the 670 kDa proteasome core (2007), though not full structures.</p>
+      <h3>More signal, less time</h3>
+      <p>Cryogenically cooled probes give about 3 to 5 times the signal-to-noise, cutting measuring time 10 to 25 fold. The first 1.2 GHz magnet went into service in Florence in 2020; a 1.3 GHz magnet was shown by its maker in 2025. Non-uniform sampling records only part of a 3D or 4D experiment and fills in the rest, turning days into hours.</p>
+      <h3>Computers do the assignment</h3>
+      <p>Programs now assign the peaks automatically, and backbone angles, even whole folds, can be worked out from chemical shifts alone (TALOS-N, CS-Rosetta).</p>
+      <h3>What NMR sees that nothing else does: motion</h3>
+      <p>Relaxation dispersion and CEST detect forms of a protein present only 1% of the time, lasting a millisecond to tens of milliseconds: the shapes it passes through as it binds, folds or works. NMR also works inside living cells (ubiquitin&rsquo;s amides were found to exchange much faster in human cells than in the test tube, 2009) and, with spinning solid samples, on amyloid fibrils and membrane proteins.</p>
+      <h3>Cryo-EM and AlphaFold</h3>
+      <p>Electron microscopy of frozen samples (Nobel Prize 2017: Dubochet, Frank and Henderson) now solves large complexes that never crystallise; it is catching up with X-ray: in 2025 the PDB released about 7,200 cryo-EM structures against about 10,100 X-ray ones and 230 by solution NMR. AlphaFold (Nobel Prize 2024 to Hassabis and Jumper, with Baker for protein design) predicts a structure from the sequence, as you saw above, often within an &aring;ngstr&ouml;m of the crystal. So today NMR and X-ray are used less to find a fold for the first time, and more for what prediction cannot give: how a protein moves, what it binds and where, the parts that are disordered, and checking the predictions themselves.</p>
+    </div>
+    <div class="question-grid">
+      <p class="q-text">Which method gives most of the new structures in the PDB each year?</p>
+      <p><select id="q2-most"></select> <span class="msg" id="q2-most-msg"></span></p>
+      <p class="q-text">What lets NMR study a complex of a megadalton?</p>
+      <p><select id="q2-mda"></select> <span class="msg" id="q2-mda-msg"></span></p>
+    </div>
+  </section>
+
+  <section class="part" id="part-report" aria-labelledby="report-title">
+    <h2 id="report-title"><span class="step" aria-hidden="true">9</span>Your report</h2>
+    <p class="lede">In a few sentences each:</p>
+    <div data-part="1">
+    <label for="r-hard">Why is a protein of 76 residues so much harder to work out by NMR than a small organic molecule?</label>
+    <textarea id="r-hard" rows="3"></textarea>
+    <label for="r-labels">What did isotope labelling (<sup>15</sup>N, <sup>13</sup>C) make possible that proton spectra alone could not?</label>
+    <textarea id="r-labels" rows="3"></textarea>
+    <label for="r-hx">What does the D<sub>2</sub>O shake tell you about where your three amides are in the folded protein?</label>
+    <textarea id="r-hx" rows="3"></textarea>
+    </div>
+    <div data-part="2">
+    <label for="r-face">Do SH3-A and SH3-C bind the same face of ubiquitin? What in your titrations says so?</label>
+    <textarea id="r-face" rows="3"></textarea>
+    <label for="r-agree">Are the parts that spread in the NMR bundle the parts with high B-factors in the crystal? Where do the crystal, the NMR structure and the prediction differ most, and why might they?</label>
+    <textarea id="r-agree" rows="3"></textarea>
+    <label for="r-why">If AlphaFold can predict ubiquitin’s structure, why would anyone still study it by NMR or X-ray?</label>
+    <textarea id="r-why" rows="3"></textarea>
+    </div>
+    <p class="report-buttons">
+      <label for="student-name">Your name</label> <input type="text" id="student-name" class="seq-input" autocomplete="name">
+      <button type="button" class="primary-button" id="print-report">Print the report, or save it as a PDF</button>
+    </p>
+    <div class="reset-wrap">
+      <button type="button" class="quiet-button danger" id="reset">Start over</button>
+      <span class="confirm" id="reset-confirm" hidden>Clear all your work on this computer? <button type="button" class="quiet-button danger" id="reset-yes">Yes, start over</button> <button type="button" class="quiet-button" id="reset-no">Keep it</button></span>
+    </div>
+  </section>
+
+  <footer class="print-footer" aria-hidden="true"><span id="print-checks"></span></footer>
+
+  <footer class="credits">
+    A simulation. Every peak is placed at a measured chemical shift: BMRB 17769 (Cornilescu, Marquardt, Ottiger and Bax, 1998), 16626 (ubiquitin in 8 M urea) and 17439; the NOEs come from the NMR structure PDB 1D3Z and the exchange rates from LeMaster, Anderson and Hern&aacute;ndez (Biochemistry, 2009); typical shifts from the BMRB&rsquo;s statistics. Line widths, heights and the fading in D<sub>2</sub>O are modelled. Structures drawn with 3Dmol.js: PDB 1UBQ (Vijay-Kumar, Bugg and Cook, 1987), 1D3Z and 2K39 (Lange and colleagues, 2008), and AlphaFold DB model AF-P0CG47-F1 (Jumper et al., 2021; Varadi et al., 2024; CC BY 4.0); the electron density maps are computed from 1UBQ’s atoms. The binding shifts are from BMRB 19447 and 18737 (Ortega Roldan et al., 2013).
+    Keyboard and mouse: &ldquo;Keyboard and Mouse black&rdquo; by Demycs (BlendKit). Lab furniture and equipment: &ldquo;Laboratories - Big Pack&rdquo; by Mixall (Unity Asset Store). The magnet&rsquo;s maker, BROKER, and its name, Pinnacle, are made up.
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.5.5/3Dmol-min.js"></script>
+<script src="ubiquitin_data.js"></script>
+<script src="model.js"></script>
+<script src="structures/structures.js"></script>
+<script src="app.js"></script>
+<script src="app2.js"></script>
+<script>
+  (function () {
+    var lab = window.UbiqLab;
+    if (lab.isMock) return;
+
+    var canvas = document.querySelector("#unity-canvas");
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/UbiqLab.loader.js";
+    var config = {
+      arguments: [],
+      dataUrl: buildUrl + "/UbiqLab.data.unityweb",
+      frameworkUrl: buildUrl + "/UbiqLab.framework.js.unityweb",
+      codeUrl: buildUrl + "/UbiqLab.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "Ubiquitous, Yet Hard to See",
+      productVersion: "0.1.0",
+      showBanner: function (message, type) { lab.unityBanner(message, type); }
+    };
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = function () {
+      createUnityInstance(canvas, config, function (progress) { lab.unityProgress(progress); })
+        .then(function (instance) { lab.attachUnity(instance); })
+        .catch(function (error) { lab.unityFailed(error); });
+    };
+    script.onerror = function () { lab.unityFailed("The lab files did not load."); };
+    document.body.appendChild(script);
+  })();
+</script>
+</body>
+</html>

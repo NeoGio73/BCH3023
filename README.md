@@ -136,3 +136,64 @@ How it works
 Models from BlendKit (royalty-free license): "Microwave Oven" by hd poly, "Disposable Gloves Box"
 by 3D Addicts, "Paper Towel Dispenser" by Joyble. Lab chair, vortex, balance, power supply and the
 tubes on the shelf: "Laboratories - Big Pack" by Mixall (Unity Asset Store).
+
+## Ubiquitous, Yet Hard to See
+
+A virtual protein NMR lab in two sessions, with a short visit to X-ray crystallography. Everyone
+works on the same small protein, ubiquitin (76 amino acids), and sees why even a protein this small
+was so hard to work out. In Session 1 the student takes three samples into a 1.2 GHz NMR magnet (up
+the platform, down into the magnet; lock, shim, tune, 25 °C), records the spectra used on proteins
+and reads each one: the crowded 1D proton spectrum, and what a bigger protein's slower tumbling
+does to it; a TOCSY, to name an amino acid from its spin system; a NOESY, and the crowd of amide
+protons that share a shift; the ¹H–¹⁵N HSQC, the protein's fingerprint, and how many peaks a
+sequence gives; a mystery sample, folded or unfolded; the D₂O shake, with amides fading over four
+weeks; and a short sequential walk with HNCACB strips. In Session 2 they watch two partner domains
+(SH3-A and SH3-C of CD2AP) bind in HSQC titrations, see how NOEs become a structure (the NMR
+bundle, and an ensemble of its motion), then in the X-ray room choose a crystal from a plate,
+freeze, mount and shoot it, and read its resolution from the frame, its electron density at three
+resolutions and its B-factors. They lay the crystal structure, the NMR structure and AlphaFold's
+prediction over one another, and end with where the field is now.
+
+**Open the lab**
+
+- Prelab review (to read before the lab, in three parts: the basics of NMR and of a protein's
+  atoms; Session 1's techniques, from why a protein is hard to reading 2D spectra, the HSQC,
+  exchange and the sequential walk; Session 2's, from NOEs to a structure, binding, crystals,
+  diffraction and density to prediction; with spectra to point at, small tools and check-yourself
+  questions, all on made-up examples):
+  https://neogio73.github.io/BCH3023/ubiquitous-yet-hard-to-see/prelab/
+- Session 1 (the NMR hall: the spectra and what each one shows):
+  https://neogio73.github.io/BCH3023/ubiquitous-yet-hard-to-see/
+- Session 2 (binding, the structure, the crystal, the comparison and where the field is now):
+  https://neogio73.github.io/BCH3023/ubiquitous-yet-hard-to-see/?part=2
+- Guides (PDFs to keep open beside the lab: every step, what to see and why, and what to do when
+  the hall objects): https://neogio73.github.io/BCH3023/ubiquitous-yet-hard-to-see/guide/guide-to-session-1.pdf
+  and https://neogio73.github.io/BCH3023/ubiquitous-yet-hard-to-see/guide/guide-to-session-2.pdf
+
+How it works
+
+- Everyone studies ubiquitin, but each student's questions are their own, from a five-character
+  code at the top of the page (an address ending in `?code=` and a code opens a chosen one): the
+  residue to name, a made-up protein's mass and sequence, the mystery sample's share unfolded, three
+  amides to follow in D₂O and the stretch to walk; in Session 2, the residue whose NOEs to count,
+  the residues to compare in the bundle and by B-factor, the partner and the peak to measure, the
+  plate of drops, the detector's distance and the crystal's resolution, and the order of the maps.
+- Every peak is placed at a measured chemical shift (BMRB entries 17769, 16626 and 17439; the
+  binding shifts from 19447 and 18737, Ortega Roldan and colleagues, 2013). The NOEs come from the
+  NMR structure PDB 1D3Z and the exchange rates from LeMaster, Anderson and Hernández
+  (Biochemistry, 2009). Line widths, heights and the fading in D₂O are modelled, and the electron
+  density maps are computed from the atoms of the crystal structure, PDB 1UBQ, not measured.
+- Pointing at a peak of a 2D spectrum draws dotted lines to the shifts it links: on the lab page
+  the shifts only, in the prelab with its made-up protons named.
+- The page checks each answer as it is entered, against the data and the student's own readings.
+  The written questions are saved and printed but not checked.
+- The 3D structures (PDB 1UBQ, 1D3Z and 2K39, and AlphaFold DB's model AF-P0CG47-F1, used under
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)) are shown with 3Dmol.js; they need
+  an internet connection.
+- Work is saved in the student's own browser, and the two sessions share it. A different browser
+  or computer starts afresh.
+- "Print the report, or save it as a PDF" at the end of each session gives its report.
+
+Keyboard and mouse: "Keyboard and Mouse black" by Demycs (BlendKit, royalty-free license). Lab
+furniture and equipment: "Laboratories - Big Pack" by Mixall (Unity Asset Store). The magnet's
+maker, BROKER, and its name, Pinnacle, are made up.
