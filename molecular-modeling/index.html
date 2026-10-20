@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction to Molecular Modeling</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c4c9a'/%3E%3Ccircle cx='11' cy='12' r='5' fill='%23fff'/%3E%3Ccircle cx='22' cy='20' r='5' fill='%23e05a47'/%3E%3Cpath d='M13 15l7 3' stroke='%23fff' stroke-width='2.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="lab.css">
+</head>
+<body>
+<main class="sheet">
+
+  <header class="masthead">
+    <h1>Introduction to Molecular Modeling</h1>
+    <p class="unknown-tag">Unknown protein <span class="code" id="unknown-code">-----</span></p>
+    <p class="print-header" aria-hidden="true"><span id="print-name"></span><span id="print-date"></span></p>
+  </header>
+
+  <p class="prelab-note">First time? Work through the <a href="prelab/">prelab</a>: it does every step of this lab on glucagon, with the answers explained. Your instructor may ask for your code at the top of this page.</p>
+
+  <div class="bench-layout" id="bench">
+    <div class="stage-column">
+      <div class="stage mol-stage" id="stage" aria-label="Your unknown protein in 3D. Drag to turn it, scroll or pinch to zoom.">
+        <div class="stage-cover" id="stage-cover"><p id="stage-status">Loading your protein</p></div>
+      </div>
+      <div class="readout" id="readout" role="status"></div>
+      <div class="tools" id="tools"></div>
+      <div class="report-picture-row">
+        <button type="button" class="quiet-button" id="take-picture">Use this view as my report's picture</button>
+        <span class="msg" data-kind="tip" id="picture-status"></span>
+      </div>
+    </div>
+
+    <div class="data-column questions">
+
+      <section class="part" id="part-start" aria-labelledby="start-title">
+        <h2 id="start-title"><span class="step" aria-hidden="true">1</span>Your unknown protein</h2>
+        <p class="lede">The protein in the viewer is a real structure, worked out by X-ray crystallography. Its name, where it came from and who solved it have been taken out of its file. By the end of this lab you will know what it is, and you will have found it from its structure and its sequence alone.</p>
+        <p class="lede">Turn it by dragging, zoom with the scroll wheel or by pinching, and point at an atom (or tap it) to see its name below the viewer. Hydrogens are not shown: X-ray crystallography rarely finds them.</p>
+      </section>
+
+      <section class="part" id="part-axes" aria-labelledby="axes-title">
+        <h2 id="axes-title"><span class="step" aria-hidden="true">2</span>Views and axes</h2>
+        <p class="lede">Tick <b>Show the axes</b>. For each view, which end of which axis comes out of the screen toward you?</p>
+        <div class="qa-grid" id="axes-questions"></div>
+      </section>
+
+      <section class="part" id="part-ends" aria-labelledby="ends-title">
+        <h2 id="ends-title"><span class="step" aria-hidden="true">3</span>The two ends of the chain</h2>
+        <p class="lede">A protein chain has two ends. At the N-terminus, the first residue's nitrogen is free (nitrogens are blue). At the C-terminus, the last residue's carboxyl group is free (oxygens are red). Both ends are bonded to an α-carbon.</p>
+        <p class="take-row"><button type="button" class="take-button" id="take-ends">Take me to the two ends</button></p>
+        <div class="qa-grid" id="ends-questions"></div>
+        <p class="take-row" id="ends-confirm" hidden>
+          <button type="button" class="take-button" id="take-nterm">Show the N-terminus</button>
+          <button type="button" class="take-button" id="take-cterm">Show the C-terminus</button>
+        </p>
+      </section>
+
+      <section class="part" id="part-sequence" aria-labelledby="sequence-title">
+        <h2 id="sequence-title"><span class="step" aria-hidden="true">4</span>The sequence</h2>
+        <p class="lede">The file itself is below the questions. Its <b>SEQRES</b> lines give the whole sequence in three-letter codes, from the N-terminus to the C-terminus.</p>
+        <div class="qa-grid" id="sequence-questions"></div>
+        <label class="field wide" id="seq-field"><span class="field-name">The whole sequence in one-letter codes (spaces do not matter)</span>
+          <textarea id="answer-sequence" spellcheck="false" autocomplete="off" rows="3"></textarea>
+          <span class="msg" id="msg-sequence"></span>
+        </label>
+        <details class="file-box" id="file-box">
+          <summary>Open the file (<span id="file-name"></span>)</summary>
+          <p class="fine">Each line starts with what kind of record it is: <b>SEQRES</b> the sequence, <b>HELIX</b> and <b>SHEET</b> the helices and strands, <b>SSBOND</b> the disulfide bonds, <b>ATOM</b> one atom of the chain and where it is (x, y, z in ångströms), <b>HETATM</b> an atom of anything else in the crystal.</p>
+          <pre class="pdb-text" id="pdb-text"></pre>
+        </details>
+      </section>
+
+      <section class="part" id="part-shape" aria-labelledby="shape-title">
+        <h2 id="shape-title"><span class="step" aria-hidden="true">5</span>Helices, strands and disulfides</h2>
+        <p class="lede">Draw the protein as a <b>Cartoon</b>: helices show as coils and β-strands as flat arrows. The file's HELIX, SHEET and SSBOND lines say where each one is.</p>
+        <div class="qa-grid" id="shape-questions"></div>
+        <p class="take-row" id="helix-take" hidden><button type="button" class="take-button" id="take-helix">Look down the longest helix</button></p>
+      </section>
+
+      <section class="part" id="part-sides" aria-labelledby="sides-title">
+        <h2 id="sides-title"><span class="step" aria-hidden="true">6</span>Side chains</h2>
+        <p class="lede">The <b>Show</b> buttons draw some side chains large. Acidic: aspartate and glutamate. Basic: arginine, histidine and lysine. Aromatic: phenylalanine, tyrosine and tryptophan. Count them from the viewer, the sequence or the file.</p>
+        <div class="qa-grid" id="sides-questions"></div>
+      </section>
+
+      <section class="part" id="part-angle" aria-labelledby="angle-title">
+        <h2 id="angle-title"><span class="step" aria-hidden="true">7</span>An angle at an α-carbon</h2>
+        <p class="lede">Measure the N–Cα–C angle of <b id="angle-residue">a residue</b>: press <b>Measure: Angle</b>, then click its N, its α-carbon (CA) and its C, in that order.</p>
+        <p class="take-row"><button type="button" class="take-button" id="take-angle">Take me to this residue</button></p>
+        <div class="qa-grid" id="angle-questions"></div>
+        <label class="field wide"><span class="field-name">An sp³ carbon has bond angles of 109.5°. How does your angle compare, and why might it differ?</span>
+          <textarea id="answer-angle-why" rows="3"></textarea>
+        </label>
+      </section>
+
+      <section class="part" id="part-others" aria-labelledby="others-title">
+        <h2 id="others-title"><span class="step" aria-hidden="true">8</span>Anything else in the file?</h2>
+        <p class="lede">Press <b>Show: Other molecules</b>, and look for HETATM lines in the file. Many crystals hold metal ions, a heme or other groups the protein needs, and some hold ions or solvents from the crystallization (sulfate SO4, glycerol GOL, chloride CL and others).</p>
+        <label class="field wide"><span class="field-name">Each three-letter code you find, and what you think it is. Look codes up at rcsb.org (search the code). Write "none" if there are none.</span>
+          <textarea id="answer-others" rows="3"></textarea>
+        </label>
+      </section>
+
+      <section class="part" id="part-identify" aria-labelledby="identify-title">
+        <h2 id="identify-title"><span class="step" aria-hidden="true">9</span>What protein is this?</h2>
+        <p class="lede">Search your sequence with BLAST (protein BLAST, blastp). The top hit with close to 100% identity over the whole sequence names your protein and the organism it came from. Several organisms may share exactly the same sequence; say so if they do.</p>
+        <p class="take-row" id="blast-row">
+          <a class="take-button" id="blast-ncbi" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastp&amp;PAGE_TYPE=BlastSearch" target="_blank" rel="noopener">BLAST at NCBI</a>
+          <a class="take-button" id="blast-uniprot" href="https://www.uniprot.org/blast" target="_blank" rel="noopener">BLAST at UniProt</a>
+          <button type="button" class="quiet-button" id="copy-sequence">Copy my sequence</button>
+          <span class="msg" data-kind="tip" id="copy-status"></span>
+        </p>
+        <div class="identify-grid">
+          <label class="field"><span class="field-name">Protein</span><input type="text" id="answer-protein"></label>
+          <label class="field"><span class="field-name">Organism</span><input type="text" id="answer-organism"></label>
+          <label class="field"><span class="field-name">Accession number of the hit</span><input type="text" id="answer-accession"></label>
+          <label class="field"><span class="field-name">Identity (%)</span><input type="text" id="answer-identity"></label>
+        </div>
+        <label class="field wide"><span class="field-name">What does this protein do? Two or three sentences, in your own words.</span>
+          <textarea id="answer-role" rows="3"></textarea>
+        </label>
+        <p class="fine">The page does not check this part: your instructor marks it.</p>
+      </section>
+
+      <section class="part" id="part-report" aria-labelledby="report-title">
+        <h2 id="report-title"><span class="step" aria-hidden="true">10</span>Turn in</h2>
+        <figure class="report-picture" id="report-picture" hidden><img id="report-img" alt="The student's view of the unknown protein"><figcaption>The unknown protein, in the view chosen for this report.</figcaption></figure>
+        <div class="report-row">
+          <label class="field name-field"><span class="field-name">Your name</span><input type="text" id="student-name" autocomplete="name"></label>
+          <button type="button" class="primary-button" id="print-report">Print or save as PDF</button>
+        </div>
+        <p class="report-status" id="report-status" role="status"></p>
+        <p class="fine">
+          Save the report as a PDF and upload it to D2L. Your work is saved in this browser as you go.
+          <button type="button" class="link-button" id="start-over">Start over</button>
+          <span class="confirm" id="start-confirm" hidden>
+            This erases everything you have entered (you keep the same unknown).
+            <button type="button" class="quiet-button danger" id="start-yes">Erase and start over</button>
+            <button type="button" class="quiet-button" id="start-no">Keep my work</button>
+          </span>
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <footer class="print-footer" aria-hidden="true"><span id="print-checks"></span></footer>
+
+  <footer class="credits">
+    Structures from the <a href="https://www.rcsb.org" target="_blank" rel="noopener">RCSB Protein Data Bank</a>; each unknown's source is given in the answer key.
+    Drawn with <a href="https://3dmol.org" target="_blank" rel="noopener">3Dmol.js</a> (Rego and Koes, <i>Bioinformatics</i> 31, 1322, 2015).
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.5.5/3Dmol-min.js"></script>
+<script src="model.js"></script>
+<script src="pool.js"></script>
+<script src="viewer.js"></script>
+<script src="ui.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

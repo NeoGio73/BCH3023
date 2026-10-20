@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Molecular Modeling Prelab</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c4c9a'/%3E%3Ccircle cx='11' cy='12' r='5' fill='%23fff'/%3E%3Ccircle cx='22' cy='20' r='5' fill='%23e05a47'/%3E%3Cpath d='M13 15l7 3' stroke='%23fff' stroke-width='2.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../lab.css">
+</head>
+<body>
+<main class="sheet">
+
+  <header class="masthead">
+    <h1>Prelab: Glucagon, Worked Out</h1>
+    <p class="unknown-tag"><a href="../">Back to the lab</a></p>
+  </header>
+
+  <p class="prelab-note">This prelab does every step of the lab on one protein, glucagon, and explains each answer. Try each step yourself in the viewer first, then open the answer. In the lab you will do the same steps on a protein whose name has been taken out of its file.</p>
+
+  <div class="bench-layout" id="bench">
+    <div class="stage-column">
+      <div class="stage mol-stage" id="stage" aria-label="Glucagon in 3D. Drag to turn it, scroll or pinch to zoom.">
+        <div class="stage-cover" id="stage-cover"><p id="stage-status">Loading glucagon</p></div>
+      </div>
+      <div class="readout" id="readout" role="status"></div>
+      <div class="tools" id="tools"></div>
+    </div>
+
+    <div class="data-column questions">
+
+      <section class="part" aria-labelledby="p1">
+        <h2 id="p1"><span class="step" aria-hidden="true">1</span>What you are looking at</h2>
+        <p class="lede"><b>Glucagon</b> is a hormone of 29 amino acids. The α-cells of the pancreas release it when blood glucose falls, and it tells the liver to release glucose. The structure in the viewer was worked out by X-ray crystallography in 1975 (Sasaki and co-workers, <i>Nature</i> 257, 751), from glucagon of the pig, and is kept in the Protein Data Bank as entry <b>1GCN</b>.</p>
+        <p class="lede">A structure is a list of atoms and where each one is, in ångströms (1 Å = 0.1 nm), along three axes, x, y and z. The viewer draws the atoms in their colors: carbon grey, nitrogen blue, oxygen red, sulfur yellow. <b>Hydrogens are missing</b>: X-rays are scattered by electrons, and a hydrogen has only one, so its position is rarely found.</p>
+        <div class="note-box"><b>Try it.</b> Drag to turn the molecule, scroll or pinch to zoom, and point at an atom (or tap it): its residue, its name and its number in the file appear under the viewer. Try each <b>Draw as</b> style. <b>Cartoon</b> hides the atoms and shows the chain's path.</div>
+      </section>
+
+      <section class="part" aria-labelledby="p2">
+        <h2 id="p2"><span class="step" aria-hidden="true">2</span>Views and axes</h2>
+        <p class="lede">Tick <b>Show the axes</b> and press <b>Front</b>. Each axis is an arrow from the middle of the molecule toward its + end; its − end is dashed. Then press each view in turn. Which end of which axis points out of the screen toward you?</p>
+        <button type="button" class="quiet-button reveal" data-answer="a2">Show the answer</button>
+        <div class="answer" id="a2" hidden>
+          <p>In the <b>Front</b> view, +X points to the right, +Y points up, and +Z points out of the screen toward you. The other views turn the molecule so that a different axis faces you:</p>
+          <table class="data-table small">
+            <thead><tr><th scope="col">View</th><th scope="col">Axis toward you</th></tr></thead>
+            <tbody>
+              <tr><td>Front</td><td>+Z</td></tr><tr><td>Top</td><td>+Y</td></tr><tr><td>Bottom</td><td>−Y</td></tr>
+              <tr><td>Right</td><td>+X</td></tr><tr><td>Left</td><td>−X</td></tr><tr><td>Back</td><td>−Z</td></tr>
+            </tbody>
+          </table>
+          <p>The label of the axis that faces you sits in the middle of the molecule, and the other two run across the screen. These answers are the same for every protein, yours included, because the axes belong to the file, not to the molecule.</p>
+        </div>
+      </section>
+
+      <section class="part" aria-labelledby="p3">
+        <h2 id="p3"><span class="step" aria-hidden="true">3</span>The two ends of the chain</h2>
+        <p class="lede">The <b>N-terminus</b> is the end with a free amino group: a nitrogen bonded to an α-carbon and to nothing else in the chain. The <b>C-terminus</b> is the end with a free carboxyl group: a carbon bonded to an α-carbon and to two oxygens. Find both ends, and the first and last three residues.</p>
+        <p class="take-row"><button type="button" class="take-button" id="take-ends">Take me to the two ends</button></p>
+        <button type="button" class="quiet-button reveal" data-answer="a3">Show the answer</button>
+        <div class="answer" id="a3" hidden>
+          <p>The N-terminus is <b>His 1</b>: its nitrogen (atom N, the first atom in the file) is bonded only to the α-carbon. The C-terminus is <b>Thr 29</b>: its carbon C carries two oxygens, O and OXT ("terminal oxygen"), which only the last residue has.</p>
+          <p>First three residues, N to C: <b>His – Ser – Gln</b>. Last three: <b>Met – Asn – Thr</b>. A sequence is always written from the N-terminus to the C-terminus.</p>
+          <p class="take-row"><button type="button" class="take-button" id="take-nterm">Show the N-terminus</button><button type="button" class="take-button" id="take-cterm">Show the C-terminus</button></p>
+        </div>
+      </section>
+
+      <section class="part" aria-labelledby="p4">
+        <h2 id="p4"><span class="step" aria-hidden="true">4</span>The sequence, from the file</h2>
+        <p class="lede">Open the file below. Its <b>SEQRES</b> lines list the whole chain in three-letter codes. How many residues are there, and what is the sequence in one-letter codes?</p>
+        <details class="file-box">
+          <summary>Open the file (1gcn.pdb)</summary>
+          <p class="fine">Each line starts with what kind of record it is. <b>HEADER</b>, <b>TITLE</b>, <b>COMPND</b> and <b>SOURCE</b> name the protein and where it came from (the lab's files have these taken out). <b>REMARK</b> lines describe the experiment. <b>SEQRES</b> gives the sequence, <b>HELIX</b> and <b>SHEET</b> the helices and strands, <b>SSBOND</b> the disulfide bonds. Each <b>ATOM</b> line is one atom: its number, its name, its residue, the residue's number, then x, y and z in ångströms.</p>
+          <pre class="pdb-text" id="pdb-text"></pre>
+        </details>
+        <button type="button" class="quiet-button reveal" data-answer="a4">Show the answer</button>
+        <div class="answer" id="a4" hidden>
+          <p><b>29 residues</b> (the number 29 also stands on every SEQRES line, just before the residue names). In one-letter codes:</p>
+          <p class="seq-line">HSQGTFTSDYSKYLDSRRAQDFVQWLMNT</p>
+          <p>Watch the letters that are not the first letter of the name: Q glutamine, D aspartate, K lysine, R arginine, F phenylalanine, W tryptophan, Y tyrosine, N asparagine, E glutamate.</p>
+        </div>
+      </section>
+
+      <section class="part" aria-labelledby="p5">
+        <h2 id="p5"><span class="step" aria-hidden="true">5</span>Helices, strands and disulfides</h2>
+        <p class="lede">Draw glucagon as a <b>Cartoon</b>. Read its HELIX lines: how many helices, and where does the longest start and end? Does it have β-strands (SHEET lines) or disulfide bonds (SSBOND lines)?</p>
+        <button type="button" class="quiet-button reveal" data-answer="a5">Show the answer</button>
+        <div class="answer" id="a5" hidden>
+          <p>One HELIX line: a single α-helix from <b>Phe 6 to Leu 26</b>, 21 residues. There are no SHEET lines (no β-strands) and no SSBOND lines (glucagon has no cysteine, so it can have no disulfide bond).</p>
+          <p class="take-row"><button type="button" class="take-button" id="take-helix">Look down the helix</button></p>
+          <p>Looking down the helix, the chain winds round an open core, 3.6 residues to a turn, with the side chains pointing outward. Glucagon is only partly helical in solution; in the crystal it packs as a helix.</p>
+        </div>
+        <p class="take-row"><button type="button" class="take-button" id="take-trp">The fuzzy caterpillar (Trp 25)</button></p>
+        <p class="fine">The worksheet's "fuzzy caterpillar" is Trp 25 drawn thick: its two flat rings stand out from the helix.</p>
+      </section>
+
+      <section class="part" aria-labelledby="p6">
+        <h2 id="p6"><span class="step" aria-hidden="true">6</span>Side chains</h2>
+        <p class="lede">Press <b>Show: Acidic</b>, then <b>Basic</b>, then <b>Aromatic</b>. How many of each, and which aromatic residue has the largest side chain?</p>
+        <button type="button" class="quiet-button reveal" data-answer="a6">Show the answer</button>
+        <div class="answer" id="a6" hidden>
+          <p><b>Acidic: 3</b>, Asp 9, Asp 15 and Asp 21 (no glutamate). <b>Basic: 4</b>, His 1, Lys 12, Arg 17 and Arg 18. <b>Aromatic: 5</b>, Phe 6, Tyr 10, Tyr 13, Phe 22 and Trp 25. The largest aromatic side chain is <b>tryptophan</b>'s, with its two fused rings (an indole).</p>
+          <p>This lab counts histidine as basic, as the worksheet and Jmol do. At pH 7 most histidine side chains are in fact uncharged: its pK<sub>a</sub> is near 6.</p>
+        </div>
+      </section>
+
+      <section class="part" aria-labelledby="p7">
+        <h2 id="p7"><span class="step" aria-hidden="true">7</span>An angle at an α-carbon</h2>
+        <p class="lede">Measure the N–Cα–C angle of <b>Phe 6</b>: press <b>Measure: Angle</b> and click its N, its CA and its C, in that order (the angle is at the second atom).</p>
+        <p class="take-row"><button type="button" class="take-button" id="take-angle">Take me to Phe 6</button></p>
+        <button type="button" class="quiet-button reveal" data-answer="a7">Show the answer</button>
+        <div class="answer" id="a7" hidden>
+          <p><b>111.1°.</b> The α-carbon is sp³, so you might expect 109.5°, the tetrahedral angle. The angle in proteins is usually a little larger, about 111°, because the four groups on the α-carbon (N, C, the side chain and H) are not alike and the chain pulls on it. In glucagon the N–Cα–C angles run from 109° to 124°; this structure was solved at 3.0 Å, less exactly than most, so its angles vary more.</p>
+          <p>Measure a distance too: the N–CA bond is about 1.46 Å, the C=O bond about 1.23 Å.</p>
+        </div>
+      </section>
+
+      <section class="part" aria-labelledby="p8">
+        <h2 id="p8"><span class="step" aria-hidden="true">8</span>Anything else in the file?</h2>
+        <p class="lede">Press <b>Show: Other molecules</b>, and look for HETATM lines in the file.</p>
+        <button type="button" class="quiet-button reveal" data-answer="a8">Show the answer</button>
+        <div class="answer" id="a8" hidden>
+          <p><b>None.</b> Glucagon's file holds only the chain. Many other files hold a heme, a metal ion or a cluster of iron and sulfur that the protein needs to work, or ions and solvents from the crystal (SO4 sulfate, GOL glycerol, CL chloride). Your unknown may have some: look each code up at rcsb.org.</p>
+        </div>
+      </section>
+
+      <section class="part" aria-labelledby="p9">
+        <h2 id="p9"><span class="step" aria-hidden="true">9</span>What protein is this? Using BLAST</h2>
+        <p class="lede">Glucagon's file names it (COMPND) and says where it came from (SOURCE: <i>Sus scrofa</i>, the pig). Your unknown's file will not, so you will search its sequence with <b>BLAST</b>, which lines it up against every protein sequence known and lists the closest.</p>
+        <p class="take-row">
+          <a class="take-button" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastp&amp;PAGE_TYPE=BlastSearch&amp;QUERY=HSQGTFTSDYSKYLDSRRAQDFVQWLMNT" target="_blank" rel="noopener">BLAST glucagon at NCBI</a>
+          <a class="take-button" href="https://www.uniprot.org/blast" target="_blank" rel="noopener">BLAST at UniProt</a>
+        </p>
+        <button type="button" class="quiet-button reveal" data-answer="a9">What BLAST finds</button>
+        <div class="answer" id="a9" hidden>
+          <p>Searched against UniProt's reviewed proteins (Swiss-Prot), glucagon's sequence finds <b>glucagon</b> at the top, at <b>100% identity</b> over all 29 residues, from the squirrel monkey, the rabbit and the camel, then pro-glucagon from the rat and the sheep, also at 100%. Turkey and opossum glucagon follow at 96.6% (one residue different), and those of the duck, the ostrich and the alligator at 93.1% (two different).</p>
+          <p>Two lessons for your unknown:</p>
+          <p><b>1. Read the identity, not only the top line.</b> 100% over the whole sequence names the protein; 95% or less may be a relative.</p>
+          <p><b>2. The same sequence can belong to many species.</b> Glucagon is identical in nearly all mammals, the pig and humans included, so the sequence alone cannot say which mammal this one came from. If your best hits are the same protein from several organisms at 100%, say so.</p>
+          <p>Some hits say <b>pro-glucagon</b>: glucagon is cut from a longer precursor. The intestine cuts the same precursor differently to make GLP-1, the hormone that drugs such as semaglutide imitate. Your unknown, too, may be listed under its precursor's name.</p>
+        </div>
+      </section>
+
+      <section class="part" aria-labelledby="p10">
+        <h2 id="p10"><span class="step" aria-hidden="true">10</span>Ready for the lab</h2>
+        <p class="lede">In the lab you will do steps 2 to 9 on your own unknown. The page checks each answer against your protein's file as you type, except the name, the organism and what it does: your instructor marks those. Save your report as a PDF and upload it to D2L.</p>
+        <p class="take-row"><a class="take-button" href="../">Go to the lab</a></p>
+      </section>
+    </div>
+  </div>
+
+  <footer class="credits">
+    Glucagon: PDB entry <a href="https://www.rcsb.org/structure/1GCN" target="_blank" rel="noopener">1GCN</a> (Sasaki, Dockerill, Adamiak, Tickle and Blundell, <i>Nature</i> 257, 751, 1975), from the RCSB Protein Data Bank.
+    Drawn with <a href="https://3dmol.org" target="_blank" rel="noopener">3Dmol.js</a>. BLAST results: EBI's blastp against UniProtKB/Swiss-Prot, October 2026.
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.5.5/3Dmol-min.js"></script>
+<script src="../model.js"></script>
+<script src="../viewer.js"></script>
+<script src="../ui.js"></script>
+<script src="prelab.js"></script>
+</body>
+</html>

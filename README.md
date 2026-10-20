@@ -197,3 +197,34 @@ How it works
 Keyboard and mouse: "Keyboard and Mouse black" by Demycs (BlendKit, royalty-free license). Lab
 furniture and equipment: "Laboratories - Big Pack" by Mixall (Unity Asset Store). The magnet's
 maker, BROKER, and its name, Pinnacle, are made up.
+
+## Introduction to Molecular Modeling
+
+Reading a protein's structure in 3D. The prelab works a PDB file through step by step on glucagon
+(PDB 1GCN): the axes and views, the two ends of the chain, the sequence, the helix, the acidic,
+basic and aromatic side chains, an angle at an α-carbon, and what BLAST finds. In the lab each
+student is given one of 59 small proteins, solved by X-ray crystallography, with its name, source
+and authors taken out of its file; they read its structure, measure it, and then find out what it
+is by searching its sequence with BLAST.
+
+**Open the lab**
+
+- Prelab (glucagon, worked out, with each answer explained):
+  https://neogio73.github.io/BCH3023/molecular-modeling/prelab/
+- The lab: https://neogio73.github.io/BCH3023/molecular-modeling/
+
+How it works
+
+- Each student has their own unknown protein, shown as a five-character code at the top of the
+  page (an address ending in `?code=` and a code opens a chosen one). The protein's name, its
+  organism and what it does are never checked on the page: the instructor marks them.
+- The page checks every other answer as it is entered, against the student's own file: the views,
+  the two ends, the sequence, the helices and disulfides, the side chains, and the N–Cα–C angle at
+  a residue picked from the code. A wrong answer is told where to look, never the answer.
+- "Take me there" buttons turn the molecule to the part a question is about, without naming it,
+  and "Full screen" shows the molecule and the questions together.
+- The structures come from the RCSB Protein Data Bank and are drawn with 3Dmol.js; the pages need
+  an internet connection.
+- Work is saved in the student's own browser. "Print or save as PDF" gives the report, with a
+  picture of the student's own view of their protein.
+
