@@ -245,8 +245,8 @@ enantiomer it preferred and whether the Kazlauskas rule predicts it.
 **Open the lab**
 
 - Prelab review (to read before the lab: enantiomers and ee, optical rotation, chiral GC, the yeast,
-  the lipase, kinetic resolution and E, the Kazlauskas rule, and the bench techniques, with small
-  tools and check-yourself questions, all on made-up examples):
+  the lipase on its beads, kinetic resolution and E, the Kazlauskas rule, and the bench techniques,
+  each topic with a drawn figure, small tools and check-yourself questions, all on made-up examples):
   https://neogio73.github.io/BCH3023/enzyme-handshake/prelab/
 - Session 1 (the yeast): https://neogio73.github.io/BCH3023/enzyme-handshake/
 - Session 2 (the lipase): https://neogio73.github.io/BCH3023/enzyme-handshake/?part=2

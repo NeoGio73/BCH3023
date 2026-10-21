@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Enzyme's Handshake: Prelab Review</title>
-  <meta name="description" content="A review before the biocatalysis lab: enantiomers and ee, optical rotation, chiral GC, baker's yeast reducing a ketone, a lipase in hexane, kinetic resolution and E, the Kazlauskas rule, and the bench techniques, practised on made-up examples.">
+  <meta name="description" content="A review before the biocatalysis lab: enantiomers and ee, optical rotation, chiral GC, baker's yeast reducing a ketone, a lipase on beads in hexane, kinetic resolution and E, the Kazlauskas rule, and the bench techniques, with a picture for each, practised on made-up examples.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c4c9a'/%3E%3Cpath d='M10 22 L16 9 L22 22' fill='none' stroke='%23fff' stroke-width='2.4'/%3E%3C/svg%3E">
   <style>
     /* Same look as the lab pages and the other prelabs: paper white, bench slate for ink, enamel blue,
-       and a deep orange for the second curve of a plot. */
+       and a deep orange for arrows and for the second curve of a plot. */
     :root {
       --paper: #ffffff; --wash: #f3f6f4; --ink: #17211e; --ink-soft: #4b5854; --ink-faint: #74807c;
       --rule: #c7d1cc; --rule-strong: #8d9994; --enamel: #1c4c9a; --enamel-deep: #153a78; --enamel-wash: #e9eff9;
@@ -183,6 +183,41 @@
       section.topic { break-before: auto; }
       figure.fig, .tool, .box { break-inside: avoid; }
     }
+      /* the drawn figures (inline SVG): bonds, wedges, arrows, glass and layers share these */
+    figure.fig.draw { max-width: 760px; }
+    figure.fig.draw.wide { max-width: 920px; }
+    figure.fig.draw.narrow { max-width: 520px; }
+    .draw text { font-family: var(--sans); font-size: 13px; fill: var(--ink); }
+    .draw text.b { font-weight: 650; }
+    .draw text.s { fill: var(--ink-soft); font-size: 12px; }
+    .draw text.o { fill: var(--link); font-weight: 650; }
+    .draw text.bl { fill: var(--enamel-deep); font-weight: 650; }
+    .draw text.g { fill: var(--good); font-weight: 650; }
+    .draw text.r { fill: var(--flag); font-weight: 650; }
+    .draw text.big { font-size: 15px; font-weight: 650; }
+    .draw .ln { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .draw .thin { stroke: var(--rule-strong); stroke-width: 1.2; fill: none; }
+    .draw .wedge { fill: var(--ink); stroke: none; }
+    .draw .hash { stroke: var(--ink); stroke-width: 2.2; stroke-dasharray: 1.6 2.6; fill: none; }
+    .draw .arr { stroke: var(--link); stroke-width: 2.4; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+    .draw .arrk { stroke: var(--ink); stroke-width: 1.8; fill: none; marker-end: url(#ahk); }
+    .draw .arrb { stroke: var(--enamel); stroke-width: 2; fill: none; marker-end: url(#ahb); }
+    .draw .mirror { stroke: var(--enamel); stroke-width: 1.5; stroke-dasharray: 6 5; fill: none; }
+    .draw .wash { fill: var(--wash); stroke: var(--rule); }
+    .draw .water { fill: #d7e6f2; stroke: none; }
+    .draw .organic { fill: #fbf3cf; stroke: none; }
+    .draw .cloud { fill: #e9e4d8; stroke: none; }
+    .draw .glass { fill: none; stroke: var(--ink-faint); stroke-width: 2; stroke-linejoin: round; }
+    .draw .steel { fill: #cfd6d9; stroke: var(--ink-faint); stroke-width: 1.2; }
+    .draw .pocket { fill: var(--enamel-wash); stroke: var(--enamel); stroke-width: 1.6; }
+    .draw .mol { fill: #f6dccb; stroke: var(--link); stroke-width: 1.6; }
+    .draw .molb { fill: #d9e4f5; stroke: var(--enamel); stroke-width: 1.6; }
+    .draw .bead { fill: #f0e6c8; stroke: var(--amber); stroke-width: 1.4; }
+    .draw .box { fill: #fff; stroke: var(--ink); stroke-width: 1.4; rx: 6; }
+    .draw .boxw { fill: var(--wash); stroke: var(--rule-strong); stroke-width: 1.2; rx: 6; }
+    .draw .silica { fill: #f3efe6; stroke: none; }
+    .draw .celite { fill: #efe9dc; stroke: none; }
+    .draw .cells { fill: #c9b79a; stroke: none; }
   </style>
 </head>
 <body>
@@ -191,7 +226,7 @@
     <div>
       <p class="eyebrow">BCH3023 &middot; Prelab review</p>
       <h1>The Enzyme&rsquo;s Handshake</h1>
-      <p class="dek">Before the lab: what an enantiomer is and how its purity is measured, how a yeast and a lipase do organic chemistry, how a kinetic resolution works and how selective it was, and the bench techniques of both sessions. Every example here is made up, and none is a compound you will meet at the bench.</p>
+      <p class="dek">Before the lab: what an enantiomer is and how its purity is measured, how a yeast and a lipase do organic chemistry, how a kinetic resolution works and how selective it was, and the bench techniques of both sessions, each with a picture. Every example here is made up or borrowed from outside the lab; none is a compound you will meet at the bench.</p>
     </div>
     <a class="lab-button" href="../index.html">Go to the lab &rarr;</a>
   </div>
@@ -204,27 +239,34 @@
     <div class="nav-group"><p class="nav-part">A. Mirror images, measured</p>
       <ol><li><a href="#t1"><span class="n">1</span>Enantiomers and ee</a></li><li><a href="#t2"><span class="n">2</span>Optical rotation</a></li><li><a href="#t3"><span class="n">3</span>Chiral GC</a></li></ol></div>
     <div class="nav-group"><p class="nav-part">B. Enzymes as reagents</p>
-      <ol><li><a href="#t4"><span class="n">4</span>Baker&rsquo;s yeast reduces a ketone</a></li><li><a href="#t5"><span class="n">5</span>A lipase in hexane</a></li><li><a href="#t6"><span class="n">6</span>Kinetic resolution and E</a></li><li><a href="#t7"><span class="n">7</span>The Kazlauskas rule</a></li></ol></div>
+      <ol><li><a href="#t4"><span class="n">4</span>Baker&rsquo;s yeast reduces a ketone</a></li><li><a href="#t5"><span class="n">5</span>A lipase on beads, in hexane</a></li><li><a href="#t6"><span class="n">6</span>Kinetic resolution and E</a></li><li><a href="#t7"><span class="n">7</span>The Kazlauskas rule</a></li></ol></div>
     <div class="nav-group"><p class="nav-part">C. At the bench</p>
       <ol><li><a href="#t8"><span class="n">8</span>Filtering through Celite</a></li><li><a href="#t9"><span class="n">9</span>Salting out and extracting</a></li><li><a href="#t10"><span class="n">10</span>Drying and evaporating</a></li><li><a href="#t11"><span class="n">11</span>TLC and the flash column</a></li><li><a href="#t12"><span class="n">12</span>Reading an NMR for purity</a></li><li><a href="#t13"><span class="n">13</span>Safety</a></li></ol></div>
   </div>
 </nav>
 
 <main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c2410c"/></marker>
+  <marker id="ahk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#17211e"/></marker>
+  <marker id="ahb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c4c9a"/></marker>
+  <marker id="ahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ab2a1c"/></marker>
+</defs></svg>
+
 <div class="box start">
   <h3>How to use this review</h3>
-  <p>Read it in order before your first session; Parts A and B are the ideas, Part C is the bench. Each topic ends with <b>In short</b> (what to remember) and <b>Check yourself</b> (questions with answers you can open). The <span class="pill try">Try it</span> boxes are small calculators and plots: use them. All the numbers in them are made up.</p>
+  <p>Read it in order before your first session: Parts A and B are the ideas, Part C is the bench. It is long on purpose. Each topic has a picture, ends with <b>In short</b> (what to remember) and <b>Check yourself</b> (questions whose answers you can open), and some have a <span class="pill try">Try it</span> box: a small calculator or plot. Use them. All the numbers in them are made up.</p>
 </div>
 <div class="box goals">
   <h3>By the end you should be able to</h3>
   <ol>
-    <li>Work out an enantiomeric excess from a ratio, a rotation or two peak areas.</li>
-    <li>Turn a polarimeter&rsquo;s angle into a specific rotation, and say what a blank and an air bubble do.</li>
-    <li>Say why a chiral GC needs a pure-enantiomer standard before its peaks can be named.</li>
-    <li>Explain how yeast cells and a lipase do organic chemistry, and why vinyl acetate makes the lipase&rsquo;s reaction one-way.</li>
+    <li>Tell an enantiomer from its mirror image on paper, name it R or S, and work out an ee from a ratio, a rotation or two peak areas.</li>
+    <li>Turn a polarimeter&rsquo;s angle into a specific rotation, and say what a blank, an air bubble and an impurity each do to it.</li>
+    <li>Say why a chiral GC column gives two peaks, and why it needs a pure-enantiomer standard before the peaks can be named.</li>
+    <li>Explain how yeast cells and a lipase do organic chemistry, what the beads are, and why vinyl acetate makes the lipase&rsquo;s reaction one-way.</li>
     <li>Follow a kinetic resolution: why it stops near 50%, how the two ee values change, and how E is worked out from them.</li>
-    <li>Apply the Kazlauskas rule to a secondary alcohol.</li>
-    <li>Run a Celite filtration, an extraction, a drying, a rotary evaporation, a TLC and a flash column, and read an NMR for what else is in a product.</li>
+    <li>Apply the Kazlauskas rule to a secondary alcohol, with a drawing.</li>
+    <li>Run a Celite filtration, an extraction (and know which layer is which), a drying, a rotary evaporation, a TLC and a flash column, and read an NMR for what else is in a product.</li>
   </ol>
 </div>
 
@@ -232,40 +274,133 @@
 
 <section class="topic" id="t1">
   <h2 class="topic-title"><span class="step">1</span>Enantiomers and enantiomeric excess</h2>
-  <p class="lead">A carbon with four different groups is a stereocenter: its two mirror-image arrangements cannot be laid on top of each other.</p>
+  <p class="lead">A carbon with four different groups on it is a stereocenter. Its two mirror-image arrangements cannot be laid on top of each other, any more than a left hand fits a right glove.</p>
   <div class="prose">
-    <p>The two mirror images of a chiral molecule are its <b>enantiomers</b>. They have the same boiling point, the same NMR spectrum in an ordinary solvent, the same TLC spot: in a world without chirality they are identical. They differ only toward other chiral things: polarized light (topic 2), a chiral column (topic 3), and enzymes, whose pockets are built from L-amino acids and are themselves chiral.</p>
-    <p>Each stereocenter is named <b>R</b> or <b>S</b> by the Cahn&ndash;Ingold&ndash;Prelog (CIP) rules: rank the four groups by atomic number at the first point of difference (OH &gt; carbon groups &gt; H for the alcohols in this lab), point the lowest (H) away from you, and follow 1 &rarr; 2 &rarr; 3. Clockwise is R, anticlockwise S. The letter is a naming rule, not a shape: change one group&rsquo;s rank and the same shape can change its letter.</p>
-    <p>A 50 : 50 mixture is <b>racemic</b>. How far a sample is from racemic is its <b>enantiomeric excess</b>:</p>
+    <p>Hold your hands up, palms facing you. They are mirror images, and no amount of turning makes one lie exactly on the other: the thumbs end up on opposite sides. Molecules can be like that. A carbon atom with four <em>different</em> groups attached can be built in two ways that are mirror images of each other, and the two are called <b>enantiomers</b>. A molecule that has such a carbon (a <b>stereocenter</b>) is <b>chiral</b>, from the Greek for hand.</p>
+    <figure class="fig draw" style="max-width:560px">
+<svg viewBox="0 0 450 250" role="img" aria-label="The two enantiomers of lactic acid, drawn as mirror images, with the direction 1 to 2 to 3 marked on each">
+  <line class="mirror" x1="225" y1="40" x2="225" y2="205"/>
+  <text class="s" x="225" y="30" text-anchor="middle">mirror</text>
+  <!-- (S)-lactic acid: COOH up, CH3 to the lower left, OH on a wedge (toward you), H on a hashed bond (away) -->
+  <line class="ln" x1="120" y1="120" x2="120" y2="70"/>
+  <line class="ln" x1="120" y1="120" x2="76" y2="145"/>
+  <polygon class="wedge" points="120,120 166,135 162,150"/>
+  <line class="hash" x1="120" y1="120" x2="132" y2="166"/>
+  <text class="b" x="120" y="61" text-anchor="middle">COOH</text>
+  <text class="b" x="62" y="162" text-anchor="middle">CH<tspan baseline-shift="sub" font-size="10">3</tspan></text>
+  <text class="b" x="180" y="151" text-anchor="start">OH</text>
+  <text class="b" x="134" y="183" text-anchor="middle">H</text>
+  <path class="arr" d="M162,124 A42,42 0 1 0 79,131"/>
+  <circle cx="200" cy="134" r="8" fill="#c2410c"/><text x="200" y="138" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">1</text>
+  <circle cx="150" cy="52" r="8" fill="#c2410c"/><text x="150" y="56" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">2</text>
+  <circle cx="36" cy="158" r="8" fill="#c2410c"/><text x="36" y="162" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">3</text>
+  <circle cx="152" cy="184" r="8" fill="#74807c"/><text x="152" y="188" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">4</text>
+  <text class="b" x="120" y="216" text-anchor="middle">(S)-lactic acid</text>
+  <text class="o" x="120" y="234" text-anchor="middle">1 → 2 → 3 anticlockwise: S</text>
+  <!-- (R)-lactic acid: the mirror image -->
+  <line class="ln" x1="330" y1="120" x2="330" y2="70"/>
+  <line class="ln" x1="330" y1="120" x2="374" y2="145"/>
+  <polygon class="wedge" points="330,120 284,135 288,150"/>
+  <line class="hash" x1="330" y1="120" x2="318" y2="166"/>
+  <text class="b" x="330" y="61" text-anchor="middle">COOH</text>
+  <text class="b" x="388" y="162" text-anchor="middle">CH<tspan baseline-shift="sub" font-size="10">3</tspan></text>
+  <text class="b" x="270" y="151" text-anchor="end">OH</text>
+  <text class="b" x="316" y="183" text-anchor="middle">H</text>
+  <path class="arr" d="M288,124 A42,42 0 1 1 371,131"/>
+  <circle cx="250" cy="134" r="8" fill="#c2410c"/><text x="250" y="138" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">1</text>
+  <circle cx="300" cy="52" r="8" fill="#c2410c"/><text x="300" y="56" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">2</text>
+  <circle cx="414" cy="158" r="8" fill="#c2410c"/><text x="414" y="162" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">3</text>
+  <circle cx="298" cy="184" r="8" fill="#74807c"/><text x="298" y="188" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">4</text>
+  <text class="b" x="330" y="216" text-anchor="middle">(R)-lactic acid</text>
+  <text class="o" x="330" y="234" text-anchor="middle">1 → 2 → 3 clockwise: R</text>
+</svg>
+<figcaption><b>Two enantiomers.</b> Lactic acid (the acid of sour milk; not one of the lab&rsquo;s compounds) has one stereocenter: a carbon carrying OH, COOH, CH<sub>3</sub> and H. A <b>wedge</b> is a bond coming toward you, a <b>hashed</b> bond one going away. The right-hand molecule is the left one&rsquo;s reflection, and however you turn it, it will not lie on top of the other. The numbers are the CIP ranks (OH 1, COOH 2, CH<sub>3</sub> 3, H 4). With the H (4) pointing away, 1 &rarr; 2 &rarr; 3 runs anticlockwise on the left (S) and clockwise on the right (R).</figcaption>
+</figure>
+
+    <p>In most ways the two enantiomers are the same compound. They have the same boiling point, the same solubility, the same TLC spot, the same NMR spectrum in an ordinary solvent, because all of those depend on bonds and distances, which are identical in a mirror image. They differ only when they meet something that is itself handed: polarized light (topic 2), a chiral column (topic 3), or an enzyme (Part B), whose pocket is built from L-amino acids and is as handed as your glove. That is why the two enantiomers of a drug can act differently in the body, and why carvone smells of caraway as one enantiomer and of spearmint as the other.</p>
+    <h3>Naming them: R and S</h3>
+    <p>Each stereocenter is named with the Cahn&ndash;Ingold&ndash;Prelog (CIP) rules, in three steps.</p>
+    <ol>
+      <li><b>Rank the four groups</b> by the atomic number of the atom attached to the stereocenter: the higher the number, the higher the rank. For the alcohols in this lab that puts OH first and H last. If two groups start with the same atom (two carbons, say), move out one bond and compare what those carbons carry; a carbon bearing O beats one bearing only C and H, and a carbon with more carbons on it beats one with fewer. A double bond counts as that atom twice.</li>
+      <li><b>Turn the molecule so the lowest-ranked group (usually H) points away from you.</b></li>
+      <li><b>Follow 1 &rarr; 2 &rarr; 3.</b> Clockwise is <b>R</b> (Latin <i>rectus</i>, right); anticlockwise is <b>S</b> (<i>sinister</i>, left).</li>
+    </ol>
+    <p>Keep one thing in mind: the letter comes from the ranks, not from the shape. Change one group for another that ranks differently, and the same arrangement in space can change its letter. That will matter in topic 7.</p>
+    <h3>How much of each: the enantiomeric excess</h3>
+    <p>A sample with equal amounts of the two enantiomers is <b>racemic</b>, and most ordinary syntheses give exactly that, because nothing in a flask of achiral reagents prefers one hand. How far a sample is from racemic is its <b>enantiomeric excess</b>:</p>
     <p class="eq">ee = (major &minus; minor) / (major + minor) &times; 100%<span class="where">An 80 : 20 mixture has ee = (80 &minus; 20) / 100 = 60%. A pure enantiomer has 100% ee; a racemate 0%.</span></p>
-    <p>The same thing is sometimes written as an <b>enantiomeric ratio</b>, er 80 : 20. Both are only as good as the method that measured them, which is what the next two topics are about.</p>
+    <p>The same information is sometimes written as an <b>enantiomeric ratio</b>, er 80 : 20. To go back from an ee to the ratio: the major share is (100 + ee) / 2, so 60% ee means 80 : 20. An ee is only as good as the method that measured it, which is what the next two topics are about.</p>
   </div>
   <div class="tool"><h3>From a ratio to ee, and back</h3>
     <div class="fields"><label>Percent of the major enantiomer <input type="range" id="ee-major" min="50" max="100" step="0.5" value="80"></label></div>
     <p class="out" id="ee-out"></p>
   </div>
-  <div class="box key"><h4></h4><ul><li>Enantiomers differ only toward chiral things: light, a chiral column, an enzyme.</li><li>R and S come from the CIP ranks of the groups, so they are a label, not a shape.</li><li>ee = (major &minus; minor) / (major + minor).</li></ul></div>
+  <div class="box key"><h4></h4><ul><li>A carbon with four different groups has two mirror-image forms, the enantiomers.</li><li>They differ only toward handed things: polarized light, a chiral column, an enzyme.</li><li>R and S come from the CIP ranks (H away, follow 1 &rarr; 2 &rarr; 3), so they are a label, not a shape.</li><li>ee = (major &minus; minor) / (major + minor).</li></ul></div>
   <div class="check"><h4>Check yourself</h4><ol>
     <li>A sample is 92 : 8. What is its ee?<details><summary>Answer</summary><p class="answer">(92 &minus; 8) / 100 = 84% ee.</p></details></li>
-    <li>A sample has 50% ee. What share of it is the minor enantiomer?<details><summary>Answer</summary><p class="answer">25%: the mixture is 75 : 25, since (75 &minus; 25) / 100 = 0.50.</p></details></li>
-    <li>Why can an ordinary NMR spectrum not tell you the ee?<details><summary>Answer</summary><p class="answer">In an achiral solvent the two enantiomers have identical spectra: every signal is the same for both.</p></details></li>
+    <li>A sample has 50% ee. What share of it is the minor enantiomer?<details><summary>Answer</summary><p class="answer">25%: the major share is (100 + 50) / 2 = 75, so the mixture is 75 : 25.</p></details></li>
+    <li>Why can an ordinary NMR spectrum not tell you the ee?<details><summary>Answer</summary><p class="answer">In an achiral solvent the two enantiomers have identical spectra: every distance and every bond is the same in a mirror image.</p></details></li>
+    <li>In the figure, which group of lactic acid is ranked 2, and why does it beat CH<sub>3</sub>?<details><summary>Answer</summary><p class="answer">COOH. Both start with a carbon, but the COOH carbon carries (O, O, O) and the CH<sub>3</sub> carbon (H, H, H); oxygen outranks hydrogen.</p></details></li>
   </ol></div>
 </section>
 
 <section class="topic" id="t2">
   <h2 class="topic-title"><span class="step">2</span>Optical rotation and the polarimeter</h2>
-  <p class="lead">A solution of one enantiomer turns the plane of polarized light; its mirror image turns it by the same angle the other way.</p>
+  <p class="lead">A solution of one enantiomer turns the plane of polarized light; a solution of its mirror image turns it by the same angle the other way. That turn is the oldest way of telling enantiomers apart, and it is how Session 1&rsquo;s ee is measured.</p>
   <div class="prose">
-    <p>A polarimeter shines light of one wavelength, usually the sodium D line at 589 nm, through a polarizer, then through a tube of the solution, then measures the angle &alpha; through which the plane of polarization has turned. A digital instrument finds the angle itself and shows it; an older manual one has you turn an analyzer until the two halves of a field look alike, and read a scale.</p>
-    <p>The angle grows with how many molecules the light passes, so it is divided by the tube&rsquo;s length and the concentration to give a property of the compound, the <b>specific rotation</b>:</p>
-    <p class="eq">[&alpha;] = &alpha; / (l &middot; c)<span class="where">&alpha; in degrees, l in decimetres (a standard tube is 100 mm = 1 dm), c in g per mL. Tables quote c in g per 100 mL (&ldquo;c 1.0&rdquo; means 1 g in 100 mL, which is 0.010 g per mL), with the solvent and the temperature, since [&alpha;] changes with both.</span></p>
-    <p>For a sample of one compound whose pure enantiomer&rsquo;s [&alpha;] is known, the ratio of the two gives the <b>optical purity</b>, which is taken as the ee: ee &asymp; [&alpha;]<sub>sample</sub> / [&alpha;]<sub>pure</sub>.</p>
-    <h3>What goes wrong</h3>
+    <p>Ordinary light vibrates in every direction across its path. A <b>polarizer</b> lets through only the light vibrating in one plane. When that <b>plane-polarized</b> light passes through a solution of a chiral compound, the plane comes out turned by an angle, &alpha;. The two enantiomers turn it by the same amount in opposite directions, so a racemic solution turns it not at all.</p>
+    <figure class="fig draw wide">
+<svg viewBox="0 0 780 210" role="img" aria-label="A polarimeter: a sodium lamp, a polarizer, the sample tube, the turned plane of the light, an analyzer and a detector">
+  <line class="thin" x1="76" y1="120" x2="700" y2="120" stroke="#c2410c" stroke-width="2"/>
+  <circle cx="60" cy="120" r="17" fill="#f6d35c" stroke="#8a5a00" stroke-width="1.4"/>
+  <text class="s" x="60" y="72" text-anchor="middle">sodium lamp</text>
+  <text class="s" x="60" y="88" text-anchor="middle">589 nm</text>
+  <rect class="steel" x="112" y="78" width="12" height="84" rx="2"/>
+  <line class="thin" x1="118" y1="84" x2="118" y2="156" stroke="#17211e"/>
+  <text class="s" x="118" y="180" text-anchor="middle">polarizer</text>
+  <!-- the plane before the tube: a vertical double arrow -->
+  <line class="arrk" x1="175" y1="120" x2="175" y2="68"/>
+  <line class="arrk" x1="175" y1="120" x2="175" y2="172"/>
+  <text class="s" x="175" y="50" text-anchor="middle">light vibrating</text>
+  <text class="s" x="175" y="64" text-anchor="middle">in one plane</text>
+  <!-- the tube -->
+  <rect class="organic" x="220" y="100" width="250" height="40"/>
+  <rect class="glass" x="220" y="100" width="250" height="40" rx="4"/>
+  <rect class="steel" x="212" y="96" width="12" height="48" rx="2"/>
+  <rect class="steel" x="466" y="96" width="12" height="48" rx="2"/>
+  <text class="b" x="345" y="90" text-anchor="middle">the sample tube: l = 1 dm (100 mm)</text>
+  <text class="s" x="345" y="162" text-anchor="middle">your solution, c grams per mL</text>
+  <!-- the plane after the tube: turned by alpha -->
+  <g transform="translate(530,120)">
+    <line class="thin" x1="0" y1="-52" x2="0" y2="52" stroke="#8d9994" stroke-dasharray="3 3"/>
+    <g transform="rotate(28)">
+      <line class="arr" x1="0" y1="0" x2="0" y2="-52"/>
+      <line class="arr" x1="0" y1="0" x2="0" y2="52"/>
+    </g>
+    <path class="thin" d="M0,-36 A36,36 0 0 1 17,-32" stroke="#c2410c" stroke-width="1.6"/>
+    <text class="o" x="14" y="-40" font-size="15">α</text>
+  </g>
+  <text class="s" x="530" y="188" text-anchor="middle">turned by α</text>
+  <rect class="steel" x="596" y="78" width="12" height="84" rx="2"/>
+  <text class="s" x="602" y="180" text-anchor="middle">analyzer</text>
+  <rect class="box" x="650" y="98" width="70" height="44"/>
+  <text class="b" x="685" y="117" text-anchor="middle" font-size="12">detector</text>
+  <text class="s" x="685" y="133" text-anchor="middle" font-size="11">reads α</text>
+</svg>
+<figcaption><b>Inside a polarimeter.</b> The lamp gives light of one colour (the sodium D line, 589 nm). The polarizer lets through only light vibrating in one plane. Through your solution that plane turns by an angle &alpha;, larger the more molecules the light meets (a longer tube, a stronger solution). The analyzer and detector find the new plane; a digital instrument shows &alpha; on its display. A solution of the mirror-image molecule turns the plane by the same angle the other way.</figcaption>
+</figure>
+
+    <p>A compound that turns the plane clockwise, as seen by someone looking toward the lamp, is <b>dextrorotatory</b> and written (+); anticlockwise is <b>levorotatory</b>, (&minus;). These signs are measured, and they have nothing to do with R and S, which are worked out from the drawing. An (R) compound can be (+) or (&minus;); only an experiment tells you which.</p>
+    <p>The angle grows with how many molecules the light passes: a longer tube or a stronger solution gives a bigger turn. Dividing by both gives a property of the compound, the <b>specific rotation</b>:</p>
+    <p class="eq">[&alpha;] = &alpha; / (l &middot; c)<span class="where">&alpha; in degrees; l in decimetres (the usual tube is 100 mm, which is 1 dm); c in grams per millilitre. Tables write c in g per 100 mL, so &ldquo;c 1.0&rdquo; means 1 g in 100 mL, which is 0.010 g/mL. The solvent, the temperature and the wavelength are given too (the D in [&alpha;]<sub>D</sub> is the sodium D line), because [&alpha;] changes with all three.</span></p>
+    <p>If the pure enantiomer&rsquo;s [&alpha;] is known, the ratio of yours to it is the <b>optical purity</b>, and it is taken as the ee:</p>
+    <p class="eq">ee &asymp; [&alpha;]<sub>sample</sub> / [&alpha;]<sub>pure</sub> &times; 100%<span class="where">Same solvent, same concentration range, same temperature, or the comparison is not fair.</span></p>
+    <h3>What goes wrong, and why</h3>
     <ul>
-      <li><b>No blank.</b> The instrument&rsquo;s zero is set with the tube full of the pure solvent. Skip it and every reading carries the instrument&rsquo;s own offset.</li>
-      <li><b>An air bubble</b> in the light path scatters the light and the reading is wrong. Fill the tube slowly, tilted, and look along it.</li>
-      <li><b>Something else in the sample.</b> An impurity that does not rotate still counts in the weighed mass, so c is too high for the compound that does rotate and [&alpha;] comes out low. If you know what fraction of the mass is your compound (from an NMR, topic 12), divide by it.</li>
-      <li><b>Small angles.</b> At c 1.0 in a 1 dm tube, a compound with [&alpha;] = +40&deg; turns the light only +0.40&deg;: a digital instrument reads that to a few thousandths of a degree, an eye on a scale to about a twentieth.</li>
+      <li><b>No blank.</b> The instrument&rsquo;s zero is set with the tube full of the pure solvent, because the tube&rsquo;s glass and the solvent itself can turn the plane a little. Skip it and every reading carries that offset.</li>
+      <li><b>An air bubble</b> in the light path scatters and bends the light, and the reading is wrong. Fill the tube slowly, tilted, until it is brimming, and look along it before you cap it.</li>
+      <li><b>Something else in the sample.</b> Suppose 10% of the mass you weighed is a leftover starting material that does not rotate light. Then c, as you calculated it, is 10% too high for the compound that does rotate, and [&alpha;] comes out 10% low, and so does the ee. If you know the compound&rsquo;s share of the mass (an NMR tells you, topic 12), divide the ee by that share.</li>
+      <li><b>Small angles.</b> At c 1.0 in a 1 dm tube, a compound with [&alpha;] = +40&deg; turns the light by only 40 &times; 1 &times; 0.010 = +0.40&deg;. A digital instrument reads that to a few thousandths of a degree; an eye on a manual scale to about a twentieth, which is already 12% of the reading.</li>
     </ul>
   </div>
   <div class="tool"><h3>A made-up polarimeter reading</h3>
@@ -278,27 +413,69 @@
     </div>
     <p class="out" id="pol-out"></p>
   </div>
-  <div class="box worked"><h4>Worked example (made up)</h4><p>248 mg of Q made up to 25.0 mL is 0.00992 g per mL. In a 1 dm tube it reads &alpha; = +0.512&deg;. [&alpha;] = 0.512 / (1 &times; 0.00992) = +51.6&deg;, so ee &asymp; 51.6 / 60.0 = 86%. If an NMR showed the sample was 95% Q by mass, the ee of the Q itself is 86 / 0.95 = 91%.</p></div>
-  <div class="box key"><h4></h4><ul><li>[&alpha;] = &alpha; / (l c), l in dm, c in g/mL.</li><li>ee &asymp; [&alpha;] / [&alpha;]<sub>pure</sub>, for the same solvent and temperature.</li><li>Zero on a blank; no bubbles; correct for anything else in the weighed sample.</li></ul></div>
+  <div class="box worked"><h4>Worked example (made up)</h4><p>248 mg of Q made up to 25.0 mL is 0.248 g / 25.0 mL = 0.00992 g per mL. In a 1 dm tube it reads &alpha; = +0.512&deg;. [&alpha;] = 0.512 / (1 &times; 0.00992) = +51.6&deg;, so ee &asymp; 51.6 / 60.0 = 86%. If an NMR showed the sample was 95% Q by mass, the ee of the Q itself is 86 / 0.95 = 91%.</p></div>
+  <div class="box key"><h4></h4><ul><li>Polarized light comes out of a chiral solution with its plane turned by &alpha;; the mirror image turns it the other way.</li><li>[&alpha;] = &alpha; / (l c), l in dm, c in g/mL; ee &asymp; [&alpha;] / [&alpha;]<sub>pure</sub>.</li><li>(+) and (&minus;) are measured; R and S are worked out. They are not the same thing.</li><li>Zero on a blank; no bubbles; correct for anything else in the weighed sample.</li></ul></div>
   <div class="check"><h4>Check yourself</h4><ol>
     <li>c is written &ldquo;c 2.0&rdquo;. What is it in g per mL?<details><summary>Answer</summary><p class="answer">2.0 g per 100 mL = 0.020 g per mL.</p></details></li>
-    <li>You forget the blank and the instrument reads +0.05&deg; with nothing in it. What happens to a sample reading of +0.40&deg;?<details><summary>Answer</summary><p class="answer">It reads about +0.45&deg;, 12% too high, and so does the ee worked from it.</p></details></li>
+    <li>You forget the blank and the instrument reads +0.05&deg; with only solvent in it. What happens to a sample reading of +0.40&deg;?<details><summary>Answer</summary><p class="answer">It reads about +0.45&deg;, 12% too high, and so does the ee worked from it.</p></details></li>
     <li>Why would a manual polarimeter be a poor choice for a sample that turns only +0.40&deg;?<details><summary>Answer</summary><p class="answer">Reading a scale by eye to about &plusmn;0.05&deg; puts the ee out by over 10%.</p></details></li>
+    <li>A compound is (S) and (&minus;). Is its (R) enantiomer (+) or (&minus;)?<details><summary>Answer</summary><p class="answer">(+): the mirror image turns the plane by the same angle the other way. But you could not have predicted the (S) one was (&minus;) from its drawing; that had to be measured.</p></details></li>
   </ol></div>
 </section>
 
 <section class="topic" id="t3">
   <h2 class="topic-title"><span class="step">3</span>Chiral gas chromatography</h2>
-  <p class="lead">A column coated with a chiral stationary phase holds one enantiomer a little longer than the other, so they come out as two peaks.</p>
+  <p class="lead">A gas chromatograph separates the compounds in a mixture by how long each one is held back on its way through a long, thin tube. A chiral coating in that tube holds one enantiomer a little longer than the other, so they come out as two peaks, and the ee is read from their areas.</p>
   <div class="prose">
-    <p>The chiral GC columns used for small alcohols and esters carry a <b>cyclodextrin</b>: a ring of seven glucose units (for &beta;-cyclodextrin) with a cone-shaped cavity, its hydroxyl groups capped with methyl or acetyl groups. Each enantiomer fits the chiral cavity a little differently, so one spends a little longer in the coating and comes off later.</p>
-    <p>The detector (a flame ionization detector, FID) gives a peak for each compound; the integrator reports each peak&rsquo;s <b>retention time</b> and <b>area</b>. The two enantiomers burn alike, so their areas are in the ratio of their amounts and the ee comes straight from them: ee = |A<sub>1</sub> &minus; A<sub>2</sub>| / (A<sub>1</sub> + A<sub>2</sub>).</p>
+    <h3>What a GC does</h3>
+    <p>A drop of the sample is injected into a hot port, where it boils. A stream of carrier gas (helium or hydrogen) sweeps the vapour into the <b>column</b>: a hollow silica tube thinner than a hair and 25 or 30 metres long, coiled in an oven, its inside wall coated with a thin film. Each compound keeps dissolving into the film and evaporating back into the gas; the longer it stays dissolved, the later it reaches the far end. There a <b>flame ionization detector</b> burns it and gives a signal proportional to how much carbon passes. The result is a <b>chromatogram</b>: a peak for each compound at its <b>retention time</b>, and an <b>integrator</b> that reports each peak&rsquo;s time and <b>area</b>.</p>
+    <h3>Why a chiral column separates enantiomers</h3>
+    <p>On an ordinary column the two enantiomers come out together, as one peak: the film cannot tell them apart. A <b>chiral column</b>&rsquo;s film contains a chiral molecule, most often a <b>cyclodextrin</b>: a ring of six, seven or eight glucose units with a cone-shaped hollow in the middle, its hydroxyl groups capped with methyl or acetyl groups so that it dissolves in the film. Glucose is itself chiral, so the hollow is handed. One enantiomer fits into it a little better and keeps slipping in and out as it is carried along; its mirror image fits poorly. The one that fits spends more of its time held, and reaches the detector later. The difference is small, often seconds, but a long column makes it enough.</p>
+    <figure class="fig draw wide">
+<svg viewBox="0 0 760 262" role="img" aria-label="Inside a chiral GC column: the coating has chiral cavities; one enantiomer fits them and is held longer, so it comes off the column later">
+  <text class="big" x="230" y="24" text-anchor="middle">Inside the column (a cartoon)</text>
+  <line class="ln" x1="40" y1="60" x2="420" y2="60"/>
+  <rect class="wash" x="40" y="160" width="380" height="32"/>
+  <line class="ln" x1="40" y1="192" x2="420" y2="192"/>
+  <text class="s" x="230" y="80" text-anchor="middle">carrier gas flows along the column and carries the sample with it</text>
+  <line class="arrk" x1="60" y1="98" x2="400" y2="98"/>
+  <text class="s" x="50" y="183" font-size="11">the chiral coating</text>
+  <!-- cavity 1 with A in it -->
+  <polygon fill="#fff" stroke="#8d9994" stroke-width="1" points="150,160 196,160 196,176 180,176 180,192 150,192"/>
+  <polygon class="mol" points="152,150 194,150 194,174 178,174 178,190 152,190"/>
+  <text class="b" x="166" y="167" text-anchor="middle" font-size="12">A</text>
+  <!-- cavity 2 with B, the mirror image, which does not fit -->
+  <polygon fill="#fff" stroke="#8d9994" stroke-width="1" points="260,160 306,160 306,176 290,176 290,192 260,192"/>
+  <polygon class="molb" points="262,136 304,136 304,174 278,174 278,160 262,160"/>
+  <text class="b" x="286" y="152" text-anchor="middle" font-size="12">B</text>
+  <!-- an empty cavity -->
+  <polygon fill="#fff" stroke="#8d9994" stroke-width="1" points="350,160 396,160 396,176 380,176 380,192 350,192"/>
+  <text class="o" x="173" y="214" text-anchor="middle" font-size="12">A fits the cavity: held longer</text>
+  <text class="bl" x="300" y="232" text-anchor="middle" font-size="12">B, its mirror image, does not: held less</text>
+  <text class="s" x="230" y="254" text-anchor="middle">the cavities are chiral: the same handedness all along the column</text>
+  <!-- the chromatogram -->
+  <text class="big" x="610" y="24" text-anchor="middle">What the detector sees</text>
+  <line class="ln" x1="480" y1="200" x2="745" y2="200"/>
+  <path class="ln" d="M480,200 L540,200 C552,200 554,110 562,110 C570,110 572,200 584,200 L636,200 C648,200 650,110 658,110 C666,110 668,200 680,200 L745,200" stroke="#1b2a3a"/>
+  <text class="bl" x="562" y="100" text-anchor="middle">B</text>
+  <text class="o" x="658" y="100" text-anchor="middle">A</text>
+  <text class="s" x="562" y="222" text-anchor="middle" font-size="12">off first</text>
+  <text class="s" x="658" y="222" text-anchor="middle" font-size="12">off later</text>
+  <text class="s" x="745" y="240" text-anchor="end" font-size="12">time →</text>
+  <text class="s" x="610" y="60" text-anchor="middle" font-size="12">equal amounts give equal areas: a racemate</text>
+</svg>
+<figcaption><b>Why a chiral column separates enantiomers.</b> Its coating (here, a cyclodextrin) has cavities that are themselves chiral, like a left-handed glove. One enantiomer fits them and keeps slipping in and out as it is carried along, so it lags; its mirror image fits poorly and goes by faster. Two peaks result. Which one is held longer depends on the compound and the coating, and nothing in the chromatogram says which peak is which: that is what the standard is for.</figcaption>
+</figure>
+
+    <p>The two enantiomers burn alike, so their areas are in the ratio of their amounts, and the ee comes straight from them:</p>
+    <p class="eq">ee = |A<sub>1</sub> &minus; A<sub>2</sub>| / (A<sub>1</sub> + A<sub>2</sub>) &times; 100%<span class="where">A<sub>1</sub> and A<sub>2</sub> are the two peaks&rsquo; areas. The racemate gives two equal peaks, ee = 0.</span></p>
     <h3>Which peak is which?</h3>
-    <p>Nothing in the chromatogram says which peak is R. The order depends on the compound and on the column: the same pair can come off R first on one cyclodextrin and S first on another. The only sure way is a <b>standard</b>: a pure (or nearly pure) sample of one known enantiomer, run the same way. Its peak&rsquo;s time names the peak in your sample.</p>
-    <h3>What goes wrong</h3>
+    <p>Nothing in the chromatogram says which peak is R. The order depends on the compound and on the coating: the same pair can come off R first on one cyclodextrin and S first on another. The only sure way is a <b>standard</b>: a pure (or nearly pure) sample of one enantiomer, bought or made, and run the same way. Its peak&rsquo;s time names that peak in your sample. In the lab you are given the pure (R) alcohol for this.</p>
+    <h3>What goes wrong, and why</h3>
     <ul>
-      <li><b>Too much.</b> An undiluted sample overloads the column: the peaks broaden and lean, and two close peaks run into one, which the integrator reports as a single peak. Dilute until the peaks are sharp.</li>
-      <li><b>Solid in the vial.</b> Anything that keeps reacting (a catalyst, a bead of enzyme) must be filtered out first, or the vial is not what the reaction was when you sampled it.</li>
+      <li><b>Too much.</b> The film can only dissolve so much. An undiluted sample overloads it: the peaks broaden and lean, and two peaks close together merge into one, which the integrator then reports as a single peak. Dilute until the peaks are sharp.</li>
+      <li><b>Solid in the vial.</b> Anything that keeps reacting (a catalyst, a bead of enzyme) must be filtered out when the sample is taken, or the vial goes on changing after you sampled it, and the chromatogram is not of the moment you meant.</li>
+      <li><b>Peaks that are not yours.</b> The solvent, a reagent in excess and small by-products all give peaks. Run the starting materials on their own first so you know where they come off.</li>
     </ul>
   </div>
   <div class="tool point"><h3>A made-up chromatogram and its standard</h3>
@@ -307,130 +484,565 @@
     <figure class="fig"><canvas id="gc-canvas" width="900" height="260" aria-label="A made-up chromatogram"></canvas><figcaption id="gc-cap"></figcaption></figure>
     <div class="readout" id="gc-read">Point at a peak.</div>
   </div>
-  <div class="box key"><h4></h4><ul><li>Peak areas give the ee; the integrator gives the areas.</li><li>Name the peaks from a standard, run the same way. Never from a remembered order.</li><li>Dilute the sample and filter out anything that keeps reacting.</li></ul></div>
+  <div class="box key"><h4></h4><ul><li>A GC holds each compound back by how long it dissolves in the column&rsquo;s film; the integrator gives each peak&rsquo;s time and area.</li><li>A chiral film (a cyclodextrin) is handed: one enantiomer fits it better and comes off later. Two peaks; ee from their areas.</li><li>Name the peaks from a standard run the same way. Never from a remembered order.</li><li>Dilute the sample, and filter out anything that keeps reacting.</li></ul></div>
   <div class="check"><h4>Check yourself</h4><ol>
     <li>Peaks at 6.10 and 6.42 min have areas 12 450 and 2 050. What is the ee?<details><summary>Answer</summary><p class="answer">(12 450 &minus; 2 050) / 14 500 = 71.7%.</p></details></li>
     <li>In the made-up chromatogram above, which enantiomer is the major one?<details><summary>Answer</summary><p class="answer">Run the standard: (S)-W comes off with the first peak, and the first peak is the small one. The major enantiomer is (R)-W.</p></details></li>
     <li>An undiluted sample shows one broad peak where a diluted one shows two. What ee would you get from the undiluted one, and why is it wrong?<details><summary>Answer</summary><p class="answer">100%, since there is only one peak to measure; the two enantiomers have run together, not become one.</p></details></li>
+    <li>Why does an ordinary (achiral) column give one peak for a racemate?<details><summary>Answer</summary><p class="answer">Its film is not handed, so it dissolves both enantiomers for exactly the same time, and they arrive together.</p></details></li>
   </ol></div>
 </section>
-
-<div class="part-banner"><p class="part-label">Part B</p><h2>Enzymes as reagents</h2><p>An enzyme&rsquo;s pocket is chiral, so it treats mirror-image molecules differently. Session 1 uses that to make one enantiomer from a flat ketone; session 2 uses it to sort the two enantiomers of an alcohol.</p></div>
+<div class="part-banner"><p class="part-label">Part B</p><h2>Enzymes as reagents</h2><p>An enzyme&rsquo;s pocket is chiral, so it treats mirror-image molecules differently. Session 1 uses that to make one enantiomer out of a flat ketone; Session 2 uses it to sort the two enantiomers of an alcohol.</p></div>
 
 <section class="topic" id="t4">
   <h2 class="topic-title"><span class="step">4</span>Baker&rsquo;s yeast reduces a ketone</h2>
-  <p class="lead">Living yeast cells carry reductases that hand a hydride from NADPH to a ketone&rsquo;s carbonyl from one face, so the new alcohol comes out mostly as one enantiomer.</p>
+  <p class="lead">Living yeast cells carry reductases that hand a hydride from NADPH to a ketone&rsquo;s carbonyl from one face only, so the alcohol that forms is mostly one enantiomer. You do not isolate the enzyme; you borrow the whole cell.</p>
   <div class="prose">
-    <p>Saccharomyces cerevisiae is used here as a bag of enzymes that looks after itself. Fed sugar, the cells make <b>NADPH</b> (largely through the pentose phosphate pathway), and several NADPH-dependent <b>ketoreductases</b> use it to reduce a ketone added to the broth. The cells regenerate the NADPH as long as they have sugar, which is why a fermentation is fed, and why the reduction needs days rather than minutes.</p>
-    <p>A ketone&rsquo;s carbonyl carbon is flat: hydride can arrive from either face. In a reductase&rsquo;s pocket the ketone sits one way round, so hydride comes from one face, and a new stereocenter forms with one configuration. A general pattern for many yeast reductases (<b>Prelog&rsquo;s rule</b>) is that the hydride arrives on the carbonyl&rsquo;s <i>Re</i> face, which for most simple ketones gives the (S) alcohol; but several enzymes compete in one cell, and some prefer the other face, which is why yeast products are rarely 100% one enantiomer. How the cells are fed and how much ketone they meet at once change which enzymes do most of the work.</p>
+    <p>Baker&rsquo;s yeast, <i>Saccharomyces cerevisiae</i>, is used here as a bag of enzymes that looks after itself. Fed sugar, the cells make <b>NADPH</b> (mostly through the pentose phosphate pathway, which spends glucose to make it), and several NADPH-dependent <b>ketoreductases</b> in the cell use it to reduce a ketone that is added to the broth. The cells regenerate NADPH as long as they have sugar, which is why a fermentation is fed, and why the reduction takes days rather than minutes: the whole culture is doing a little at a time.</p>
+    <p>A ketone&rsquo;s carbonyl carbon is flat, with its three neighbours in one plane, so hydride can arrive from either face. A chemical reducing agent such as sodium borohydride comes from both faces equally and gives a racemate. In a reductase&rsquo;s pocket the ketone is held with one face against the protein, so hydride can only reach the other, and the new stereocenter forms with one configuration.</p>
+    <figure class="fig draw wide">
+<svg viewBox="0 0 800 240" role="img" aria-label="A flat ketone receives a hydride on one face from the yeast's reductase and becomes one enantiomer of the alcohol; an inset shows the enzyme covering the other face">
+  <text class="big" x="150" y="24" text-anchor="middle">The ketone: flat</text>
+  <line class="ln" x1="146" y1="125" x2="146" y2="80"/>
+  <line class="ln" x1="154" y1="125" x2="154" y2="80"/>
+  <text class="b" x="150" y="70" text-anchor="middle" font-size="15">O</text>
+  <line class="ln" x1="150" y1="125" x2="106" y2="150"/>
+  <line class="ln" x1="150" y1="125" x2="194" y2="150"/>
+  <text class="b" x="92" y="166" text-anchor="middle">R</text>
+  <text class="b" x="208" y="166" text-anchor="middle">CH<tspan baseline-shift="sub" font-size="10">3</tspan></text>
+  <text class="s" x="150" y="200" text-anchor="middle" font-size="12">C, O, R and CH<tspan baseline-shift="sub" font-size="9">3</tspan> all lie in the page:</text>
+  <text class="s" x="150" y="216" text-anchor="middle" font-size="12">a face toward you and a face away</text>
+  <path class="arr" d="M232,56 C205,70 180,95 162,118"/>
+  <text class="o" x="236" y="48" text-anchor="start" font-size="12">H⁻ from NADPH, onto</text>
+  <text class="o" x="236" y="63" text-anchor="start" font-size="12">the face toward you</text>
+  <line class="arrk" x1="300" y1="125" x2="380" y2="125"/>
+  <text class="s" x="340" y="110" text-anchor="middle" font-size="12">the yeast&rsquo;s</text>
+  <text class="s" x="340" y="146" text-anchor="middle" font-size="12">reductase</text>
+  <text class="big" x="480" y="24" text-anchor="middle">The alcohol: one enantiomer</text>
+  <line class="hash" x1="480" y1="125" x2="448" y2="86"/>
+  <polygon class="wedge" points="480,125 508,84 518,92"/>
+  <line class="ln" x1="480" y1="125" x2="436" y2="150"/>
+  <line class="ln" x1="480" y1="125" x2="524" y2="150"/>
+  <text class="b" x="436" y="78" text-anchor="middle">OH</text>
+  <text class="b" x="526" y="78" text-anchor="middle">H</text>
+  <text class="b" x="422" y="166" text-anchor="middle">R</text>
+  <text class="b" x="538" y="166" text-anchor="middle">CH<tspan baseline-shift="sub" font-size="10">3</tspan></text>
+  <text class="s" x="470" y="200" text-anchor="middle" font-size="12">the H that came in is toward you (wedge),</text>
+  <text class="s" x="470" y="216" text-anchor="middle" font-size="12">the O pushed away (hash): a stereocenter</text>
+  <!-- inset: edge-on, the enzyme covers one face -->
+  <rect class="boxw" x="640" y="40" width="150" height="180"/>
+  <text class="b" x="715" y="60" text-anchor="middle" font-size="12">seen edge-on</text>
+  <rect x="660" y="128" width="110" height="6" fill="#17211e"/>
+  <text class="s" x="715" y="120" text-anchor="middle" font-size="11">the flat ketone</text>
+  <path class="pocket" d="M652,140 L778,140 L778,200 L652,200 Z"/>
+  <text class="bl" x="715" y="174" text-anchor="middle" font-size="11">the enzyme holds it</text>
+  <text class="bl" x="715" y="189" text-anchor="middle" font-size="11">from this side</text>
+  <line class="arr" x1="715" y1="78" x2="715" y2="122"/>
+  <text class="o" x="715" y="100" text-anchor="middle" font-size="11" dx="34">H⁻</text>
+  <text class="s" x="715" y="214" text-anchor="middle" font-size="10">only the open face is reachable</text>
+</svg>
+<figcaption><b>How a flat ketone becomes one enantiomer.</b> A ketone&rsquo;s carbonyl carbon is flat: hydride (H<sup>&minus;</sup>, carried by NADPH) could land on either face, and in a flask with sodium borohydride it lands on both equally, giving a racemate. In the reductase&rsquo;s pocket the ketone is held with one face against the protein, so hydride can only reach the other face, and the new stereocenter forms with one configuration. R stands for the ketone&rsquo;s larger group; the lab&rsquo;s ketone is not drawn here.</figcaption>
+</figure>
+
+    <p>For most simple ketones, yeast&rsquo;s main reductases deliver the hydride to the same face, which gives the alcohol in which, drawn as in the figure, the OH ends up on the hashed bond when the larger group is on the left: <b>Prelog&rsquo;s rule</b>, which for simple ketones usually means the (S) alcohol. But a yeast cell has several reductases, and some prefer the other face, so a yeast product is rarely 100% one enantiomer. Which enzymes do most of the work depends on how the culture is run: how much ketone it meets at once (a little at a time favours the enzymes that bind it tightly), whether it is fed sugar or starved, and how it is aerated. That is why every student&rsquo;s fermentation in Session 1 is run a little differently, and why each gets a different ee.</p>
     <h3>The bench, in outline</h3>
     <ol>
-      <li>Wake the yeast in warm water with sugar (yeast likes about 30 to 40 &deg;C; water near 55 &deg;C or hotter kills it). A live culture foams.</li>
-      <li>Add the ketone, stir open to the air, and wait; follow it by TLC until the ketone&rsquo;s spot is gone.</li>
-      <li>Filter off the cells through Celite (topic 8), salt the filtrate and extract the product (topic 9), dry and evaporate (topic 10), weigh, and measure its rotation (topic 2) and NMR (topic 12).</li>
+      <li><b>Wake the yeast</b> in warm water with sugar. Yeast likes about 30 to 40 &deg;C; water near 55 &deg;C or hotter kills it, and dead yeast reduces nothing. A live culture foams within minutes: fermentation makes carbon dioxide, and the bubbles are held by the yeast&rsquo;s own proteins.</li>
+      <li><b>Add the ketone</b>, stir, and wait, open to the air (some oxygen keeps the cells healthier). Follow the reduction by TLC until the ketone&rsquo;s spot is gone; stopping earlier leaves ketone in the product.</li>
+      <li><b>Work up:</b> filter off the cells through Celite (topic 8), salt the filtrate and extract the product (topic 9), dry and evaporate (topic 10), weigh, and measure the rotation (topic 2) and the NMR (topic 12).</li>
     </ol>
   </div>
-  <div class="box key"><h4></h4><ul><li>Whole cells: the enzymes, and the sugar that keeps their NADPH coming.</li><li>One face of the flat carbonyl gets the hydride: a new stereocenter, mostly one enantiomer.</li><li>Several reductases compete, so the ee depends on how the fermentation is run.</li></ul></div>
+  <div class="box key"><h4></h4><ul><li>Whole cells: the reductases inside, and the sugar that keeps their NADPH coming.</li><li>The flat carbonyl is held with one face covered, so hydride reaches only the other: a new stereocenter, mostly one enantiomer.</li><li>Several reductases compete, so the ee depends on how the fermentation is run.</li><li>Warm water wakes yeast; hot water kills it. Foam means it is alive.</li></ul></div>
   <div class="check"><h4>Check yourself</h4><ol>
-    <li>Why does a yeast reduction need sugar, though sugar is not reduced?<details><summary>Answer</summary><p class="answer">The cells burn it to regenerate the NADPH the reductases use up.</p></details></li>
+    <li>Why does a yeast reduction need sugar, though sugar is not reduced?<details><summary>Answer</summary><p class="answer">The cells burn it to regenerate the NADPH the reductases use up. Without sugar the NADPH runs out and the reduction stops.</p></details></li>
     <li>The water for the yeast was 70 &deg;C. What will you see, and what will the ketone do?<details><summary>Answer</summary><p class="answer">No foam: the yeast is dead, and the ketone is not reduced.</p></details></li>
+    <li>Why does sodium borohydride give a racemate where yeast does not?<details><summary>Answer</summary><p class="answer">Borohydride is small and achiral, and reaches both faces of the flat carbonyl equally. The reductase holds the ketone with one face against the protein, so only the other face is open to the hydride.</p></details></li>
   </ol></div>
 </section>
 
 <section class="topic" id="t5">
-  <h2 class="topic-title"><span class="step">5</span>A lipase in hexane</h2>
-  <p class="lead">Lipases are made to hydrolyse fats in water; in a dry organic solvent the same machinery runs the other way and makes esters.</p>
+  <h2 class="topic-title"><span class="step">5</span>A lipase on beads, in hexane</h2>
+  <p class="lead">Lipases are made to hydrolyse fats in water. In a dry organic solvent the same machinery runs the other way and makes esters, and it is choosy about which alcohol it will esterify. Session 2 uses one that comes stuck to plastic beads.</p>
   <div class="prose">
-    <p><b>Candida antarctica lipase B</b> (CAL-B) is sold adsorbed on acrylic resin beads as Novozym 435. Its active site is a <b>catalytic triad</b>: a serine (Ser105), a histidine (His224) and an aspartate (Asp187). The histidine takes the serine&rsquo;s proton, so the serine&rsquo;s oxygen attacks an ester&rsquo;s carbonyl; the alkoxy group leaves and an <b>acyl-enzyme</b> remains. Then a nucleophile takes the acyl group off the serine: water in water (hydrolysis), or, in a dry solvent, an alcohol, which is how the alcohol becomes an ester.</p>
-    <p>With <b>vinyl acetate</b> as the acyl donor, the group that leaves the acyl-enzyme step is vinyl alcohol, which at once turns into its tautomer, acetaldehyde. Acetaldehyde cannot attack the acyl-enzyme, so nothing runs back: the acylation is one-way.</p>
-    <p>Water spoils this. In wet solvent the acyl-enzyme is hydrolysed as well as transferred, and the ester already made can be hydrolysed back. The hexane is dried, and the beads are kept dry and cold.</p>
-    <p class="eq">R&ndash;OH + CH<sub>2</sub>=CH&ndash;O&ndash;C(O)CH<sub>3</sub> &rarr; R&ndash;O&ndash;C(O)CH<sub>3</sub> + CH<sub>3</sub>CHO<span class="where">An alcohol and vinyl acetate give the alcohol&rsquo;s acetate and acetaldehyde, by way of the acyl-enzyme.</span></p>
+    <h3>What the enzyme is</h3>
+    <p><b>Candida antarctica lipase B</b>, CAL-B, is a small, sturdy enzyme from a yeast first found in Antarctica. Its active site holds a <b>catalytic triad</b>: a serine (Ser105), a histidine (His224) and an aspartate (Asp187). The aspartate steadies the histidine, the histidine takes the proton off the serine&rsquo;s OH, and the serine&rsquo;s oxygen, now a strong nucleophile, attacks the carbonyl carbon of an ester. The ester&rsquo;s alkoxy group leaves, and the acyl group is left parked on the serine: the <b>acyl-enzyme</b>. In the second half of the cycle a nucleophile takes the acyl group off again. In water that nucleophile is water (hydrolysis: the lipase&rsquo;s job in nature). In a dry solvent the only nucleophile about is an alcohol, so the acyl group goes onto the alcohol instead, and an ester is made.</p>
+    <figure class="fig draw wide">
+<svg viewBox="0 0 920 330" role="img" aria-label="The lipase's cycle: vinyl acetate acylates the serine and leaves as acetaldehyde; the alcohol takes the acetyl group and its ester leaves; water would take it instead. A bead of Novozym 435 at the right.">
+  <rect class="box" x="245" y="40" width="250" height="48"/>
+  <text class="b" x="370" y="60" text-anchor="middle">the free enzyme</text>
+  <text class="s" x="370" y="78" text-anchor="middle" font-size="12">Ser105–OH, with His224 and Asp187 ready</text>
+  <rect class="box" x="245" y="214" width="250" height="48"/>
+  <text class="b" x="370" y="234" text-anchor="middle">the acyl-enzyme</text>
+  <text class="s" x="370" y="252" text-anchor="middle" font-size="12">Ser105–O–C(=O)CH<tspan baseline-shift="sub" font-size="9">3</tspan>: the acetyl group parked</text>
+  <path class="arrk" d="M265,88 C150,88 150,214 261,214"/>
+  <path class="arrk" d="M475,214 C590,214 590,88 479,88"/>
+  <circle cx="178" cy="151" r="11" fill="#17211e"/><text x="178" y="155" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">1</text>
+  <circle cx="562" cy="151" r="11" fill="#17211e"/><text x="562" y="155" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">2</text>
+  <text class="b" x="20" y="246" font-size="12">1. vinyl acetate arrives</text>
+  <text class="s" x="20" y="263" font-size="12">the serine takes its acetyl group;</text>
+  <text class="s" x="20" y="278" font-size="12">vinyl alcohol leaves and at once</text>
+  <text class="s" x="20" y="293" font-size="12">becomes acetaldehyde, which cannot</text>
+  <text class="s" x="20" y="308" font-size="12">come back: the step is one-way</text>
+  <text class="b" x="520" y="240" font-size="12">2. your alcohol arrives</text>
+  <text class="s" x="520" y="257" font-size="12">its OH takes the acetyl group</text>
+  <text class="s" x="520" y="272" font-size="12">off the serine; the ester leaves</text>
+  <text class="s" x="520" y="287" font-size="12">and the enzyme is free again.</text>
+  <text class="s" x="520" y="302" font-size="12">Only the enantiomer that fits</text>
+  <text class="s" x="520" y="317" font-size="12">the pocket does this fast</text>
+  <line x1="370" y1="262" x2="370" y2="286" stroke="#ab2a1c" stroke-width="2.2" marker-end="url(#ahr)"/>
+  <text class="r" x="370" y="304" text-anchor="middle" font-size="12">if water gets there first: acetic acid, no ester</text>
+  <text class="s" x="370" y="320" text-anchor="middle" font-size="12">(which is why the hexane is kept dry)</text>
+  <!-- the bead -->
+  <circle class="bead" cx="810" cy="150" r="52"/>
+  <circle cx="788" cy="126" r="7" fill="#fff" stroke="#8a5a00"/><circle cx="826" cy="118" r="6" fill="#fff" stroke="#8a5a00"/><circle cx="842" cy="158" r="7" fill="#fff" stroke="#8a5a00"/><circle cx="796" cy="170" r="6" fill="#fff" stroke="#8a5a00"/><circle cx="820" cy="186" r="7" fill="#fff" stroke="#8a5a00"/><circle cx="772" cy="152" r="6" fill="#fff" stroke="#8a5a00"/>
+  <g fill="#1c4c9a"><circle cx="788" cy="126" r="2"/><circle cx="826" cy="118" r="2"/><circle cx="842" cy="158" r="2"/><circle cx="796" cy="170" r="2"/><circle cx="820" cy="186" r="2"/><circle cx="772" cy="152" r="2"/><circle cx="765" cy="132" r="2"/><circle cx="810" cy="100" r="2"/><circle cx="858" cy="140" r="2"/><circle cx="850" cy="180" r="2"/><circle cx="780" cy="190" r="2"/><circle cx="810" cy="146" r="2"/></g>
+  <text class="b" x="810" y="226" text-anchor="middle" font-size="12">one bead of Novozym 435</text>
+  <text class="s" x="810" y="242" text-anchor="middle" font-size="11">porous plastic, about half a</text>
+  <text class="s" x="810" y="256" text-anchor="middle" font-size="11">millimetre; the pores (white)</text>
+  <text class="s" x="810" y="270" text-anchor="middle" font-size="11">hold the enzyme (blue dots)</text>
+</svg>
+<figcaption><b>What the lipase does, twice over.</b> The serine in its active site is first acylated by vinyl acetate (step 1), then hands the acetyl group to your alcohol (step 2) and is free for the next round. The bead is only the enzyme&rsquo;s support: it makes the lipase easy to filter off, stop, and use again. The chemistry, and the choosing between enantiomers, is all in the enzyme&rsquo;s pocket (topic 7).</figcaption>
+</figure>
+
+    <h3>What the beads are</h3>
+    <p><b>Novozym 435</b> is CAL-B soaked into small beads of a porous acrylic plastic, about half a millimetre across. The beads are only the support: they do no chemistry. What they do is keep the enzyme in one place, so that it can be filtered off in a minute to stop the reaction, rinsed and used again, and so that a few milligrams can be weighed out and added like any other reagent. The choosing between enantiomers happens inside the enzyme&rsquo;s pocket (topic 7), not on the plastic.</p>
+    <h3>Why hexane, and why it must be dry</h3>
+    <p>Enzymes are made for water, but many lipases work in dry organic solvents, because a thin layer of water stays bound to the protein and keeps it folded and flexible. Hexane dissolves the alcohol and the vinyl acetate, does not dissolve the enzyme, and does not compete with the alcohol. Any extra water does compete: it takes the acyl group off the serine before the alcohol can (making acetic acid, which is useless), and it lets the enzyme hydrolyse the ester already made back to the alcohol. So the hexane is kept over molecular sieves, and the beads are kept dry and cold.</p>
+    <h3>Why vinyl acetate</h3>
+    <p>Any ester could acylate the serine, but most would set the cycle running in both directions: with ethyl acetate, the ethanol set free would attack the acyl-enzyme too, and the reaction would stop at an equilibrium. <b>Vinyl acetate</b> frees vinyl alcohol, which at once turns into its tautomer, <b>acetaldehyde</b>, a molecule that cannot attack the acyl-enzyme. Nothing runs back; the acylation is one-way. It is used in excess (2.5 equivalents) so that it is never in short supply as the reaction goes on.</p>
+    <p class="eq">R&ndash;OH + CH<sub>2</sub>=CH&ndash;O&ndash;C(O)CH<sub>3</sub> &rarr; R&ndash;O&ndash;C(O)CH<sub>3</sub> + CH<sub>3</sub>CHO<span class="where">An alcohol and vinyl acetate give the alcohol&rsquo;s acetate and acetaldehyde, by way of the acyl-enzyme. The acetaldehyde is a small, volatile by-product; it shows as an early peak on the GC.</span></p>
+    <h3>Why 40 &deg;C, shaken</h3>
+    <p>Warmer is faster, as for any reaction, but a lipase tells the two enantiomers apart less well as it gets warmer (topic 6 says how that is measured), and too hot unfolds it. About 40 &deg;C is the usual compromise. Shaking keeps the beads moving through the solution so that fresh alcohol keeps reaching them.</p>
   </div>
-  <div class="box key"><h4></h4><ul><li>Ser&ndash;His&ndash;Asp: the serine is acylated, then deacylated by the alcohol.</li><li>Vinyl acetate frees vinyl alcohol, which becomes acetaldehyde: one-way.</li><li>Dry solvent, or the lipase hydrolyses.</li></ul></div>
+  <div class="box key"><h4></h4><ul><li>Ser&ndash;His&ndash;Asp: the serine is acylated by the acyl donor, then hands the acyl group to the alcohol.</li><li>The beads are the enzyme&rsquo;s support: easy to add, to filter off and to use again. The chemistry is in the enzyme.</li><li>Dry hexane, or water takes the acyl group and hydrolyses the ester.</li><li>Vinyl acetate frees vinyl alcohol, which becomes acetaldehyde: the acylation cannot run back.</li></ul></div>
   <div class="check"><h4>Check yourself</h4><ol>
     <li>Why would ethyl acetate be a worse acyl donor than vinyl acetate?<details><summary>Answer</summary><p class="answer">It frees ethanol, which can attack the acyl-enzyme too: the reaction runs both ways and stops at an equilibrium.</p></details></li>
     <li>What does the histidine of the triad do?<details><summary>Answer</summary><p class="answer">It takes the serine&rsquo;s proton (helped by the aspartate), making the serine oxygen a strong nucleophile.</p></details></li>
+    <li>Your hexane came from the wash bottle on the bench rather than the dried bottle. Name two things that go wrong.<details><summary>Answer</summary><p class="answer">Water takes the acyl group off the serine, so less ester is made and acetic acid forms; and the ester already made is hydrolysed back to the alcohol, so the ee of the alcohol left falls.</p></details></li>
+    <li>You filter the beads out of the vial. Does the reaction continue?<details><summary>Answer</summary><p class="answer">No: the enzyme is on the beads, and nothing in the solution can make the ester without it. Filtering off the beads is how the reaction is stopped.</p></details></li>
   </ol></div>
 </section>
 
 <section class="topic" id="t6">
   <h2 class="topic-title"><span class="step">6</span>Kinetic resolution and E</h2>
-  <p class="lead">If an enzyme acylates one enantiomer of a racemic alcohol much faster than the other, stopping halfway leaves one enantiomer as the alcohol and the other as the acetate.</p>
+  <p class="lead">If an enzyme acylates one enantiomer of a racemic alcohol much faster than the other, stopping halfway leaves one enantiomer as the alcohol and the other as the acetate. The two can then be separated, because they are now different compounds.</p>
   <div class="prose">
-    <p>Start with a racemic alcohol. The <b>fast</b> enantiomer turns into its acetate; the <b>slow</b> one mostly stays. As the reaction runs, the alcohol left is enriched in the slow enantiomer (its ee, <b>ee<sub>s</sub></b>, rises) and the acetate made is mostly the fast one (its ee, <b>ee<sub>p</sub></b>). At most 50% of the starting material can become the fast enantiomer&rsquo;s acetate, so a resolution is stopped near 50% conversion, <b>c</b>. Going on past that converts the slow enantiomer too: the alcohol left gets purer still, and the acetate less pure.</p>
-    <p>How well the enzyme tells the two apart is its <b>enantioselectivity</b>, <b>E</b>: the ratio of how fast it handles each (strictly, the ratio of the two k<sub>cat</sub>/K<sub>M</sub>). Because the two enantiomers compete for the same enzyme, E links c and the ee values whatever the time scale (Chen, Fujimoto, Girdaukas and Sih, 1982):</p>
-    <p class="eq">c = ee<sub>s</sub> / (ee<sub>s</sub> + ee<sub>p</sub>)<span class="where">From the two ee values alone (as fractions); no masses needed.</span></p>
-    <p class="eq">E = ln[(1 &minus; c)(1 &minus; ee<sub>s</sub>)] / ln[(1 &minus; c)(1 + ee<sub>s</sub>)]<span class="where">c and ee<sub>s</sub> as fractions (0.40, not 40).</span></p>
-    <p>E above about 100 is excellent; below about 15, neither product comes out pure. Above about 200 the formula is very sensitive to the last digit of the ee values, so a large E is a range, not a number.</p>
+    <p>Start with a racemic alcohol: half (R), half (S). Put it with the lipase and vinyl acetate. The <b>fast</b> enantiomer is turned into its acetate; the <b>slow</b> one mostly stays as it was. Two things change as the reaction runs:</p>
+    <ul>
+      <li>The <b>alcohol left</b> is more and more the slow enantiomer: its ee, <b>ee<sub>s</sub></b> (s for substrate), rises toward 100%.</li>
+      <li>The <b>acetate made</b> is mostly the fast enantiomer: its ee, <b>ee<sub>p</sub></b> (p for product), starts high and slowly falls, because once the fast enantiomer is used up, the enzyme has only the slow one left to work on.</li>
+    </ul>
+    <figure class="fig draw wide">
+<svg viewBox="0 0 780 262" role="img" aria-label="A kinetic resolution in three pictures: a racemic mixture of two enantiomers; the enzyme acylating the fast one; and, stopped at 50%, the slow enantiomer left as the alcohol and the fast one turned into its acetate">
+  <defs>
+    <symbol id="fastA" viewBox="0 0 30 30"><polygon fill="#f6dccb" stroke="#c2410c" stroke-width="1.6" points="2,2 22,2 22,14 14,14 14,28 2,28"/></symbol>
+    <symbol id="slowA" viewBox="0 0 30 30"><polygon fill="#d9e4f5" stroke="#1c4c9a" stroke-width="1.6" points="8,2 28,2 28,28 16,28 16,14 8,14"/></symbol>
+  </defs>
+  <text class="big" x="130" y="24" text-anchor="middle">At the start: racemic</text>
+  <text class="s" x="130" y="42" text-anchor="middle" font-size="12">equal numbers of the two enantiomers</text>
+  <rect class="boxw" x="30" y="56" width="200" height="130"/>
+  <use href="#fastA" x="48" y="72" width="30" height="30"/><use href="#slowA" x="92" y="72" width="30" height="30"/><use href="#fastA" x="136" y="72" width="30" height="30"/><use href="#slowA" x="180" y="72" width="30" height="30"/>
+  <use href="#slowA" x="48" y="118" width="30" height="30"/><use href="#fastA" x="92" y="118" width="30" height="30"/><use href="#slowA" x="136" y="118" width="30" height="30"/><use href="#fastA" x="180" y="118" width="30" height="30"/>
+  <text class="o" x="130" y="208" text-anchor="middle" font-size="12">orange: the fast enantiomer</text>
+  <text class="bl" x="130" y="225" text-anchor="middle" font-size="12">blue: the slow one</text>
+  <text class="s" x="130" y="246" text-anchor="middle" font-size="12">both are alcohols: ee = 0</text>
+  <line class="arrk" x1="246" y1="120" x2="286" y2="120"/>
+  <text class="big" x="390" y="24" text-anchor="middle">The enzyme at work</text>
+  <text class="s" x="390" y="42" text-anchor="middle" font-size="12">it acetylates the fast one, almost only</text>
+  <rect class="boxw" x="290" y="56" width="200" height="130"/>
+  <use href="#fastA" x="308" y="72" width="30" height="30"/><rect x="330" y="68" width="22" height="13" rx="3" fill="#c2410c"/><text x="341" y="78" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">OAc</text>
+  <use href="#slowA" x="352" y="72" width="30" height="30"/>
+  <use href="#fastA" x="396" y="72" width="30" height="30"/><rect x="418" y="68" width="22" height="13" rx="3" fill="#c2410c"/><text x="429" y="78" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">OAc</text>
+  <use href="#slowA" x="440" y="72" width="30" height="30"/>
+  <use href="#slowA" x="308" y="118" width="30" height="30"/>
+  <use href="#fastA" x="352" y="118" width="30" height="30"/>
+  <use href="#slowA" x="396" y="118" width="30" height="30"/>
+  <use href="#fastA" x="440" y="118" width="30" height="30"/>
+  <text class="s" x="390" y="208" text-anchor="middle" font-size="12">OAc: turned into its acetate</text>
+  <text class="s" x="390" y="225" text-anchor="middle" font-size="12">conversion 25%: the alcohol left</text>
+  <text class="s" x="390" y="242" text-anchor="middle" font-size="12">is now 2 blue to 1 orange</text>
+  <line class="arrk" x1="506" y1="120" x2="546" y2="120"/>
+  <text class="big" x="650" y="24" text-anchor="middle">Stopped at 50%</text>
+  <text class="s" x="650" y="42" text-anchor="middle" font-size="12">then separated on the column</text>
+  <rect class="boxw" x="550" y="56" width="96" height="130"/>
+  <use href="#slowA" x="562" y="72" width="30" height="30"/><use href="#slowA" x="602" y="72" width="30" height="30"/>
+  <use href="#slowA" x="562" y="118" width="30" height="30"/><use href="#slowA" x="602" y="118" width="30" height="30"/>
+  <rect class="boxw" x="654" y="56" width="96" height="130"/>
+  <use href="#fastA" x="664" y="72" width="30" height="30"/><rect x="686" y="68" width="22" height="13" rx="3" fill="#c2410c"/><text x="697" y="78" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">OAc</text>
+  <use href="#fastA" x="708" y="72" width="30" height="30"/><rect x="730" y="68" width="22" height="13" rx="3" fill="#c2410c"/><text x="741" y="78" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">OAc</text>
+  <use href="#fastA" x="664" y="118" width="30" height="30"/><rect x="686" y="114" width="22" height="13" rx="3" fill="#c2410c"/><text x="697" y="124" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">OAc</text>
+  <use href="#fastA" x="708" y="118" width="30" height="30"/><rect x="730" y="114" width="22" height="13" rx="3" fill="#c2410c"/><text x="741" y="124" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">OAc</text>
+  <text class="bl" x="596" y="208" text-anchor="middle" font-size="10">alcohol left:</text>
+  <text class="bl" x="596" y="224" text-anchor="middle" font-size="10">all slow: ee<tspan baseline-shift="sub" font-size="8">s</tspan> high</text>
+  <text class="o" x="704" y="208" text-anchor="middle" font-size="10">acetate made:</text>
+  <text class="o" x="704" y="224" text-anchor="middle" font-size="10">all fast: ee<tspan baseline-shift="sub" font-size="8">p</tspan> high</text>
+  <text class="s" x="650" y="246" text-anchor="middle" font-size="12">two different compounds now</text>
+</svg>
+<figcaption><b>A kinetic resolution, in pictures.</b> The two shapes are the two enantiomers of an alcohol. The enzyme acetylates the orange one much faster than the blue one, so as the reaction runs the alcohol left is more and more blue and the acetate made is nearly all orange. At 50% conversion the fast enantiomer is used up: stop there, and the column gives you the blue alcohol and the orange acetate. The picture shows an ideal enzyme; a real one lets a little of the slow enantiomer through too, which is what E measures. At most half of what you started with can become the acetate; that is the price of a resolution.</figcaption>
+</figure>
+
+    <p>Only half of the starting material can become the fast enantiomer&rsquo;s acetate, so a resolution is stopped near <b>50% conversion</b> (c). Stopping early leaves the alcohol only partly enriched; going far past 50% makes the alcohol purer still but the acetate less pure. The reaction is called a <b>kinetic</b> resolution because it rests on a difference in rate, not on a difference in stability: given enough time, the enzyme would acetylate everything.</p>
+    <h3>E: how well the enzyme tells them apart</h3>
+    <p>The enzyme&rsquo;s <b>enantioselectivity</b>, <b>E</b>, is the ratio of the rates at which it handles the two enantiomers (strictly, the ratio of their k<sub>cat</sub>/K<sub>M</sub>). E = 1 means it cannot tell them apart; E = 100 means the fast one goes a hundred times faster. Because the two enantiomers compete for the same enzyme throughout, E ties the conversion and the two ee values together, whatever the time scale (Chen, Fujimoto, Girdaukas and Sih, 1982). You do not need to weigh anything to get c:</p>
+    <p class="eq">c = ee<sub>s</sub> / (ee<sub>s</sub> + ee<sub>p</sub>)<span class="where">From the two ee values alone, as fractions.</span></p>
+    <p class="eq">E = ln[(1 &minus; c)(1 &minus; ee<sub>s</sub>)] / ln[(1 &minus; c)(1 + ee<sub>s</sub>)]<span class="where">c and ee<sub>s</sub> as fractions (0.40, not 40). Both logarithms are negative; the ratio is positive.</span></p>
+    <p>E above about 100 is excellent: both products come out nearly pure at 50%. Below about 15, neither does, however carefully you stop. Above about 200 the formula becomes very sensitive to the last digit of the ee values (an ee of 99.0% and one of 99.5% give very different E), so a large E is a range, not a number, and &ldquo;&gt;200&rdquo; is how it is usually reported.</p>
   </div>
   <div class="tool"><h3>How E shapes a resolution</h3>
-    <p class="small soft">The ee of the alcohol left (blue) and of the acetate made (orange) as the conversion rises, for the E you choose.</p>
+    <p class="small soft">The ee of the alcohol left (blue) and of the acetate made (orange) as the conversion rises, for the E you choose. Try E = 5, 20 and 200.</p>
     <div class="fields"><label>E <input type="range" id="kr-e" min="0" max="3" step="0.01" value="1.7"></label><label>Conversion <input type="range" id="kr-c" min="1" max="90" step="1" value="45"></label></div>
     <figure class="fig"><canvas id="kr-canvas" width="900" height="320" aria-label="ee against conversion"></canvas></figure>
     <p class="out" id="kr-out"></p>
   </div>
-  <div class="box worked"><h4>Worked example (made up)</h4><p>A resolution stopped and separated gives the alcohol at ee<sub>s</sub> = 62% and the acetate at ee<sub>p</sub> = 93%. c = 0.62 / (0.62 + 0.93) = 0.400, so 40%. E = ln[(0.600)(0.380)] / ln[(0.600)(1.620)] = ln 0.228 / ln 0.972 = &minus;1.478 / &minus;0.0284 = about 52.</p></div>
-  <div class="box key"><h4></h4><ul><li>Fast enantiomer &rarr; acetate; slow one stays as the alcohol. Stop near 50%.</li><li>c from the two ee values; E from c and ee<sub>s</sub>.</li><li>A large E is a range: the formula swings with the last digit.</li></ul></div>
+  <div class="box worked"><h4>Worked example (made up)</h4><p>A resolution stopped and separated gives the alcohol at ee<sub>s</sub> = 62% and the acetate at ee<sub>p</sub> = 93%. c = 0.62 / (0.62 + 0.93) = 0.400, so 40%. E = ln[(0.600)(0.380)] / ln[(0.600)(1.620)] = ln 0.228 / ln 0.972 = (&minus;1.478) / (&minus;0.0284) = about 52.</p></div>
+  <div class="box key"><h4></h4><ul><li>Fast enantiomer &rarr; acetate; slow one stays as the alcohol. Stop near 50%.</li><li>ee<sub>s</sub> rises as the reaction runs; ee<sub>p</sub> falls after 50%.</li><li>c from the two ee values; E from c and ee<sub>s</sub>.</li><li>A large E is a range: the formula swings with the last digit.</li></ul></div>
   <div class="check"><h4>Check yourself</h4><ol>
     <li>ee<sub>s</sub> = 30%, ee<sub>p</sub> = 90%. What is c?<details><summary>Answer</summary><p class="answer">0.30 / 1.20 = 25%.</p></details></li>
     <li>Why does the acetate&rsquo;s ee fall if you run far past 50%?<details><summary>Answer</summary><p class="answer">Once the fast enantiomer is used up, the slow one is acylated too, and its acetate dilutes the fast one&rsquo;s.</p></details></li>
     <li>With E = 5, can you get both products pure by stopping at exactly 50%?<details><summary>Answer</summary><p class="answer">No. Use the plot: at E = 5 and 50%, both ee values are only about 50%.</p></details></li>
+    <li>Why is the best possible yield of the acetate 50%?<details><summary>Answer</summary><p class="answer">Only half the starting material is the fast enantiomer; the other half is meant to stay as the alcohol.</p></details></li>
   </ol></div>
 </section>
 
 <section class="topic" id="t7">
   <h2 class="topic-title"><span class="step">7</span>The Kazlauskas rule</h2>
-  <p class="lead">For secondary alcohols, many lipases (CAL-B among them) prefer the enantiomer that fits their pocket with its larger group in the larger space.</p>
+  <p class="lead">For secondary alcohols, CAL-B and many other lipases prefer the enantiomer that fits their pocket with its larger group in the larger space. The rule lets you predict which enantiomer will react faster from a drawing, and the lab lets you test the prediction.</p>
   <div class="prose">
-    <p>A secondary alcohol&rsquo;s stereocenter carries an OH, an H, and two carbon groups, one larger (<b>L</b>) and one smaller, the medium group (<b>M</b>). Kazlauskas and co-workers (1991) found that lipases acylate faster the enantiomer in which, with the H pointing away from you, OH &rarr; L &rarr; M runs <b>clockwise</b>. CAL-B&rsquo;s crystal structure shows why: its stereospecificity pocket is small, so it takes the medium group, and the large group must point out of the active site.</p>
-    <p>If L also outranks M by the CIP rules, that faster enantiomer is the (R) one. If M outranks L (a medium group carrying a heavier atom, or a double or triple bond, can outrank a longer alkyl chain), the same shape gets the other letter. Always work out the letter from the ranks; do not assume it.</p>
-    <p>The rule is about sizes, so it works best when L and M differ a lot. When they are alike in size (one carbon apart, say), the enzyme can hardly tell the enantiomers apart and E is low.</p>
+    <p>A secondary alcohol&rsquo;s stereocenter carries an OH, an H, and two carbon groups, one larger (<b>L</b>) and one smaller, the <b>medium</b> group (<b>M</b>). In 1991 Kazlauskas and co-workers compared hundreds of lipase reactions and found a pattern: the enantiomer acylated faster is the one in which, with the H pointing away from you, going from OH to L to M runs <b>clockwise</b>.</p>
+    <figure class="fig draw wide">
+<svg viewBox="0 0 920 310" role="img" aria-label="The Kazlauskas rule: the fast enantiomer drawn with its H away from you and a clockwise arrow from OH to the large group to the medium group; and CAL-B's pocket, which takes the medium group in its small slot">
+  <!-- panel A: the fast enantiomer, H away -->
+  <text class="big" x="150" y="24" text-anchor="middle">The fast enantiomer</text>
+  <text class="s" x="150" y="42" text-anchor="middle">seen with its H pointing away from you</text>
+  <circle cx="150" cy="150" r="17" fill="#e4e8e6" stroke="#8d9994" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text class="s" x="150" y="155" text-anchor="middle" font-size="12">H</text>
+  <line class="ln" x1="150" y1="133" x2="150" y2="82"/>
+  <line class="ln" x1="164" y1="160" x2="214" y2="195"/>
+  <line class="ln" x1="136" y1="160" x2="86" y2="195"/>
+  <text class="b" x="150" y="72" text-anchor="middle" font-size="15">OH</text>
+  <ellipse cx="236" cy="210" rx="26" ry="17" class="mol"/>
+  <text class="b" x="236" y="215" text-anchor="middle" font-size="15">L</text>
+  <circle cx="68" cy="207" r="13" class="molb"/>
+  <text class="b" x="68" y="212" text-anchor="middle" font-size="14">M</text>
+  <path class="arr" d="M167,103 A50,50 0 1 1 121,191"/>
+  <text class="o" x="228" y="112" text-anchor="start">clockwise</text>
+  <circle cx="178" cy="68" r="8" fill="#c2410c"/><text x="178" y="72" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">1</text>
+  <circle cx="268" cy="196" r="8" fill="#c2410c"/><text x="268" y="200" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">2</text>
+  <circle cx="44" cy="194" r="8" fill="#c2410c"/><text x="44" y="198" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">3</text>
+  <text class="s" x="150" y="252" text-anchor="middle">L: the larger carbon group &middot; M: the smaller one</text>
+  <text class="s" x="150" y="270" text-anchor="middle">OH &rarr; L &rarr; M clockwise, the H behind:</text>
+  <text class="o" x="150" y="290" text-anchor="middle">this is the one the lipase acylates faster</text>
+  <!-- panel B: the fast one in the pocket -->
+  <text class="big" x="425" y="24" text-anchor="middle">In CAL-B&rsquo;s active site: it fits</text>
+  <text class="s" x="425" y="42" text-anchor="middle">M goes into the small slot, L into the big pocket</text>
+  <path class="pocket" d="M310,300 L310,160 L350,160 L350,250 L440,250 L440,160 L470,160 L470,272 L496,272 L496,160 L540,160 L540,300 Z"/>
+  <text class="bl" x="395" y="178" text-anchor="middle" font-size="12">big pocket</text>
+  <text class="bl" x="520" y="178" text-anchor="start" font-size="12">small slot</text>
+  <text class="s" x="318" y="150" text-anchor="start" font-size="12">solvent</text>
+  <text class="s" x="455" y="70" text-anchor="middle" font-size="12">Ser105 holds the acetyl group here</text>
+  <line class="thin" x1="455" y1="76" x2="455" y2="90"/>
+  <line class="ln" x1="455" y1="140" x2="455" y2="104"/>
+  <text class="b" x="455" y="100" text-anchor="middle">OH</text>
+  <line class="ln" x1="455" y1="140" x2="410" y2="198"/>
+  <line class="ln" x1="455" y1="140" x2="480" y2="200"/>
+  <line class="hash" x1="455" y1="140" x2="478" y2="122"/>
+  <text class="s" x="486" y="120" text-anchor="start" font-size="12">H</text>
+  <ellipse cx="395" cy="215" rx="34" ry="23" class="mol"/>
+  <text class="b" x="395" y="220" text-anchor="middle" font-size="15">L</text>
+  <circle cx="483" cy="222" r="11" class="molb"/>
+  <text class="b" x="483" y="226" text-anchor="middle" font-size="13">M</text>
+  <circle cx="455" cy="140" r="3.5" fill="#17211e"/>
+  <text class="g" x="425" y="296" text-anchor="middle">✓ the OH reaches the serine: reacts</text>
+  <!-- panel C: the mirror image in the pocket -->
+  <text class="big" x="735" y="24" text-anchor="middle">Its mirror image: it does not</text>
+  <text class="s" x="735" y="42" text-anchor="middle">to put the OH at the serine, L would have to enter the slot</text>
+  <path class="pocket" d="M620,300 L620,160 L660,160 L660,250 L750,250 L750,160 L780,160 L780,272 L806,272 L806,160 L850,160 L850,300 Z"/>
+  <line class="thin" x1="765" y1="76" x2="765" y2="90"/>
+  <text class="s" x="765" y="70" text-anchor="middle" font-size="12">Ser105 holds the acetyl group here</text>
+  <line class="ln" x1="765" y1="140" x2="765" y2="104"/>
+  <text class="b" x="765" y="100" text-anchor="middle">OH</text>
+  <line class="ln" x1="765" y1="140" x2="712" y2="200"/>
+  <line class="ln" x1="765" y1="140" x2="790" y2="196"/>
+  <line class="hash" x1="765" y1="140" x2="742" y2="122"/>
+  <text class="s" x="730" y="120" text-anchor="end" font-size="12">H</text>
+  <circle cx="705" cy="212" r="11" class="molb"/>
+  <text class="b" x="705" y="216" text-anchor="middle" font-size="13">M</text>
+  <ellipse cx="796" cy="212" rx="34" ry="23" fill="#f6dccb" stroke="#ab2a1c" stroke-width="2.2"/>
+  <text class="b" x="796" y="217" text-anchor="middle" font-size="15">L</text>
+  <circle cx="765" cy="140" r="3.5" fill="#17211e"/>
+  <text class="r" x="845" y="205" text-anchor="start" font-size="20">✕</text>
+  <text class="r" x="735" y="296" text-anchor="middle">L is too big for the slot: slow</text>
+</svg>
+<figcaption><b>The Kazlauskas rule, and why it works.</b> Left: the enantiomer that reacts faster, drawn with the H at the back; OH &rarr; L &rarr; M runs <b>clockwise</b>. The numbers are the CIP ranks when L outranks M (OH 1, L 2, M 3): then clockwise means this enantiomer is (R). Middle: in CAL-B&rsquo;s active site the medium group sits in a small slot (the stereospecificity pocket) and the large group in the roomy pocket beside it, so the OH reaches the serine that carries the acetyl group. Right: the mirror image can reach the serine only by putting its large group where the slot is, and it does not fit, so it reacts slowly. The pocket is drawn as a cartoon; the real one is a cleft in the protein.</figcaption>
+</figure>
+
+    <p>CAL-B&rsquo;s crystal structure shows why. Beside the serine that carries the acetyl group, the active site has a small, narrow slot (the <b>stereospecificity pocket</b>) and a roomy space open to the solvent. For the alcohol&rsquo;s OH to reach the acetyl group, one of its two carbon groups must sit in the slot; only the medium one fits. The enantiomer that can put M in the slot while L points out into the open space reacts fast. Its mirror image, to bring its OH to the same place, would have to push L into the slot, and L is too big. It still reacts, through less comfortable arrangements, but slowly. The ratio of the two rates is E.</p>
+    <h3>Which letter is that?</h3>
+    <p>If L also outranks M by the CIP rules (topic 1), the faster enantiomer is the <b>(R)</b> one: OH is 1, L is 2, M is 3, and 1 &rarr; 2 &rarr; 3 clockwise is R. That is true for most of the alcohols in the lab. But a medium group that carries a heavier atom, or a double or triple bond, can outrank a longer alkyl chain even though it is smaller, and then the same shape gets the letter <b>(S)</b>. Always work out the letter from the ranks; never assume it. Your report asks for the letter, and your instructor will look at how you got it.</p>
+    <h3>When the rule works less well</h3>
+    <p>The rule is about sizes. When L and M differ a lot (a phenyl and a methyl, say), the enzyme chooses strongly and E is large. When they are alike (an ethyl and a methyl), the enzyme can hardly tell the enantiomers apart and E is small. A group right next to the stereocenter that is bulky in the wrong direction can slow the whole reaction down. You will see some of this in the class&rsquo;s results, since each student has a different alcohol.</p>
   </div>
-  <div class="box worked"><h4>Worked example: 1-cyclohexylethanol (not one of the lab&rsquo;s alcohols)</h4><p>L = cyclohexyl, M = methyl. Draw the stereocenter with H at the back: the faster enantiomer has OH &rarr; cyclohexyl &rarr; methyl clockwise. By CIP, OH &gt; cyclohexyl (a carbon bearing C, C, H) &gt; methyl (H, H, H), so clockwise is R: the rule predicts that CAL-B acylates (R)-1-cyclohexylethanol faster, leaving (S)-1-cyclohexylethanol behind.</p></div>
-  <div class="box key"><h4></h4><ul><li>L and M; H away; the fast one has OH &rarr; L &rarr; M clockwise.</li><li>That is (R) when L outranks M by CIP; check the ranks every time.</li><li>Groups alike in size: low E.</li></ul></div>
+  <div class="box worked"><h4>Worked example: 1-cyclohexylethanol (not one of the lab&rsquo;s alcohols)</h4><p>L = cyclohexyl, M = methyl. Draw the stereocenter with H at the back and OH at the top, as in the figure: the faster enantiomer has OH &rarr; cyclohexyl &rarr; methyl clockwise, so the cyclohexyl goes at the lower right and the methyl at the lower left. By CIP, OH (O) outranks both carbons; the cyclohexyl carbon carries (C, C, H) and the methyl carbon (H, H, H), so cyclohexyl is 2 and methyl 3. Clockwise is R: the rule predicts that CAL-B acylates (R)-1-cyclohexylethanol faster, leaving (S)-1-cyclohexylethanol behind.</p></div>
+  <div class="box key"><h4></h4><ul><li>Find L and M; put the H away from you; the fast enantiomer has OH &rarr; L &rarr; M clockwise.</li><li>Why: M fits the enzyme&rsquo;s small slot, L has to point out into the open.</li><li>That shape is (R) when L outranks M by CIP; check the ranks every time.</li><li>Groups alike in size: a low E.</li></ul></div>
   <div class="check"><h4>Check yourself</h4><ol>
-    <li>Which group goes in CAL-B&rsquo;s small pocket?<details><summary>Answer</summary><p class="answer">The medium group, M.</p></details></li>
+    <li>Which group goes in CAL-B&rsquo;s small slot?<details><summary>Answer</summary><p class="answer">The medium group, M.</p></details></li>
     <li>Why is the rule&rsquo;s shape not always (R)?<details><summary>Answer</summary><p class="answer">R and S follow the CIP ranks, not size. If the medium group outranks the large one, the same shape is named (S).</p></details></li>
-    <li>How will you know, in the lab, which enantiomer your enzyme preferred?<details><summary>Answer</summary><p class="answer">From the chiral GC: name the alcohol&rsquo;s peaks with the pure (R) standard, then see which one shrinks as the reaction runs (and which acetate peak grows). Then compare with the rule.</p></details></li>
+    <li>How will you know, in the lab, which enantiomer your enzyme preferred?<details><summary>Answer</summary><p class="answer">From the chiral GC: name the alcohol&rsquo;s two peaks with the pure (R) standard, then see which one shrinks as the reaction runs (and which acetate peak grows). Then compare with the rule.</p></details></li>
+    <li>Two alcohols: in one, L is a phenyl and M a methyl; in the other, L is an ethyl and M a methyl. Which gives the larger E, and why?<details><summary>Answer</summary><p class="answer">The first. Phenyl and methyl differ greatly in size, so only one enantiomer fits the slot comfortably; ethyl and methyl are close in size, so both fit nearly as well and the enzyme hardly chooses.</p></details></li>
   </ol></div>
 </section>
-
-<div class="part-banner"><p class="part-label">Part C</p><h2>At the bench</h2><p>The techniques of the two sessions, and what each one is for. The lab page lets you make each mistake below and shows what it costs.</p></div>
+<div class="part-banner"><p class="part-label">Part C</p><h2>At the bench</h2><p>The techniques of the two sessions, what each one is for, and what goes wrong. The lab page lets you make each mistake below and shows what it costs.</p></div>
 
 <section class="topic" id="t8">
   <h2 class="topic-title"><span class="step">8</span>Filtering through Celite</h2>
+  <p class="lead">A yeast broth is full of cells and debris fine enough to clog filter paper in minutes. A bed of Celite catches them in its depth, and the liquid keeps flowing.</p>
   <div class="prose">
-    <p>A yeast broth is full of cells and debris fine enough to clog filter paper in minutes. <b>Celite</b> (diatomaceous earth: the silica skeletons of tiny algae) packs into a porous bed that holds the fine solid in its depth rather than on the paper&rsquo;s surface. Make a slurry of Celite in water, pour it onto the paper in the Büchner funnel under suction to form a bed 2 to 3 mm thick, empty the filter flask, then filter the broth (with more Celite stirred into it) through the bed.</p>
-    <p>The filter flask is clamped (it is top-heavy under a funnel), and a trap sits between it and the pump so that liquid cannot be pulled into the pump. Celite dust is crystalline silica and harms the lungs: handle it wet and never sweep it dry.</p>
+    <p><b>Celite</b> is diatomaceous earth: the silica skeletons of tiny single-celled algae, mined, dried and milled into a white powder. Each grain is a hollow, holed shell, and a layer of them packs into a bed full of twisting channels. Liquid passes; particles are caught along the way, throughout the bed&rsquo;s depth, rather than piling up on one surface and sealing it. That is <b>depth filtration</b>, and it is why a Celite bed can take a broth that would block plain paper at once.</p>
+    <figure class="fig draw" style="max-width:700px">
+<svg viewBox="0 0 660 320" role="img" aria-label="A Büchner funnel in cross-section: the broth above, a Celite bed on the filter paper catching the yeast cells, the clear filtrate collecting in the clamped filter flask below, the side arm to the pump">
+  <!-- the funnel: a cup with a flat perforated plate -->
+  <rect class="water" x="152" y="62" width="256" height="60"/>
+  <rect class="celite" x="152" y="122" width="256" height="30"/>
+  <g class="cells"><circle cx="175" cy="80" r="3.2"/><circle cx="214" cy="96" r="3"/><circle cx="252" cy="72" r="3.2"/><circle cx="296" cy="90" r="3"/><circle cx="330" cy="70" r="3.2"/><circle cx="372" cy="100" r="3"/><circle cx="395" cy="78" r="3"/><circle cx="190" cy="110" r="3"/><circle cx="270" cy="112" r="3.2"/><circle cx="350" cy="114" r="3"/>
+    <circle cx="200" cy="128" r="3"/><circle cx="240" cy="134" r="3"/><circle cx="286" cy="127" r="3"/><circle cx="318" cy="136" r="3"/><circle cx="360" cy="129" r="3"/><circle cx="392" cy="132" r="3"/><circle cx="226" cy="142" r="2.6"/><circle cx="334" cy="144" r="2.6"/></g>
+  <line x1="152" y1="152" x2="408" y2="152" stroke="#17211e" stroke-width="2"/>
+  <line x1="152" y1="158" x2="408" y2="158" stroke="#8d9994" stroke-width="3" stroke-dasharray="6 5"/>
+  <path class="glass" d="M140,50 L140,160 L260,160 L260,200 M300,200 L300,160 L420,160 L420,50" stroke="#55606b"/>
+  <path class="glass" d="M262,200 L298,200" stroke="#55606b"/>
+  <!-- drops of filtrate -->
+  <circle cx="280" cy="214" r="3" fill="#7fa6c9"/><circle cx="280" cy="232" r="3" fill="#7fa6c9"/>
+  <!-- the filter flask -->
+  <rect class="water" x="186" y="268" width="188" height="24"/>
+  <path class="glass" d="M256,200 L256,224 L172,292 L388,292 L304,224 L304,200" stroke="#55606b"/>
+  <path class="glass" d="M304,230 L340,230 L340,222" stroke="#55606b"/>
+  <line class="arrk" x1="344" y1="226" x2="400" y2="226"/>
+  <!-- the clamp -->
+  <rect class="steel" x="236" y="206" width="88" height="8" rx="2"/>
+  <line x1="324" y1="210" x2="470" y2="210" stroke="#8d9994" stroke-width="4"/>
+  <!-- labels -->
+  <line class="thin" x1="408" y1="88" x2="440" y2="88"/>
+  <text class="b" x="446" y="84" font-size="12">the broth</text>
+  <text class="s" x="446" y="99" font-size="11">yeast cells, fine debris</text>
+  <line class="thin" x1="408" y1="137" x2="440" y2="137"/>
+  <text class="b" x="446" y="134" font-size="12">the Celite bed, 2–3 mm</text>
+  <text class="s" x="446" y="149" font-size="11">cells caught in its depth</text>
+  <line class="thin" x1="408" y1="152" x2="440" y2="168"/>
+  <text class="s" x="446" y="172" font-size="11">filter paper</text>
+  <line class="thin" x1="408" y1="158" x2="440" y2="186"/>
+  <text class="s" x="446" y="190" font-size="11">plate with holes</text>
+  <text class="s" x="404" y="222" font-size="11" text-anchor="start" dx="6">to the trap</text>
+  <text class="s" x="404" y="236" font-size="11" text-anchor="start" dx="6">and the pump</text>
+  <text class="s" x="475" y="208" font-size="11">clamp</text>
+  <text class="s" x="130" y="88" font-size="11" text-anchor="end">Büchner</text>
+  <text class="s" x="130" y="102" font-size="11" text-anchor="end">funnel</text>
+  <line class="thin" x1="186" y1="280" x2="150" y2="280"/>
+  <text class="b" x="144" y="276" font-size="12" text-anchor="end">the filtrate</text>
+  <text class="s" x="144" y="291" font-size="11" text-anchor="end">clear; your product is in it</text>
+  <text class="s" x="280" y="312" text-anchor="middle" font-size="11">the filter flask, thick-walled, clamped</text>
+</svg>
+<figcaption><b>A Celite bed.</b> Yeast cells and their debris are small enough to block the holes of filter paper in minutes. A bed of Celite on the paper catches them throughout its depth instead of on one surface, so the liquid keeps flowing. The pump lowers the pressure in the flask and the air above pushes the liquid through; the trap between flask and pump catches any liquid that gets sucked over.</figcaption>
+</figure>
+
+    <p><b>Suction</b> makes it fast. The <b>Büchner funnel</b> sits in a rubber adapter on a thick-walled <b>filter flask</b>; a pump lowers the pressure inside the flask, and the air pressing on the liquid above pushes it through the bed. The flask is clamped, because a funnel full of liquid makes it top-heavy, and a <b>trap</b> stands between the flask and the pump so that liquid sucked over by accident ends up in the trap, not in the pump.</p>
+    <h3>How to do it</h3>
+    <ol>
+      <li>Fit the paper to the funnel, wet it so it lies flat, and turn the suction on.</li>
+      <li>Stir Celite into water to make a thin slurry, pour it onto the paper, and let the suction pack it into a bed 2 to 3 mm thick. Empty the filter flask of that water, or it will dilute your filtrate.</li>
+      <li>Stir a little more Celite into the broth itself, then pour the broth onto the bed without disturbing it. The cells stay in the bed; the clear filtrate, with your product dissolved in it, collects in the flask.</li>
+    </ol>
+    <p class="caution">Celite dust is fine crystalline silica, which scars the lungs if breathed over time. Handle it wet, never sweep it up dry, and keep the lid on the jar.</p>
   </div>
-  <div class="check"><h4>Check yourself</h4><ol><li>Why empty the filter flask after building the bed?<details><summary>Answer</summary><p class="answer">So the water from the slurry does not dilute the filtrate that holds your product.</p></details></li></ol></div>
+  <div class="box key"><h4></h4><ul><li>Celite catches fine solids throughout its depth, so the bed does not clog.</li><li>Build the bed from a slurry under suction, then empty the flask before the broth goes on.</li><li>Clamp the flask; a trap before the pump; keep the Celite wet.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Why empty the filter flask after building the bed?<details><summary>Answer</summary><p class="answer">So the water from the slurry does not dilute the filtrate that holds your product.</p></details></li>
+    <li>What does the trap protect, and from what?<details><summary>Answer</summary><p class="answer">The pump, from liquid sucked over out of the filter flask.</p></details></li>
+    <li>Why does plain filter paper clog with a yeast broth?<details><summary>Answer</summary><p class="answer">The cells are small enough to lodge in the paper&rsquo;s pores and build up on its one surface, sealing it.</p></details></li>
+  </ol></div>
 </section>
 
 <section class="topic" id="t9">
   <h2 class="topic-title"><span class="step">9</span>Salting out and extracting</h2>
+  <p class="lead">Your product is dissolved in a large volume of water. An extraction moves it into a small volume of an organic solvent that does not mix with water, and salt makes the move more complete.</p>
   <div class="prose">
-    <p>A small alcohol with an ester group likes water a good deal, so extracting it straight from the filtrate leaves much behind. Dissolving salt to saturation in the water first (<b>salting out</b>) ties up the water molecules around the ions and pushes the organic compound into the organic layer.</p>
-    <p>In the separatory funnel, add the organic solvent, stopper, <b>invert gently</b> and <b>vent</b> often (pointing the stem away from everyone), then let the layers part and drain the lower one. Ethyl acetate is less dense than water and floats; a chlorinated solvent would sink. Keep every layer until you are sure where your product is. Three extractions with a third of the solvent each recover more than one with all of it.</p>
-    <p>A broth full of cell debris readily forms an <b>emulsion</b> when shaken hard: no sharp line between the layers. Gentle inversions prevent it; brine (saturated NaCl), patience, or a centrifuge clear it.</p>
+    <h3>Why salt first</h3>
+    <p>A small alcohol with an ester group likes water a good deal, and a good share of it would stay in the water however much solvent you shook it with. Dissolving salt into the water to saturation changes that. The ions surround themselves with water molecules and leave fewer free to dissolve anything else, so the organic compound is pushed out into the organic layer: <b>salting out</b>. The salt also makes the water layer denser and sharpens the line between the layers.</p>
+    <h3>In the separatory funnel</h3>
+    <p>Pour the filtrate and the ethyl acetate into the funnel, stopper it, and <b>invert it gently</b> several times, holding the stopper in. Vent after every few inversions, with the stopcock up and the stem pointing away from everyone: shaking warms the solvent a little and its vapour builds up pressure. Set the funnel in its ring, take the stopper out, and let the layers part. Then open the stopcock and let the lower layer run out into a flask, closing it just as the interface reaches the stopcock. Keep every layer until you are certain which one holds your product.</p>
+    <figure class="fig draw wide">
+<svg viewBox="0 0 800 310" role="img" aria-label="A separatory funnel with ethyl acetate floating on salt water, the stopcock below; and a second funnel with a cloudy emulsion between the layers">
+  <defs>
+    <clipPath id="sepclip"><path d="M140,45 L180,45 C240,110 235,180 172,228 L172,268 L148,268 L148,228 C85,180 80,110 140,45 Z"/></clipPath>
+    <clipPath id="sepclip2"><path transform="translate(600,40) scale(0.7)" d="M140,45 L180,45 C240,110 235,180 172,228 L172,268 L148,268 L148,228 C85,180 80,110 140,45 Z"/></clipPath>
+  </defs>
+  <!-- the funnel with its two layers -->
+  <rect class="organic" x="80" y="62" width="160" height="88" clip-path="url(#sepclip)"/>
+  <rect class="water" x="80" y="150" width="160" height="80" clip-path="url(#sepclip)"/>
+  <path class="glass" d="M140,45 L180,45 C240,110 235,180 172,228 L172,268 L148,268 L148,228 C85,180 80,110 140,45 Z"/>
+  <line class="thin" x1="106" y1="150" x2="214" y2="150" stroke="#8d9994"/>
+  <rect class="steel" x="146" y="22" width="28" height="25" rx="3"/>
+  <rect class="steel" x="130" y="240" width="60" height="11" rx="3"/>
+  <rect class="steel" x="190" y="236" width="14" height="19" rx="2"/>
+  <path class="glass" d="M152,268 L160,290 L168,268"/>
+  <!-- labels -->
+  <line class="thin" x1="212" y1="100" x2="262" y2="100"/>
+  <text class="b" x="268" y="96">ethyl acetate, 0.90 g/mL</text>
+  <text class="s" x="268" y="113">lighter than water: it floats. Your product is in here.</text>
+  <line class="thin" x1="214" y1="150" x2="262" y2="150"/>
+  <text class="s" x="268" y="154">the interface: a sharp line between the layers</text>
+  <line class="thin" x1="206" y1="195" x2="262" y2="195"/>
+  <text class="b" x="268" y="191">salt water, about 1.2 g/mL</text>
+  <text class="s" x="268" y="208">denser: it sinks, with the debris and the salt</text>
+  <line class="thin" x1="206" y1="245" x2="262" y2="245"/>
+  <text class="s" x="268" y="242">the stopcock: open it to let the <tspan font-weight="650">lower</tspan> layer run out</text>
+  <text class="s" x="268" y="259">into a flask, then close it just as the interface arrives</text>
+  <line class="thin" x1="176" y1="34" x2="262" y2="34"/>
+  <text class="s" x="268" y="38">the stopper: out before you drain, or nothing flows</text>
+  <text class="s" x="160" y="304" text-anchor="middle">the tip, over the flask</text>
+  <!-- the emulsion, smaller -->
+  <g>
+    <rect class="organic" x="640" y="60" width="140" height="70" clip-path="url(#sepclip2)"/>
+    <rect class="cloud" x="640" y="125" width="140" height="42" clip-path="url(#sepclip2)"/>
+    <rect class="water" x="640" y="167" width="140" height="60" clip-path="url(#sepclip2)"/>
+    <path class="glass" transform="translate(600,40) scale(0.7)" d="M140,45 L180,45 C240,110 235,180 172,228 L172,268 L148,268 L148,228 C85,180 80,110 140,45 Z"/>
+    <rect class="steel" x="702" y="56" width="20" height="17" rx="2"/>
+    <rect class="steel" x="690" y="208" width="44" height="9" rx="2"/>
+    <text class="r" x="712" y="248" text-anchor="middle">an emulsion</text>
+    <text class="s" x="712" y="265" text-anchor="middle">a cloudy band, no sharp line:</text>
+    <text class="s" x="712" y="281" text-anchor="middle">brine, patience or the centrifuge</text>
+  </g>
+</svg>
+<figcaption><b>Which layer is which.</b> The denser liquid sinks. Ethyl acetate (0.90 g/mL) is lighter than water, and lighter still than water saturated with salt (about 1.2 g/mL), so in this lab the organic layer is the <b>top</b> one and your product is in it. With a chlorinated solvent such as dichloromethane (1.33 g/mL) the organic layer would be the bottom one. If you are ever unsure, add a few drops of water and watch which layer they join. Right: an emulsion, which the yeast&rsquo;s debris makes when the funnel is shaken hard.</figcaption>
+</figure>
+
+    <h3>Which layer is which, and why the organic layer is on top here</h3>
+    <p>The denser liquid sinks. Water is 1.00 g/mL; saturated salt water about 1.2. Ethyl acetate is 0.90 g/mL, so it floats, and in this lab <b>the organic layer is the top one</b>. That is the case for most common extraction solvents (diethyl ether 0.71, hexane 0.66, ethyl acetate 0.90), but not for the chlorinated ones: dichloromethane (1.33) and chloroform (1.48) sink, and with them the organic layer is the bottom one. Never assume: the test is to add a few drops of water and see which layer they join.</p>
+    <h3>Why three times</h3>
+    <p>Each shake lets the product share itself between the two layers in a fixed ratio. Suppose each extraction takes out 80% of what is left in the water. One extraction with 150 mL takes out a little more than 80%; three with 50 mL each take out 80%, then 80% of the remaining 20%, then 80% of the last 4%: 99.2% in all. Several small extractions always beat one large one.</p>
+    <h3>Emulsions</h3>
+    <p>A broth full of cell debris, protein and fat readily forms an <b>emulsion</b> when shaken hard: tiny droplets of one liquid suspended in the other, a cloudy band where the sharp line should be. Gentle inversions prevent it. If one forms, add brine (the extra salt breaks the droplets), wait, or spin it in a centrifuge; in the lab each of those works.</p>
+    <h3>Fine print</h3>
+    <p>Ethyl acetate and water are not perfectly immiscible: about 8 g of ethyl acetate dissolves in 100 mL of water, and about 3 g of water in 100 mL of ethyl acetate. The first is why some solvent is lost to the water layer; the second is why the organic layer has to be washed and dried before the solvent is evaporated (topic 10).</p>
   </div>
-  <div class="check"><h4>Check yourself</h4><ol><li>Which layer is ethyl acetate, and why does it matter which you drain?<details><summary>Answer</summary><p class="answer">The upper one (it is less dense than water). Draining the lower layer through the stopcock removes the water and keeps your extract in the funnel.</p></details></li></ol></div>
+  <div class="box key"><h4></h4><ul><li>Salt to saturation first: it pushes the product out of the water and sharpens the layers.</li><li>Invert gently and vent; drain the lower layer out through the stopcock; keep every layer.</li><li>Ethyl acetate (0.90 g/mL) floats on salt water (1.2): here the organic layer is on top. Chlorinated solvents sink.</li><li>Three small extractions beat one large one. Hard shaking makes an emulsion.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Which layer is the ethyl acetate, and what do you do with the other?<details><summary>Answer</summary><p class="answer">The upper one. The lower (water) layer is drained out through the stopcock into a flask and kept until you are sure your product is in the organic layer; then it goes back into the funnel for the next extraction.</p></details></li>
+    <li>You switch to dichloromethane. Which layer is now the organic one?<details><summary>Answer</summary><p class="answer">The bottom one: dichloromethane (1.33 g/mL) is denser than even salt water.</p></details></li>
+    <li>Why is the funnel vented, and where should the stem point?<details><summary>Answer</summary><p class="answer">Shaking builds up solvent vapour pressure; vent with the stopcock up and the stem pointing away from everyone.</p></details></li>
+    <li>Why does salt help a water-loving product into the organic layer?<details><summary>Answer</summary><p class="answer">The ions tie up water molecules, leaving fewer to dissolve the product, which is pushed out into the organic layer.</p></details></li>
+  </ol></div>
 </section>
 
 <section class="topic" id="t10">
   <h2 class="topic-title"><span class="step">10</span>Drying and evaporating</h2>
+  <p class="lead">An organic extract carries dissolved water out of the funnel with it. It has to be taken out before the solvent is evaporated, or the product comes out wet.</p>
   <div class="prose">
-    <p>An organic extract holds dissolved water. A <b>brine wash</b> first takes out most of it; then anhydrous <b>magnesium sulfate</b> is added in small portions with swirling until fresh portions stay free-flowing instead of clumping. Filter off the solid by gravity, rinse it, and collect the filtrate in a weighed round-bottomed flask.</p>
-    <p>The <b>rotary evaporator</b> takes off the solvent under reduced pressure while the flask turns in a warm bath: the vacuum lowers the boiling point, the turning spreads a thin film, and the condenser catches the solvent. Droplets left behind mean the solution was not dry. A small, volatile product (one that boils not far above 100 &deg;C) is lost along with the solvent if the bath is warm and the vacuum strong: use a cold bath and gentle vacuum for those.</p>
+    <h3>Drying</h3>
+    <p>A <b>brine wash</b> comes first: shaking the organic layer with saturated salt water pulls most of its dissolved water back into the water layer, for the same reason salting out works. Then a <b>drying agent</b> takes the rest. Anhydrous <b>magnesium sulfate</b> binds water into its crystals as a hydrate. It is added in small portions with swirling: the first portions clump as they take up water; when a fresh portion stays loose and free-flowing, like dry sand, the solution is dry. Too much drying agent is wasteful and holds back product on its surface, which is why the brine wash comes first. The solid is filtered off by gravity and rinsed with a little fresh solvent, and the filtrate is collected in a round-bottomed flask that was weighed empty.</p>
+    <h3>Evaporating</h3>
+    <p>A liquid boils when its vapour pressure reaches the pressure above it. Lower that pressure and it boils at a lower temperature: water boils at 100 &deg;C in the open and at about 45 &deg;C under the vacuum of a water aspirator. The <b>rotary evaporator</b> uses that to take a solvent off at a temperature that cannot harm the product.</p>
+    <figure class="fig draw">
+<svg viewBox="0 0 700 270" role="img" aria-label="A rotary evaporator: the flask turns in a warm bath under vacuum, the vapour rises to a cold condenser and the solvent drips into a receiving flask">
+  <!-- the bath -->
+  <rect class="water" x="90" y="180" width="170" height="60"/>
+  <path class="glass" d="M86,170 L86,246 L264,246 L264,170" stroke="#55606b"/>
+  <text class="s" x="175" y="262" text-anchor="middle" font-size="12">the water bath, 40 °C</text>
+  <!-- the flask, tilted, with a film of liquid -->
+  <circle cx="178" cy="188" r="40" fill="#fff" stroke="#55606b" stroke-width="2"/>
+  <path d="M142,200 A40,40 0 0 0 214,200 Z" class="organic"/>
+  <path d="M150,178 A40,40 0 0 1 206,178" fill="none" stroke="#e5c75a" stroke-width="3"/>
+  <line class="glass" x1="206" y1="158" x2="330" y2="88" stroke="#55606b"/>
+  <line class="glass" x1="218" y1="174" x2="342" y2="104" stroke="#55606b"/>
+  <path class="arr" d="M160,146 A44,44 0 0 1 206,142"/>
+  <text class="s" x="132" y="150" text-anchor="end" font-size="11">the flask turns:</text>
+  <text class="s" x="132" y="164" text-anchor="end" font-size="11">a thin film, no bumping</text>
+  <!-- the motor -->
+  <rect class="steel" x="300" y="78" width="64" height="44" rx="6"/>
+  <text class="s" x="332" y="104" text-anchor="middle" font-size="11">motor</text>
+  <!-- the condenser -->
+  <rect class="glass" x="400" y="20" width="44" height="150" rx="8" stroke="#55606b"/>
+  <path d="M408,40 L436,48 L408,56 L436,64 L408,72 L436,80 L408,88 L436,96 L408,104 L436,112 L408,120 L436,128 L408,136 L436,144" fill="none" stroke="#7fa6c9" stroke-width="3"/>
+  <line class="glass" x1="364" y1="100" x2="400" y2="100" stroke="#55606b"/>
+  <line class="arrb" x1="446" y1="150" x2="490" y2="150"/>
+  <line class="arrb" x1="490" y1="40" x2="446" y2="40"/>
+  <text class="bl" x="496" y="44" font-size="11">cold water in</text>
+  <text class="bl" x="496" y="154" font-size="11">out</text>
+  <line class="arrk" x1="422" y1="20" x2="422" y2="6"/>
+  <text class="b" x="470" y="84" font-size="12">at the top: the vacuum</text>
+  <text class="s" x="470" y="99" font-size="11">low pressure, so the solvent</text>
+  <text class="s" x="470" y="113" font-size="11">boils at about room temperature</text>
+  <!-- the vapour and the drips -->
+  <text class="s" x="262" y="166" font-size="11">vapour rises up the duct</text>
+  <circle cx="422" cy="182" r="3" fill="#e5c75a"/><circle cx="422" cy="196" r="3" fill="#e5c75a"/>
+  <circle cx="422" cy="226" r="26" fill="#fff" stroke="#55606b" stroke-width="2"/>
+  <path d="M400,236 A26,26 0 0 0 444,236 Z" class="organic"/>
+  <text class="s" x="470" y="226" font-size="11">the solvent collects here;</text>
+  <text class="s" x="470" y="240" font-size="11">your product stays behind</text>
+  <text class="s" x="470" y="254" font-size="11">in the turning flask</text>
+</svg>
+<figcaption><b>The rotary evaporator.</b> A liquid boils when its vapour pressure reaches the pressure above it, so lowering that pressure lets a solvent boil at a temperature too low to harm the product. The turning flask spreads the liquid in a thin film (a lot of surface, so it evaporates fast, and no sudden bumping); the warm bath supplies the heat that evaporation takes away; the cold coil turns the vapour back into liquid in the receiving flask. A small product that boils only a little above the solvent goes over with it unless the bath is cold and the vacuum gentle.</figcaption>
+</figure>
+
+    <p>Water droplets left in the flask after the solvent has gone mean the solution was not dry: dissolve the residue again, dry it properly and evaporate again. A product that is itself fairly volatile (one that boils only a little above the solvent) is lost into the receiving flask unless the bath is kept cold and the vacuum gentle; the lab warns you when your compound is one of those.</p>
   </div>
-  <div class="check"><h4>Check yourself</h4><ol><li>How do you know you have added enough MgSO<sub>4</sub>?<details><summary>Answer</summary><p class="answer">New portions stay loose and free-flowing, like sand, instead of clumping.</p></details></li></ol></div>
+  <div class="box key"><h4></h4><ul><li>Brine wash, then MgSO<sub>4</sub> in portions until a portion stays free-flowing.</li><li>Gravity filter into a weighed flask; rinse the solid.</li><li>Under vacuum the solvent boils at a low temperature; the turning flask gives a thin film and no bumping.</li><li>Droplets left: not dry. A volatile product: cold bath, gentle vacuum.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>How do you know you have added enough MgSO<sub>4</sub>?<details><summary>Answer</summary><p class="answer">New portions stay loose and free-flowing, like sand, instead of clumping.</p></details></li>
+    <li>Why does the rotary evaporator need a vacuum at all? The bath could just be hotter.<details><summary>Answer</summary><p class="answer">A hotter bath would decompose or evaporate many products, and the ethyl acetate would boil violently. The vacuum lets the solvent boil at about room temperature instead.</p></details></li>
+    <li>Why is the flask turned?<details><summary>Answer</summary><p class="answer">To spread the liquid in a thin film, which evaporates fast, and to stop it bumping (boiling in sudden bursts that throw liquid up the duct).</p></details></li>
+  </ol></div>
 </section>
 
 <section class="topic" id="t11">
   <h2 class="topic-title"><span class="step">11</span>TLC and the flash column</h2>
+  <p class="lead">Both put a mixture onto silica and wash it along with a solvent. On a plate it shows you how far each compound moves; in a column it lets you collect them one at a time.</p>
   <div class="prose">
-    <p>On silica, polar compounds stick and travel less far. An alcohol, which can hydrogen-bond to the silica through its OH, runs well behind its own acetate. TLC tells you how far each goes in a solvent (its <b>R<sub>f</sub></b>, distance run over the solvent front&rsquo;s), and so which solvent will separate them on a column: aim for the slower compound at R<sub>f</sub> about 0.2 to 0.35, with a clear gap to the faster one. Too polar a solvent runs both near the front, close together; too weak a solvent leaves the slower one at the start.</p>
-    <p>Aryl compounds show as dark spots under UV light (254 nm) on plates with an indicator; most simple alkyl alcohols and esters do not, and need a stain (vanillin or permanganate, then heat).</p>
-    <p>A <b>flash column</b> is the same separation, scaled up: silica packed in a glass column, the mixture loaded at the top, solvent pushed through with a little air pressure. The faster compound (here the acetate) comes off first. Fractions are collected in test tubes, checked by TLC, and the pure ones combined.</p>
+    <h3>Why some compounds stick</h3>
+    <p>Silica gel is a very fine, porous sand whose surface is covered in Si&ndash;OH groups: it is polar, and it hydrogen-bonds. A compound with an OH of its own clings to it; an ester with no OH clings far less. The solvent (the <b>eluent</b>) competes: the more polar it is, the better it pulls compounds off the silica and the farther everything moves. So on silica an alcohol runs well behind its own acetate, and how far behind depends on the eluent.</p>
+    <h3>TLC</h3>
+    <p>A <b>thin-layer chromatography</b> plate is a strip coated with silica. Spot the mixture near the bottom, stand the plate in a jar with a little eluent, and let the solvent climb. Each compound&rsquo;s <b>R<sub>f</sub></b> is the distance its spot moved divided by the distance the solvent front moved: 0 means it never left the start, 1 that it ran with the front. Aryl compounds show as dark spots under UV light (254 nm) on plates with an indicator; simple alkyl alcohols and esters do not absorb UV and need a <b>stain</b> (vanillin or permanganate, then heat) to show them.</p>
+    <p>A TLC is how the column&rsquo;s eluent is chosen. Aim for the slower compound (the alcohol) at R<sub>f</sub> about 0.2 to 0.35 with a clear gap to the faster one. Too polar an eluent (1 : 1) runs both near the front, close together, and the column gives mixed fractions; too weak (hexane alone) leaves the alcohol at the start, and on the column it never comes off.</p>
+    <figure class="fig draw" style="max-width:560px">
+<svg viewBox="0 0 520 344" role="img" aria-label="A flash column: silica in a glass tube, the acetate band running ahead of the alcohol band, fractions collected in tubes below">
+  <rect class="organic" x="202" y="34" width="56" height="30"/>
+  <rect class="silica" x="202" y="64" width="56" height="176"/>
+  <rect x="202" y="176" width="56" height="20" fill="#f3c8ac"/>
+  <rect x="202" y="104" width="56" height="26" fill="#c9d8f0"/>
+  <rect x="202" y="240" width="56" height="8" fill="#e5d3a8"/>
+  <rect x="202" y="248" width="56" height="6" fill="#fff"/>
+  <path class="glass" d="M200,20 L200,254 L222,270 L222,286 M238,286 L238,270 L260,254 L260,20" stroke="#55606b"/>
+  <rect class="steel" x="216" y="274" width="28" height="7" rx="2"/>
+  <line class="arrk" x1="230" y1="4" x2="230" y2="30"/>
+  <text class="s" x="262" y="12" font-size="11">air pressure pushes the solvent through</text>
+  <line class="thin" x1="258" y1="48" x2="290" y2="48"/>
+  <text class="s" x="296" y="52" font-size="12">the eluent (hexanes : ethyl acetate)</text>
+  <line class="thin" x1="258" y1="117" x2="290" y2="117"/>
+  <text class="bl" x="296" y="113" font-size="12">the alcohol: behind</text>
+  <text class="s" x="296" y="128" font-size="11">its OH hydrogen-bonds to the silica</text>
+  <line class="thin" x1="258" y1="186" x2="290" y2="186"/>
+  <text class="o" x="296" y="182" font-size="12">the acetate: ahead</text>
+  <text class="s" x="296" y="197" font-size="11">no OH, so it is held less</text>
+  <line class="thin" x1="258" y1="150" x2="290" y2="150"/>
+  <text class="s" x="296" y="154" font-size="11">silica gel: polar, full of OH groups</text>
+  <line class="thin" x1="258" y1="244" x2="290" y2="244"/>
+  <text class="s" x="296" y="248" font-size="11">sand, then a cotton plug</text>
+  <line class="thin" x1="246" y1="278" x2="290" y2="278"/>
+  <text class="s" x="296" y="282" font-size="11">stopcock</text>
+  <!-- the tubes -->
+  <g stroke="#55606b" stroke-width="1.6" fill="none">
+    <path d="M146,296 L146,314 A8,8 0 0 0 162,314 L162,296"/><path d="M174,296 L174,314 A8,8 0 0 0 190,314 L190,296"/><path d="M202,296 L202,314 A8,8 0 0 0 218,314 L218,296"/><path d="M230,296 L230,314 A8,8 0 0 0 246,314 L246,296"/>
+  </g>
+  <rect x="148" y="306" width="12" height="10" fill="#f3c8ac"/><rect x="176" y="306" width="12" height="10" fill="#f3c8ac"/><rect x="204" y="306" width="12" height="10" fill="#fff"/><rect x="232" y="304" width="12" height="12" fill="#c9d8f0"/>
+  <text class="s" x="196" y="334" text-anchor="middle" font-size="11">fractions, in order: acetate, acetate, nothing, alcohol…</text>
+  <text class="s" x="186" y="200" text-anchor="end" font-size="11">the first tubes hold</text>
+  <text class="s" x="186" y="214" text-anchor="end" font-size="11">the acetate; later ones</text>
+  <text class="s" x="186" y="228" text-anchor="end" font-size="11">the alcohol; a TLC of</text>
+  <text class="s" x="186" y="242" text-anchor="end" font-size="11">each tube says which</text>
+</svg>
+<figcaption><b>The flash column.</b> Silica gel is polar: its surface is covered with OH groups, and a compound that can hydrogen-bond to them (an alcohol) is held back more than one that cannot (its acetate). Both move down as the eluent flows, the acetate faster, so they leave the column at different times and are caught in different tubes. The eluent chosen by TLC is the one that lets the alcohol move slowly (R<sub>f</sub> about 0.2 to 0.35) with the acetate well clear of it.</figcaption>
+</figure>
+
+    <h3>The flash column</h3>
+    <p>The same separation, scaled up: silica packed in a glass column over a plug of cotton and a layer of sand, the mixture loaded at the top in as little solvent as possible, the eluent pushed through with a little air pressure (&ldquo;flash&rdquo; is this pressure; it makes the run take minutes rather than hours). The acetate comes off first, then nothing for a while, then the alcohol. Fractions are collected in test tubes, each checked by TLC, and the pure ones for each compound combined and evaporated.</p>
   </div>
   <div class="tool"><h3>Choosing an eluent (made up)</h3>
     <p class="small soft">Compound V&rsquo;s alcohol and its acetate (made up) on silica, in hexanes : ethyl acetate.</p>
@@ -438,32 +1050,76 @@
     <figure class="fig" style="max-width:340px"><svg id="tlc-svg" viewBox="0 0 160 220" role="img" aria-label="A TLC plate"></svg></figure>
     <p class="out" id="tlc-out"></p>
   </div>
-  <div class="check"><h4>Check yourself</h4><ol><li>In the made-up example, which eluent would you choose for the column, and which compound comes off first?<details><summary>Answer</summary><p class="answer">9 : 1 puts the alcohol near R<sub>f</sub> 0.25 with the acetate well ahead; the acetate comes off first.</p></details></li></ol></div>
+  <div class="box key"><h4></h4><ul><li>Silica is polar: an OH sticks to it, an ester much less. A more polar eluent moves everything farther.</li><li>R<sub>f</sub> = spot distance / solvent-front distance. Aryl compounds show under UV; others need a stain.</li><li>Choose the eluent by TLC: the alcohol at R<sub>f</sub> 0.2 to 0.35, the acetate well ahead.</li><li>On the column the acetate comes off first; check the fractions by TLC before combining them.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>In the made-up example, which eluent would you choose for the column, and which compound comes off first?<details><summary>Answer</summary><p class="answer">9 : 1 puts the alcohol near R<sub>f</sub> 0.25 with the acetate well ahead; the acetate comes off first.</p></details></li>
+    <li>Why does the alcohol run behind its acetate on silica?<details><summary>Answer</summary><p class="answer">Its OH hydrogen-bonds to the silica&rsquo;s Si&ndash;OH groups; the acetate has no OH and is held far less.</p></details></li>
+    <li>Your alcohol has no benzene ring. How will you see its spots?<details><summary>Answer</summary><p class="answer">It will not show under UV; dip or spray the plate with a stain (vanillin or permanganate) and warm it.</p></details></li>
+  </ol></div>
 </section>
 
 <section class="topic" id="t12">
   <h2 class="topic-title"><span class="step">12</span>Reading an NMR for purity</h2>
+  <p class="lead">A <sup>1</sup>H NMR spectrum confirms that you made what you meant to, and it shows what else is in the flask. Comparing integrals gives the amount of each.</p>
   <div class="prose">
-    <p>A <sup>1</sup>H NMR spectrum confirms a structure: each set of equivalent protons gives a signal at its <b>chemical shift</b>, split by its neighbours (n neighbours give n + 1 lines), with an <b>integral</b> proportional to how many protons it holds. It also shows what else is in the sample. Another compound&rsquo;s signals appear beside yours, and comparing integrals gives the mole ratio, once each is divided by its number of protons.</p>
+    <p>Each set of equivalent hydrogens in a molecule gives a signal at its own <b>chemical shift</b> (in ppm: hydrogens next to oxygen come at 3.5 to 4.5, those on a plain CH<sub>3</sub> near 1). The signal is <b>split</b> by the hydrogens on the neighbouring carbon, n of them giving n + 1 lines. Its <b>integral</b> (the area under it) is proportional to how many hydrogens it holds.</p>
+    <figure class="fig draw wide">
+<svg viewBox="0 0 760 222" role="img" aria-label="Four NMR multiplets: a singlet, a doublet, a triplet and a quartet, with the number of neighbouring hydrogens that gives each, and the integral drawn over one">
+  <line class="thin" x1="20" y1="150" x2="740" y2="150"/>
+  <!-- singlet -->
+  <line class="ln" x1="90" y1="150" x2="90" y2="50"/>
+  <text class="b" x="90" y="176" text-anchor="middle" font-size="12">singlet</text>
+  <text class="s" x="90" y="194" text-anchor="middle" font-size="11">0 neighbouring H</text>
+  <!-- doublet 1:1 -->
+  <line class="ln" x1="268" y1="150" x2="268" y2="70"/><line class="ln" x1="284" y1="150" x2="284" y2="70"/>
+  <text class="b" x="276" y="176" text-anchor="middle" font-size="12">doublet, 1 : 1</text>
+  <text class="s" x="276" y="194" text-anchor="middle" font-size="11">1 neighbouring H</text>
+  <!-- triplet 1:2:1 -->
+  <line class="ln" x1="446" y1="150" x2="446" y2="110"/><line class="ln" x1="462" y1="150" x2="462" y2="70"/><line class="ln" x1="478" y1="150" x2="478" y2="110"/>
+  <text class="b" x="462" y="176" text-anchor="middle" font-size="12">triplet, 1 : 2 : 1</text>
+  <text class="s" x="462" y="194" text-anchor="middle" font-size="11">2 neighbouring H</text>
+  <!-- quartet 1:3:3:1 -->
+  <line class="ln" x1="626" y1="150" x2="626" y2="126"/><line class="ln" x1="642" y1="150" x2="642" y2="78"/><line class="ln" x1="658" y1="150" x2="658" y2="78"/><line class="ln" x1="674" y1="150" x2="674" y2="126"/>
+  <text class="b" x="650" y="176" text-anchor="middle" font-size="12">quartet, 1 : 3 : 3 : 1</text>
+  <text class="s" x="650" y="194" text-anchor="middle" font-size="11">3 neighbouring H</text>
+  <!-- the integral over the doublet -->
+  <path d="M236,46 L262,46 C270,46 266,28 274,28 L278,28 C286,28 282,10 290,10 L316,10" fill="none" stroke="#1c4c9a" stroke-width="2"/>
+  <text class="bl" x="322" y="14" font-size="11">the integral: its rise is the area,</text>
+  <text class="s" x="322" y="28" font-size="11">in proportion to how many H</text>
+  <text class="s" x="380" y="216" text-anchor="middle" font-size="12">the <tspan font-weight="650">n + 1</tspan> rule: n equivalent H on the next carbon split a signal into n + 1 lines</text>
+  <line class="thin" x1="268" y1="60" x2="284" y2="60" stroke="#c2410c"/>
+  <text class="o" x="292" y="64" font-size="11">J</text>
+</svg>
+<figcaption><b>Reading a multiplet.</b> A signal is split by the hydrogens on the neighbouring carbon: one neighbour gives two lines, two give three, three give four, with the heights shown. The gap between the lines, J (in hertz), is the same for both partners, which is how you pair a doublet with the signal that split it. The integral (blue) is a running total of the area: the height of each step counts the hydrogens.</figcaption>
+</figure>
+
+    <p>Another compound in the sample gives its own signals beside yours. To compare amounts, divide each integral by the number of hydrogens that signal stands for; the results are in the ratio of the <b>moles</b> of the two compounds. To turn a mole ratio into a mass ratio, multiply each by its molar mass. That mass fraction is what corrects a polarimeter reading for an impurity (topic 2).</p>
+    <p>Two things the spectrum cannot do: it cannot tell the two enantiomers apart (topic 1), and it cannot see a compound that has no hydrogens. Water in a wet sample does show, as a broad hump.</p>
   </div>
-  <div class="box worked"><h4>Worked example (made up)</h4><p>Compound X&rsquo;s CH<sub>2</sub> (2 H) integrates to 2.00; a singlet from compound Y&rsquo;s CH<sub>3</sub> (3 H) integrates to 0.30. Per proton: X 1.00, Y 0.10. So Y is 0.10 / 1.10 = 9.1 mol% of the mixture. To turn that into a mass fraction, multiply each by its molar mass.</p></div>
-  <div class="check"><h4>Check yourself</h4><ol><li>A singlet (3 H) integrates to 0.15 beside your compound&rsquo;s 2 H signal at 2.00. Mole percent of the impurity?<details><summary>Answer</summary><p class="answer">0.05 / (1.00 + 0.05) = 4.8 mol%.</p></details></li><li>Can this NMR tell you your product&rsquo;s ee?<details><summary>Answer</summary><p class="answer">No: both enantiomers give the same spectrum (topic 1). It tells you what else is there.</p></details></li></ol></div>
+  <div class="box worked"><h4>Worked example (made up)</h4><p>Compound X&rsquo;s CH<sub>2</sub> (2 H) integrates to 2.00; a singlet from compound Y&rsquo;s CH<sub>3</sub> (3 H) integrates to 0.30. Per hydrogen: X 2.00 / 2 = 1.00, Y 0.30 / 3 = 0.10. So Y is 0.10 / (1.00 + 0.10) = 9.1 mol% of the mixture. If X is 150 g/mol and Y 100 g/mol, by mass Y is (0.10 &times; 100) / (1.00 &times; 150 + 0.10 &times; 100) = 6.3%.</p></div>
+  <div class="box key"><h4></h4><ul><li>Shift says what kind of hydrogen; splitting says how many neighbours; the integral says how many hydrogens.</li><li>Integral per hydrogen gives the mole ratio of two compounds; molar masses turn it into a mass ratio.</li><li>It shows impurities and water, never the ee.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>A singlet (3 H) integrates to 0.15 beside your compound&rsquo;s 2 H signal at 2.00. Mole percent of the impurity?<details><summary>Answer</summary><p class="answer">0.15 / 3 = 0.05 per hydrogen against 1.00: 0.05 / 1.05 = 4.8 mol%.</p></details></li>
+    <li>Can this NMR tell you your product&rsquo;s ee?<details><summary>Answer</summary><p class="answer">No: both enantiomers give the same spectrum (topic 1). It tells you what else is there.</p></details></li>
+    <li>A CH<sub>3</sub> next to a CH gives what kind of signal?<details><summary>Answer</summary><p class="answer">A doublet: one neighbouring hydrogen, so 1 + 1 = 2 lines.</p></details></li>
+  </ol></div>
 </section>
 
 <section class="topic" id="t13">
   <h2 class="topic-title"><span class="step">13</span>Safety</h2>
   <div class="prose">
     <ul>
-      <li><b>Hexane, ethyl acetate, vinyl acetate</b> are highly flammable; vinyl acetate and chloroform belong in the hood. Hexane harms the nerves on long exposure.</li>
-      <li><b>Chloroform</b> (for the polarimeter) is toxic and a suspected carcinogen: make up solutions in the hood, with gloves.</li>
-      <li><b>Celite and silica gel</b> are fine dusts that harm the lungs: keep them wet or handle them in the hood.</li>
-      <li><b>Novozym 435</b> is a respiratory sensitizer (enzyme dust): weigh the beads gently, without making dust.</li>
-      <li><b>Vacuum glassware</b> (the filter flask, the rotary evaporator) can implode: check for cracks, and clamp the filter flask.</li>
+      <li><b>Hexane, ethyl acetate, vinyl acetate</b> are highly flammable: no flames or hot plates near open solvent, and vinyl acetate (which also irritates eyes and nose) stays in the hood. Hexane harms the nerves with long exposure: cap the bottle.</li>
+      <li><b>Chloroform</b> (for the polarimeter) is toxic and a suspected carcinogen: make up solutions in the hood, with gloves, and rinse the polarimeter tube in the hood too.</li>
+      <li><b>Celite and silica gel</b> are fine silica dusts that harm the lungs: keep them wet, or handle them in the hood.</li>
+      <li><b>Novozym 435</b> is a respiratory sensitizer (enzyme dust can bring on asthma): weigh the beads gently, without making dust.</li>
+      <li><b>Vacuum glassware</b> (the filter flask, the rotary evaporator&rsquo;s flasks) can implode: check for cracks and stars, and clamp the filter flask.</li>
+      <li><b>The separatory funnel</b> builds pressure when shaken: vent it, stem away from everyone, and never point a stoppered funnel at anyone.</li>
     </ul>
   </div>
 </section>
 
-<p class="made-up">Every compound, number and chromatogram in this review is made up for practice (1-cyclohexylethanol, in topic 7, is a real alcohol but not one of the lab&rsquo;s). Sources for the methods: Org. Synth. 1985, 63, 1 (the yeast reduction); Chen, Fujimoto, Girdaukas &amp; Sih, J. Am. Chem. Soc. 1982, 104, 7294 (E); Kazlauskas et al., J. Org. Chem. 1991, 56, 2656 (the rule); Uppenberg et al. 1994 and 1995 (CAL-B&rsquo;s structure); Pavia and Nichols (the techniques). This is a review for a simulated lab.</p>
+<p class="made-up">Every compound, number, chromatogram and drawing in this review is for practice, and none is one of the lab&rsquo;s compounds (lactic acid, carvone and 1-cyclohexylethanol are real but not in the lab). Sources for the methods: Org. Synth. 1985, 63, 1 (the yeast reduction); Chen, Fujimoto, Girdaukas &amp; Sih, J. Am. Chem. Soc. 1982, 104, 7294 (E); Kazlauskas et al., J. Org. Chem. 1991, 56, 2656 (the rule); Uppenberg et al. 1994 and 1995 (CAL-B&rsquo;s structure); Pavia and Nichols (the techniques). This is a review for a simulated lab.</p>
 </main>
 </div>
 
