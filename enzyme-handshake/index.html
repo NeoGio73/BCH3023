@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Enzyme's Handshake</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317211e'/%3E%3Cpath d='M9 20c3-6 11-6 14 0' fill='none' stroke='%23c9d6d1' stroke-width='2'/%3E%3Ccircle cx='12' cy='13' r='2.4' fill='%23d9822b'/%3E%3Ccircle cx='20' cy='13' r='2.4' fill='%231c4c9a'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="lab.css">
+</head>
+<body>
+<main class="sheet">
+
+  <header class="masthead">
+    <h1>The Enzyme's Handshake</h1>
+  </header>
+  <p class="prelab-note">Two sessions in which enzymes do organic chemistry and are judged by how well they tell mirror-image molecules apart: baker&rsquo;s yeast reducing a ketone (this page), then a lipase sorting the two enantiomers of an alcohol (<a href="index.html?part=2">Part 2</a>). Read the <a href="prelab/index.html">prelab review</a> first, and keep the <a href="guide/guide-to-the-lab.pdf">guide to the lab</a> (PDF) open beside it. Each step can be done in the room, with a click on the thing it uses, or with its button below.</p>
+
+  <section class="part" id="part-room" aria-labelledby="room-title">
+    <h2 id="room-title"><span class="step" aria-hidden="true">1</span><span>The room</span></h2>
+    <p class="lede">The NMR room of the Exam 1 Unknown lab, with its spectrometer, IR and GC-MS, and new things along the wall to its left: a fume hood for the solvents, the extraction and the column, and a wet bench for the yeast, the filtration, the rotary evaporator and the polarimeter.</p>
+    <div class="bench-layout">
+      <div class="stage-column">
+        <div class="stage" id="stage">
+          <canvas id="unity-canvas" tabindex="-1" aria-label="3D laboratory: on the left a fridge and a long wet bench with a water bath, a shaker incubator, a stirrer with a flask of yeast, a balance, a suction filtration, a vacuum pump and a rotary evaporator; a fume hood with a separatory funnel and a column; then the NMR lab's C-shaped bench with its computer, IR and GC-MS, and the NMR magnet"></canvas>
+          <div class="stage-cover" id="stage-cover">
+            <p id="stage-status">Setting up the room</p>
+            <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+        </div>
+        <p class="stage-note" id="stage-note" role="status"></p>
+        <div class="stage-controls">
+          <div class="views" role="group" aria-label="Camera view">
+            <button type="button" class="view-button" data-view="room" aria-pressed="true">The room</button>
+            <button type="button" class="view-button" data-view="wet" aria-pressed="false">Wet bench</button>
+            <button type="button" class="view-button" data-view="yeast" aria-pressed="false">The yeast</button>
+            <button type="button" class="view-button" data-view="filter" aria-pressed="false">Filtration</button>
+            <button type="button" class="view-button" data-view="rotavap" aria-pressed="false">Rotary evaporator</button>
+            <button type="button" class="view-button" data-view="polarimeter" aria-pressed="false">Polarimeter</button>
+            <button type="button" class="view-button" data-view="hood" aria-pressed="false">Fume hood</button>
+            <button type="button" class="view-button" data-view="prep" aria-pressed="false">NMR sample table</button>
+            <button type="button" class="view-button" data-view="instruments" aria-pressed="false">IR and GC-MS</button>
+            <button type="button" class="view-button" data-view="magnet" aria-pressed="false">The magnet</button>
+          </div>
+        </div>
+      </div>
+      <div class="routine-column">
+        <h3 class="routine-title">What each place is for</h3>
+        <ul class="place-list">
+          <li><b>The yeast</b> (Session 1): baker&rsquo;s yeast is woken in warm sugar water in the water bath, then ferments with ethyl acetoacetate in the flask on the stirrer, open to the air, over days on a sped-up clock.</li>
+          <li><b>Filtration</b>: the broth is filtered through a bed of Celite in the B&uuml;chner funnel, by suction from the pump, with a trap between them; the balance weighs the products.</li>
+          <li><b>Rotary evaporator</b>: takes the solvent off each product.</li>
+          <li><b>Polarimeter</b>: a digital one, beside it. It measures the angle through which the product turns polarized light, from which you work out how pure the (S) enantiomer is.</li>
+          <li><b>Fume hood</b>: the separatory funnel (the extraction), the solvents, the TLC jar and the flash column that separates the ester from the alcohol in Session 2. The shaker incubator on the wet bench runs the lipase&rsquo;s reaction at 40 &deg;C.</li>
+          <li><b>NMR, IR and GC-MS</b>: as in the Exam 1 Unknown lab; the GC will carry a chiral column, which separates the two enantiomers.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="part-yeast" aria-labelledby="yeast-title">
+    <h2 id="yeast-title"><span class="step" aria-hidden="true">2</span><span>Part 1: the yeast</span></h2>
+    <p class="lede">Baker&rsquo;s yeast reduces ethyl acetoacetate to ethyl 3-hydroxybutanoate, mostly the (S) enantiomer. Each step can be done in the room, with a click on the thing it uses, or with its button here. Your code is <b id="p1-code"></b>; it says how your fermentation is run: <b id="p1-recipe-name"></b>. <span id="p1-recipe-text"></span></p>
+    <p class="stage-note" id="p1-clock"></p>
+    <p class="stage-note" id="p1-note" role="status"></p>
+    <div id="p1-steps"></div>
+    <p class="soft small" id="p1-tlc"></p>
+    <div id="p1-results" hidden>
+      <h3 class="routine-title">The yield</h3>
+      <p id="p1-masses"></p>
+      <div class="question-grid">
+        <p class="q-text">Your percent yield of ethyl 3-hydroxybutanoate (132.16 g/mol, from ethyl acetoacetate, 130.14 g/mol):</p>
+        <p><input type="text" inputmode="decimal" id="p1-yield" class="num-input"> % <span class="msg" id="p1-yield-msg"></span></p>
+      </div>
+      <h3 class="routine-title">The rotation</h3>
+      <p class="soft small">Weigh about 0.25 g of your product into a 25 mL volumetric flask and fill it to the mark with chloroform, in the hood (c about 1 g per 100 mL). Zero the digital polarimeter on a blank (the 100 mm tube filled with chloroform), then rinse the tube with your solution, fill it without air bubbles, and read the angle. In the room, the flask, the tube and the polarimeter each take a click.</p>
+      <p class="row">
+        <button type="button" class="quiet-button" data-polar="sample">Weigh a sample, make up the solution</button>
+        <button type="button" class="quiet-button" data-polar="blank">Zero on a blank</button>
+        <button type="button" class="quiet-button" data-polar="fill">Fill the tube carefully</button>
+        <button type="button" class="quiet-button" data-polar="fill-fast">Fill it quickly</button>
+        <button type="button" class="quiet-button" data-polar="read">Read the angle</button>
+      </p>
+      <p id="p1-sample"></p>
+      <p id="p1-reading"></p>
+      <div class="question-grid">
+        <p class="q-text">The specific rotation, [&alpha;] = &alpha; / (l &middot; c), with l in dm and c in g per mL:</p>
+        <p><input type="text" inputmode="decimal" id="p1-specific" class="num-input"> &deg; <span class="msg" id="p1-specific-msg"></span></p>
+        <p class="q-text">The ee of your (S) alcohol, against [&alpha;] = +43.5&deg; for the pure (S) enantiomer (chloroform, c 1.0):</p>
+        <p><input type="text" inputmode="decimal" id="p1-ee" class="num-input"> % <span class="msg" id="p1-ee-msg"></span></p>
+      </div>
+      <h3 class="routine-title">The <sup>1</sup>H NMR of your product</h3>
+      <p class="soft small">NMR tells you what you made and whether any ethyl acetoacetate is left; it does not tell you the ee. Dissolve about 20 mg of your product in 0.6 mL of CDCl<sub>3</sub> (with TMS) in an NMR tube, at the NMR sample table, and run the <sup>1</sup>H spectrum on the 400 MHz spectrometer (the magnet). In the room, the sample table and the magnet each take a click.</p>
+      <p class="row">
+        <button type="button" class="quiet-button" data-nmr="sample">Make the NMR sample</button>
+        <button type="button" class="quiet-button" data-nmr="run">Run the <sup>1</sup>H spectrum</button>
+      </p>
+      <div id="p1-nmr" hidden>
+        <p class="row" role="group" aria-label="Which part of the spectrum">
+          <button type="button" class="quiet-button" data-nmr-range="full" aria-pressed="false">0 to 13 ppm</button>
+          <button type="button" class="quiet-button" data-nmr-range="main" aria-pressed="true">0.8 to 5.4 ppm</button>
+          <button type="button" class="quiet-button" data-nmr-range="ch2" aria-pressed="false">2.2 to 2.6 ppm</button>
+        </p>
+        <div class="nmr-wrap"><canvas id="p1-nmr-canvas" width="1200" height="440" aria-label="The 1H NMR spectrum of your product"></canvas></div>
+        <p class="soft small" id="p1-nmr-at" aria-live="polite">Point at the spectrum to read the shift.</p>
+        <table class="data-table nmr-integrals" id="p1-nmr-integrals"></table>
+        <div class="question-grid" id="p1-nmr-signals"></div>
+        <div class="question-grid">
+          <p class="q-text">Mole percent of ethyl acetoacetate left in your product (region B, its CH<sub>2</sub> at 3.44 ppm, against region D, the alcohol&rsquo;s CH<sub>2</sub>; 0 if there is no peak at 3.44):</p>
+          <p><input type="text" inputmode="decimal" id="p1-ketone" class="num-input"> % <span class="msg" id="p1-ketone-msg"></span></p>
+          <p class="q-text">The ketone weighed into your polarimeter sample but does not rotate light. Your ee corrected for it (divide by the mass fraction of the alcohol; molar masses 132.16 and 130.14 g/mol):</p>
+          <p><input type="text" inputmode="decimal" id="p1-eecorr" class="num-input"> % <span class="msg" id="p1-eecorr-msg"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="reset-wrap">
+      <button type="button" class="quiet-button danger" id="p1-reset">Start Part 1 over</button>
+      <span class="confirm" id="p1-reset-confirm" hidden>Clear your Part 1 work on this computer? <button type="button" class="quiet-button danger" id="p1-reset-yes">Yes, start over</button> <button type="button" class="quiet-button" id="p1-reset-no">Keep it</button></span>
+    </div>
+  </section>
+
+  <section class="part" id="part-lipase" aria-labelledby="lipase-title" hidden>
+    <h2 id="lipase-title"><span class="step" aria-hidden="true">2</span><span>Part 2: the lipase</span></h2>
+    <p class="lede">Candida antarctica lipase B (CAL-B, on the beads sold as Novozym 435) turns one enantiomer of a racemic secondary alcohol into its acetate much faster than the other, with vinyl acetate as the acyl donor. You follow it on the chiral GC, stop it near 50%, separate the acetate from the alcohol left, and work out how selective the enzyme was (E) and which enantiomer it preferred. Your code is <b id="p2-code"></b>; your alcohol is <b id="p2-alcohol"></b>. <span id="p2-handout"></span></p>
+    <p class="stage-note" id="p2-note" role="status"></p>
+    <div id="p2-steps"></div>
+    <p class="soft small" id="p2-tlc"></p>
+    <h3 class="routine-title">The chromatograms (newest first)</h3>
+    <p class="soft small">A chiral cyclodextrin column. The integrator numbers each peak it finds and gives its time and area. Which peak is which is for you to work out: compare with the racemic alcohol and the pure (R) standard, and watch which peaks grow and which shrink as the reaction runs.</p>
+    <div id="p2-gcs"></div>
+    <div id="p2-results" hidden>
+      <h3 class="routine-title">What the enzyme did</h3>
+      <p id="p2-masses"></p>
+      <div class="question-grid">
+        <p class="q-text">The ee of the alcohol left (from the alcohol fraction&rsquo;s two alcohol peaks):</p>
+        <p><input type="text" inputmode="decimal" id="p2-ees" class="num-input"> % <span class="msg" id="p2-ees-msg"></span></p>
+        <p class="q-text">The ee of the acetate (from the acetate fraction&rsquo;s two acetate peaks):</p>
+        <p><input type="text" inputmode="decimal" id="p2-eep" class="num-input"> % <span class="msg" id="p2-eep-msg"></span></p>
+        <p class="q-text">The conversion, c = ee(alcohol) / (ee(alcohol) + ee(acetate)):</p>
+        <p><input type="text" inputmode="decimal" id="p2-conv" class="num-input"> % <span class="msg" id="p2-conv-msg"></span></p>
+        <p class="q-text">The enantioselectivity, E = ln[(1 &minus; c)(1 &minus; ee(alcohol))] / ln[(1 &minus; c)(1 + ee(alcohol))]:</p>
+        <p><input type="text" inputmode="decimal" id="p2-e" class="num-input"> <span class="msg" id="p2-e-msg"></span></p>
+        <p class="q-text">The yield of the acetate (moles of acetate over the 1.00 mmol of alcohol you started with):</p>
+        <p><input type="text" inputmode="decimal" id="p2-acyield" class="num-input"> % <span class="msg" id="p2-acyield-msg"></span></p>
+        <p class="q-text">The alcohol you got back, as a percent of the 1.00 mmol:</p>
+        <p><input type="text" inputmode="decimal" id="p2-alcyield" class="num-input"> % <span class="msg" id="p2-alcyield-msg"></span></p>
+      </div>
+      <fieldset class="choice">
+        <legend>Which enantiomer did CAL-B acylate faster? (Your instructor marks this; the page does not check it.)</legend>
+        <label><input type="radio" name="p2-faster" value="R"> (R)</label>
+        <label><input type="radio" name="p2-faster" value="S"> (S)</label>
+      </fieldset>
+      <p class="q-text"><label for="p2-rule">Does the Kazlauskas rule predict it? Draw the alcohol with its large and medium groups and say how you decided (your instructor marks this).</label></p>
+      <p><textarea id="p2-rule" rows="4" class="text-input"></textarea></p>
+    </div>
+    <div class="reset-wrap">
+      <button type="button" class="quiet-button danger" id="p2-reset">Start Part 2 over</button>
+      <span class="confirm" id="p2-reset-confirm" hidden>Clear your Part 2 work on this computer? <button type="button" class="quiet-button danger" id="p2-reset-yes">Yes, start over</button> <button type="button" class="quiet-button" id="p2-reset-no">Keep it</button></span>
+    </div>
+  </section>
+
+  <section class="part" id="part-report" aria-labelledby="report-title">
+    <h2 id="report-title"><span class="step" aria-hidden="true">3</span><span>Your report</span></h2>
+    <p class="row"><label>Your name <input type="text" id="report-name" autocomplete="name"></label> <span class="soft small" id="report-date"></span></p>
+    <p class="soft small">The report prints this page as it stands: your results, spectra and chromatograms, with the summary below for your instructor. Choose &ldquo;Save as PDF&rdquo; in the print window to hand it in as a file.</p>
+    <div id="report-summary"></div>
+    <p class="row"><button type="button" class="quiet-button" id="report-print">Print or save as PDF</button></p>
+  </section>
+
+  <footer class="credits">
+    A simulation. Fume hood model: <a href="https://sketchfab.com/3d-models/dm3-004-08-a640c09386df411e8669ddb19e3fd40f" target="_blank" rel="noopener">&ldquo;Dm3-004-08&rdquo;</a> by foxart3d,
+    used under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, shown with the sash lowered and with different materials.
+    Keyboard and mouse: &ldquo;Keyboard and Mouse black&rdquo; by Demycs (BlendKit). Lab equipment and furniture (the fridge, water bath, shaker incubator, vacuum pump,
+    binders and extinguisher): &ldquo;Laboratories - Big Pack&rdquo; by Mixall (Unity Asset Store). Flasks and beakers: Liquid Volume Pro (Kronnect).
+    The magnet&rsquo;s maker, BROKER, and the instruments&rsquo; maker, ThermoFritter, are made up.
+  </footer>
+</main>
+
+<script src="model.js"></script>
+<script src="nmr.js"></script>
+<script src="app.js"></script>
+<script src="part1.js"></script>
+<script src="model2.js"></script>
+<script src="part2.js"></script>
+<script src="report.js"></script>
+<script>
+  (function () {
+    var lab = window.HandLab;
+    if (lab.isMock) return;
+
+    var canvas = document.querySelector("#unity-canvas");
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/HandshakeLab.loader.js";
+    var config = {
+      arguments: [],
+      dataUrl: buildUrl + "/HandshakeLab.data.unityweb",
+      frameworkUrl: buildUrl + "/HandshakeLab.framework.js.unityweb",
+      codeUrl: buildUrl + "/HandshakeLab.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "The Enzyme's Handshake",
+      productVersion: "0.1.0",
+      showBanner: function (message, type) { lab.unityBanner(message, type); }
+    };
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = function () {
+      createUnityInstance(canvas, config, function (progress) { lab.unityProgress(progress); })
+        .then(function (instance) { lab.attachUnity(instance); })
+        .catch(function (error) { lab.unityFailed(error); });
+    };
+    script.onerror = function () { lab.unityFailed("The lab files did not load."); };
+    document.body.appendChild(script);
+  })();
+</script>
+</body>
+</html>

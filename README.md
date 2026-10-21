@@ -228,3 +228,55 @@ How it works
 - Work is saved in the student's own browser. "Print or save as PDF" gives the report, with a
   picture of the student's own view of their protein.
 
+
+## The Enzyme's Handshake
+
+Organic chemistry done by enzymes, and measured by how well they tell mirror-image molecules
+apart, in two sessions. In Session 1, baker's yeast reduces ethyl acetoacetate to ethyl
+3-hydroxybutanoate, mostly the (S) enantiomer: the student wakes the yeast, feeds it the ketone on a
+sped-up bench clock, filters off the cells through Celite, salts out and extracts the product,
+dries and evaporates it, weighs it, measures its rotation on a digital polarimeter (the ee) and
+runs its ¹H NMR (what else is in it). In Session 2, the lipase CAL-B (Novozym 435) with vinyl
+acetate acylates one enantiomer of a racemic secondary alcohol faster than the other: the student
+follows it on a chiral GC, stops it near 50%, separates the acetate from the alcohol left on a
+column, and works out the two ee values, the conversion and the enzyme's selectivity, E, then which
+enantiomer it preferred and whether the Kazlauskas rule predicts it.
+
+**Open the lab**
+
+- Prelab review (to read before the lab: enantiomers and ee, optical rotation, chiral GC, the yeast,
+  the lipase, kinetic resolution and E, the Kazlauskas rule, and the bench techniques, with small
+  tools and check-yourself questions, all on made-up examples):
+  https://neogio73.github.io/BCH3023/enzyme-handshake/prelab/
+- Session 1 (the yeast): https://neogio73.github.io/BCH3023/enzyme-handshake/
+- Session 2 (the lipase): https://neogio73.github.io/BCH3023/enzyme-handshake/?part=2
+- Guide (a PDF to keep open beside the lab: every step, what to see and why, and the bench's
+  warnings): https://neogio73.github.io/BCH3023/enzyme-handshake/guide/guide-to-the-lab.pdf
+
+How it works
+
+- Each student has a five-character code at the top of the page (an address ending in `?code=` and
+  a code opens a chosen one). It sets how their yeast is fed in Session 1 (one portion, two with
+  fresh sugar, slow feeding, or starved yeast: each with its published ee) and, in Session 2, which
+  of 17 alcohols with published CAL-B selectivities they resolve, and how much enzyme their handout
+  gives.
+- Every step can be done in the 3D room, by clicking the thing it uses, or with its button on the
+  page. Mistakes are allowed and warned about, never blocked: water too hot for the yeast, no Celite
+  bed, an emulsion, wet solvent, too much enzyme, a warm shaker, an air bubble in the polarimeter
+  tube, an overloaded GC sample, the wrong eluent.
+- The page checks the student's own numbers as they are entered: the yield, the specific rotation
+  and ee, the NMR assignments and the ketone left, the ee values from their own peak areas, the
+  conversion and E (Chen, Fujimoto, Girdaukas and Sih, 1982). Which enantiomer the lipase
+  preferred, and whether the rule held, are never checked: the instructor marks them.
+- Peaks on the chiral column are named from a pure (R) standard, run the same way; their order
+  differs from one alcohol to the next. Retention times are modelled except 1-phenylethanol's.
+- Work is saved in the student's own browser, and the two sessions share the code. A different
+  browser or computer starts afresh. "Print or save as PDF" at the end of each session gives its
+  report, with a summary of what the page accepted and what the bench warned about.
+
+Fume hood model: "Dm3-004-08" by foxart3d, used under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Keyboard and mouse: "Keyboard and Mouse
+black" by Demycs (BlendKit, royalty-free license). Lab furniture and equipment: "Laboratories - Big
+Pack" by Mixall (Unity Asset Store). Flasks and beakers: Liquid Volume Pro (Kronnect). The stirring
+hotplate, rotary evaporator and polarimeter are modelled after common instruments, with no maker's
+name; the magnet's maker, BROKER, and the instruments' maker, ThermoFritter, are made up.

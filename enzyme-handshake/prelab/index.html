@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Enzyme's Handshake: Prelab Review</title>
+  <meta name="description" content="A review before the biocatalysis lab: enantiomers and ee, optical rotation, chiral GC, baker's yeast reducing a ketone, a lipase in hexane, kinetic resolution and E, the Kazlauskas rule, and the bench techniques, practised on made-up examples.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c4c9a'/%3E%3Cpath d='M10 22 L16 9 L22 22' fill='none' stroke='%23fff' stroke-width='2.4'/%3E%3C/svg%3E">
+  <style>
+    /* Same look as the lab pages and the other prelabs: paper white, bench slate for ink, enamel blue,
+       and a deep orange for the second curve of a plot. */
+    :root {
+      --paper: #ffffff; --wash: #f3f6f4; --ink: #17211e; --ink-soft: #4b5854; --ink-faint: #74807c;
+      --rule: #c7d1cc; --rule-strong: #8d9994; --enamel: #1c4c9a; --enamel-deep: #153a78; --enamel-wash: #e9eff9;
+      --good: #1b7a40; --good-wash: #edf7f0; --flag: #ab2a1c; --flag-wash: #fdf1ee; --link: #c2410c; --link-wash: #fff4ec;
+      --amber-wash: #fbf6e8; --amber: #8a5a00;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.62; }
+    a { color: var(--enamel-deep); }
+    sub, sup { line-height: 0; }
+
+    /* the masthead */
+    .masthead { padding: 30px 24px 28px; background: var(--wash); border-bottom: 1px solid var(--rule); }
+    .masthead-inner { max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 28px; }
+    .eyebrow { margin: 0 0 4px; color: var(--ink-faint); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    h1 { margin: 0; font-family: var(--serif); font-size: 2.3rem; font-weight: 600; line-height: 1.12; }
+    .dek { margin: 10px 0 0; max-width: 64ch; color: var(--ink-soft); font-size: 1.05rem; }
+    .lab-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 6px; background: var(--enamel); color: #fff; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .lab-button:hover { background: var(--enamel-deep); color: #fff; }
+
+    /* the page: contents on the left on a wide screen, above the text on a narrow one */
+    .page { max-width: 1240px; margin: 0 auto; padding: 0 24px 72px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 0 44px; }
+    nav.contents { position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; padding: 22px 4px 22px 0; font-size: 0.9rem; line-height: 1.4; }
+    nav.contents .nav-title { margin: 0 0 6px; color: var(--ink-faint); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    nav.contents .nav-part { margin: 14px 0 4px; font-weight: 700; color: var(--ink); font-size: 0.86rem; }
+    nav.contents ol { list-style: none; margin: 0; padding: 0; }
+    nav.contents li a { display: flex; gap: 8px; padding: 4px 8px; border-radius: 5px; color: var(--ink-soft); text-decoration: none; }
+    nav.contents li a .n { flex: none; width: 1.4em; color: var(--ink-faint); font-variant-numeric: tabular-nums; text-align: right; }
+    nav.contents li a:hover { background: var(--wash); color: var(--ink); }
+    nav.contents li a[aria-current="true"] { background: var(--enamel-wash); color: var(--enamel-deep); font-weight: 600; }
+    main { min-width: 0; }
+    @media (max-width: 1100px) {
+      .page { display: block; }
+      nav.contents { position: static; max-height: none; margin-top: 22px; padding: 12px 16px; border: 1px solid var(--rule); border-radius: 8px; }
+      nav.contents .nav-columns { columns: 2 17rem; column-gap: 28px; }
+      nav.contents .nav-group { break-inside: avoid; }
+    }
+
+    /* text */
+    .prose { max-width: 72ch; }
+    p { margin: 0 0 12px; }
+    .prose ul, .prose ol { margin: 0 0 12px; padding-left: 1.3em; }
+    .prose li { margin-bottom: 6px; }
+    .soft { color: var(--ink-soft); }
+    .small { font-size: 0.9rem; }
+    .mono { font-family: var(--mono); font-size: 0.93em; }
+    .nowrap { white-space: nowrap; }
+    .eq { display: block; width: fit-content; max-width: 100%; margin: 6px 0 14px; padding: 9px 16px; border-radius: 6px; background: var(--wash); font-family: var(--serif); font-size: 1.12rem; }
+    .eq .where { display: block; margin-top: 2px; font-family: var(--sans); font-size: 0.86rem; color: var(--ink-soft); }
+
+    /* parts and sections */
+    .part-banner { margin: 56px 0 0; padding: 22px 24px; border-radius: 10px; background: var(--enamel); color: #fff; }
+    .part-banner .part-label { margin: 0; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+    .part-banner h2 { margin: 2px 0 6px; font-family: var(--serif); font-size: 1.7rem; font-weight: 600; }
+    .part-banner p { margin: 0; max-width: 70ch; opacity: 0.95; }
+    section.topic { margin-top: 54px; }
+    h2.topic-title { display: flex; align-items: center; gap: 12px; margin: 0 0 6px; font-family: var(--serif); font-size: 1.6rem; font-weight: 600; line-height: 1.22; }
+    .step { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--enamel); color: #fff; font-family: var(--sans); font-size: 0.95rem; font-weight: 650; }
+    .lead { max-width: 72ch; margin: 0 0 18px; color: var(--ink-soft); font-size: 1.04rem; }
+    h3 { margin: 26px 0 8px; font-family: var(--serif); font-size: 1.2rem; font-weight: 600; }
+    h4 { margin: 16px 0 6px; font-size: 1rem; }
+
+    /* boxes */
+    .box { max-width: 76ch; margin: 16px 0; padding: 14px 18px 4px; border-radius: 8px; border: 1px solid var(--rule); }
+    .box > h3, .box > h4 { margin-top: 0; font-family: var(--sans); font-size: 1rem; }
+    .box.start { background: var(--wash); }
+    .box.goals { background: #fff; }
+    .box.goals ol { margin: 0 0 12px; padding-left: 1.4em; }
+    .box.key { background: var(--enamel-wash); border-color: #cfdcf1; }
+    .box.key h4::before { content: "In short"; }
+    .box.key h4 { margin-bottom: 4px; color: var(--enamel-deep); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.82rem; }
+    .box.worked { background: #fff; border-left: 4px solid var(--good); }
+    .box.worked h4 { color: var(--good); }
+    .box.mistake { background: var(--amber-wash); border-color: #ecdcae; }
+    .box.mistake h4 { color: var(--amber); }
+    .box.lab { background: #fff; border-style: dashed; }
+    .box ol, .box ul { margin: 0 0 12px; padding-left: 1.3em; }
+    .box li { margin-bottom: 5px; }
+    .made-up { max-width: 76ch; margin: 18px 0 0; padding: 10px 14px; border-left: 3px solid var(--enamel); background: var(--enamel-wash); border-radius: 0 6px 6px 0; font-size: 0.96rem; }
+    .caution { max-width: 76ch; margin: 12px 0; padding: 10px 14px; border-left: 3px solid var(--flag); background: var(--flag-wash); border-radius: 0 6px 6px 0; font-size: 0.96rem; }
+
+    /* check yourself */
+    .check { max-width: 76ch; margin: 18px 0 0; padding: 12px 18px 8px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; }
+    .check > h4 { margin: 0 0 6px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); }
+    .check ol { margin: 0; padding-left: 1.4em; }
+    .check li { margin-bottom: 10px; }
+    .check details { margin-top: 3px; }
+    .check summary { display: inline-block; cursor: pointer; color: var(--enamel-deep); font-size: 0.9rem; font-weight: 600; }
+    .check details[open] summary { margin-bottom: 4px; }
+    .check .answer { padding: 6px 12px; border-left: 3px solid var(--good); background: var(--good-wash); border-radius: 0 6px 6px 0; font-size: 0.95rem; }
+
+    /* tables */
+    table.ref { border-collapse: collapse; margin: 8px 0 16px; font-size: 0.93rem; font-variant-numeric: tabular-nums; }
+    table.ref caption { caption-side: top; text-align: left; padding: 0 0 6px; font-size: 0.88rem; color: var(--ink-soft); }
+    table.ref th, table.ref td { padding: 6px 10px; border: 1px solid var(--rule); text-align: left; vertical-align: top; }
+    table.ref thead th { background: var(--wash); font-size: 0.86rem; }
+    table.ref td.num { text-align: right; white-space: nowrap; }
+    .table-scroll { overflow-x: auto; max-width: 100%; }
+
+    /* figures and the things to try */
+    figure.fig { margin: 12px 0 18px; padding: 10px 12px 8px; border: 1px solid var(--rule); border-radius: 8px; background: #fff; max-width: 920px; }
+    figure.fig canvas, figure.fig svg { display: block; width: 100%; height: auto; touch-action: manipulation; }
+    figure.fig canvas:focus-visible { outline: 3px solid #f0b429; outline-offset: 2px; }
+    figure.fig figcaption { margin-top: 6px; font-size: 0.88rem; color: var(--ink-soft); }
+    figure.fig figcaption b { color: var(--ink); }
+    .tool { margin: 18px 0; padding: 16px 18px 12px; border: 1px solid var(--rule); border-radius: 10px; background: #fbfcfb; max-width: 940px; }
+    .tool > h3 { margin-top: 0; font-family: var(--sans); font-size: 1.03rem; }
+    .tool > h3::before { content: "Try it"; display: inline-block; margin-right: 8px; padding: 0 8px; border-radius: 999px; background: var(--good-wash); color: var(--good); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; vertical-align: 2px; }
+    .tool.point > h3::before { content: "Point and see"; background: var(--link-wash); color: var(--link); }
+    .pill { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; vertical-align: 1px; }
+    .pill.try { background: var(--good-wash); color: var(--good); }
+    .pill.point { background: var(--link-wash); color: var(--link); }
+    .tool label { display: block; margin: 12px 0 4px; font-weight: 600; font-size: 0.97rem; }
+    .tool label.inline { display: inline-block; margin: 0 8px 0 0; }
+    .tool input[type="text"], .tool select { padding: 7px 10px; border: 1.5px solid var(--rule-strong); border-radius: 6px; font: inherit; background: #fff; }
+    .tool input.short { width: 8rem; }
+    .tool input[type="range"] { width: 100%; max-width: 26rem; accent-color: var(--enamel); vertical-align: middle; }
+    .tool input[data-state="ok"], .tool select[data-state="ok"] { border-color: var(--good); background: var(--good-wash); }
+    .tool input[data-state="no"], .tool select[data-state="no"] { border-color: var(--flag); background: var(--flag-wash); }
+    .msg { display: block; min-height: 1.3em; margin-top: 3px; font-size: 0.9rem; color: var(--flag); }
+    .msg.ok { color: var(--good); font-weight: 600; }
+    .msg.ok::before { content: "\2713  "; }
+    .fields { display: flex; flex-wrap: wrap; gap: 4px 26px; align-items: flex-end; }
+    .out { margin: 10px 0 4px; font-size: 0.98rem; font-variant-numeric: tabular-nums; }
+    .readout { min-height: 4.6em; margin: 8px 0 2px; padding: 8px 12px; border-left: 4px solid var(--link); background: var(--link-wash); border-radius: 0 6px 6px 0; font-size: 0.95rem; }
+    .readout b { color: var(--link); }
+    .seq { font-family: var(--mono); letter-spacing: 0.06em; padding: 8px 12px; background: var(--wash); border-radius: 6px; display: inline-block; word-break: break-all; }
+    .seg { display: inline-flex; flex-wrap: wrap; border: 1.5px solid var(--enamel); border-radius: 6px; overflow: hidden; }
+    .seg button { padding: 6px 14px; border: 0; border-right: 1px solid var(--enamel); background: #fff; color: var(--enamel-deep); font: inherit; font-weight: 600; cursor: pointer; }
+    .seg button:last-child { border-right: 0; }
+    .seg button[aria-pressed="true"] { background: var(--enamel); color: #fff; }
+    .order { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 4px 0 0; font-size: 0.86rem; color: var(--ink-soft); }
+    .legend i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; vertical-align: -1px; }
+    .legend i.line { width: 22px; height: 0; border-top: 3px dotted var(--link); border-radius: 0; vertical-align: 3px; }
+    button.plain { padding: 6px 14px; border: 1.5px solid var(--enamel); border-radius: 6px; background: #fff; color: var(--enamel-deep); font: inherit; font-weight: 600; cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #f0b429; outline-offset: 2px; }
+    .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: start; }
+    @media (max-width: 700px) { figure.fig.scroll { overflow-x: auto; } figure.fig.scroll canvas { min-width: 620px; } }
+    .drops { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 8px 0; }
+    .drops figure { margin: 0; text-align: center; font-size: 0.86rem; }
+    .drops canvas { width: 100%; height: auto; border-radius: 50%; }
+    .drops label { margin: 4px 0 0; font-weight: 600; font-size: 0.9rem; }
+    @media (max-width: 760px) {
+      .two { grid-template-columns: 1fr; }
+      .drops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      h1 { font-size: 1.8rem; }
+      body { font-size: 16px; }
+      .page, .masthead { padding-left: 16px; padding-right: 16px; }
+    }
+
+    /* the glossary */
+    dl.words { display: grid; grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr); gap: 0; max-width: 84ch; margin: 8px 0; border-top: 1px solid var(--rule); }
+    dl.words dt, dl.words dd { margin: 0; padding: 8px 10px; border-bottom: 1px solid var(--rule); }
+    dl.words dt { font-weight: 650; }
+    @media (max-width: 640px) { dl.words { grid-template-columns: 1fr; } dl.words dt { border-bottom: 0; padding-bottom: 0; } }
+
+    footer { margin-top: 56px; padding-top: 14px; border-top: 1px solid var(--rule); color: var(--ink-faint); font-size: 0.86rem; max-width: 84ch; }
+    footer h3 { font-family: var(--sans); font-size: 0.95rem; color: var(--ink-soft); }
+    footer ul { padding-left: 1.2em; }
+
+    @media print {
+      nav.contents, .lab-button, .seg, .tool input[type="range"], .readout { display: none !important; }
+      .page { display: block; }
+      .check details { display: block; }
+      .part-banner { background: #fff; color: var(--ink); border: 2px solid var(--enamel); }
+      section.topic { break-before: auto; }
+      figure.fig, .tool, .box { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <p class="eyebrow">BCH3023 &middot; Prelab review</p>
+      <h1>The Enzyme&rsquo;s Handshake</h1>
+      <p class="dek">Before the lab: what an enantiomer is and how its purity is measured, how a yeast and a lipase do organic chemistry, how a kinetic resolution works and how selective it was, and the bench techniques of both sessions. Every example here is made up, and none is a compound you will meet at the bench.</p>
+    </div>
+    <a class="lab-button" href="../index.html">Go to the lab &rarr;</a>
+  </div>
+</header>
+
+<div class="page">
+<nav class="contents" aria-label="Contents">
+  <p class="nav-title">Contents</p>
+  <div class="nav-columns">
+    <div class="nav-group"><p class="nav-part">A. Mirror images, measured</p>
+      <ol><li><a href="#t1"><span class="n">1</span>Enantiomers and ee</a></li><li><a href="#t2"><span class="n">2</span>Optical rotation</a></li><li><a href="#t3"><span class="n">3</span>Chiral GC</a></li></ol></div>
+    <div class="nav-group"><p class="nav-part">B. Enzymes as reagents</p>
+      <ol><li><a href="#t4"><span class="n">4</span>Baker&rsquo;s yeast reduces a ketone</a></li><li><a href="#t5"><span class="n">5</span>A lipase in hexane</a></li><li><a href="#t6"><span class="n">6</span>Kinetic resolution and E</a></li><li><a href="#t7"><span class="n">7</span>The Kazlauskas rule</a></li></ol></div>
+    <div class="nav-group"><p class="nav-part">C. At the bench</p>
+      <ol><li><a href="#t8"><span class="n">8</span>Filtering through Celite</a></li><li><a href="#t9"><span class="n">9</span>Salting out and extracting</a></li><li><a href="#t10"><span class="n">10</span>Drying and evaporating</a></li><li><a href="#t11"><span class="n">11</span>TLC and the flash column</a></li><li><a href="#t12"><span class="n">12</span>Reading an NMR for purity</a></li><li><a href="#t13"><span class="n">13</span>Safety</a></li></ol></div>
+  </div>
+</nav>
+
+<main>
+<div class="box start">
+  <h3>How to use this review</h3>
+  <p>Read it in order before your first session; Parts A and B are the ideas, Part C is the bench. Each topic ends with <b>In short</b> (what to remember) and <b>Check yourself</b> (questions with answers you can open). The <span class="pill try">Try it</span> boxes are small calculators and plots: use them. All the numbers in them are made up.</p>
+</div>
+<div class="box goals">
+  <h3>By the end you should be able to</h3>
+  <ol>
+    <li>Work out an enantiomeric excess from a ratio, a rotation or two peak areas.</li>
+    <li>Turn a polarimeter&rsquo;s angle into a specific rotation, and say what a blank and an air bubble do.</li>
+    <li>Say why a chiral GC needs a pure-enantiomer standard before its peaks can be named.</li>
+    <li>Explain how yeast cells and a lipase do organic chemistry, and why vinyl acetate makes the lipase&rsquo;s reaction one-way.</li>
+    <li>Follow a kinetic resolution: why it stops near 50%, how the two ee values change, and how E is worked out from them.</li>
+    <li>Apply the Kazlauskas rule to a secondary alcohol.</li>
+    <li>Run a Celite filtration, an extraction, a drying, a rotary evaporation, a TLC and a flash column, and read an NMR for what else is in a product.</li>
+  </ol>
+</div>
+
+<div class="part-banner"><p class="part-label">Part A</p><h2>Mirror images, measured</h2><p>Two molecules can have the same atoms, joined the same way, and still differ as your two hands do. This part is about telling them apart and measuring how much of each a sample holds.</p></div>
+
+<section class="topic" id="t1">
+  <h2 class="topic-title"><span class="step">1</span>Enantiomers and enantiomeric excess</h2>
+  <p class="lead">A carbon with four different groups is a stereocenter: its two mirror-image arrangements cannot be laid on top of each other.</p>
+  <div class="prose">
+    <p>The two mirror images of a chiral molecule are its <b>enantiomers</b>. They have the same boiling point, the same NMR spectrum in an ordinary solvent, the same TLC spot: in a world without chirality they are identical. They differ only toward other chiral things: polarized light (topic 2), a chiral column (topic 3), and enzymes, whose pockets are built from L-amino acids and are themselves chiral.</p>
+    <p>Each stereocenter is named <b>R</b> or <b>S</b> by the Cahn&ndash;Ingold&ndash;Prelog (CIP) rules: rank the four groups by atomic number at the first point of difference (OH &gt; carbon groups &gt; H for the alcohols in this lab), point the lowest (H) away from you, and follow 1 &rarr; 2 &rarr; 3. Clockwise is R, anticlockwise S. The letter is a naming rule, not a shape: change one group&rsquo;s rank and the same shape can change its letter.</p>
+    <p>A 50 : 50 mixture is <b>racemic</b>. How far a sample is from racemic is its <b>enantiomeric excess</b>:</p>
+    <p class="eq">ee = (major &minus; minor) / (major + minor) &times; 100%<span class="where">An 80 : 20 mixture has ee = (80 &minus; 20) / 100 = 60%. A pure enantiomer has 100% ee; a racemate 0%.</span></p>
+    <p>The same thing is sometimes written as an <b>enantiomeric ratio</b>, er 80 : 20. Both are only as good as the method that measured them, which is what the next two topics are about.</p>
+  </div>
+  <div class="tool"><h3>From a ratio to ee, and back</h3>
+    <div class="fields"><label>Percent of the major enantiomer <input type="range" id="ee-major" min="50" max="100" step="0.5" value="80"></label></div>
+    <p class="out" id="ee-out"></p>
+  </div>
+  <div class="box key"><h4></h4><ul><li>Enantiomers differ only toward chiral things: light, a chiral column, an enzyme.</li><li>R and S come from the CIP ranks of the groups, so they are a label, not a shape.</li><li>ee = (major &minus; minor) / (major + minor).</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>A sample is 92 : 8. What is its ee?<details><summary>Answer</summary><p class="answer">(92 &minus; 8) / 100 = 84% ee.</p></details></li>
+    <li>A sample has 50% ee. What share of it is the minor enantiomer?<details><summary>Answer</summary><p class="answer">25%: the mixture is 75 : 25, since (75 &minus; 25) / 100 = 0.50.</p></details></li>
+    <li>Why can an ordinary NMR spectrum not tell you the ee?<details><summary>Answer</summary><p class="answer">In an achiral solvent the two enantiomers have identical spectra: every signal is the same for both.</p></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t2">
+  <h2 class="topic-title"><span class="step">2</span>Optical rotation and the polarimeter</h2>
+  <p class="lead">A solution of one enantiomer turns the plane of polarized light; its mirror image turns it by the same angle the other way.</p>
+  <div class="prose">
+    <p>A polarimeter shines light of one wavelength, usually the sodium D line at 589 nm, through a polarizer, then through a tube of the solution, then measures the angle &alpha; through which the plane of polarization has turned. A digital instrument finds the angle itself and shows it; an older manual one has you turn an analyzer until the two halves of a field look alike, and read a scale.</p>
+    <p>The angle grows with how many molecules the light passes, so it is divided by the tube&rsquo;s length and the concentration to give a property of the compound, the <b>specific rotation</b>:</p>
+    <p class="eq">[&alpha;] = &alpha; / (l &middot; c)<span class="where">&alpha; in degrees, l in decimetres (a standard tube is 100 mm = 1 dm), c in g per mL. Tables quote c in g per 100 mL (&ldquo;c 1.0&rdquo; means 1 g in 100 mL, which is 0.010 g per mL), with the solvent and the temperature, since [&alpha;] changes with both.</span></p>
+    <p>For a sample of one compound whose pure enantiomer&rsquo;s [&alpha;] is known, the ratio of the two gives the <b>optical purity</b>, which is taken as the ee: ee &asymp; [&alpha;]<sub>sample</sub> / [&alpha;]<sub>pure</sub>.</p>
+    <h3>What goes wrong</h3>
+    <ul>
+      <li><b>No blank.</b> The instrument&rsquo;s zero is set with the tube full of the pure solvent. Skip it and every reading carries the instrument&rsquo;s own offset.</li>
+      <li><b>An air bubble</b> in the light path scatters the light and the reading is wrong. Fill the tube slowly, tilted, and look along it.</li>
+      <li><b>Something else in the sample.</b> An impurity that does not rotate still counts in the weighed mass, so c is too high for the compound that does rotate and [&alpha;] comes out low. If you know what fraction of the mass is your compound (from an NMR, topic 12), divide by it.</li>
+      <li><b>Small angles.</b> At c 1.0 in a 1 dm tube, a compound with [&alpha;] = +40&deg; turns the light only +0.40&deg;: a digital instrument reads that to a few thousandths of a degree, an eye on a scale to about a twentieth.</li>
+    </ul>
+  </div>
+  <div class="tool"><h3>A made-up polarimeter reading</h3>
+    <p class="small soft">Compound Q (made up): its pure (+) enantiomer has [&alpha;] = +60.0&deg; (c 1.0, chloroform, 25 &deg;C). Enter your own reading and amounts.</p>
+    <div class="fields">
+      <label>&alpha; (degrees) <input type="text" id="pol-alpha" class="short" value="+0.512"></label>
+      <label>mg in the flask <input type="text" id="pol-mg" class="short" value="248"></label>
+      <label>mL of the flask <input type="text" id="pol-ml" class="short" value="25.0"></label>
+      <label>tube (dm) <input type="text" id="pol-l" class="short" value="1.0"></label>
+    </div>
+    <p class="out" id="pol-out"></p>
+  </div>
+  <div class="box worked"><h4>Worked example (made up)</h4><p>248 mg of Q made up to 25.0 mL is 0.00992 g per mL. In a 1 dm tube it reads &alpha; = +0.512&deg;. [&alpha;] = 0.512 / (1 &times; 0.00992) = +51.6&deg;, so ee &asymp; 51.6 / 60.0 = 86%. If an NMR showed the sample was 95% Q by mass, the ee of the Q itself is 86 / 0.95 = 91%.</p></div>
+  <div class="box key"><h4></h4><ul><li>[&alpha;] = &alpha; / (l c), l in dm, c in g/mL.</li><li>ee &asymp; [&alpha;] / [&alpha;]<sub>pure</sub>, for the same solvent and temperature.</li><li>Zero on a blank; no bubbles; correct for anything else in the weighed sample.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>c is written &ldquo;c 2.0&rdquo;. What is it in g per mL?<details><summary>Answer</summary><p class="answer">2.0 g per 100 mL = 0.020 g per mL.</p></details></li>
+    <li>You forget the blank and the instrument reads +0.05&deg; with nothing in it. What happens to a sample reading of +0.40&deg;?<details><summary>Answer</summary><p class="answer">It reads about +0.45&deg;, 12% too high, and so does the ee worked from it.</p></details></li>
+    <li>Why would a manual polarimeter be a poor choice for a sample that turns only +0.40&deg;?<details><summary>Answer</summary><p class="answer">Reading a scale by eye to about &plusmn;0.05&deg; puts the ee out by over 10%.</p></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t3">
+  <h2 class="topic-title"><span class="step">3</span>Chiral gas chromatography</h2>
+  <p class="lead">A column coated with a chiral stationary phase holds one enantiomer a little longer than the other, so they come out as two peaks.</p>
+  <div class="prose">
+    <p>The chiral GC columns used for small alcohols and esters carry a <b>cyclodextrin</b>: a ring of seven glucose units (for &beta;-cyclodextrin) with a cone-shaped cavity, its hydroxyl groups capped with methyl or acetyl groups. Each enantiomer fits the chiral cavity a little differently, so one spends a little longer in the coating and comes off later.</p>
+    <p>The detector (a flame ionization detector, FID) gives a peak for each compound; the integrator reports each peak&rsquo;s <b>retention time</b> and <b>area</b>. The two enantiomers burn alike, so their areas are in the ratio of their amounts and the ee comes straight from them: ee = |A<sub>1</sub> &minus; A<sub>2</sub>| / (A<sub>1</sub> + A<sub>2</sub>).</p>
+    <h3>Which peak is which?</h3>
+    <p>Nothing in the chromatogram says which peak is R. The order depends on the compound and on the column: the same pair can come off R first on one cyclodextrin and S first on another. The only sure way is a <b>standard</b>: a pure (or nearly pure) sample of one known enantiomer, run the same way. Its peak&rsquo;s time names the peak in your sample.</p>
+    <h3>What goes wrong</h3>
+    <ul>
+      <li><b>Too much.</b> An undiluted sample overloads the column: the peaks broaden and lean, and two close peaks run into one, which the integrator reports as a single peak. Dilute until the peaks are sharp.</li>
+      <li><b>Solid in the vial.</b> Anything that keeps reacting (a catalyst, a bead of enzyme) must be filtered out first, or the vial is not what the reaction was when you sampled it.</li>
+    </ul>
+  </div>
+  <div class="tool point"><h3>A made-up chromatogram and its standard</h3>
+    <p class="small soft">Compound W (made up) on a made-up chiral column. Point at a peak to see the integrator&rsquo;s numbers; switch between the sample and the pure (S)-W standard.</p>
+    <p><span class="seg" role="group" aria-label="Which run"><button type="button" data-gcrun="sample" aria-pressed="true">The sample</button><button type="button" data-gcrun="standard" aria-pressed="false">The (S)-W standard</button></span></p>
+    <figure class="fig"><canvas id="gc-canvas" width="900" height="260" aria-label="A made-up chromatogram"></canvas><figcaption id="gc-cap"></figcaption></figure>
+    <div class="readout" id="gc-read">Point at a peak.</div>
+  </div>
+  <div class="box key"><h4></h4><ul><li>Peak areas give the ee; the integrator gives the areas.</li><li>Name the peaks from a standard, run the same way. Never from a remembered order.</li><li>Dilute the sample and filter out anything that keeps reacting.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Peaks at 6.10 and 6.42 min have areas 12 450 and 2 050. What is the ee?<details><summary>Answer</summary><p class="answer">(12 450 &minus; 2 050) / 14 500 = 71.7%.</p></details></li>
+    <li>In the made-up chromatogram above, which enantiomer is the major one?<details><summary>Answer</summary><p class="answer">Run the standard: (S)-W comes off with the first peak, and the first peak is the small one. The major enantiomer is (R)-W.</p></details></li>
+    <li>An undiluted sample shows one broad peak where a diluted one shows two. What ee would you get from the undiluted one, and why is it wrong?<details><summary>Answer</summary><p class="answer">100%, since there is only one peak to measure; the two enantiomers have run together, not become one.</p></details></li>
+  </ol></div>
+</section>
+
+<div class="part-banner"><p class="part-label">Part B</p><h2>Enzymes as reagents</h2><p>An enzyme&rsquo;s pocket is chiral, so it treats mirror-image molecules differently. Session 1 uses that to make one enantiomer from a flat ketone; session 2 uses it to sort the two enantiomers of an alcohol.</p></div>
+
+<section class="topic" id="t4">
+  <h2 class="topic-title"><span class="step">4</span>Baker&rsquo;s yeast reduces a ketone</h2>
+  <p class="lead">Living yeast cells carry reductases that hand a hydride from NADPH to a ketone&rsquo;s carbonyl from one face, so the new alcohol comes out mostly as one enantiomer.</p>
+  <div class="prose">
+    <p>Saccharomyces cerevisiae is used here as a bag of enzymes that looks after itself. Fed sugar, the cells make <b>NADPH</b> (largely through the pentose phosphate pathway), and several NADPH-dependent <b>ketoreductases</b> use it to reduce a ketone added to the broth. The cells regenerate the NADPH as long as they have sugar, which is why a fermentation is fed, and why the reduction needs days rather than minutes.</p>
+    <p>A ketone&rsquo;s carbonyl carbon is flat: hydride can arrive from either face. In a reductase&rsquo;s pocket the ketone sits one way round, so hydride comes from one face, and a new stereocenter forms with one configuration. A general pattern for many yeast reductases (<b>Prelog&rsquo;s rule</b>) is that the hydride arrives on the carbonyl&rsquo;s <i>Re</i> face, which for most simple ketones gives the (S) alcohol; but several enzymes compete in one cell, and some prefer the other face, which is why yeast products are rarely 100% one enantiomer. How the cells are fed and how much ketone they meet at once change which enzymes do most of the work.</p>
+    <h3>The bench, in outline</h3>
+    <ol>
+      <li>Wake the yeast in warm water with sugar (yeast likes about 30 to 40 &deg;C; water near 55 &deg;C or hotter kills it). A live culture foams.</li>
+      <li>Add the ketone, stir open to the air, and wait; follow it by TLC until the ketone&rsquo;s spot is gone.</li>
+      <li>Filter off the cells through Celite (topic 8), salt the filtrate and extract the product (topic 9), dry and evaporate (topic 10), weigh, and measure its rotation (topic 2) and NMR (topic 12).</li>
+    </ol>
+  </div>
+  <div class="box key"><h4></h4><ul><li>Whole cells: the enzymes, and the sugar that keeps their NADPH coming.</li><li>One face of the flat carbonyl gets the hydride: a new stereocenter, mostly one enantiomer.</li><li>Several reductases compete, so the ee depends on how the fermentation is run.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Why does a yeast reduction need sugar, though sugar is not reduced?<details><summary>Answer</summary><p class="answer">The cells burn it to regenerate the NADPH the reductases use up.</p></details></li>
+    <li>The water for the yeast was 70 &deg;C. What will you see, and what will the ketone do?<details><summary>Answer</summary><p class="answer">No foam: the yeast is dead, and the ketone is not reduced.</p></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t5">
+  <h2 class="topic-title"><span class="step">5</span>A lipase in hexane</h2>
+  <p class="lead">Lipases are made to hydrolyse fats in water; in a dry organic solvent the same machinery runs the other way and makes esters.</p>
+  <div class="prose">
+    <p><b>Candida antarctica lipase B</b> (CAL-B) is sold adsorbed on acrylic resin beads as Novozym 435. Its active site is a <b>catalytic triad</b>: a serine (Ser105), a histidine (His224) and an aspartate (Asp187). The histidine takes the serine&rsquo;s proton, so the serine&rsquo;s oxygen attacks an ester&rsquo;s carbonyl; the alkoxy group leaves and an <b>acyl-enzyme</b> remains. Then a nucleophile takes the acyl group off the serine: water in water (hydrolysis), or, in a dry solvent, an alcohol, which is how the alcohol becomes an ester.</p>
+    <p>With <b>vinyl acetate</b> as the acyl donor, the group that leaves the acyl-enzyme step is vinyl alcohol, which at once turns into its tautomer, acetaldehyde. Acetaldehyde cannot attack the acyl-enzyme, so nothing runs back: the acylation is one-way.</p>
+    <p>Water spoils this. In wet solvent the acyl-enzyme is hydrolysed as well as transferred, and the ester already made can be hydrolysed back. The hexane is dried, and the beads are kept dry and cold.</p>
+    <p class="eq">R&ndash;OH + CH<sub>2</sub>=CH&ndash;O&ndash;C(O)CH<sub>3</sub> &rarr; R&ndash;O&ndash;C(O)CH<sub>3</sub> + CH<sub>3</sub>CHO<span class="where">An alcohol and vinyl acetate give the alcohol&rsquo;s acetate and acetaldehyde, by way of the acyl-enzyme.</span></p>
+  </div>
+  <div class="box key"><h4></h4><ul><li>Ser&ndash;His&ndash;Asp: the serine is acylated, then deacylated by the alcohol.</li><li>Vinyl acetate frees vinyl alcohol, which becomes acetaldehyde: one-way.</li><li>Dry solvent, or the lipase hydrolyses.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Why would ethyl acetate be a worse acyl donor than vinyl acetate?<details><summary>Answer</summary><p class="answer">It frees ethanol, which can attack the acyl-enzyme too: the reaction runs both ways and stops at an equilibrium.</p></details></li>
+    <li>What does the histidine of the triad do?<details><summary>Answer</summary><p class="answer">It takes the serine&rsquo;s proton (helped by the aspartate), making the serine oxygen a strong nucleophile.</p></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t6">
+  <h2 class="topic-title"><span class="step">6</span>Kinetic resolution and E</h2>
+  <p class="lead">If an enzyme acylates one enantiomer of a racemic alcohol much faster than the other, stopping halfway leaves one enantiomer as the alcohol and the other as the acetate.</p>
+  <div class="prose">
+    <p>Start with a racemic alcohol. The <b>fast</b> enantiomer turns into its acetate; the <b>slow</b> one mostly stays. As the reaction runs, the alcohol left is enriched in the slow enantiomer (its ee, <b>ee<sub>s</sub></b>, rises) and the acetate made is mostly the fast one (its ee, <b>ee<sub>p</sub></b>). At most 50% of the starting material can become the fast enantiomer&rsquo;s acetate, so a resolution is stopped near 50% conversion, <b>c</b>. Going on past that converts the slow enantiomer too: the alcohol left gets purer still, and the acetate less pure.</p>
+    <p>How well the enzyme tells the two apart is its <b>enantioselectivity</b>, <b>E</b>: the ratio of how fast it handles each (strictly, the ratio of the two k<sub>cat</sub>/K<sub>M</sub>). Because the two enantiomers compete for the same enzyme, E links c and the ee values whatever the time scale (Chen, Fujimoto, Girdaukas and Sih, 1982):</p>
+    <p class="eq">c = ee<sub>s</sub> / (ee<sub>s</sub> + ee<sub>p</sub>)<span class="where">From the two ee values alone (as fractions); no masses needed.</span></p>
+    <p class="eq">E = ln[(1 &minus; c)(1 &minus; ee<sub>s</sub>)] / ln[(1 &minus; c)(1 + ee<sub>s</sub>)]<span class="where">c and ee<sub>s</sub> as fractions (0.40, not 40).</span></p>
+    <p>E above about 100 is excellent; below about 15, neither product comes out pure. Above about 200 the formula is very sensitive to the last digit of the ee values, so a large E is a range, not a number.</p>
+  </div>
+  <div class="tool"><h3>How E shapes a resolution</h3>
+    <p class="small soft">The ee of the alcohol left (blue) and of the acetate made (orange) as the conversion rises, for the E you choose.</p>
+    <div class="fields"><label>E <input type="range" id="kr-e" min="0" max="3" step="0.01" value="1.7"></label><label>Conversion <input type="range" id="kr-c" min="1" max="90" step="1" value="45"></label></div>
+    <figure class="fig"><canvas id="kr-canvas" width="900" height="320" aria-label="ee against conversion"></canvas></figure>
+    <p class="out" id="kr-out"></p>
+  </div>
+  <div class="box worked"><h4>Worked example (made up)</h4><p>A resolution stopped and separated gives the alcohol at ee<sub>s</sub> = 62% and the acetate at ee<sub>p</sub> = 93%. c = 0.62 / (0.62 + 0.93) = 0.400, so 40%. E = ln[(0.600)(0.380)] / ln[(0.600)(1.620)] = ln 0.228 / ln 0.972 = &minus;1.478 / &minus;0.0284 = about 52.</p></div>
+  <div class="box key"><h4></h4><ul><li>Fast enantiomer &rarr; acetate; slow one stays as the alcohol. Stop near 50%.</li><li>c from the two ee values; E from c and ee<sub>s</sub>.</li><li>A large E is a range: the formula swings with the last digit.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>ee<sub>s</sub> = 30%, ee<sub>p</sub> = 90%. What is c?<details><summary>Answer</summary><p class="answer">0.30 / 1.20 = 25%.</p></details></li>
+    <li>Why does the acetate&rsquo;s ee fall if you run far past 50%?<details><summary>Answer</summary><p class="answer">Once the fast enantiomer is used up, the slow one is acylated too, and its acetate dilutes the fast one&rsquo;s.</p></details></li>
+    <li>With E = 5, can you get both products pure by stopping at exactly 50%?<details><summary>Answer</summary><p class="answer">No. Use the plot: at E = 5 and 50%, both ee values are only about 50%.</p></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t7">
+  <h2 class="topic-title"><span class="step">7</span>The Kazlauskas rule</h2>
+  <p class="lead">For secondary alcohols, many lipases (CAL-B among them) prefer the enantiomer that fits their pocket with its larger group in the larger space.</p>
+  <div class="prose">
+    <p>A secondary alcohol&rsquo;s stereocenter carries an OH, an H, and two carbon groups, one larger (<b>L</b>) and one smaller, the medium group (<b>M</b>). Kazlauskas and co-workers (1991) found that lipases acylate faster the enantiomer in which, with the H pointing away from you, OH &rarr; L &rarr; M runs <b>clockwise</b>. CAL-B&rsquo;s crystal structure shows why: its stereospecificity pocket is small, so it takes the medium group, and the large group must point out of the active site.</p>
+    <p>If L also outranks M by the CIP rules, that faster enantiomer is the (R) one. If M outranks L (a medium group carrying a heavier atom, or a double or triple bond, can outrank a longer alkyl chain), the same shape gets the other letter. Always work out the letter from the ranks; do not assume it.</p>
+    <p>The rule is about sizes, so it works best when L and M differ a lot. When they are alike in size (one carbon apart, say), the enzyme can hardly tell the enantiomers apart and E is low.</p>
+  </div>
+  <div class="box worked"><h4>Worked example: 1-cyclohexylethanol (not one of the lab&rsquo;s alcohols)</h4><p>L = cyclohexyl, M = methyl. Draw the stereocenter with H at the back: the faster enantiomer has OH &rarr; cyclohexyl &rarr; methyl clockwise. By CIP, OH &gt; cyclohexyl (a carbon bearing C, C, H) &gt; methyl (H, H, H), so clockwise is R: the rule predicts that CAL-B acylates (R)-1-cyclohexylethanol faster, leaving (S)-1-cyclohexylethanol behind.</p></div>
+  <div class="box key"><h4></h4><ul><li>L and M; H away; the fast one has OH &rarr; L &rarr; M clockwise.</li><li>That is (R) when L outranks M by CIP; check the ranks every time.</li><li>Groups alike in size: low E.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Which group goes in CAL-B&rsquo;s small pocket?<details><summary>Answer</summary><p class="answer">The medium group, M.</p></details></li>
+    <li>Why is the rule&rsquo;s shape not always (R)?<details><summary>Answer</summary><p class="answer">R and S follow the CIP ranks, not size. If the medium group outranks the large one, the same shape is named (S).</p></details></li>
+    <li>How will you know, in the lab, which enantiomer your enzyme preferred?<details><summary>Answer</summary><p class="answer">From the chiral GC: name the alcohol&rsquo;s peaks with the pure (R) standard, then see which one shrinks as the reaction runs (and which acetate peak grows). Then compare with the rule.</p></details></li>
+  </ol></div>
+</section>
+
+<div class="part-banner"><p class="part-label">Part C</p><h2>At the bench</h2><p>The techniques of the two sessions, and what each one is for. The lab page lets you make each mistake below and shows what it costs.</p></div>
+
+<section class="topic" id="t8">
+  <h2 class="topic-title"><span class="step">8</span>Filtering through Celite</h2>
+  <div class="prose">
+    <p>A yeast broth is full of cells and debris fine enough to clog filter paper in minutes. <b>Celite</b> (diatomaceous earth: the silica skeletons of tiny algae) packs into a porous bed that holds the fine solid in its depth rather than on the paper&rsquo;s surface. Make a slurry of Celite in water, pour it onto the paper in the Büchner funnel under suction to form a bed 2 to 3 mm thick, empty the filter flask, then filter the broth (with more Celite stirred into it) through the bed.</p>
+    <p>The filter flask is clamped (it is top-heavy under a funnel), and a trap sits between it and the pump so that liquid cannot be pulled into the pump. Celite dust is crystalline silica and harms the lungs: handle it wet and never sweep it dry.</p>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol><li>Why empty the filter flask after building the bed?<details><summary>Answer</summary><p class="answer">So the water from the slurry does not dilute the filtrate that holds your product.</p></details></li></ol></div>
+</section>
+
+<section class="topic" id="t9">
+  <h2 class="topic-title"><span class="step">9</span>Salting out and extracting</h2>
+  <div class="prose">
+    <p>A small alcohol with an ester group likes water a good deal, so extracting it straight from the filtrate leaves much behind. Dissolving salt to saturation in the water first (<b>salting out</b>) ties up the water molecules around the ions and pushes the organic compound into the organic layer.</p>
+    <p>In the separatory funnel, add the organic solvent, stopper, <b>invert gently</b> and <b>vent</b> often (pointing the stem away from everyone), then let the layers part and drain the lower one. Ethyl acetate is less dense than water and floats; a chlorinated solvent would sink. Keep every layer until you are sure where your product is. Three extractions with a third of the solvent each recover more than one with all of it.</p>
+    <p>A broth full of cell debris readily forms an <b>emulsion</b> when shaken hard: no sharp line between the layers. Gentle inversions prevent it; brine (saturated NaCl), patience, or a centrifuge clear it.</p>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol><li>Which layer is ethyl acetate, and why does it matter which you drain?<details><summary>Answer</summary><p class="answer">The upper one (it is less dense than water). Draining the lower layer through the stopcock removes the water and keeps your extract in the funnel.</p></details></li></ol></div>
+</section>
+
+<section class="topic" id="t10">
+  <h2 class="topic-title"><span class="step">10</span>Drying and evaporating</h2>
+  <div class="prose">
+    <p>An organic extract holds dissolved water. A <b>brine wash</b> first takes out most of it; then anhydrous <b>magnesium sulfate</b> is added in small portions with swirling until fresh portions stay free-flowing instead of clumping. Filter off the solid by gravity, rinse it, and collect the filtrate in a weighed round-bottomed flask.</p>
+    <p>The <b>rotary evaporator</b> takes off the solvent under reduced pressure while the flask turns in a warm bath: the vacuum lowers the boiling point, the turning spreads a thin film, and the condenser catches the solvent. Droplets left behind mean the solution was not dry. A small, volatile product (one that boils not far above 100 &deg;C) is lost along with the solvent if the bath is warm and the vacuum strong: use a cold bath and gentle vacuum for those.</p>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol><li>How do you know you have added enough MgSO<sub>4</sub>?<details><summary>Answer</summary><p class="answer">New portions stay loose and free-flowing, like sand, instead of clumping.</p></details></li></ol></div>
+</section>
+
+<section class="topic" id="t11">
+  <h2 class="topic-title"><span class="step">11</span>TLC and the flash column</h2>
+  <div class="prose">
+    <p>On silica, polar compounds stick and travel less far. An alcohol, which can hydrogen-bond to the silica through its OH, runs well behind its own acetate. TLC tells you how far each goes in a solvent (its <b>R<sub>f</sub></b>, distance run over the solvent front&rsquo;s), and so which solvent will separate them on a column: aim for the slower compound at R<sub>f</sub> about 0.2 to 0.35, with a clear gap to the faster one. Too polar a solvent runs both near the front, close together; too weak a solvent leaves the slower one at the start.</p>
+    <p>Aryl compounds show as dark spots under UV light (254 nm) on plates with an indicator; most simple alkyl alcohols and esters do not, and need a stain (vanillin or permanganate, then heat).</p>
+    <p>A <b>flash column</b> is the same separation, scaled up: silica packed in a glass column, the mixture loaded at the top, solvent pushed through with a little air pressure. The faster compound (here the acetate) comes off first. Fractions are collected in test tubes, checked by TLC, and the pure ones combined.</p>
+  </div>
+  <div class="tool"><h3>Choosing an eluent (made up)</h3>
+    <p class="small soft">Compound V&rsquo;s alcohol and its acetate (made up) on silica, in hexanes : ethyl acetate.</p>
+    <p><span class="seg" role="group" aria-label="Eluent"><button type="button" data-tlc="hexane" aria-pressed="false">Hexane</button><button type="button" data-tlc="9:1" aria-pressed="false">9 : 1</button><button type="button" data-tlc="4:1" aria-pressed="true">4 : 1</button><button type="button" data-tlc="1:1" aria-pressed="false">1 : 1</button></span></p>
+    <figure class="fig" style="max-width:340px"><svg id="tlc-svg" viewBox="0 0 160 220" role="img" aria-label="A TLC plate"></svg></figure>
+    <p class="out" id="tlc-out"></p>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol><li>In the made-up example, which eluent would you choose for the column, and which compound comes off first?<details><summary>Answer</summary><p class="answer">9 : 1 puts the alcohol near R<sub>f</sub> 0.25 with the acetate well ahead; the acetate comes off first.</p></details></li></ol></div>
+</section>
+
+<section class="topic" id="t12">
+  <h2 class="topic-title"><span class="step">12</span>Reading an NMR for purity</h2>
+  <div class="prose">
+    <p>A <sup>1</sup>H NMR spectrum confirms a structure: each set of equivalent protons gives a signal at its <b>chemical shift</b>, split by its neighbours (n neighbours give n + 1 lines), with an <b>integral</b> proportional to how many protons it holds. It also shows what else is in the sample. Another compound&rsquo;s signals appear beside yours, and comparing integrals gives the mole ratio, once each is divided by its number of protons.</p>
+  </div>
+  <div class="box worked"><h4>Worked example (made up)</h4><p>Compound X&rsquo;s CH<sub>2</sub> (2 H) integrates to 2.00; a singlet from compound Y&rsquo;s CH<sub>3</sub> (3 H) integrates to 0.30. Per proton: X 1.00, Y 0.10. So Y is 0.10 / 1.10 = 9.1 mol% of the mixture. To turn that into a mass fraction, multiply each by its molar mass.</p></div>
+  <div class="check"><h4>Check yourself</h4><ol><li>A singlet (3 H) integrates to 0.15 beside your compound&rsquo;s 2 H signal at 2.00. Mole percent of the impurity?<details><summary>Answer</summary><p class="answer">0.05 / (1.00 + 0.05) = 4.8 mol%.</p></details></li><li>Can this NMR tell you your product&rsquo;s ee?<details><summary>Answer</summary><p class="answer">No: both enantiomers give the same spectrum (topic 1). It tells you what else is there.</p></details></li></ol></div>
+</section>
+
+<section class="topic" id="t13">
+  <h2 class="topic-title"><span class="step">13</span>Safety</h2>
+  <div class="prose">
+    <ul>
+      <li><b>Hexane, ethyl acetate, vinyl acetate</b> are highly flammable; vinyl acetate and chloroform belong in the hood. Hexane harms the nerves on long exposure.</li>
+      <li><b>Chloroform</b> (for the polarimeter) is toxic and a suspected carcinogen: make up solutions in the hood, with gloves.</li>
+      <li><b>Celite and silica gel</b> are fine dusts that harm the lungs: keep them wet or handle them in the hood.</li>
+      <li><b>Novozym 435</b> is a respiratory sensitizer (enzyme dust): weigh the beads gently, without making dust.</li>
+      <li><b>Vacuum glassware</b> (the filter flask, the rotary evaporator) can implode: check for cracks, and clamp the filter flask.</li>
+    </ul>
+  </div>
+</section>
+
+<p class="made-up">Every compound, number and chromatogram in this review is made up for practice (1-cyclohexylethanol, in topic 7, is a real alcohol but not one of the lab&rsquo;s). Sources for the methods: Org. Synth. 1985, 63, 1 (the yeast reduction); Chen, Fujimoto, Girdaukas &amp; Sih, J. Am. Chem. Soc. 1982, 104, 7294 (E); Kazlauskas et al., J. Org. Chem. 1991, 56, 2656 (the rule); Uppenberg et al. 1994 and 1995 (CAL-B&rsquo;s structure); Pavia and Nichols (the techniques). This is a review for a simulated lab.</p>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  function $(id) { return document.getElementById(id); }
+  function num(t) { var v = Number(String(t).replace(',', '.').replace(/[^0-9.+\-eE]/g, '')); return isFinite(v) ? v : NaN; }
+
+  // ---- 1: a ratio and its ee ----
+  function showEe() {
+    var m = num($('ee-major').value), ee = (m - (100 - m));
+    $('ee-out').textContent = 'A ' + m.toFixed(1) + ' : ' + (100 - m).toFixed(1) + ' mixture has ee = (' + m.toFixed(1) + ' − ' + (100 - m).toFixed(1) + ') / 100 = ' + ee.toFixed(1) + '%.';
+  }
+  $('ee-major').addEventListener('input', showEe); showEe();
+
+  // ---- 2: the made-up polarimeter ----
+  function showPol() {
+    var a = num($('pol-alpha').value), mg = num($('pol-mg').value), ml = num($('pol-ml').value), l = num($('pol-l').value);
+    if (!(mg > 0 && ml > 0 && l > 0) || isNaN(a)) { $('pol-out').textContent = 'Enter an angle, a mass, a volume and a tube length.'; return; }
+    var c = mg / 1000 / ml, spec = a / (l * c);
+    $('pol-out').textContent = 'c = ' + (mg / 1000).toFixed(3) + ' g / ' + ml + ' mL = ' + c.toFixed(5) + ' g/mL.  [α] = ' + a + ' / (' + l + ' × ' + c.toFixed(5) + ') = ' + (spec >= 0 ? '+' : '') + spec.toFixed(1) + '°.  ee ≈ ' + (spec / 60 * 100).toFixed(1) + '% (against +60.0° for pure (+)-Q).';
+  }
+  ['pol-alpha', 'pol-mg', 'pol-ml', 'pol-l'].forEach(function (id) { $(id).addEventListener('input', showPol); }); showPol();
+
+  // ---- 3: the made-up chromatogram ----
+  var RUNS = {
+    sample: { cap: 'The sample of W: two peaks, at 6.10 and 6.42 min.', peaks: [{ t: 6.10, area: 2050, w: 0.022 }, { t: 6.42, area: 12450, w: 0.023 }] },
+    standard: { cap: 'The pure (S)-W standard, run the same way: one peak (with a trace of the other).', peaks: [{ t: 6.10, area: 14100, w: 0.022 }, { t: 6.42, area: 70, w: 0.023 }] }
+  };
+  var run = 'sample', gc = $('gc-canvas'), T0 = 5.5, T1 = 7.0;
+  function gcY(peaks, t) { var y = 0; peaks.forEach(function (p) { var d = (t - p.t) / p.w; y += p.area / (p.w * 2.5066) * Math.exp(-0.5 * d * d); }); return y; }
+  function drawGc() {
+    var ctx = gc.getContext('2d'), W = gc.width, H = gc.height, base = H - 30, top = 14, peaks = RUNS[run].peaks, most = 0, px;
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    var ys = [];
+    for (px = 0; px < W; px++) { var y = gcY(peaks, T0 + px / W * (T1 - T0)); ys.push(y); most = Math.max(most, y); }
+    var k = (base - top) / Math.max(most, gcY(RUNS.sample.peaks, 6.42));
+    ctx.strokeStyle = '#1b2a3a'; ctx.lineWidth = 1.4; ctx.beginPath();
+    for (px = 0; px < W; px++) { var yy = base - ys[px] * k; if (px) ctx.lineTo(px, yy); else ctx.moveTo(px, yy); } ctx.stroke();
+    ctx.strokeStyle = '#55606b'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, base + 0.5); ctx.lineTo(W, base + 0.5); ctx.stroke();
+    ctx.fillStyle = '#33404c'; ctx.font = '13px system-ui, sans-serif'; ctx.textAlign = 'center';
+    for (var t = 5.5; t <= 7.0001; t += 0.25) { var x = (t - T0) / (T1 - T0) * W; ctx.beginPath(); ctx.moveTo(x, base); ctx.lineTo(x, base + 5); ctx.stroke(); ctx.fillText(t.toFixed(2), x, base + 19); }
+    $('gc-cap').innerHTML = '<b>' + (run === 'sample' ? 'Sample' : 'Standard') + '.</b> ' + RUNS[run].cap;
+  }
+  document.querySelectorAll('[data-gcrun]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      run = b.getAttribute('data-gcrun');
+      document.querySelectorAll('[data-gcrun]').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      drawGc(); $('gc-read').textContent = 'Point at a peak.';
+    });
+  });
+  gc.addEventListener('mousemove', function (e) {
+    var r = gc.getBoundingClientRect(), t = T0 + (e.clientX - r.left) / r.width * (T1 - T0), peaks = RUNS[run].peaks, best = null;
+    peaks.forEach(function (p, i) { if (Math.abs(t - p.t) < 0.08 && (!best || Math.abs(t - p.t) < Math.abs(t - best.p.t))) best = { p: p, i: i }; });
+    if (!best) { $('gc-read').textContent = 'At ' + t.toFixed(2) + ' min: the baseline.'; return; }
+    var total = peaks.reduce(function (a, p) { return a + p.area; }, 0);
+    $('gc-read').innerHTML = '<b>Peak ' + (best.i + 1) + '</b>: ' + best.p.t.toFixed(2) + ' min, area ' + best.p.area.toLocaleString('en-US') + ' (' + (best.p.area / total * 100).toFixed(1) + '% of the area).';
+  });
+  drawGc();
+
+  // ---- 6: ee against conversion for a chosen E ----
+  var kr = $('kr-canvas');
+  function eFrom(v) { return Math.round(Math.pow(10, Number(v)) * 10) / 10; }
+  function point(E, c) {
+    // fast left a, slow left b = a^(1/E), with c = 1 - (a + b)/2: solve for a
+    var lo = 0, hi = 1;
+    for (var i = 0; i < 60; i++) { var mid = (lo + hi) / 2, cc = 1 - (mid + Math.pow(mid, 1 / E)) / 2; if (cc > c) lo = mid; else hi = mid; }
+    var a = (lo + hi) / 2, b = Math.pow(a, 1 / E);
+    var ees = (b - a) / (a + b), eep = ((1 - a) - (1 - b)) / ((1 - a) + (1 - b));
+    return { ees: ees, eep: eep };
+  }
+  function drawKr() {
+    var E = eFrom($('kr-e').value), c = Number($('kr-c').value) / 100;
+    var ctx = kr.getContext('2d'), W = kr.width, H = kr.height, L = 50, R = W - 16, B = H - 36, Tp = 14;
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = '#c7d1cc'; ctx.lineWidth = 1; ctx.fillStyle = '#4b5854'; ctx.font = '13px system-ui, sans-serif'; ctx.textAlign = 'center';
+    for (var x = 0; x <= 100; x += 10) { var X = L + x / 100 * (R - L); ctx.beginPath(); ctx.moveTo(X, Tp); ctx.lineTo(X, B); ctx.stroke(); ctx.fillText(x + '%', X, B + 18); }
+    ctx.textAlign = 'right';
+    for (var y = 0; y <= 100; y += 25) { var Y = B - y / 100 * (B - Tp); ctx.beginPath(); ctx.moveTo(L, Y); ctx.lineTo(R, Y); ctx.stroke(); ctx.fillText(y + '%', L - 6, Y + 4); }
+    ctx.textAlign = 'center'; ctx.fillText('conversion, c', (L + R) / 2, H - 2);
+    [['ees', '#1c4c9a'], ['eep', '#c2410c']].forEach(function (s) {
+      ctx.strokeStyle = s[1]; ctx.lineWidth = 2.2; ctx.beginPath();
+      for (var k = 1; k <= 99; k++) { var p = point(E, k / 100), X2 = L + k / 100 * (R - L), Y2 = B - p[s[0]] * (B - Tp); if (k === 1) ctx.moveTo(X2, Y2); else ctx.lineTo(X2, Y2); }
+      ctx.stroke();
+    });
+    var here = point(E, c), Xc = L + c * (R - L);
+    ctx.strokeStyle = '#17211e'; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(Xc, Tp); ctx.lineTo(Xc, B); ctx.stroke(); ctx.setLineDash([]);
+    $('kr-out').textContent = 'E = ' + E + '. At ' + Math.round(c * 100) + '% conversion: the alcohol left has ee ' + (here.ees * 100).toFixed(1) + '% (blue), the acetate ' + (here.eep * 100).toFixed(1) + '% (orange).';
+  }
+  ['kr-e', 'kr-c'].forEach(function (id) { $(id).addEventListener('input', drawKr); }); drawKr();
+
+  // ---- 11: the made-up TLC ----
+  var RF = { 'hexane': [0.20, 0.02], '9:1': [0.55, 0.25], '4:1': [0.72, 0.42], '1:1': [0.88, 0.76] };
+  function drawTlc(e) {
+    var svg = $('tlc-svg'), rf = RF[e], base = 196, front = 20, h = base - front;
+    var spot = function (x, r) { return '<ellipse cx="' + x + '" cy="' + (base - r * h) + '" rx="9" ry="6" fill="#4b5854" opacity="0.85"/>'; };
+    svg.innerHTML = '<rect x="10" y="8" width="140" height="204" rx="3" fill="#f7f8f6" stroke="#8d9994"/>' +
+      '<line x1="10" y1="' + front + '" x2="150" y2="' + front + '" stroke="#1c4c9a" stroke-dasharray="4 3"/>' +
+      '<line x1="10" y1="' + base + '" x2="150" y2="' + base + '" stroke="#8d9994"/>' +
+      spot(45, rf[1]) + spot(80, rf[0]) + spot(115, rf[0]) + spot(115, rf[1]) +
+      '<text x="45" y="210" font-size="9" text-anchor="middle" fill="#4b5854">alcohol</text><text x="80" y="210" font-size="9" text-anchor="middle" fill="#4b5854">acetate</text><text x="115" y="210" font-size="9" text-anchor="middle" fill="#4b5854">mixture</text>';
+    $('tlc-out').textContent = 'In ' + (e === 'hexane' ? 'hexane' : e + ' hexanes : ethyl acetate') + ': the acetate at Rf ' + rf[0].toFixed(2) + ', the alcohol at ' + rf[1].toFixed(2) + '.';
+  }
+  document.querySelectorAll('[data-tlc]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-tlc]').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      drawTlc(b.getAttribute('data-tlc'));
+    });
+  });
+  drawTlc('4:1');
+
+  // ---- the contents: mark the topic in view ----
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.contents a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + en.target.id ? 'true' : 'false'); }); });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('section.topic').forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
