@@ -245,7 +245,7 @@ Biochemistry*, 8th ed. Nothing is graded or recorded.
 | [DNA Workbench](https://neogio73.github.io/BCH3023/study-guides/dna-workbench.html) | Nucleic acids and DNA technology | Strand builder · Double helix · Melting · PCR · Restriction digest and gel · Cloning · Sanger sequencing · CRISPR–Cas9 |
 | [Gluconeogenesis Workbench](https://neogio73.github.io/BCH3023/study-guides/gluconeogenesis-workbench.html) | Gluconeogenesis and its regulation | Pathway map · Why bypass? · Compartments · What can become glucose? · Energy ledger · Reciprocal regulation · Fed vs fasted · Cori and glucose–alanine cycles |
 
-The DNA Workbench loads its fonts from Google Fonts and falls back to built-in fonts without them;
+The DNA and Gluconeogenesis Workbenches load their fonts from Google Fonts and fall back to built-in fonts without them;
 the other pages load nothing from other sites.
 
 ## The Enzyme's Handshake
