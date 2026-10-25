@@ -229,6 +229,25 @@ How it works
   picture of the student's own view of their protein.
 
 
+## Study guides and workbenches
+
+Interactive pages for studying on your own, each a single file that opens in any browser. The
+study guides start with a roadmap and work through their topic in sections, each with models to
+explore, the key facts, and practice with feedback. The workbenches are hands-on: build a
+molecule or run a process, then check yourself. Names and values follow Lehninger, *Principles of
+Biochemistry*, 8th ed. Nothing is graded or recorded.
+
+| Page | Topic | Sections |
+| --- | --- | --- |
+| [Carbohydrates Study Guide](https://neogio73.github.io/BCH3023/study-guides/carbohydrates-study-guide.html) | Lehninger ch. 7 | Monosaccharides · Rings and anomers · Derivatives and reducing sugars · Glycosidic bonds · Polysaccharides · Glycosaminoglycans and proteoglycans · Glycoproteins and glycolipids · The sugar code · Working with carbohydrates |
+| [Lipids Study Guide](https://neogio73.github.io/BCH3023/study-guides/lipids-study-guide.html) | Lipids, membranes, lipid metabolism | Fatty acids and fats · Membrane lipids · Signals and cofactors · Lab methods · Membranes · Digestion and transport · β Oxidation · Ketone bodies · Fatty acid synthesis · Fats and phospholipids · Cholesterol and lipoproteins |
+| [Lipid Workbench](https://neogio73.github.io/BCH3023/study-guides/lipid-workbench.html) | Lipid structure and assembly | Build storage and membrane lipids · Cut them with phospholipases · Self-assembly in water · Membrane fluidity · Challenges |
+| [DNA Workbench](https://neogio73.github.io/BCH3023/study-guides/dna-workbench.html) | Nucleic acids and DNA technology | Strand builder · Double helix · Melting · PCR · Restriction digest and gel · Cloning · Sanger sequencing · CRISPR–Cas9 |
+| [Gluconeogenesis Workbench](https://neogio73.github.io/BCH3023/study-guides/gluconeogenesis-workbench.html) | Gluconeogenesis and its regulation | Pathway map · Why bypass? · Compartments · What can become glucose? · Energy ledger · Reciprocal regulation · Fed vs fasted · Cori and glucose–alanine cycles |
+
+The DNA Workbench loads its fonts from Google Fonts and falls back to built-in fonts without them;
+the other pages load nothing from other sites.
+
 ## The Enzyme's Handshake
 
 Organic chemistry done by enzymes, and measured by how well they tell mirror-image molecules
