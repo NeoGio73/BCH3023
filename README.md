@@ -304,12 +304,14 @@ name; the magnet's maker, BROKER, and the instruments' maker, ThermoFritter, are
 
 A prelab for the in-person Experiment 40, "Extraction and identification of fatty acids from corn
 oil" (saponify the oil, acidify and extract the fatty acids, dry them, make their methyl esters,
-and identify them by thin-layer chromatography against standards, stained with iodine). It
-explains the theory behind each step, with drawn figures and small tools to try.
+and identify them by thin-layer chromatography against standards, stained with iodine), run at
+microscale in two capped test tubes. It explains the theory behind each step, with drawn figures
+and small tools to try, and links the microscale procedure as a PDF.
 
 **Open the prelab**
 
 - https://neogio73.github.io/BCH3023/corn-oil-prelab/
+- The microscale procedure (PDF): https://neogio73.github.io/BCH3023/corn-oil-prelab/procedure.pdf
 
 What it covers
 
@@ -319,7 +321,7 @@ What it covers
 - Saponification and Fischer esterification, mechanism by mechanism; acid, base and which layer of
   a separatory funnel a fatty acid goes into; drying with sodium sulfate; pushing an equilibrium.
 - A practice TLC plate (made-up compounds): choose the solvent, develop it, mark the front, stain
-  it, measure Rf and identify a mixture; and why the iodine chamber is heated.
+  it, measure Rf and identify a mixture; and how the iodine jar stains at room temperature.
 - The procedure step by step, with where the fatty acid is and what form it is in at each one,
   and a safety table.
 - Every topic ends with a short summary and check-yourself questions. Nothing is graded or
