@@ -299,3 +299,29 @@ black" by Demycs (BlendKit, royalty-free license). Lab furniture and equipment: 
 Pack" by Mixall (Unity Asset Store). Flasks and beakers: Liquid Volume Pro (Kronnect). The stirring
 hotplate, rotary evaporator and polarimeter are modelled after common instruments, with no maker's
 name; the magnet's maker, BROKER, and the instruments' maker, ThermoFritter, are made up.
+
+## Fatty Acids from Corn Oil: Prelab Review
+
+A prelab for the in-person Experiment 40, "Extraction and identification of fatty acids from corn
+oil" (saponify the oil, acidify and extract the fatty acids, dry them, make their methyl esters,
+and identify them by thin-layer chromatography against standards, stained with iodine). It
+explains the theory behind each step, with drawn figures and small tools to try.
+
+**Open the prelab**
+
+- https://neogio73.github.io/BCH3023/corn-oil-prelab/
+
+What it covers
+
+- Fatty acids: draw any of eight with its *cis* bends, and compare their melting points.
+- Triglycerides: build one from three fatty acids, with its molar mass and the KOH it takes to
+  saponify.
+- Saponification and Fischer esterification, mechanism by mechanism; acid, base and which layer of
+  a separatory funnel a fatty acid goes into; drying with sodium sulfate; pushing an equilibrium.
+- A practice TLC plate (made-up compounds): choose the solvent, develop it, mark the front, stain
+  it, measure Rf and identify a mixture; and why the iodine chamber is heated.
+- The procedure step by step, with where the fatty acid is and what form it is in at each one,
+  and a safety table.
+- Every topic ends with a short summary and check-yourself questions. Nothing is graded or
+  recorded, and the page loads nothing from other sites. It does not give corn oil's make-up or
+  the standards' Rf values: those are the students' results.

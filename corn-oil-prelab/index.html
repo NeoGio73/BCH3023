@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fatty Acids from Corn Oil: Prelab Review</title>
+  <meta name="description" content="A review before Experiment 40: fats and fatty acids, saponification, acid and base in a separatory funnel, drying, methyl esters, thin-layer chromatography and iodine staining.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c4c9a'/%3E%3Cpath d='M16 6 C11 13 9 16 9 20 a7 7 0 0 0 14 0 C23 16 21 13 16 6z' fill='%23f4d35e'/%3E%3C/svg%3E">
+  <style>
+    /* Same look as the lab pages and the other prelabs: paper white, bench slate for ink, enamel blue,
+       and a deep orange for arrows and for the second curve of a plot. */
+    :root {
+      --paper: #ffffff; --wash: #f3f6f4; --ink: #17211e; --ink-soft: #4b5854; --ink-faint: #74807c;
+      --rule: #c7d1cc; --rule-strong: #8d9994; --enamel: #1c4c9a; --enamel-deep: #153a78; --enamel-wash: #e9eff9;
+      --good: #1b7a40; --good-wash: #edf7f0; --flag: #ab2a1c; --flag-wash: #fdf1ee; --link: #c2410c; --link-wash: #fff4ec;
+      --amber-wash: #fbf6e8; --amber: #8a5a00;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.62; }
+    a { color: var(--enamel-deep); }
+    sub, sup { line-height: 0; }
+
+    /* the masthead */
+    .masthead { padding: 30px 24px 28px; background: var(--wash); border-bottom: 1px solid var(--rule); }
+    .masthead-inner { max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 28px; }
+    .eyebrow { margin: 0 0 4px; color: var(--ink-faint); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    h1 { margin: 0; font-family: var(--serif); font-size: 2.3rem; font-weight: 600; line-height: 1.12; }
+    .dek { margin: 10px 0 0; max-width: 64ch; color: var(--ink-soft); font-size: 1.05rem; }
+    .lab-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 6px; background: var(--enamel); color: #fff; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .lab-button:hover { background: var(--enamel-deep); color: #fff; }
+
+    /* the page: contents on the left on a wide screen, above the text on a narrow one */
+    .page { max-width: 1240px; margin: 0 auto; padding: 0 24px 72px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 0 44px; }
+    nav.contents { position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; padding: 22px 4px 22px 0; font-size: 0.9rem; line-height: 1.4; }
+    nav.contents .nav-title { margin: 0 0 6px; color: var(--ink-faint); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    nav.contents .nav-part { margin: 14px 0 4px; font-weight: 700; color: var(--ink); font-size: 0.86rem; }
+    nav.contents ol { list-style: none; margin: 0; padding: 0; }
+    nav.contents li a { display: flex; gap: 8px; padding: 4px 8px; border-radius: 5px; color: var(--ink-soft); text-decoration: none; }
+    nav.contents li a .n { flex: none; width: 1.4em; color: var(--ink-faint); font-variant-numeric: tabular-nums; text-align: right; }
+    nav.contents li a:hover { background: var(--wash); color: var(--ink); }
+    nav.contents li a[aria-current="true"] { background: var(--enamel-wash); color: var(--enamel-deep); font-weight: 600; }
+    main { min-width: 0; }
+    @media (max-width: 1100px) {
+      .page { display: block; }
+      nav.contents { position: static; max-height: none; margin-top: 22px; padding: 12px 16px; border: 1px solid var(--rule); border-radius: 8px; }
+      nav.contents .nav-columns { columns: 2 17rem; column-gap: 28px; }
+      nav.contents .nav-group { break-inside: avoid; }
+    }
+
+    /* text */
+    .prose { max-width: 72ch; }
+    p { margin: 0 0 12px; }
+    .prose ul, .prose ol { margin: 0 0 12px; padding-left: 1.3em; }
+    .prose li { margin-bottom: 6px; }
+    .soft { color: var(--ink-soft); }
+    .small { font-size: 0.9rem; }
+    .mono { font-family: var(--mono); font-size: 0.93em; }
+    .nowrap { white-space: nowrap; }
+    .eq { display: block; width: fit-content; max-width: 100%; margin: 6px 0 14px; padding: 9px 16px; border-radius: 6px; background: var(--wash); font-family: var(--serif); font-size: 1.12rem; }
+    .eq .where { display: block; margin-top: 2px; font-family: var(--sans); font-size: 0.86rem; color: var(--ink-soft); }
+
+    /* parts and sections */
+    .part-banner { margin: 56px 0 0; padding: 22px 24px; border-radius: 10px; background: var(--enamel); color: #fff; }
+    .part-banner .part-label { margin: 0; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+    .part-banner h2 { margin: 2px 0 6px; font-family: var(--serif); font-size: 1.7rem; font-weight: 600; }
+    .part-banner p { margin: 0; max-width: 70ch; opacity: 0.95; }
+    section.topic { margin-top: 54px; }
+    h2.topic-title { display: flex; align-items: center; gap: 12px; margin: 0 0 6px; font-family: var(--serif); font-size: 1.6rem; font-weight: 600; line-height: 1.22; }
+    .step { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--enamel); color: #fff; font-family: var(--sans); font-size: 0.95rem; font-weight: 650; }
+    .lead { max-width: 72ch; margin: 0 0 18px; color: var(--ink-soft); font-size: 1.04rem; }
+    h3 { margin: 26px 0 8px; font-family: var(--serif); font-size: 1.2rem; font-weight: 600; }
+    h4 { margin: 16px 0 6px; font-size: 1rem; }
+
+    /* boxes */
+    .box { max-width: 76ch; margin: 16px 0; padding: 14px 18px 4px; border-radius: 8px; border: 1px solid var(--rule); }
+    .box > h3, .box > h4 { margin-top: 0; font-family: var(--sans); font-size: 1rem; }
+    .box.start { background: var(--wash); }
+    .box.goals { background: #fff; }
+    .box.goals ol { margin: 0 0 12px; padding-left: 1.4em; }
+    .box.key { background: var(--enamel-wash); border-color: #cfdcf1; }
+    .box.key h4::before { content: "In short"; }
+    .box.key h4 { margin-bottom: 4px; color: var(--enamel-deep); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.82rem; }
+    .box.worked { background: #fff; border-left: 4px solid var(--good); }
+    .box.worked h4 { color: var(--good); }
+    .box.mistake { background: var(--amber-wash); border-color: #ecdcae; }
+    .box.mistake h4 { color: var(--amber); }
+    .box.lab { background: #fff; border-style: dashed; }
+    .box ol, .box ul { margin: 0 0 12px; padding-left: 1.3em; }
+    .box li { margin-bottom: 5px; }
+    .made-up { max-width: 76ch; margin: 18px 0 0; padding: 10px 14px; border-left: 3px solid var(--enamel); background: var(--enamel-wash); border-radius: 0 6px 6px 0; font-size: 0.96rem; }
+    .caution { max-width: 76ch; margin: 12px 0; padding: 10px 14px; border-left: 3px solid var(--flag); background: var(--flag-wash); border-radius: 0 6px 6px 0; font-size: 0.96rem; }
+
+    /* check yourself */
+    .check { max-width: 76ch; margin: 18px 0 0; padding: 12px 18px 8px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; }
+    .check > h4 { margin: 0 0 6px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); }
+    .check ol { margin: 0; padding-left: 1.4em; }
+    .check li { margin-bottom: 10px; }
+    .check details { margin-top: 3px; }
+    .check summary { display: inline-block; cursor: pointer; color: var(--enamel-deep); font-size: 0.9rem; font-weight: 600; }
+    .check details[open] summary { margin-bottom: 4px; }
+    .check .answer { padding: 6px 12px; border-left: 3px solid var(--good); background: var(--good-wash); border-radius: 0 6px 6px 0; font-size: 0.95rem; }
+
+    /* tables */
+    table.ref { border-collapse: collapse; margin: 8px 0 16px; font-size: 0.93rem; font-variant-numeric: tabular-nums; }
+    table.ref caption { caption-side: top; text-align: left; padding: 0 0 6px; font-size: 0.88rem; color: var(--ink-soft); }
+    table.ref th, table.ref td { padding: 6px 10px; border: 1px solid var(--rule); text-align: left; vertical-align: top; }
+    table.ref thead th { background: var(--wash); font-size: 0.86rem; }
+    table.ref td.num { text-align: right; white-space: nowrap; }
+    .table-scroll { overflow-x: auto; max-width: 100%; }
+
+    /* figures and the things to try */
+    figure.fig { margin: 12px 0 18px; padding: 10px 12px 8px; border: 1px solid var(--rule); border-radius: 8px; background: #fff; max-width: 920px; }
+    figure.fig canvas, figure.fig svg { display: block; width: 100%; height: auto; touch-action: manipulation; }
+    figure.fig canvas:focus-visible { outline: 3px solid #f0b429; outline-offset: 2px; }
+    figure.fig figcaption { margin-top: 6px; font-size: 0.88rem; color: var(--ink-soft); }
+    figure.fig figcaption b { color: var(--ink); }
+    .tool { margin: 18px 0; padding: 16px 18px 12px; border: 1px solid var(--rule); border-radius: 10px; background: #fbfcfb; max-width: 940px; }
+    .tool > h3 { margin-top: 0; font-family: var(--sans); font-size: 1.03rem; }
+    .tool > h3::before { content: "Try it"; display: inline-block; margin-right: 8px; padding: 0 8px; border-radius: 999px; background: var(--good-wash); color: var(--good); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; vertical-align: 2px; }
+    .tool.point > h3::before { content: "Point and see"; background: var(--link-wash); color: var(--link); }
+    .pill { display: inline-block; padding: 0 8px; border-radius: 999px; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; vertical-align: 1px; }
+    .pill.try { background: var(--good-wash); color: var(--good); }
+    .pill.point { background: var(--link-wash); color: var(--link); }
+    .tool label { display: block; margin: 12px 0 4px; font-weight: 600; font-size: 0.97rem; }
+    .tool label.inline { display: inline-block; margin: 0 8px 0 0; }
+    .tool input[type="text"], .tool select { padding: 7px 10px; border: 1.5px solid var(--rule-strong); border-radius: 6px; font: inherit; background: #fff; }
+    .tool input.short { width: 8rem; }
+    .tool input[type="range"] { width: 100%; max-width: 26rem; accent-color: var(--enamel); vertical-align: middle; }
+    .tool input[data-state="ok"], .tool select[data-state="ok"] { border-color: var(--good); background: var(--good-wash); }
+    .tool input[data-state="no"], .tool select[data-state="no"] { border-color: var(--flag); background: var(--flag-wash); }
+    .msg { display: block; min-height: 1.3em; margin-top: 3px; font-size: 0.9rem; color: var(--flag); }
+    .msg.ok { color: var(--good); font-weight: 600; }
+    .msg.ok::before { content: "\2713  "; }
+    .fields { display: flex; flex-wrap: wrap; gap: 4px 26px; align-items: flex-end; }
+    .out { margin: 10px 0 4px; font-size: 0.98rem; font-variant-numeric: tabular-nums; }
+    .readout { min-height: 4.6em; margin: 8px 0 2px; padding: 8px 12px; border-left: 4px solid var(--link); background: var(--link-wash); border-radius: 0 6px 6px 0; font-size: 0.95rem; }
+    .readout b { color: var(--link); }
+    .seq { font-family: var(--mono); letter-spacing: 0.06em; padding: 8px 12px; background: var(--wash); border-radius: 6px; display: inline-block; word-break: break-all; }
+    .seg { display: inline-flex; flex-wrap: wrap; border: 1.5px solid var(--enamel); border-radius: 6px; overflow: hidden; }
+    .seg button { padding: 6px 14px; border: 0; border-right: 1px solid var(--enamel); background: #fff; color: var(--enamel-deep); font: inherit; font-weight: 600; cursor: pointer; }
+    .seg button:last-child { border-right: 0; }
+    .seg button[aria-pressed="true"] { background: var(--enamel); color: #fff; }
+    .order { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 4px 0 0; font-size: 0.86rem; color: var(--ink-soft); }
+    .legend i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; border-radius: 50%; vertical-align: -1px; }
+    .legend i.line { width: 22px; height: 0; border-top: 3px dotted var(--link); border-radius: 0; vertical-align: 3px; }
+    button.plain { padding: 6px 14px; border: 1.5px solid var(--enamel); border-radius: 6px; background: #fff; color: var(--enamel-deep); font: inherit; font-weight: 600; cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #f0b429; outline-offset: 2px; }
+    .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: start; }
+    @media (max-width: 700px) { figure.fig.scroll { overflow-x: auto; } figure.fig.scroll canvas { min-width: 620px; } }
+    .drops { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 8px 0; }
+    .drops figure { margin: 0; text-align: center; font-size: 0.86rem; }
+    .drops canvas { width: 100%; height: auto; border-radius: 50%; }
+    .drops label { margin: 4px 0 0; font-weight: 600; font-size: 0.9rem; }
+    @media (max-width: 760px) {
+      .two { grid-template-columns: 1fr; }
+      .drops { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      h1 { font-size: 1.8rem; }
+      body { font-size: 16px; }
+      .page, .masthead { padding-left: 16px; padding-right: 16px; }
+    }
+
+    /* the glossary */
+    dl.words { display: grid; grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr); gap: 0; max-width: 84ch; margin: 8px 0; border-top: 1px solid var(--rule); }
+    dl.words dt, dl.words dd { margin: 0; padding: 8px 10px; border-bottom: 1px solid var(--rule); }
+    dl.words dt { font-weight: 650; }
+    @media (max-width: 640px) { dl.words { grid-template-columns: 1fr; } dl.words dt { border-bottom: 0; padding-bottom: 0; } }
+
+    footer { margin-top: 56px; padding-top: 14px; border-top: 1px solid var(--rule); color: var(--ink-faint); font-size: 0.86rem; max-width: 84ch; }
+    footer h3 { font-family: var(--sans); font-size: 0.95rem; color: var(--ink-soft); }
+    footer ul { padding-left: 1.2em; }
+
+    @media print {
+      nav.contents, .lab-button, .seg, .tool input[type="range"], .readout { display: none !important; }
+      .page { display: block; }
+      .check details { display: block; }
+      .part-banner { background: #fff; color: var(--ink); border: 2px solid var(--enamel); }
+      section.topic { break-before: auto; }
+      figure.fig, .tool, .box { break-inside: avoid; }
+    }
+      /* the drawn figures (inline SVG): bonds, wedges, arrows, glass and layers share these */
+    figure.fig.draw { max-width: 760px; }
+    figure.fig.draw.wide { max-width: 920px; }
+    figure.fig.draw.narrow { max-width: 520px; }
+    .draw text { font-family: var(--sans); font-size: 13px; fill: var(--ink); }
+    .draw text.b { font-weight: 650; }
+    .draw text.s { fill: var(--ink-soft); font-size: 12px; }
+    .draw text.o { fill: var(--link); font-weight: 650; }
+    .draw text.bl { fill: var(--enamel-deep); font-weight: 650; }
+    .draw text.g { fill: var(--good); font-weight: 650; }
+    .draw text.r { fill: var(--flag); font-weight: 650; }
+    .draw text.big { font-size: 15px; font-weight: 650; }
+    .draw .ln { stroke: var(--ink); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .draw .thin { stroke: var(--rule-strong); stroke-width: 1.2; fill: none; }
+    .draw .wedge { fill: var(--ink); stroke: none; }
+    .draw .hash { stroke: var(--ink); stroke-width: 2.2; stroke-dasharray: 1.6 2.6; fill: none; }
+    .draw .arr { stroke: var(--link); stroke-width: 2.4; fill: none; marker-end: url(#ah); stroke-linecap: round; }
+    .draw .arrk { stroke: var(--ink); stroke-width: 1.8; fill: none; marker-end: url(#ahk); }
+    .draw .arrb { stroke: var(--enamel); stroke-width: 2; fill: none; marker-end: url(#ahb); }
+    .draw .mirror { stroke: var(--enamel); stroke-width: 1.5; stroke-dasharray: 6 5; fill: none; }
+    .draw .wash { fill: var(--wash); stroke: var(--rule); }
+    .draw .water { fill: #d7e6f2; stroke: none; }
+    .draw .organic { fill: #fbf3cf; stroke: none; }
+    .draw .cloud { fill: #e9e4d8; stroke: none; }
+    .draw .glass { fill: none; stroke: var(--ink-faint); stroke-width: 2; stroke-linejoin: round; }
+    .draw .steel { fill: #cfd6d9; stroke: var(--ink-faint); stroke-width: 1.2; }
+    .draw .pocket { fill: var(--enamel-wash); stroke: var(--enamel); stroke-width: 1.6; }
+    .draw .mol { fill: #f6dccb; stroke: var(--link); stroke-width: 1.6; }
+    .draw .molb { fill: #d9e4f5; stroke: var(--enamel); stroke-width: 1.6; }
+    .draw .bead { fill: #f0e6c8; stroke: var(--amber); stroke-width: 1.4; }
+    .draw .box { fill: #fff; stroke: var(--ink); stroke-width: 1.4; rx: 6; }
+    .draw .boxw { fill: var(--wash); stroke: var(--rule-strong); stroke-width: 1.2; rx: 6; }
+    .draw .silica { fill: #f3efe6; stroke: none; }
+    .draw .celite { fill: #efe9dc; stroke: none; }
+    .draw .cells { fill: #c9b79a; stroke: none; }
+    /* Experiment 40's own pieces */
+    .stepper { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 8px 0 4px; }
+    .dots { display: inline-flex; gap: 6px; }
+    .dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--rule); }
+    .dots span.on { background: var(--enamel); }
+    .frame-caption { min-height: 3.2em; margin: 6px 0 0; font-size: 0.97rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px; }
+    .chips button { padding: 5px 12px; border: 1.5px solid var(--rule-strong); border-radius: 999px; background: #fff; color: var(--ink); font: inherit; font-size: 0.92rem; cursor: pointer; }
+    .chips button[aria-pressed="true"] { border-color: var(--enamel); background: var(--enamel); color: #fff; }
+    .facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 2px 14px; margin: 8px 0; font-size: 0.95rem; }
+    .facts dt { color: var(--ink-soft); }
+    .facts dd { margin: 0; font-weight: 600; }
+    .tg-picks { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .tg-picks label { margin: 6px 0 2px; }
+    .bar-yield { height: 22px; max-width: 26rem; border-radius: 5px; background: var(--wash); border: 1px solid var(--rule); overflow: hidden; }
+    .bar-yield i { display: block; height: 100%; background: var(--good); transition: width 0.25s; }
+    @media (prefers-reduced-motion: reduce) { .bar-yield i { transition: none; } }
+    .btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 6px; }
+    button.plain[disabled] { opacity: 0.4; cursor: default; }
+    button.plain.go { background: var(--enamel); color: #fff; }
+    .tlc-wrap { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 18px; align-items: start; }
+    @media (max-width: 760px) { .tlc-wrap { grid-template-columns: 1fr; } }
+    .tlc-wrap canvas { width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; background: #fff; }
+    .status { margin: 6px 0; padding: 8px 12px; border-left: 4px solid var(--enamel); background: var(--enamel-wash); border-radius: 0 6px 6px 0; font-size: 0.95rem; }
+    .status.warn { border-color: var(--flag); background: var(--flag-wash); }
+    .grid-in { display: grid; grid-template-columns: max-content 6.5rem 6.5rem; gap: 6px 10px; align-items: center; font-size: 0.95rem; }
+    .grid-in input { width: 6.5rem; padding: 5px 8px; border: 1.5px solid var(--rule-strong); border-radius: 6px; font: inherit; }
+    .grid-in input[data-state="ok"] { border-color: var(--good); background: var(--good-wash); }
+    .grid-in input[data-state="no"] { border-color: var(--flag); background: var(--flag-wash); }
+    .grid-in .h { font-size: 0.82rem; color: var(--ink-soft); font-weight: 700; }
+    .journey { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 12px; }
+    .journey button { min-width: 2.2rem; padding: 5px 9px; border: 1.5px solid var(--rule-strong); border-radius: 6px; background: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+    .journey button[aria-pressed="true"] { border-color: var(--enamel); background: var(--enamel); color: #fff; }
+    .journey-card { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 18px; align-items: start; }
+    @media (max-width: 640px) { .journey-card { grid-template-columns: 1fr; } .journey-card svg { max-width: 240px; } }
+    .journey-card h4 { margin: 0 0 6px; font-size: 1.05rem; }
+    .form-badge { display: inline-block; margin: 4px 0 8px; padding: 3px 10px; border-radius: 999px; background: var(--link-wash); color: var(--link); font-weight: 700; font-size: 0.9rem; }
+    .journey-card dl { margin: 0; }
+    .journey-card dt { margin-top: 8px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
+    .journey-card dd { margin: 2px 0 0; }
+    .tool .note { font-size: 0.88rem; color: var(--ink-soft); }
+    .draw .acidtok { fill: #f6dccb; stroke: var(--link); stroke-width: 1.4; }
+    .draw .iontok { fill: #d9e4f5; stroke: var(--enamel); stroke-width: 1.4; }
+    .draw .glytok { fill: var(--good-wash); stroke: var(--good); stroke-width: 1.4; }
+    .draw .oil { fill: #f4d35e; stroke: none; opacity: 0.85; }
+    .draw .vapor { fill: #7b3fa0; stroke: none; }
+    .draw .plate { fill: #fbfaf6; stroke: var(--rule-strong); stroke-width: 1.2; }
+    .draw .heat { stroke: var(--flag); stroke-width: 2; fill: none; stroke-linecap: round; }
+    .draw .hilite { fill: none; stroke: var(--link); stroke-width: 3; stroke-dasharray: 6 4; }
+
+  </style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <p class="eyebrow">Experiment 40 &middot; Prelab review</p>
+      <h1>Fatty Acids from Corn Oil</h1>
+      <p class="dek">Before you come to the bench: what a fat is made of, how the experiment breaks it apart, pulls the fatty acids out, turns them into methyl esters and finds them on a TLC plate, and why each step is done the way it is.</p>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+<nav class="contents" aria-label="Contents">
+  <p class="nav-title">Contents</p>
+  <div class="nav-columns">
+    <div class="nav-group"><p class="nav-part">A. The molecules</p>
+      <ol><li><a href="#t1"><span class="n">1</span>Fatty acids</a></li><li><a href="#t2"><span class="n">2</span>Fats and oils are triglycerides</a></li></ol></div>
+    <div class="nav-group"><p class="nav-part">B. The chemistry</p>
+      <ol><li><a href="#t3"><span class="n">3</span>Saponification</a></li><li><a href="#t4"><span class="n">4</span>Acid, base and which layer</a></li><li><a href="#t5"><span class="n">5</span>Drying a solution</a></li><li><a href="#t6"><span class="n">6</span>Making methyl esters</a></li></ol></div>
+    <div class="nav-group"><p class="nav-part">C. On the plate</p>
+      <ol><li><a href="#t7"><span class="n">7</span>Thin-layer chromatography</a></li><li><a href="#t8"><span class="n">8</span>Seeing colorless spots: iodine</a></li></ol></div>
+    <div class="nav-group"><p class="nav-part">D. At the bench</p>
+      <ol><li><a href="#t9"><span class="n">9</span>Follow the fatty acid</a></li><li><a href="#t10"><span class="n">10</span>Safety</a></li><li><a href="#words"><span class="n"></span>Words to know</a></li></ol></div>
+  </div>
+</nav>
+
+<main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c2410c"/></marker>
+  <marker id="ahk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#17211e"/></marker>
+  <marker id="ahm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c2410c"/></marker>
+  <marker id="ahb"viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1c4c9a"/></marker>
+</defs></svg>
+
+<div class="box start">
+  <h3>How to use this review</h3>
+  <p>Read it in order before the lab. Parts A to C are the ideas; Part D walks through the procedure with them. Each topic has pictures, things to try marked <span class="pill try">Try it</span>, a box headed <b>In short</b> with what to remember, and a few <b>Check yourself</b> questions with answers you can open. It does not answer the handout&rsquo;s pre-lab questions for you, but after reading it you should be able to answer every one of them.</p>
+</div>
+<div class="box goals">
+  <h3>By the end you should be able to</h3>
+  <ol>
+    <li>Draw a fatty acid from its shorthand (such as 18:1 <i>cis</i>-9) and say why <i>cis</i> double bonds make a fat liquid.</li>
+    <li>Write the saponification of a triglyceride and explain why it runs to completion.</li>
+    <li>Predict which layer of a separatory funnel a fatty acid is in, at any pH.</li>
+    <li>Explain what anhydrous sodium sulfate does and how you know when you have added enough.</li>
+    <li>Explain why the esterification is an equilibrium and what pushes it toward the ester.</li>
+    <li>Run, read and interpret a TLC plate: measure an R<sub>f</sub>, compare a sample with standards, and stain with iodine safely.</li>
+  </ol>
+</div>
+
+<!-- ============================ PART A ============================ -->
+<div class="part-banner"><p class="part-label">Part A</p><h2>The molecules</h2><p>Fatty acids, and the fats and oils they are stored in.</p></div>
+
+<section class="topic" id="t1">
+  <h2 class="topic-title"><span class="step">1</span>Fatty acids</h2>
+  <p class="lead">A fatty acid is a long hydrocarbon chain with a carboxylic acid at one end. Almost everything about a fat, from whether it is solid to how it runs on a TLC plate, comes from that chain.</p>
+  <div class="prose">
+    <p>The carboxyl carbon is <b>carbon 1</b>. Natural fatty acids have an even number of carbons (most often 16 or 18), because cells build them two carbons at a time. A chain with only single bonds is <b>saturated</b> (it holds as many hydrogens as it can); a chain with one or more C=C double bonds is <b>unsaturated</b>.</p>
+    <p>Chemists write a fatty acid in shorthand: the number of carbons, a colon, the number of double bonds, then where each double bond starts, counted from carbon 1. Oleic acid is <b>18:1 <i>cis</i>-9</b>: 18 carbons, one double bond, between carbons 9 and 10, <i>cis</i>. (Nutrition labels count from the other end, the methyl or &omega; end: oleic acid is then an &omega;-9 fatty acid.)</p>
+    <p>In natural fatty acids the double bonds are almost always <b><i>cis</i></b>: the two parts of the chain leave the double bond on the same side, which puts a permanent bend of about 30&deg; in the chain. When there are several, they are three carbons apart, with one CH<sub>2</sub> between them (&ldquo;methylene-interrupted&rdquo;).</p>
+  </div>
+
+  <div class="tool" id="fa-tool">
+    <h3>Pick a fatty acid</h3>
+    <div class="chips" id="fa-chips" role="group" aria-label="Fatty acids"></div>
+    <figure class="fig draw" style="margin-top:4px">
+      <svg id="fa-svg" style="height:260px" viewBox="0 0 660 230" role="img" aria-label="The chosen fatty acid drawn as a zigzag chain"></svg>
+      <figcaption id="fa-cap"></figcaption>
+    </figure>
+    <dl class="facts" id="fa-facts"></dl>
+  </div>
+
+  <h3>Why the bends matter: melting points</h3>
+  <div class="prose">
+    <p>Straight saturated chains lie side by side like pencils in a box, touching along their whole length; the many weak attractions between them (London dispersion forces) hold them in a solid. A <i>cis</i> bend stops the chains from packing closely, so there is less contact, and less heat is needed to melt them. Two trends follow, and you can see both in the chart: the <b>longer</b> the chain, the higher it melts; the <b>more <i>cis</i> double bonds</b>, the lower it melts.</p>
+  </div>
+  <figure class="fig draw">
+    <svg id="mp-svg" viewBox="0 0 660 352" role="img" aria-label="Melting points of eight fatty acids against room temperature"></svg>
+    <figcaption><b>Melting points of the eight fatty acids above</b> (rounded; CRC Handbook and PubChem). The dashed line is room temperature. Click a bar to draw that fatty acid above.</figcaption>
+  </figure>
+
+  <div class="box key"><h4></h4>
+    <ul>
+      <li>Shorthand <b>C:D <i>cis</i>-n</b>: carbons, double bonds, where each starts counting from the carboxyl carbon.</li>
+      <li>Natural double bonds are <i>cis</i> and bend the chain; bent chains pack poorly and melt low.</li>
+      <li>Longer chains melt higher; more double bonds melt lower.</li>
+    </ul>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Write the shorthand of a fatty acid with 16 carbons and one <i>cis</i> double bond between carbons 9 and 10.
+      <details><summary>Answer</summary><div class="answer">16:1 <i>cis</i>-9 (this is palmitoleic acid).</div></details></li>
+    <li>Without looking at the chart, put these in order of melting point, lowest first: 18:0, 18:2, 14:0.
+      <details><summary>Answer</summary><div class="answer">18:2 (two bends) &lt; 14:0 (straight but short) &lt; 18:0 (straight and long).</div></details></li>
+    <li>Margarine was once made by adding hydrogen to some of an oil&rsquo;s double bonds. Why does that turn a liquid oil into a soft solid?
+      <details><summary>Answer</summary><div class="answer">Fewer double bonds means fewer bends: the chains pack more closely and the fat melts higher. (Partial hydrogenation also turned some <i>cis</i> bonds into straight <i>trans</i> ones, the &ldquo;trans fats&rdquo;.)</div></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t2">
+  <h2 class="topic-title"><span class="step">2</span>Fats and oils are triglycerides</h2>
+  <p class="lead">Fatty acids are rarely free in a fat. Three of them are joined as esters to one molecule of glycerol: a <b>triglyceride</b> (also called a triacylglycerol).</p>
+  <div class="prose">
+    <p>Glycerol (propane-1,2,3-triol) has three OH groups. Each one can form an ester with the carboxyl group of a fatty acid, losing a water each time. A natural fat is a mixture of many different triglycerides, each carrying its own combination of three fatty acids. A fat that is liquid at room temperature is called an <b>oil</b>; the difference is mostly how many of its chains are bent.</p>
+  </div>
+  <figure class="fig draw wide">
+    <svg viewBox="0 0 700 210" role="img" aria-label="Glycerol plus three fatty acids gives a triglyceride and three waters">
+      <text x="62" y="40" class="b">CH₂–OH</text><text x="62" y="100" class="b">CH–OH</text><text x="62" y="160" class="b">CH₂–OH</text>
+      <path class="ln" d="M68 50 V88 M68 112 V148"/>
+      <text x="62" y="196" class="s">glycerol</text>
+      <text x="150" y="100" class="big">+</text>
+      <text x="230" y="40">HO–C(=O)–R₁</text><text x="230" y="100">HO–C(=O)–R₂</text><text x="230" y="160">HO–C(=O)–R₃</text>
+      <text x="230" y="196" class="s">three fatty acids</text>
+      <path class="arrk" d="M318 100 H372"/>
+      <text x="345" y="84" class="s">– 3 H₂O</text>
+      <text x="470" y="40" class="b">CH₂–O–C(=O)–R₁</text><text x="470" y="100" class="b">CH–O–C(=O)–R₂</text><text x="470" y="160" class="b">CH₂–O–C(=O)–R₃</text>
+      <path class="ln" d="M476 50 V88 M476 112 V148"/>
+      <text x="470" y="196" class="s">a triglyceride (three ester bonds)</text>
+    </svg>
+    <figcaption><b>Making a fat, on paper.</b> R₁, R₂ and R₃ are the fatty acids&rsquo; chains. In the cell the esters are made by enzymes from activated fatty acids, not by losing water directly, but the bonds in the product are the same: three esters.</figcaption>
+  </figure>
+
+  <div class="tool" id="tg-tool">
+    <h3>Build a triglyceride</h3>
+    <p class="note">Choose the fatty acid on each carbon of glycerol. The page works out the formula mass and how much potassium hydroxide it takes to break all three esters.</p>
+    <div class="tg-picks">
+      <div><label for="tg1">Carbon 1</label><select id="tg1"></select></div>
+      <div><label for="tg2">Carbon 2</label><select id="tg2"></select></div>
+      <div><label for="tg3">Carbon 3</label><select id="tg3"></select></div>
+    </div>
+    <figure class="fig draw" style="margin-top:12px">
+      <svg id="tg-svg" viewBox="0 0 660 300" role="img" aria-label="The triglyceride you built"></svg>
+    </figure>
+    <div class="out" id="tg-out"></div>
+  </div>
+
+  <div class="box key"><h4></h4>
+    <ul>
+      <li>A triglyceride is glycerol with three fatty acids attached by <b>ester</b> bonds.</li>
+      <li>To get the fatty acids out, those three esters must be broken: that is the first job of the experiment.</li>
+      <li>Every triglyceride needs <b>three</b> hydroxides to break its three esters.</li>
+    </ul>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Tripalmitin is glycerol carrying three palmitic acids (M = 256.42 each). Work out its molar mass. (Glycerol 92.09, water 18.02.)
+      <details><summary>Answer</summary><div class="answer">92.09 + 3(256.42) &minus; 3(18.02) = 807.3 g/mol. Build it in the tool to check.</div></details></li>
+    <li>How many millimoles of KOH does it take to break every ester in 0.500 g of tripalmitin?
+      <details><summary>Answer</summary><div class="answer">0.500 g &divide; 807.3 g/mol = 0.619 mmol of fat; three KOH each: 1.86 mmol KOH. Try the same sum for your own 2 mL of oil and the KOH you will add: is there enough to break every ester? (An oil&rsquo;s density is about 0.92 g/mL.)</div></details></li>
+  </ol></div>
+</section>
+
+<!-- ============================ PART B ============================ -->
+<div class="part-banner"><p class="part-label">Part B</p><h2>The chemistry</h2><p>Four reactions and separations, in the order you will meet them.</p></div>
+
+<section class="topic" id="t3">
+  <h2 class="topic-title"><span class="step">3</span>Saponification: breaking the esters</h2>
+  <p class="lead">Warming a fat with potassium hydroxide in ethanol cuts each ester bond. The products are glycerol and the potassium salts of the fatty acids: soap. (<i>Sapo</i> is Latin for soap.)</p>
+  <div class="prose">
+    <p>This is <b>base-promoted ester hydrolysis</b>, a nucleophilic acyl substitution. Ethanol is used as the solvent because it dissolves both the oily fat and the ionic KOH, so they meet in one solution; warming at 55&nbsp;&deg;C makes it fast enough to finish in 20 minutes. Step through the mechanism for one ester (R is the fatty acid&rsquo;s chain, R&prime;O is the glycerol side).</p>
+  </div>
+  <div class="tool point" id="sap-tool">
+    <h3>The mechanism, one step at a time</h3>
+    <figure class="fig draw" style="margin:4px 0 0"><svg id="sap-svg" viewBox="0 0 560 240" role="img" aria-label="Saponification mechanism"></svg></figure>
+    <p class="frame-caption" id="sap-cap"></p>
+    <div class="stepper"><button class="plain" id="sap-back">&larr; Back</button><span class="dots" id="sap-dots"></span><button class="plain go" id="sap-next">Next &rarr;</button></div>
+  </div>
+  <div class="prose">
+    <p>The key is the last step. A carboxylic acid (p<i>K</i><sub>a</sub> about 5) next to an alkoxide (whose alcohol has a p<i>K</i><sub>a</sub> about 16) is an acid next to a much stronger base: the proton moves at once, and the carboxylate left behind has no way back. That is why base hydrolysis goes to <b>completion</b>, while the acid-catalyzed reactions of topic 6 stop at an equilibrium. It is also why it needs a full equivalent of base for each ester: the hydroxide is used up, not given back.</p>
+  </div>
+  <div class="eq">triglyceride + 3 KOH &rarr; glycerol + 3 RCOO<sup>&minus;</sup>K<sup>+</sup><span class="where">the handout writes it for three stearic acid chains, C₁₇H₃₅COO<sup>&minus;</sup>K<sup>+</sup></span></div>
+  <div class="box key"><h4></h4>
+    <ul>
+      <li>Hydroxide adds to the carbonyl, the alkoxide leaves, and a fast proton transfer leaves a <b>carboxylate</b>: no way back.</li>
+      <li>One KOH is used up for every ester broken.</li>
+      <li>After saponification the fatty acids are <b>ions</b> (RCOO<sup>&minus;</sup>K<sup>+</sup>), not neutral acids.</li>
+    </ul>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Why is ethanol, and not water, the solvent for the KOH?
+      <details><summary>Answer</summary><div class="answer">The fat does not dissolve in water; it would float as a separate layer and react only at the surface. Ethanol dissolves both the fat and KOH, so the reaction happens throughout one solution.</div></details></li>
+    <li>Ethyl acetate is saponified with NaOH. Name the two products.
+      <details><summary>Answer</summary><div class="answer">Sodium acetate (CH₃COO<sup>&minus;</sup>Na<sup>+</sup>) and ethanol.</div></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t4">
+  <h2 class="topic-title"><span class="step">4</span>Acid, base and which layer</h2>
+  <p class="lead">A separatory funnel holds two liquids that do not mix: here petroleum ether on top and a watery layer below. Each molecule ends up in the layer it likes better, and for a fatty acid that depends on whether it carries a charge.</p>
+  <div class="prose">
+    <p><b>&ldquo;Like dissolves like.&rdquo;</b> Water molecules are polar and hold each other by hydrogen bonds; they surround an ion readily, each one turning its oppositely charged end toward it. Petroleum ether is a mixture of small alkanes (mostly pentanes and hexanes, boiling 30 to 60&nbsp;&deg;C), with no polarity at all; it dissolves things held together by dispersion forces, like long hydrocarbon chains.</p>
+    <p>A fatty acid is mostly hydrocarbon. As the neutral acid, RCOOH, its small polar head cannot drag its 17-carbon tail into water, and it goes into the petroleum ether. As the carboxylate, RCOO<sup>&minus;</sup>, the charged head is surrounded by water so strongly that the ion stays in the water layer (with its tail tucked away in clusters called micelles: this is how soap works).</p>
+    <p>Which form you have depends on the pH. A carboxylic acid gives up its proton when the solution is more basic than its p<i>K</i><sub>a</sub>, and takes one back when it is more acidic:</p>
+  </div>
+  <div class="eq">RCOOH &#8652; RCOO<sup>&minus;</sup> + H<sup>+</sup> &emsp; pH = p<i>K</i><sub>a</sub> + log([RCOO<sup>&minus;</sup>]/[RCOOH])<span class="where">At a pH one unit below the p<i>K</i><sub>a</sub>, ten times more acid than ion; two units below, a hundred times more.</span></div>
+  <div class="tool" id="ph-tool">
+    <h3>Change the pH in the funnel</h3>
+    <div class="two">
+      <figure class="fig draw" style="margin:0"><svg id="ph-svg" viewBox="0 0 340 340" role="img" aria-label="A separatory funnel showing where the fatty acid is at the chosen pH"></svg></figure>
+      <div>
+        <label for="ph-range">pH of the water layer: <span id="ph-val"></span></label>
+        <input type="range" id="ph-range" min="0" max="14" step="0.5" value="12">
+        <div class="readout" id="ph-read"></div>
+        <div class="legend"><span><i style="background:#f6dccb;border:1.5px solid #c2410c"></i>fatty acid, RCOOH</span><span><i style="background:#d9e4f5;border:1.5px solid #1c4c9a"></i>carboxylate, RCOO<sup>&minus;</sup></span><span><i style="background:#edf7f0;border:1.5px solid #1b7a40"></i>glycerol</span></div>
+        <p class="note" style="margin-top:8px">The picture uses p<i>K</i><sub>a</sub> = 4.8, typical of a carboxylic acid such as acetic acid. Long-chain fatty acids clumped together in water behave as somewhat weaker acids, which only moves the switch a little higher; it does not change the idea.</p>
+      </div>
+    </div>
+  </div>
+  <div class="prose">
+    <p><b>Which layer is on top?</b> The less dense one. Petroleum ether (about 0.64 g/mL) floats on water (1.00 g/mL), even with ethanol mixed into the water. When you drain a separatory funnel, the bottom layer goes out through the stopcock; the top layer is poured out of the top so it does not pick up drops left in the stem.</p>
+    <p><b>Two small extractions beat one big one.</b> Each extraction moves a fixed fraction of what is left; two 5&nbsp;mL portions leave less behind than one 10&nbsp;mL portion. That is why the handout extracts the water layer a second time and combines the extracts.</p>
+  </div>
+  <div class="caution"><b>Shaking a separatory funnel:</b> petroleum ether boils near body temperature, so pressure builds as you shake. Hold the stopper in, turn the funnel upside down with the stem pointing up and away from everyone, and open the stopcock to vent after the first gentle shake and every few shakes after that.</div>
+  <div class="box key"><h4></h4>
+    <ul>
+      <li>Charged (RCOO<sup>&minus;</sup>) stays in water; neutral (RCOOH) goes into petroleum ether.</li>
+      <li>Well below the p<i>K</i><sub>a</sub> the acid form wins; well above it the ion wins.</li>
+      <li>Glycerol, salts and the acid stay in the water layer; petroleum ether is the top layer.</li>
+    </ul>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Benzoic acid (p<i>K</i><sub>a</sub> 4.2) is dissolved in ether and shaken with aqueous sodium bicarbonate (pH about 8.3). Where is it afterward, and in what form?
+      <details><summary>Answer</summary><div class="answer">In the water, as sodium benzoate: pH 8.3 is four units above its p<i>K</i><sub>a</sub>, so it is almost all ion.</div></details></li>
+    <li>You then add acid to that water layer until the pH is 1. What do you see, and why?
+      <details><summary>Answer</summary><div class="answer">Benzoic acid comes back as the neutral acid, which is not very soluble in water: it clouds the solution or comes out as a solid. Shaken with ether, it would go back into the ether.</div></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t5">
+  <h2 class="topic-title"><span class="step">5</span>Drying a solution</h2>
+  <p class="lead">Petroleum ether that has been shaken with water always carries a little water with it, as fine droplets and dissolved. A drying agent takes it out before the solvent is evaporated.</p>
+  <div class="prose">
+    <p><b>Anhydrous</b> sodium sulfate has no water in its crystals. Given water, it takes it in to form a <b>hydrate</b>, a new crystal with water built into it, up to ten waters per formula unit:</p>
+  </div>
+  <div class="eq">Na₂SO₄ (s, anhydrous) + 10 H₂O &rarr; Na₂SO₄&middot;10H₂O (s)<span class="where">Sodium sulfate holds a lot of water but works slowly; give it a few minutes, and swirl.</span></div>
+  <div class="prose">
+    <p>You can see when you have added enough. While there is water to take up, the grains swell and stick together in clumps at the bottom. Once the water is gone, new grains stay separate and swirl freely, like snow in a snow globe. In this experiment the solution runs through a bed of sodium sulfate in a funnel, held up by a loose plug of glass wool, and the dry solution drips out below.</p>
+  </div>
+  <div class="tool" id="dry-tool">
+    <h3>Dry a wet solution</h3>
+    <div class="two">
+      <figure class="fig" style="margin:0"><canvas id="dry-canvas" width="360" height="300" aria-label="A flask of wet solution; sodium sulfate is added a spatula at a time"></canvas></figure>
+      <div>
+        <div class="btns"><button class="plain go" id="dry-add">Add a spatula of Na₂SO₄</button><button class="plain" id="dry-swirl">Swirl</button><button class="plain" id="dry-reset">Start again</button></div>
+        <div class="readout" id="dry-read"></div>
+      </div>
+    </div>
+  </div>
+  <div class="box key"><h4></h4>
+    <ul>
+      <li>Anhydrous Na₂SO₄ takes water into its crystals as a hydrate; it removes water, nothing else.</li>
+      <li>Enough has been added when fresh grains flow freely instead of clumping.</li>
+      <li>Water left in the extract would end up in the next step, where it matters (topic 6).</li>
+    </ul>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Why is the sodium sulfate rinsed with petroleum ether, and the rinse thrown away, before the extract is poured through it?
+      <details><summary>Answer</summary><div class="answer">To wet the bed and wash out any dust or loose fine grains, so that the first drops of the extract are not held back or clouded.</div></details></li>
+    <li>Why is a second 2&nbsp;mL of petroleum ether poured through after the extract?
+      <details><summary>Answer</summary><div class="answer">The salt and glass wool stay wet with extract. Rinsing carries the fatty acids still clinging to them into the dish, so less is lost.</div></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t6">
+  <h2 class="topic-title"><span class="step">6</span>Making methyl esters</h2>
+  <p class="lead">Free fatty acids run badly on silica (topic 7). Turning each one into its <b>methyl ester</b> (a FAME, fatty acid methyl ester) removes the acidic OH. The reaction is a Fischer esterification: acid plus alcohol, with a strong acid as catalyst.</p>
+  <div class="eq">RCOOH + CH₃OH &#8652; RCOOCH₃ + H₂O &emsp; (catalyst: H<sup>+</sup>, here from perchloric acid)</div>
+  <div class="prose">
+    <p>Methanol is a weak nucleophile and a carboxylic acid&rsquo;s carbonyl is not very reactive, so on their own they barely react. The acid catalyst protonates the carbonyl oxygen, which makes the carbonyl carbon far more attractive to the methanol. Every step can run backward, and the catalyst is given back at the end.</p>
+  </div>
+  <div class="tool point" id="fis-tool">
+    <h3>The mechanism, one step at a time</h3>
+    <figure class="fig draw" style="margin:4px 0 0"><svg id="fis-svg" viewBox="0 0 560 240" role="img" aria-label="Fischer esterification mechanism"></svg></figure>
+    <p class="frame-caption" id="fis-cap"></p>
+    <div class="stepper"><button class="plain" id="fis-back">&larr; Back</button><span class="dots" id="fis-dots"></span><button class="plain go" id="fis-next">Next &rarr;</button></div>
+  </div>
+  <h3>An equilibrium, and how to push it</h3>
+  <div class="prose">
+    <p>Because every step is reversible, the reaction stops at an equilibrium with acid, alcohol, ester and water all present. For a simple acid and alcohol in equal amounts, the equilibrium constant is about 4, and only about two thirds of the acid becomes ester. Le Chatelier&rsquo;s principle says a system at equilibrium shifts to undo any change you make to it. Try it on a made-up acid and alcohol with <i>K</i> = 4:</p>
+  </div>
+  <div class="eq"><i>K</i> = [ester][water] / ([acid][alcohol]) &asymp; 4</div>
+  <div class="tool" id="eq-tool">
+    <h3>Push the equilibrium</h3>
+    <label for="eq-n">Alcohol added, per mole of acid: <span id="eq-n-val"></span></label>
+    <input type="range" id="eq-n" min="1" max="40" step="1" value="1">
+    <label for="eq-r">Water taken out as it forms: <span id="eq-r-val"></span></label>
+    <input type="range" id="eq-r" min="0" max="95" step="5" value="0">
+    <p style="margin:12px 0 4px"><b>Acid turned into ester at equilibrium: <span id="eq-y"></span></b></p>
+    <div class="bar-yield" aria-hidden="true"><i id="eq-bar"></i></div>
+    <p class="note" id="eq-note" style="margin-top:8px"></p>
+  </div>
+  <div class="box key"><h4></h4>
+    <ul>
+      <li>Fischer esterification: acid + alcohol &#8652; ester + water, catalyzed by a strong acid.</li>
+      <li>Every step is reversible: it stops at an equilibrium, unlike saponification.</li>
+      <li>Adding more of a reactant, or removing a product, shifts it toward the ester.</li>
+      <li>The methyl ester has no acidic O&ndash;H, which is what makes it behave on a TLC plate.</li>
+    </ul>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Saponification needs a full equivalent of base, but esterification needs only a few drops of acid. Why the difference?
+      <details><summary>Answer</summary><div class="answer">In saponification the hydroxide is consumed (it ends up as water after taking a proton, and the product is a carboxylate). In esterification H<sup>+</sup> is given back in the last step, so it is a catalyst and a little goes a long way.</div></details></li>
+    <li>Run the reaction backward: what do you get if you boil methyl acetate with a large excess of water and a little acid?
+      <details><summary>Answer</summary><div class="answer">Acetic acid and methanol: the same equilibrium, pushed the other way by the excess water (acid-catalyzed ester hydrolysis).</div></details></li>
+  </ol></div>
+</section>
+
+<!-- ============================ PART C ============================ -->
+<div class="part-banner"><p class="part-label">Part C</p><h2>On the plate</h2><p>Separating the methyl esters, and seeing spots that have no color.</p></div>
+
+<section class="topic" id="t7">
+  <h2 class="topic-title"><span class="step">7</span>Thin-layer chromatography</h2>
+  <p class="lead">A TLC plate is a thin layer of silica gel on a backing. A solvent creeps up it and carries the spotted compounds with it, each one as far as its grip on the silica allows.</p>
+  <div class="prose">
+    <p>The surface of silica gel is covered in Si&ndash;OH groups: it is very polar and makes hydrogen bonds. This is the <b>stationary phase</b>. The <b>mobile phase</b> is the solvent, here hexane with a little diethyl ether (4:1). Every molecule spends its time going back and forth between sticking to the silica and being dissolved in the moving solvent. The more strongly it sticks, the more time it spends standing still, and the shorter the distance it travels.</p>
+  </div>
+  <figure class="fig draw wide">
+    <svg viewBox="0 0 700 250" text-anchor="middle" role="img" aria-label="Three molecules on the silica surface: an alkane, an ester and a carboxylic acid">
+      <rect x="20" y="180" width="660" height="50" class="silica"/>
+      <text x="350" y="216" class="s">silica gel: Si–OH groups on the surface (stationary phase)</text>
+      <g class="ln">
+        <path d="M70 180 V160 M190 180 V160 M310 180 V160 M430 180 V160 M550 180 V160 M640 180 V160"/>
+      </g>
+      <text x="70" y="150" class="s">OH</text><text x="190" y="150" class="s">OH</text><text x="310" y="150" class="s">OH</text><text x="430" y="150" class="s">OH</text><text x="550" y="150" class="s">OH</text><text x="640" y="150" class="s">OH</text>
+      <text x="120" y="40" class="b">an alkane</text>
+      <text x="120" y="70">CH₃(CH₂)₁₀CH₃</text>
+      <text x="120" y="100" class="s">no polar group:</text><text x="120" y="117" class="g">hardly sticks, runs far</text>
+      <text x="350" y="40" class="b">a methyl ester</text>
+      <text x="350" y="70">R–C(=O)–OCH₃</text>
+      <path class="mirror" d="M336 128 Q 322 134 313 141"/>
+      <text x="350" y="100" class="s">one weak H-bond (C=O):</text><text x="350" y="117" class="o">sticks a little</text>
+      <text x="580" y="40" class="b">a carboxylic acid</text>
+      <text x="580" y="70">R–C(=O)–O–H</text>
+      <path class="mirror" d="M566 128 Q 556 134 552 141 M600 128 Q 624 132 638 141"/>
+      <text x="580" y="100" class="s">gives and takes H-bonds:</text><text x="580" y="117" class="r">sticks hard, smears</text>
+    </svg>
+    <figcaption><b>Why polarity decides.</b> The dashed blue lines are hydrogen bonds to the silica. An acid&rsquo;s O&ndash;H both gives and takes hydrogen bonds, so it clings and drags into a long streak (&ldquo;tailing&rdquo;) instead of a neat spot. The ester can only take one weakly, so it moves as a tidy spot.</figcaption>
+  </figure>
+  <div class="prose">
+    <p><b>The retention factor.</b> How far a compound moves depends on how far the solvent went, so it is reported as a fraction:</p>
+  </div>
+  <div class="eq">R<sub>f</sub> = (distance from the origin to the center of the spot) &divide; (distance from the origin to the solvent front)<span class="where">always between 0 and 1; no units. On the same plate with the same solvent, the same compound gives the same R<sub>f</sub>.</span></div>
+  <div class="prose">
+    <p><b>Identifying by comparison.</b> An R<sub>f</sub> on its own does not name a compound: it changes with the solvent, the plate and the temperature. So you run <b>standards</b>, known pure compounds, on the same plate beside your sample. A sample spot level with a standard is probably that compound; a spot level with no standard cannot be named this way. Your plate has five lanes: your sample in lanes 1 and 5, and three methyl ester standards in between.</p>
+    <p><b>The solvent sets the scale.</b> A more polar mobile phase (more ether) competes better for the silica and moves everything further; a less polar one (more hexane) holds everything back. The best separations have spots between about R<sub>f</sub> 0.2 and 0.8. Try it below.</p>
+  </div>
+
+  <div class="tool" id="tlc-tool">
+    <h3>Run a practice plate</h3>
+    <p class="note">Three made-up colorless compounds, P, Q and R, are spotted in lanes 2 to 4. Lane 1 is a mixture of two of them: find out which. Choose the solvent, develop the plate, take it out in time, mark the front, stain it, mark the spots, then measure.</p>
+    <div class="tlc-wrap">
+      <canvas id="tlc-canvas" width="310" height="470" aria-label="A practice TLC plate with a ruler whose zero is on the origin line"></canvas>
+      <div>
+        <label for="tlc-solv">Mobile phase: <span id="tlc-solv-val"></span></label>
+        <input type="range" id="tlc-solv" min="0" max="100" step="5" value="20">
+        <div class="btns">
+          <button class="plain go" id="tlc-dev">Put the plate in the chamber</button>
+          <button class="plain" id="tlc-out" disabled>Take it out</button>
+          <button class="plain" id="tlc-front" disabled>Mark the solvent front</button>
+          <button class="plain" id="tlc-stain" disabled>Into the iodine chamber</button>
+          <button class="plain" id="tlc-circle" disabled>Circle the spots in pencil</button>
+          <button class="plain" id="tlc-new">New plate</button>
+        </div>
+        <div class="status" id="tlc-status"></div>
+        <div id="tlc-measure" hidden>
+          <p style="margin:10px 0 6px"><b>Measure.</b> The ruler&rsquo;s zero is on the origin line; point at the plate for a guide line. Give distances in cm to the nearest 0.1, and R<sub>f</sub> to two decimals.</p>
+          <div class="grid-in">
+            <span class="h"></span><span class="h">distance (cm)</span><span class="h">R<sub>f</sub></span>
+            <span>Solvent front</span><input id="m-front" inputmode="decimal" aria-label="Solvent front distance"><span></span>
+            <span>Lane 2 (P)</span><input id="m-d2" inputmode="decimal" aria-label="Lane 2 distance"><input id="m-r2" inputmode="decimal" aria-label="Lane 2 Rf">
+            <span>Lane 3 (Q)</span><input id="m-d3" inputmode="decimal" aria-label="Lane 3 distance"><input id="m-r3" inputmode="decimal" aria-label="Lane 3 Rf">
+            <span>Lane 4 (R)</span><input id="m-d4" inputmode="decimal" aria-label="Lane 4 distance"><input id="m-r4" inputmode="decimal" aria-label="Lane 4 Rf">
+          </div>
+          <p style="margin:12px 0 4px"><b>Lane 1 contains:</b>
+            <label class="inline"><input type="checkbox" id="mx-P"> P</label>
+            <label class="inline"><input type="checkbox" id="mx-Q"> Q</label>
+            <label class="inline"><input type="checkbox" id="mx-R"> R</label></p>
+          <div class="btns"><button class="plain go" id="tlc-check">Check my readings</button></div>
+          <div class="msg" id="tlc-msg" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="prose">
+    <p><b>Good habits</b> that the procedure asks for, and why:</p>
+    <ul>
+      <li><b>Pencil, never pen,</b> for the origin line and marks: ink is a mixture of dyes and would run up the plate with the solvent.</li>
+      <li><b>Small spots</b> (about 1 mm): a big spot gives a big smeared spot that overlaps its neighbors.</li>
+      <li><b>The spots must be above the solvent</b> in the chamber, or they dissolve away into the pool instead of being carried up.</li>
+      <li><b>Cover the chamber</b> so its air fills with solvent vapor; otherwise the solvent evaporates off the plate as it climbs and the front runs crooked.</li>
+      <li><b>Mark the front at once</b> when the plate comes out: it disappears as the solvent evaporates within seconds.</li>
+      <li><b>Hold the plate by its edges, with gloves:</b> your skin is coated with its own oils and fatty acids.</li>
+    </ul>
+  </div>
+  <div class="box key"><h4></h4>
+    <ul>
+      <li>Polar silica holds polar molecules back; less polar molecules run further.</li>
+      <li>R<sub>f</sub> = spot distance &divide; front distance, both from the origin, both to the center.</li>
+      <li>Name a spot only by comparing it with standards run on the same plate.</li>
+      <li>More polar solvent: every R<sub>f</sub> goes up. Less polar: every R<sub>f</sub> goes down.</li>
+    </ul>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>A spot is 3.6 cm from the origin and the front is 8.0 cm from the origin. What is its R<sub>f</sub>?
+      <details><summary>Answer</summary><div class="answer">3.6 &divide; 8.0 = 0.45.</div></details></li>
+    <li>Two compounds both run at R<sub>f</sub> 0.92 in 1:1 hexane:ether. What would you change?
+      <details><summary>Answer</summary><div class="answer">Use a less polar solvent (more hexane) so that both are held back and spread out in the useful middle of the plate.</div></details></li>
+    <li>A sample spot is level with a standard. Does that prove it is the same compound?
+      <details><summary>Answer</summary><div class="answer">No: different compounds can have the same R<sub>f</sub> in one solvent. It is good evidence, made stronger if they still match in a second, different solvent, or by another method (for fatty acid methyl esters, usually gas chromatography).</div></details></li>
+  </ol></div>
+</section>
+
+<section class="topic" id="t8">
+  <h2 class="topic-title"><span class="step">8</span>Seeing colorless spots: iodine</h2>
+  <p class="lead">Methyl esters are colorless, so the developed plate looks blank. Iodine vapor makes the spots show up as yellow-brown patches.</p>
+  <div class="prose">
+    <p>Solid iodine <b>sublimes</b>: it goes straight from solid to a violet vapor without melting. Its vapor dissolves into the organic compounds sitting on the plate much more than into the bare silica, so wherever there is a compound the plate turns brown. The stain is <b>temporary</b>: once the plate is back in the open air the iodine evaporates out of the spots again and they fade, which is why you circle them in pencil straight away.</p>
+    <p>How much vapor there is depends steeply on the temperature. That is why the closed beaker of iodine goes into a hot oven for a few minutes: the hot chamber fills with vapor and stains the plate quickly. Look at what is in the beaker at each temperature before deciding when it is safe to take the foil off.</p>
+  </div>
+  <div class="tool" id="i2-tool">
+    <h3>Warm the iodine chamber</h3>
+    <div class="two">
+      <figure class="fig draw" style="margin:0"><svg id="i2-svg" viewBox="0 0 320 300" role="img" aria-label="A foil-covered beaker with iodine crystals and a TLC plate"></svg></figure>
+      <div>
+        <label for="i2-t">Temperature: <span id="i2-t-val"></span></label>
+        <input type="range" id="i2-t" min="20" max="110" step="5" value="25">
+        <div class="readout" id="i2-read"></div>
+        <p class="note">Vapor pressure from the Clausius&ndash;Clapeyron equation with iodine&rsquo;s enthalpy of sublimation (62.4 kJ/mol) and its vapor pressure at 25 &deg;C (0.041 kPa), NIST.</p>
+      </div>
+    </div>
+  </div>
+  <div class="caution"><b>Iodine vapor</b> irritates the eyes, nose and lungs. Keep the chamber covered, handle it in the hood, and follow the handout&rsquo;s instructions on when to open it exactly.</div>
+  <div class="box key"><h4></h4>
+    <ul>
+      <li>Iodine sublimes; its vapor dissolves into organic spots and colors them brown.</li>
+      <li>The color fades in air: circle the spots at once.</li>
+      <li>Iodine&rsquo;s vapor pressure rises steeply with temperature.</li>
+    </ul>
+  </div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>Use the tool: roughly how many times more iodine vapor is in the chamber at 110&nbsp;&deg;C than at 25&nbsp;&deg;C?
+      <details><summary>Answer</summary><div class="answer">About 250 to 270 times more (about 11 kPa against 0.04 kPa).</div></details></li>
+    <li>A student stains a plate, leaves it on the bench during lunch and comes back to a blank plate. What happened?
+      <details><summary>Answer</summary><div class="answer">The iodine evaporated out of the spots and they faded. The compounds are still there: putting the plate back in the iodine chamber would show them again.</div></details></li>
+  </ol></div>
+</section>
+
+<!-- ============================ PART D ============================ -->
+<div class="part-banner"><p class="part-label">Part D</p><h2>At the bench</h2><p>The procedure, step by step, with what is happening to the fatty acid at each one.</p></div>
+
+<section class="topic" id="t9">
+  <h2 class="topic-title"><span class="step">9</span>Follow the fatty acid</h2>
+  <p class="lead">The whole experiment is one fatty acid changing form and moving from container to container. Step through it and keep track of where it is.</p>
+  <div class="tool point" id="jr-tool">
+    <h3>Eleven steps</h3>
+    <div class="journey" id="jr-steps" role="group" aria-label="Steps"></div>
+    <div class="journey-card">
+      <svg id="jr-svg" class="draw" viewBox="0 0 220 220" role="img" aria-label="The container at this step"></svg>
+      <div>
+        <h4 id="jr-title"></h4>
+        <span class="form-badge" id="jr-form"></span>
+        <dl><dt>You do</dt><dd id="jr-do"></dd><dt>Why</dt><dd id="jr-why"></dd></dl>
+      </div>
+    </div>
+    <div class="stepper"><button class="plain" id="jr-back">&larr; Back</button><button class="plain go" id="jr-next">Next &rarr;</button></div>
+  </div>
+</section>
+
+<section class="topic" id="t10">
+  <h2 class="topic-title"><span class="step">10</span>Safety</h2>
+  <div class="table-scroll"><table class="ref">
+    <caption>The chemicals and what to watch for (goggles and gloves throughout)</caption>
+    <thead><tr><th>Chemical</th><th>Hazard</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td>0.5 M KOH in ethanol</td><td>Corrosive to skin and eyes; flammable</td><td>Gloves; keep away from flames; wash off spills with plenty of water</td></tr>
+      <tr><td>Concentrated HCl</td><td>Corrosive; fuming, irritating vapor</td><td>In the hood, gloves on; add slowly with swirling (it reacts with the base and warms)</td></tr>
+      <tr><td>Petroleum ether (b.p. 30&ndash;60 &deg;C)</td><td>Extremely flammable; vapor heavier than air; builds pressure when shaken</td><td>No flames anywhere near; evaporate it only in the hood on a warm water bath; vent the separatory funnel often</td></tr>
+      <tr><td>Methanol : perchloric acid (95:5)</td><td>Toxic (methanol); strong acid; perchloric acid is a powerful oxidizer</td><td>In the hood; warm only on the water bath as directed; never let the mixture heat to dryness</td></tr>
+      <tr><td>Hexane : diethyl ether (4:1)</td><td>Extremely flammable; vapors</td><td>In the hood; keep the chamber covered</td></tr>
+      <tr><td>Iodine</td><td>Toxic, irritating vapor; stains skin</td><td>Keep the chamber covered; open it only as the handout says</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="topic" id="words">
+  <h2 class="topic-title">Words to know</h2>
+  <dl class="words">
+    <dt>Fatty acid</dt><dd>A long-chain carboxylic acid, usually with an even number of carbons (12 to 22).</dd>
+    <dt>Saturated / unsaturated</dt><dd>No C=C double bonds / one or more C=C double bonds in the chain.</dd>
+    <dt><i>cis</i></dt><dd>Both parts of the chain on the same side of a double bond; puts a bend in the chain.</dd>
+    <dt>Triglyceride</dt><dd>Glycerol with three fatty acids joined to it as esters; the molecules of fats and oils.</dd>
+    <dt>Saponification</dt><dd>Hydrolysis of an ester by a strong base, giving a carboxylate salt (a soap) and an alcohol.</dd>
+    <dt>Carboxylate</dt><dd>RCOO<sup>&minus;</sup>, a carboxylic acid that has lost its proton.</dd>
+    <dt>p<i>K</i><sub>a</sub></dt><dd>The pH at which an acid is half in its acid form and half in its ion form.</dd>
+    <dt>Extraction</dt><dd>Moving a compound from one liquid into another that does not mix with the first.</dd>
+    <dt>Drying agent</dt><dd>An anhydrous salt, such as Na₂SO₄, that removes water from an organic solution by forming a hydrate.</dd>
+    <dt>Fischer esterification</dt><dd>Acid-catalyzed reaction of a carboxylic acid with an alcohol to give an ester and water; an equilibrium.</dd>
+    <dt>FAME</dt><dd>Fatty acid methyl ester, RCOOCH₃.</dd>
+    <dt>Le Chatelier&rsquo;s principle</dt><dd>A system at equilibrium shifts so as to undo a change made to it.</dd>
+    <dt>Stationary / mobile phase</dt><dd>In TLC, the silica gel / the solvent that climbs it.</dd>
+    <dt>R<sub>f</sub></dt><dd>Retention factor: distance moved by the spot &divide; distance moved by the solvent front.</dd>
+    <dt>Standard</dt><dd>A known pure compound run beside the sample for comparison.</dd>
+    <dt>Sublimation</dt><dd>Going straight from solid to gas, as iodine does.</dd>
+  </dl>
+</section>
+
+<footer>
+  <h3>About this page</h3>
+  <p>A review for Experiment 40, &ldquo;Extraction and identification of fatty acids from corn oil.&rdquo; Its practice plate uses made-up compounds P, Q and R, and its equilibrium uses a made-up acid and alcohol, so nothing here gives away your own results.</p>
+  <ul>
+    <li>Fatty acid melting points and molar masses: CRC Handbook of Chemistry and Physics; PubChem.</li>
+    <li>Iodine: enthalpy of sublimation and vapor pressure, NIST Chemistry WebBook.</li>
+    <li>Equilibrium constant of about 4 for a simple acid and alcohol: the classic value for acetic acid and ethanol.</li>
+    <li>Techniques: Pavia et al., <i>A Microscale Approach to Organic Laboratory Techniques</i>; Nichols, <i>Organic Chemistry Laboratory Techniques</i>.</li>
+  </ul>
+</footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id) { return document.getElementById(id); }
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function txt(parent, x, y, s, cls, anchor) {
+    var t = el('text', { x: x, y: y, 'text-anchor': anchor || 'middle', 'dominant-baseline': 'central' }, parent);
+    if (cls) t.setAttribute('class', cls);
+    t.textContent = s;
+    return t;
+  }
+  function clear(svg) { while (svg.firstChild) svg.removeChild(svg.firstChild); }
+  function sub(n) { return String(n).replace(/\d/g, function (d) { return '₀₁₂₃₄₅₆₇₈₉'[d]; }); }
+  function fmt(x, d) { return x.toFixed(d).replace('-', '−'); }
+
+  /* ---------------- fatty acids ---------------- */
+  var ACIDS = [
+    { id: 'lauric', name: 'Lauric acid', n: 12, db: [], mp: 44, M: 200.32, where: 'coconut and palm kernel oils' },
+    { id: 'myristic', name: 'Myristic acid', n: 14, db: [], mp: 54, M: 228.37, where: 'nutmeg butter, coconut oil and milk fat' },
+    { id: 'palmitic', name: 'Palmitic acid', n: 16, db: [], mp: 63, M: 256.42, where: 'palm oil and animal fats; the most common saturated fatty acid in nature' },
+    { id: 'stearic', name: 'Stearic acid', n: 18, db: [], mp: 69, M: 284.48, where: 'cocoa butter and beef tallow' },
+    { id: 'oleic', name: 'Oleic acid', n: 18, db: [9], mp: 13, M: 282.46, where: 'olive oil, where it is most of the fat' },
+    { id: 'linoleic', name: 'Linoleic acid', n: 18, db: [9, 12], mp: -5, M: 280.45, where: 'sunflower and safflower oils; an essential fatty acid (the body cannot make it)' },
+    { id: 'linolenic', name: 'α-Linolenic acid', n: 18, db: [9, 12, 15], mp: -11, M: 278.43, where: 'flaxseed oil; an essential fatty acid, and an omega-3' },
+    { id: 'arachidonic', name: 'Arachidonic acid', n: 20, db: [5, 8, 11, 14], mp: -49, M: 304.47, where: 'cell membranes; the body makes it from linoleic acid' }
+  ];
+  function byId(id) { for (var i = 0; i < ACIDS.length; i++) if (ACIDS[i].id === id) return ACIDS[i]; }
+  function shorthand(a) { return a.n + ':' + a.db.length + (a.db.length ? ' cis-' + a.db.join(',') : ''); }
+  function formula(a) { var h = 2 * a.n - 2 * a.db.length; return 'C' + sub(a.n) + 'H' + sub(h) + 'O₂'; }
+
+  // 2D zigzag coordinates of carbons 1..n; a cis double bond turns the same way twice.
+  // The turn at a carbon next to a single bond is free (it is only a conformation), so a fourth bend
+  // the same way is drawn the other way, to keep a long polyunsaturated chain from closing on itself.
+  function chain(a, L) {
+    var pts = [[0, 0]], heading = -30, turns = [0, 0], prev = 0, curl = 0;
+    var isDb = {}; a.db.forEach(function (d) { isDb[d] = true; });
+    for (var k = 1; k < a.n; k++) {
+      // bond from carbon k to k+1; the turn is made at carbon k (k >= 2)
+      if (k >= 2) {
+        var t = isDb[k - 1] ? prev : (prev === 0 ? 60 : -prev);
+        if (isDb[k]) { if (Math.abs(curl + Math.sign(t)) > 3) t = -t; curl += Math.sign(t); }
+        heading += t; prev = t; turns.push(t);
+      }
+      var p = pts[pts.length - 1], r = heading * Math.PI / 180;
+      pts.push([p[0] + L * Math.cos(r), p[1] + L * Math.sin(r)]);
+    }
+    // E: the ester (or OH) oxygen, up and left of carbon 1; D: the carbonyl oxygen, below it
+    return { pts: pts, turns: turns, E: [-L * 0.87, -L * 0.5], D: [0, L * 0.95], L: L };
+  }
+  function rotate(c, deg) {
+    var r = deg * Math.PI / 180, cs = Math.cos(r), sn = Math.sin(r);
+    function f(p) { return [p[0] * cs - p[1] * sn, p[0] * sn + p[1] * cs]; }
+    return { pts: c.pts.map(f), turns: c.turns, E: f(c.E), D: f(c.D), L: c.L };
+  }
+  function shorten(p, q, by) { var dx = q[0] - p[0], dy = q[1] - p[1], l = Math.hypot(dx, dy); return [q[0] - dx / l * by, q[1] - dy / l * by]; }
+  function drawChain(g, a, c, ho) {
+    var pts = c.pts, L = c.L;
+    el('path', { d: 'M' + pts.map(function (p) { return p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' L'), 'class': 'ln' }, g);
+    a.db.forEach(function (d) {
+      var p = pts[d - 1], q = pts[d], t = c.turns[d] || 60;
+      var dx = q[0] - p[0], dy = q[1] - p[1], len = Math.hypot(dx, dy), s = t > 0 ? 1 : -1;
+      var nx = -dy / len * s, ny = dx / len * s, off = L * 0.17, sh = 0.18;
+      el('path', { d: 'M' + (p[0] + nx * off + dx * sh) + ' ' + (p[1] + ny * off + dy * sh) + ' L' + (q[0] + nx * off - dx * sh) + ' ' + (q[1] + ny * off - dy * sh), 'class': 'ln', stroke: '#c2410c' }, g);
+    });
+    // the carboxyl group on carbon 1
+    var c1 = pts[0], dEnd = shorten(c1, c.D, 8), dx = c.D[0] - c1[0], dy = c.D[1] - c1[1], l = Math.hypot(dx, dy), nx = -dy / l * 3, ny = dx / l * 3;
+    el('path', { d: 'M' + (c1[0] + nx) + ' ' + (c1[1] + ny) + ' L' + (dEnd[0] + nx) + ' ' + (dEnd[1] + ny) + ' M' + (c1[0] - nx) + ' ' + (c1[1] - ny) + ' L' + (dEnd[0] - nx) + ' ' + (dEnd[1] - ny), 'class': 'ln' }, g);
+    txt(g, c.D[0], c.D[1] + 2, 'O', 'b');
+    var eEnd = shorten(c1, c.E, 9);
+    el('path', { d: 'M' + c1[0] + ' ' + c1[1] + ' L' + eEnd[0] + ' ' + eEnd[1], 'class': 'ln' }, g);
+    txt(g, ho ? c.E[0] - 4 : c.E[0], c.E[1], ho ? 'HO' : 'O', 'b');
+  }
+  function bbox(pts) {
+    var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    pts.forEach(function (p) { x0 = Math.min(x0, p[0]); y0 = Math.min(y0, p[1]); x1 = Math.max(x1, p[0]); y1 = Math.max(y1, p[1]); });
+    return [x0, y0, x1, y1];
+  }
+
+  var faSel = 'oleic';
+  function drawFa() {
+    var a = byId(faSel), svg = $('fa-svg'); clear(svg);
+    var g = el('g', {}, svg), L = 30;
+    var r = chain(a, L); drawChain(g, a, r, true);
+    r.ester = r.E;
+    var pts = r.pts;
+    // numbers on carbon 1, the double bonds and the omega end
+    txt(g, pts[0][0] + 14, pts[0][1] - 16, '1', 's');
+    var marks = [];
+    a.db.forEach(function (d) {
+      // the number goes on the outside of the bend, away from the second line of the double bond
+      var p = pts[d - 1], q = pts[d], t = r.turns[d] || 60, dx = q[0] - p[0], dy = q[1] - p[1], l = Math.hypot(dx, dy), s = t > 0 ? 1 : -1;
+      var mx = (p[0] + q[0]) / 2 + dy / l * s * 16, my = (p[1] + q[1]) / 2 - dx / l * s * 16;
+      txt(g, mx, my, String(d), 'o'); marks.push([mx, my]);
+    });
+    var w = pts[pts.length - 1], v = pts[pts.length - 2], wl = Math.hypot(w[0] - v[0], w[1] - v[1]);
+    var wx = w[0] + (w[0] - v[0]) / wl * 14, wy = w[1] + (w[1] - v[1]) / wl * 14;
+    txt(g, wx, wy, 'ω', 'bl');
+    var b = bbox(pts.concat(marks, [[r.ester[0] - 22, r.ester[1] - 12], [pts[0][0], pts[0][1] + L + 12], [wx + 8, wy + 8], [wx - 8, wy - 8]]));
+    var pad = 16;
+    svg.setAttribute('viewBox', (b[0] - pad).toFixed(1) + ' ' + (b[1] - pad).toFixed(1) + ' ' + (b[2] - b[0] + 2 * pad).toFixed(1) + ' ' + (b[3] - b[1] + 2 * pad).toFixed(1));
+    $('fa-cap').innerHTML = '<b>' + a.name + '</b>, ' + shorthand(a).replace('cis', '<i>cis</i>') + '. Each corner is a carbon carrying enough hydrogens to make four bonds. ' +
+      (a.db.length ? 'The orange lines are the <i>cis</i> double bonds, numbered from carbon 1; see how each one bends the chain.' : 'No double bonds: the chain is straight.');
+    $('fa-facts').innerHTML = '<dt>Formula</dt><dd>' + formula(a) + '</dd><dt>Molar mass</dt><dd>' + a.M.toFixed(2) + ' g/mol</dd>' +
+      '<dt>Melts at</dt><dd>about ' + fmt(a.mp, 0) + ' °C: ' + (a.mp > 22 ? 'a solid at room temperature' : 'a liquid at room temperature') + '</dd>' +
+      '<dt>Found in</dt><dd>' + a.where + '</dd>';
+    Array.prototype.forEach.call($('fa-chips').children, function (b) { b.setAttribute('aria-pressed', b.dataset.id === faSel ? 'true' : 'false'); });
+    drawMp();
+  }
+  function initFa() {
+    var chips = $('fa-chips');
+    ACIDS.forEach(function (a) {
+      var b = document.createElement('button'); b.type = 'button'; b.dataset.id = a.id;
+      b.textContent = a.name.replace(' acid', '') + ' ' + a.n + ':' + a.db.length;
+      b.addEventListener('click', function () { faSel = a.id; drawFa(); });
+      chips.appendChild(b);
+    });
+    drawFa();
+  }
+
+  function drawMp() {
+    var svg = $('mp-svg'); clear(svg);
+    var x0 = 210, x1 = 630, lo = -60, hi = 80, top = 20, row = 34;
+    function X(t) { return x0 + (t - lo) / (hi - lo) * (x1 - x0); }
+    for (var t = lo; t <= hi; t += 20) {
+      el('path', { d: 'M' + X(t) + ' ' + (top - 4) + ' V' + (top + row * ACIDS.length), 'class': 'thin', 'stroke-dasharray': t === 0 ? '' : '2 4' }, svg);
+      txt(svg, X(t), top + row * ACIDS.length + 14, fmt(t, 0) + ' °C', 's');
+    }
+    var rt = X(22);
+    el('path', { d: 'M' + rt + ' ' + (top - 10) + ' V' + (top + row * ACIDS.length + 2), stroke: '#1c4c9a', 'stroke-width': 2, 'stroke-dasharray': '6 4' }, svg);
+    txt(svg, rt - 4, top + row * ACIDS.length + 38, 'room temperature (22 °C)', 'bl', 'start');
+    ACIDS.forEach(function (a, i) {
+      var y = top + i * row + row / 2, on = a.id === faSel;
+      var g = el('g', { style: 'cursor:pointer', tabindex: 0, role: 'button', 'aria-label': a.name + ', melts at ' + a.mp + ' degrees' }, svg);
+      txt(g, x0 - 10, y, a.name.replace(' acid', '') + '  ' + a.n + ':' + a.db.length, on ? 'b' : '', 'end');
+      var xa = X(0), xb = X(a.mp);
+      el('rect', { x: Math.min(xa, xb), y: y - 10, width: Math.abs(xb - xa), height: 20, rx: 3, fill: a.db.length ? (on ? '#c2410c' : '#f2c3a6') : (on ? '#153a78' : '#b9cbe8') }, g);
+      txt(g, a.mp >= 0 ? xb + 6 : xb - 6, y, fmt(a.mp, 0), 's', a.mp >= 0 ? 'start' : 'end');
+      var pick = function () { faSel = a.id; drawFa(); };
+      g.addEventListener('click', pick);
+      g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+    });
+    txt(svg, 30, top + row * ACIDS.length + 38, 'blue: saturated, orange: unsaturated', 's', 'start');
+  }
+
+  /* ---------------- triglyceride builder ---------------- */
+  function initTg() {
+    var defaults = ['stearic', 'oleic', 'stearic'];
+    ['tg1', 'tg2', 'tg3'].forEach(function (id, i) {
+      var s = $(id);
+      ACIDS.forEach(function (a) { var o = document.createElement('option'); o.value = a.id; o.textContent = a.name + ' (' + a.n + ':' + a.db.length + ')'; s.appendChild(o); });
+      s.value = defaults[i];
+      s.addEventListener('change', drawTg);
+    });
+    drawTg();
+  }
+  function drawTg() {
+    var svg = $('tg-svg'); clear(svg);
+    var picks = ['tg1', 'tg2', 'tg3'].map(function (id) { return byId($(id).value); });
+    var L = 19, all = [], OX = 96;
+    var labels = ['CH₂', 'CH', 'CH₂'];
+    // each chain is turned so that, on the whole, it runs to the right; rows are spaced by its height
+    var geo = picks.map(function (a) {
+      var c = chain(a, L), gx = 0, gy = 0;
+      c.pts.forEach(function (p) { gx += p[0]; gy += p[1]; });
+      c = rotate(c, -Math.atan2(gy, gx) * 180 / Math.PI);
+      var ys = c.pts.concat([c.D]).map(function (p) { return p[1] - c.E[1]; });
+      return { c: c, top: Math.min.apply(null, ys) - 12, bottom: Math.max.apply(null, ys) + 12 };
+    });
+    var rows = [20 - Math.min(geo[0].top, -14)];
+    for (var i = 1; i < 3; i++) rows.push(rows[i - 1] + Math.max(76, geo[i - 1].bottom - geo[i].top + 14));
+    picks.forEach(function (a, i) {
+      var y = rows[i], c = geo[i].c;
+      txt(svg, 34, y, labels[i], 'b');
+      el('path', { d: 'M50 ' + y + ' H' + (OX - 9), 'class': 'ln' }, svg);
+      var tx = OX - c.E[0], ty = y - c.E[1];
+      var g = el('g', { transform: 'translate(' + tx.toFixed(1) + ' ' + ty.toFixed(1) + ')' }, svg);
+      drawChain(g, a, c, false);
+      c.pts.concat([c.D]).forEach(function (p) { all.push([p[0] + tx, p[1] + ty]); });
+    });
+    el('path', { d: 'M34 ' + (rows[0] + 12) + ' V' + (rows[1] - 12) + ' M34 ' + (rows[1] + 12) + ' V' + (rows[2] - 12), 'class': 'ln' }, svg);
+    var b = bbox(all.concat([[0, 0]]));
+    var w = Math.max(660, b[2] + 24), h = Math.max(260, b[3] + 24);
+    svg.setAttribute('viewBox', '0 0 ' + w.toFixed(0) + ' ' + h.toFixed(0));
+    // glycerol C3H8O3 + three acids − 3 H2O
+    var C = 3, H = 8 - 6, M = 92.094 - 3 * 18.015, dbs = 0;
+    picks.forEach(function (a) { C += a.n; H += 2 * a.n - 2 * a.db.length; M += a.M; dbs += a.db.length; });
+    var mmolPerG = 3 / M * 1000;
+    $('tg-out').innerHTML = 'Formula <b>C' + sub(C) + 'H' + sub(H) + 'O₆</b>, molar mass <b>' + M.toFixed(1) + ' g/mol</b>, ' + dbs + ' C=C double bond' + (dbs === 1 ? '' : 's') + '.<br>' +
+      'Breaking all three esters in 1.00 g takes <b>' + mmolPerG.toFixed(2) + ' mmol KOH</b> (' + (mmolPerG * 56.106).toFixed(0) + ' mg). ' +
+      '<span class="soft">Chemists call that last number the saponification value: the shorter the chains, the higher it is.</span>';
+  }
+
+  /* ---------------- mechanism stepper ---------------- */
+  function drawFrame(svg, f) {
+    clear(svg);
+    var pos = {};
+    f.atoms.forEach(function (a) { pos[a[0]] = a; });
+    f.bonds.forEach(function (b) {
+      var p = pos[b[0]], q = pos[b[1]];
+      var dx = q[1] - p[1], dy = q[2] - p[2], len = Math.hypot(dx, dy), ux = dx / len, uy = dy / len;
+      // stop each bond at the edge of its atom's label (a box about as wide as the text)
+      function gap(lbl) { if (!lbl) return 0; var hw = 4.6 * lbl.length + 3.5, hh = 10; return Math.min(Math.abs(ux) > 1e-6 ? hw / Math.abs(ux) : 1e9, Math.abs(uy) > 1e-6 ? hh / Math.abs(uy) : 1e9) + 2; }
+      var sp = gap(p[3]), sq = gap(q[3]);
+      var x1 = p[1] + ux * sp, y1 = p[2] + uy * sp, x2 = q[1] - ux * sq, y2 = q[2] - uy * sq;
+      if (b[2] === 2) {
+        var nx = -uy * 3, ny = ux * 3;
+        el('path', { d: 'M' + (x1 + nx) + ' ' + (y1 + ny) + ' L' + (x2 + nx) + ' ' + (y2 + ny) + ' M' + (x1 - nx) + ' ' + (y1 - ny) + ' L' + (x2 - nx) + ' ' + (y2 - ny), 'class': 'ln' }, svg);
+      } else {
+        el('path', { d: 'M' + x1 + ' ' + y1 + ' L' + x2 + ' ' + y2, 'class': 'ln' }, svg);
+      }
+    });
+    f.atoms.forEach(function (a) { if (a[3]) txt(svg, a[1], a[2], a[3], a[4] || 'big'); });
+    (f.texts || []).forEach(function (t) { txt(svg, t[0], t[1], t[2], t[3] || 'big', t[4]); });
+    (f.arrows || []).forEach(function (r) {
+      var x1 = r[0], y1 = r[1], x2 = r[2], y2 = r[3], bend = r[4];
+      var mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy);
+      var cx = mx - dy / len * bend, cy = my + dx / len * bend;
+      el('path', { d: 'M' + x1 + ' ' + y1 + ' Q' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + x2 + ' ' + y2, 'class': 'arr', style: 'marker-end:url(#ahm)' }, svg);
+    });
+  }
+  function stepper(prefix, frames) {
+    var i = 0, svg = $(prefix + '-svg'), dots = $(prefix + '-dots');
+    frames.forEach(function () { dots.appendChild(document.createElement('span')); });
+    function show() {
+      drawFrame(svg, frames[i]);
+      $(prefix + '-cap').innerHTML = frames[i].cap;
+      Array.prototype.forEach.call(dots.children, function (d, k) { d.className = k === i ? 'on' : ''; });
+      $(prefix + '-back').disabled = i === 0;
+      $(prefix + '-next').disabled = i === frames.length - 1;
+    }
+    $(prefix + '-back').addEventListener('click', function () { if (i > 0) { i--; show(); } });
+    $(prefix + '-next').addEventListener('click', function () { if (i < frames.length - 1) { i++; show(); } });
+    show();
+  }
+  // atoms: [id, x, y, label, class]; bonds: [a, b, order]; arrows: [x1, y1, x2, y2, bend]
+  var SAP = [
+    { atoms: [['R', 130, 165, 'R'], ['C', 190, 135, ''], ['O1', 190, 72, 'O'], ['O2', 250, 165, 'O'], ['R2', 312, 135, 'R′'], ['OH', 82, 92, 'HO⁻', 'big']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 2], ['C', 'O2', 1], ['O2', 'R2', 1]],
+      arrows: [[102, 100, 180, 128, -28], [196, 112, 206, 66, -26]],
+      cap: '<b>1.</b> Hydroxide, a strong nucleophile, adds to the carbonyl carbon. As it does, the electrons of the C=O π bond move onto the oxygen.' },
+    { atoms: [['R', 140, 190, 'R'], ['C', 190, 135, ''], ['O1', 190, 72, 'O⁻'], ['OH', 122, 110, 'HO'], ['O2', 250, 165, 'O'], ['R2', 312, 135, 'R′']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 1], ['C', 'OH', 1], ['C', 'O2', 1], ['O2', 'R2', 1]],
+      arrows: [[174, 64, 184, 104, 30], [222, 150, 240, 182, -26]],
+      cap: '<b>2.</b> The <b>tetrahedral intermediate</b>: carbon now has four single bonds. It collapses: the oxygen&rsquo;s electrons re-form C=O, and the alkoxide (<sup>&minus;</sup>OR&prime;, the glycerol side) leaves.' },
+    { atoms: [['R', 120, 165, 'R'], ['C', 175, 135, ''], ['O1', 175, 72, 'O'], ['O3', 232, 165, 'O'], ['H', 292, 165, 'H'], ['Om', 380, 165, '⁻O'], ['R2', 440, 135, 'R′']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 2], ['C', 'O3', 1], ['O3', 'H', 1], ['Om', 'R2', 1]],
+      arrows: [[368, 180, 300, 180, -22], [264, 160, 240, 152, 16]],
+      cap: '<b>3.</b> Now a carboxylic acid (p<i>K</i><sub>a</sub> about 5) sits next to an alkoxide, a far stronger base (its alcohol has p<i>K</i><sub>a</sub> about 16). The proton moves at once.' },
+    { atoms: [['R', 120, 165, 'R'], ['C', 175, 135, ''], ['O1', 175, 72, 'O'], ['O3', 232, 165, 'O⁻'], ['Om', 390, 165, 'HO'], ['R2', 450, 135, 'R′']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 2], ['C', 'O3', 1], ['Om', 'R2', 1]],
+      texts: [[272, 165, 'K⁺', 'bl'], [190, 222, 'a carboxylate: a soap', 's'], [420, 222, 'glycerol (one of its OH groups)', 's']],
+      cap: '<b>4.</b> A carboxylate and an alcohol. Taking the proton back is uphill by about 11 p<i>K</i><sub>a</sub> units, so nothing goes back: saponification runs to completion. With K<sup>+</sup> beside it, the carboxylate is a potassium soap.' }
+  ];
+  var FIS = [
+    { atoms: [['R', 130, 165, 'R'], ['C', 190, 135, ''], ['O1', 190, 72, 'O'], ['O2', 250, 165, 'OH']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 2], ['C', 'O2', 1]],
+      texts: [[290, 60, 'H⁺', 'bl']],
+      arrows: [[204, 66, 276, 60, -18]],
+      cap: '<b>1.</b> The acid catalyst protonates the carbonyl oxygen. The positive charge makes the carbonyl carbon much more attractive to a nucleophile.' },
+    { atoms: [['R', 130, 165, 'R'], ['C', 190, 135, ''], ['O1', 190, 72, 'O⁺H'], ['O2', 250, 165, 'OH'], ['Om', 92, 100, 'O'], ['Me', 50, 72, 'H₃C'], ['Hm', 92, 150, 'H']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 2], ['C', 'O2', 1], ['Om', 'Me', 1], ['Om', 'Hm', 1]],
+      arrows: [[106, 96, 182, 126, -22], [196, 104, 208, 78, -16]],
+      cap: '<b>2.</b> A lone pair on methanol&rsquo;s oxygen adds to the carbonyl carbon; the C=O π electrons move onto the protonated oxygen. (Methanol is the solvent, so there is always one nearby.)' },
+    { atoms: [['R', 150, 195, 'R'], ['C', 190, 135, ''], ['O1', 190, 72, 'OH'], ['O2', 255, 165, 'OH'], ['Om', 125, 110, 'O⁺'], ['Me', 75, 135, 'H₃C'], ['Hm', 110, 60, 'H']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 1], ['C', 'O2', 1], ['C', 'Om', 1], ['Om', 'Me', 1], ['Om', 'Hm', 1]],
+      texts: [[380, 96, 'H⁺ moves from O⁺ to an OH', 's', 'start'], [380, 114, '(carried by the solvent)', 's', 'start']],
+      cap: '<b>3.</b> A tetrahedral intermediate. A proton moves (by way of the solvent) from the methanol&rsquo;s oxygen to one of the OH groups, turning that OH into &ndash;OH₂<sup>+</sup>: water, a good leaving group.' },
+    { atoms: [['R', 150, 195, 'R'], ['C', 190, 135, ''], ['O1', 190, 72, 'OH'], ['O2', 270, 170, 'OH₂⁺'], ['Om', 125, 110, 'O'], ['Me', 75, 135, 'H₃C']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 1], ['C', 'O2', 1], ['C', 'Om', 1], ['Om', 'Me', 1]],
+      arrows: [[176, 66, 186, 104, 26], [222, 150, 250, 190, -24]],
+      cap: '<b>4.</b> A lone pair on the remaining OH pushes down to re-form C=O, and water leaves.' },
+    { atoms: [['R', 130, 165, 'R'], ['C', 190, 135, ''], ['O1', 190, 72, 'O⁺'], ['H1', 266, 40, 'H'], ['Om', 250, 165, 'O'], ['Me', 310, 135, 'CH₃']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 2], ['O1', 'H1', 1], ['C', 'Om', 1], ['Om', 'Me', 1]],
+      texts: [[420, 90, '+ H₂O', 'big']],
+      arrows: [[230, 48, 206, 62, -16]],
+      cap: '<b>5.</b> A protonated ester. A solvent molecule takes the proton from the oxygen (the electrons of the O&ndash;H bond stay on oxygen).' },
+    { atoms: [['R', 130, 165, 'R'], ['C', 190, 135, ''], ['O1', 190, 72, 'O'], ['Om', 250, 165, 'O'], ['Me', 310, 135, 'CH₃']],
+      bonds: [['R', 'C', 1], ['C', 'O1', 2], ['C', 'Om', 1], ['Om', 'Me', 1]],
+      texts: [[420, 90, '+ H₂O  + H⁺', 'big'], [220, 222, 'a methyl ester (FAME)', 's'], [420, 120, 'the catalyst is back', 's']],
+      cap: '<b>6.</b> The methyl ester, water, and the H<sup>+</sup> given back. <b>Every one of these steps can run backward</b>: water can attack the protonated ester and undo it all.' }
+  ];
+
+  /* ---------------- pH and the separatory funnel ---------------- */
+  var phSpots = (function () {
+    // fixed scattered places for 20 fatty acid tokens in each layer and 6 glycerols in water
+    var s = 7, rnd = function () { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+    var org = [], aq = [], gly = [];
+    for (var i = 0; i < 20; i++) org.push([128 + rnd() * 84, 92 + rnd() * 50]);
+    for (i = 0; i < 20; i++) { var y = 168 + rnd() * 60; var hw = 46 - (y - 168) * 0.45; aq.push([170 - hw + rnd() * 2 * hw, y]); }
+    for (i = 0; i < 6; i++) { y = 172 + rnd() * 50; hw = 40 - (y - 168) * 0.45; gly.push([170 - hw + rnd() * 2 * hw, y]); }
+    return { org: org, aq: aq, gly: gly };
+  })();
+  function drawPh() {
+    var pH = parseFloat($('ph-range').value), svg = $('ph-svg'); clear(svg);
+    var f = 1 / (1 + Math.pow(10, pH - 4.8)), nOrg = Math.round(20 * f);
+    $('ph-val').textContent = pH.toFixed(1);
+    // funnel: a round-shouldered body narrowing to a stem
+    el('path', { d: 'M110 80 L230 80 L230 150 L190 250 L150 250 L110 150 Z', 'class': 'organic' }, svg);
+    el('path', { d: 'M110 155 L230 155 L190 250 L150 250 Z', 'class': 'water' }, svg);
+    el('path', { d: 'M150 30 L150 50 L104 70 L104 150 L150 252 L158 300 L182 300 L190 252 L236 150 L236 70 L190 50 L190 30', 'class': 'glass' }, svg);
+    el('rect', { x: 144, y: 18, width: 52, height: 14, rx: 3, 'class': 'steel' }, svg);
+    el('rect', { x: 150, y: 296, width: 40, height: 12, rx: 3, 'class': 'steel' }, svg);
+    el('path', { d: 'M110 155 H230', stroke: '#8d9994', 'stroke-width': 1.2 }, svg);
+    txt(svg, 250, 115, 'petroleum ether', 's', 'start');
+    txt(svg, 250, 131, '0.64 g/mL', 's', 'start');
+    txt(svg, 250, 196, 'water layer', 's', 'start');
+    txt(svg, 250, 212, '(with ethanol)', 's', 'start');
+    for (var i = 0; i < 20; i++) {
+      var inOrg = i < nOrg, p = inOrg ? phSpots.org[i] : phSpots.aq[i];
+      el('circle', { cx: p[0], cy: p[1], r: 5.5, 'class': inOrg ? 'acidtok' : 'iontok' }, svg);
+      if (!inOrg) txt(svg, p[0] + 0.3, p[1] - 0.5, '−', 'bl').setAttribute('style', 'font-size:11px');
+    }
+    phSpots.gly.forEach(function (p) { el('rect', { x: p[0] - 4.5, y: p[1] - 4.5, width: 9, height: 9, rx: 2, 'class': 'glytok' }, svg); });
+    var pct = (100 * f), pctTxt = pct > 99.9 ? 'more than 99.9' : pct < 0.1 ? 'less than 0.1' : pct.toFixed(pct > 99 || pct < 1 ? 1 : 0);
+    var ionTxt = pct > 99.9 ? 'less than 0.1' : pct < 0.1 ? 'more than 99.9' : (100 - pct).toFixed(pct > 99 || pct < 1 ? 1 : 0);
+    var where = pH < 3 ? 'Strongly acidic: nearly every fatty acid carries its proton, has no charge and has moved up into the petroleum ether.'
+      : pH > 7 ? 'Basic: nearly every fatty acid has lost its proton. The charged carboxylates stay down in the water.'
+      : 'Near the p<i>K</i><sub>a</sub> the two forms share the fatty acid; neither layer gets all of it.';
+    $('ph-read').innerHTML = '<b>' + pctTxt + '%</b> neutral acid (in the petroleum ether), <b>' + ionTxt + '%</b> carboxylate (in the water). ' + where + ' Glycerol stays in the water at every pH.';
+  }
+
+  /* ---------------- drying with sodium sulfate ---------------- */
+  var dry = { water: 10, clumps: [], free: [], falling: [], t: 0, swirl: 0, raf: 0 };
+  function dryReset() { dry.water = 10; dry.clumps = []; dry.free = []; dry.falling = []; dry.swirl = 0; dryText(); dryDraw(); }
+  function dryText() {
+    var m = dry.water > 6 ? 'The solution is cloudy with tiny water droplets. Add sodium sulfate.'
+      : dry.water > 0 ? 'The grains clump together and stick to the bottom: they are taking up water. There is still water left: add more.'
+      : dry.free.length === 0 ? 'The solution has cleared. The last grains clumped too; add one more spatula to be sure.'
+      : 'New grains stay separate and swirl freely, like snow in a snow globe: the solution is dry. Pour it off the solid (in the lab, it runs through the bed of salt).';
+    $('dry-read').innerHTML = m;
+  }
+  function dryDraw() {
+    var c = $('dry-canvas'), x = c.getContext('2d'); x.clearRect(0, 0, c.width, c.height);
+    // an Erlenmeyer flask
+    x.save();
+    x.beginPath(); x.moveTo(160, 20); x.lineTo(160, 90); x.lineTo(70, 270); x.quadraticCurveTo(66, 282, 80, 282); x.lineTo(280, 282); x.quadraticCurveTo(294, 282, 290, 270); x.lineTo(200, 90); x.lineTo(200, 20);
+    x.lineWidth = 2.5; x.strokeStyle = '#74807c'; x.stroke();
+    // liquid
+    x.beginPath(); x.moveTo(130, 150); x.lineTo(70, 270); x.quadraticCurveTo(66, 282, 80, 282); x.lineTo(280, 282); x.quadraticCurveTo(294, 282, 290, 270); x.lineTo(230, 150); x.closePath();
+    x.fillStyle = '#fbf3cf'; x.fill(); x.clip();
+    // haze from water
+    if (dry.water > 0) {
+      x.fillStyle = 'rgba(160,170,180,' + (0.025 * dry.water) + ')'; x.fillRect(60, 150, 240, 140);
+      var s = 3;
+      for (var i = 0; i < dry.water * 6; i++) { s = (s * 16807) % 2147483647; var px = 80 + (s % 200); s = (s * 16807) % 2147483647; var py = 160 + (s % 110);
+        x.beginPath(); x.arc(px, py, 2.2, 0, 7); x.fillStyle = 'rgba(120,150,190,0.55)'; x.fill(); }
+    }
+    dry.clumps.forEach(function (k) { x.beginPath(); x.ellipse(k[0], k[1], k[2], k[2] * 0.7, 0, 0, 7); x.fillStyle = '#e6e2d8'; x.fill(); x.strokeStyle = '#b8b1a0'; x.lineWidth = 1; x.stroke(); });
+    dry.free.forEach(function (g) { x.fillStyle = '#ffffff'; x.strokeStyle = '#9aa3a0'; x.fillRect(g.x - 2, g.y - 2, 4, 4); x.strokeRect(g.x - 2, g.y - 2, 4, 4); });
+    dry.falling.forEach(function (g) { x.fillStyle = '#ffffff'; x.strokeStyle = '#9aa3a0'; x.fillRect(g.x - 2, g.y - 2, 4, 4); x.strokeRect(g.x - 2, g.y - 2, 4, 4); });
+    x.restore();
+    x.font = '13px system-ui, sans-serif'; x.fillStyle = '#4b5854'; x.fillText('extract in', 236, 132); x.fillText('petroleum ether', 236, 148);
+  }
+  function dryTick() {
+    var moving = false;
+    dry.falling = dry.falling.filter(function (g) {
+      g.y += 4; moving = true;
+      if (g.y >= g.stop) {
+        if (dry.water > 0 || g.clump) { dry.clumps.push([g.x, 274 - Math.random() * 6, 5 + Math.random() * 5]); }
+        else dry.free.push({ x: g.x, y: 270 - Math.random() * 6, vx: 0, vy: 0 });
+        return false;
+      }
+      return true;
+    });
+    if (dry.swirl > 0) {
+      dry.swirl--; moving = true;
+      dry.free.forEach(function (g) {
+        var a = (dry.swirl / 12) + g.x * 0.01;
+        g.x += Math.cos(a) * 3 + (Math.random() - 0.5) * 2; g.y += Math.sin(a) * 2 - (dry.swirl > 40 ? 1.2 : -1.6);
+        var hw = 30 + (g.y - 150) * 0.5;
+        g.x = Math.max(180 - hw + 6, Math.min(180 + hw - 6, g.x)); g.y = Math.max(160, Math.min(272, g.y));
+      });
+    }
+    dryDraw();
+    if (moving) dry.raf = requestAnimationFrame(dryTick); else dry.raf = 0;
+  }
+  function dryAdd() {
+    var wet = dry.water > 0;
+    for (var i = 0; i < 14; i++) dry.falling.push({ x: 150 + Math.random() * 60, y: 150 - Math.random() * 40, stop: 260 + Math.random() * 10, clump: wet });
+    dry.water = Math.max(0, dry.water - 3);
+    if (reduce) { dry.falling.forEach(function (g) { g.y = g.stop; }); }
+    dryText();
+    if (!dry.raf) dry.raf = requestAnimationFrame(dryTick);
+  }
+  function drySwirl() { if (reduce) { dry.free.forEach(function (g) { g.y = 165 + Math.random() * 100; g.x = 140 + Math.random() * 80; }); dryDraw(); return; } dry.swirl = 90; if (!dry.raf) dry.raf = requestAnimationFrame(dryTick); }
+
+  /* ---------------- equilibrium ---------------- */
+  function eqUpdate() {
+    var n = parseFloat($('eq-n').value), r = parseFloat($('eq-r').value) / 100, K = 4;
+    $('eq-n-val').textContent = n + ' mol';
+    $('eq-r-val').textContent = Math.round(r * 100) + '%';
+    // K = x·(1−r)x / ((1−x)(n−x))  →  (K − (1−r))x² − K(n+1)x + Kn = 0
+    var a = K - (1 - r), b = -K * (n + 1), c = K * n, x;
+    if (Math.abs(a) < 1e-9) x = -c / b;
+    else { var d = Math.sqrt(b * b - 4 * a * c); x = (-b - d) / (2 * a); if (x < 0 || x > 1) x = (-b + d) / (2 * a); }
+    x = Math.max(0, Math.min(1, x));
+    $('eq-y').textContent = (100 * x).toFixed(0) + '%';
+    $('eq-bar').style.width = (100 * x).toFixed(1) + '%';
+    $('eq-note').textContent = n === 1 && r === 0 ? 'Equal amounts, nothing removed: the reaction stops with a third of the acid unreacted.'
+      : 'Compared with equal amounts and nothing removed (67%), the equilibrium has shifted toward the ester.';
+  }
+
+  /* ---------------- TLC practice plate ---------------- */
+  var CM = 36, PX = 60, PY = 30, PW = 6.5, PH = 11, ORIGIN = 1.0;
+  var COMP = { P: 0.0429, Q: 0.1347, R: 0.441 };
+  var LANES = [1.15, 2.55, 3.95, 5.35];
+  var tlc = {};
+  function rfFor(k0, ether) { var k = k0 * Math.pow(ether / 100 + 0.03, -1.5); return 1 / (1 + k); }
+  function tlcNew() {
+    var all = ['P', 'Q', 'R'], drop = all[Math.floor(Math.random() * 3)];
+    tlc = { stage: 'spotted', front: 0, ether: parseFloat($('tlc-solv').value), mix: all.filter(function (c) { return c !== drop; }),
+      frontMarked: false, frontAt: 0, wetUntil: 0, stain: 0, stainedAt: 0, circled: false, guide: null, raf: 0 };
+    $('tlc-solv').disabled = false;
+    $('tlc-measure').hidden = true;
+    ['m-front', 'm-d2', 'm-r2', 'm-d3', 'm-r3', 'm-d4', 'm-r4'].forEach(function (id) { $(id).value = ''; $(id).removeAttribute('data-state'); });
+    ['P', 'Q', 'R'].forEach(function (c) { $('mx-' + c).checked = false; });
+    $('tlc-msg').textContent = ''; $('tlc-msg').className = 'msg';
+    tlcButtons(); tlcStatus('The plate is spotted, lanes 1 to 4, on a pencil line 1.0 cm from the bottom. Choose the solvent, then put the plate in the chamber.');
+    tlcDraw();
+  }
+  function tlcStatus(s, warn) { var e = $('tlc-status'); e.innerHTML = s; e.className = 'status' + (warn ? ' warn' : ''); }
+  function tlcButtons() {
+    var s = tlc.stage;
+    $('tlc-dev').disabled = s !== 'spotted';
+    $('tlc-out').disabled = s !== 'running';
+    $('tlc-front').disabled = !(s === 'out' && !tlc.frontMarked);
+    $('tlc-stain').disabled = !(s === 'out' || s === 'stained');
+    $('tlc-circle').disabled = !(s === 'stained' && !tlc.circled);
+  }
+  function spotsNow() {
+    var d = tlc.frontAt - ORIGIN, out = [];
+    LANES.forEach(function (x, i) {
+      var comps = i === 0 ? tlc.mix : [['P', 'Q', 'R'][i - 1]];
+      comps.forEach(function (c) { var rf = rfFor(COMP[c], tlc.ether); out.push({ lane: i, c: c, x: x, y: ORIGIN + rf * d, rf: rf }); });
+    });
+    return out;
+  }
+  function tlcDraw() {
+    var cv = $('tlc-canvas'), x = cv.getContext('2d'), now = performance.now();
+    x.clearRect(0, 0, cv.width, cv.height);
+    function X(cm) { return PX + cm * CM; }
+    function Y(cm) { return PY + (PH - cm) * CM; }
+    // the plate
+    x.fillStyle = '#fbfaf6'; x.fillRect(X(0), Y(PH), PW * CM, PH * CM);
+    // solvent soaked area while running
+    var wet = tlc.stage === 'running' || (tlc.stage === 'out' && now < tlc.wetUntil);
+    var fy = tlc.stage === 'running' ? tlc.front : tlc.frontAt;
+    if (tlc.stage === 'running' || tlc.stage === 'out' || tlc.stage === 'stained') {
+      var alpha = tlc.stage === 'running' ? 0.10 : wet ? 0.10 * (tlc.wetUntil - now) / 6000 : 0;
+      if (alpha > 0) { x.fillStyle = 'rgba(80,110,150,' + alpha.toFixed(3) + ')'; x.fillRect(X(0), Y(fy), PW * CM, (fy) * CM); }
+      if (wet) { x.strokeStyle = 'rgba(80,110,150,' + (tlc.stage === 'running' ? 0.6 : 0.6 * (tlc.wetUntil - now) / 6000).toFixed(2) + ')'; x.lineWidth = 1.5; x.beginPath(); x.moveTo(X(0), Y(fy)); x.lineTo(X(PW), Y(fy)); x.stroke(); }
+    }
+    // the solvent pool in the chamber
+    if (tlc.stage === 'running') { x.fillStyle = 'rgba(120,160,210,0.35)'; x.fillRect(X(-0.4), Y(0.5), (PW + 0.8) * CM, 0.5 * CM + 2); }
+    x.strokeStyle = '#8d9994'; x.lineWidth = 1; x.strokeRect(X(0), Y(PH), PW * CM, PH * CM);
+    // pencil origin line, lane numbers, starting spots
+    x.strokeStyle = '#777'; x.lineWidth = 1; x.beginPath(); x.moveTo(X(0.3), Y(ORIGIN)); x.lineTo(X(PW - 0.3), Y(ORIGIN)); x.stroke();
+    x.font = '12px system-ui, sans-serif'; x.fillStyle = '#555'; x.textAlign = 'center';
+    LANES.forEach(function (lx, i) { x.fillText(String(i + 1), X(lx), Y(0.45)); if (tlc.stage === 'spotted') { x.beginPath(); x.arc(X(lx), Y(ORIGIN), 2.5, 0, 7); x.fillStyle = '#ccc'; x.fill(); x.fillStyle = '#555'; } });
+    // the pencil mark of the front
+    if (tlc.frontMarked) { x.strokeStyle = '#555'; x.setLineDash([5, 3]); x.beginPath(); x.moveTo(X(0.2), Y(tlc.frontAt)); x.lineTo(X(PW - 0.2), Y(tlc.frontAt)); x.stroke(); x.setLineDash([]); }
+    // the spots, once stained
+    if (tlc.stage === 'stained' || tlc.circled) {
+      var fade = tlc.stage === 'stained' ? Math.max(0, 1 - (now - tlc.stainedAt) / 30000) : 0;
+      if (fade > 0) { x.fillStyle = 'rgba(200,160,60,' + (0.12 * fade) + ')'; x.fillRect(X(0), Y(PH), PW * CM, PH * CM); }
+      spotsNow().forEach(function (s) {
+        var rx = (0.16 + 0.10 * s.rf) * CM, ry = (0.13 + 0.22 * s.rf) * CM;
+        if (fade > 0) {
+          var g = x.createRadialGradient(X(s.x), Y(s.y), 1, X(s.x), Y(s.y), Math.max(rx, ry));
+          g.addColorStop(0, 'rgba(140,85,20,' + (0.85 * fade) + ')'); g.addColorStop(1, 'rgba(160,110,40,0)');
+          x.fillStyle = g; x.beginPath(); x.ellipse(X(s.x), Y(s.y), rx * 1.2, ry * 1.2, 0, 0, 7); x.fill();
+        }
+        if (tlc.circled) { x.strokeStyle = '#444'; x.lineWidth = 1.1; x.beginPath(); x.ellipse(X(s.x), Y(s.y), rx * 1.25, ry * 1.25, 0, 0, 7); x.stroke(); }
+      });
+    }
+    // ruler, zero on the origin line
+    var rx0 = PX - 44;
+    x.fillStyle = '#f4efe1'; x.fillRect(rx0, Y(PH), 34, PH * CM); x.strokeStyle = '#a89f86'; x.strokeRect(rx0, Y(PH), 34, PH * CM);
+    x.fillStyle = '#333'; x.strokeStyle = '#333'; x.textAlign = 'right'; x.font = '11px system-ui, sans-serif';
+    for (var mm = 0; mm <= (PH - ORIGIN) * 10; mm++) {
+      var yy = Y(ORIGIN + mm / 10), len = mm % 10 === 0 ? 14 : mm % 5 === 0 ? 9 : 5;
+      x.beginPath(); x.moveTo(rx0 + 34, yy); x.lineTo(rx0 + 34 - len, yy); x.stroke();
+      if (mm % 10 === 0) x.fillText(String(mm / 10), rx0 + 17, yy + 4);
+    }
+    x.textAlign = 'left'; x.fillText('cm', rx0 + 4, Y(PH) + 12);
+    // a guide line where the pointer is
+    if (tlc.guide !== null) { x.strokeStyle = 'rgba(194,65,12,0.8)'; x.setLineDash([3, 3]); x.beginPath(); x.moveTo(rx0, tlc.guide); x.lineTo(X(PW), tlc.guide); x.stroke(); x.setLineDash([]); }
+    x.textAlign = 'start';
+  }
+  function tlcLoop() {
+    var now = performance.now(), again = false;
+    if (tlc.stage === 'running') {
+      // distance squared grows with time: it slows as it climbs
+      var t = (now - tlc.t0) / 1000;
+      tlc.front = 0.5 + Math.sqrt(t * 7.5);
+      if (tlc.front >= PH - 0.05) {
+        tlc.front = PH; tlc.stage = 'ruined'; tlcButtons();
+        tlcStatus('The solvent ran off the top of the plate. With no front to measure from, no R<sub>f</sub> can be worked out. Take a new plate and take it out when the front is 1 to 2 cm from the top.', true);
+      } else again = true;
+    }
+    if (tlc.stage === 'out' && !tlc.frontMarked) {
+      if (now < tlc.wetUntil) again = true;
+      else if (!tlc.lostFront) { tlc.lostFront = true; tlcStatus('The solvent has evaporated and the front can no longer be seen. Without it there is no R<sub>f</sub>: start a new plate and mark the front the moment it comes out.', true); tlc.stage = 'ruined'; tlcButtons(); }
+    }
+    if (tlc.stage === 'stained') {
+      if (now - tlc.stainedAt < 30000) again = true;
+      else if (!tlc.circled) { tlcStatus('The iodine has evaporated from the spots and they have faded away before being circled. The compounds are still there: put the plate back in the iodine chamber.', true); }
+    }
+    tlcDraw();
+    tlc.raf = again ? requestAnimationFrame(tlcLoop) : 0;
+  }
+  function tlcGo() { if (!tlc.raf) tlc.raf = requestAnimationFrame(tlcLoop); }
+  function initTlc() {
+    var sv = $('tlc-solv');
+    function solvLabel() { var e = parseFloat(sv.value); $('tlc-solv-val').textContent = (100 - e) + '% hexane, ' + e + '% diethyl ether' + (e === 20 ? ' (4:1)' : ''); if (tlc.stage === 'spotted') tlc.ether = e; }
+    sv.addEventListener('input', solvLabel);
+    $('tlc-dev').addEventListener('click', function () {
+      tlc.ether = parseFloat(sv.value); sv.disabled = true; tlc.stage = 'running'; tlc.t0 = performance.now(); tlc.front = 0.5;
+      tlcButtons(); tlcStatus('Developing. The solvent climbs quickly at first, then more slowly. Take the plate out when the front is 1 to 2 cm from the top.'); tlcGo();
+    });
+    $('tlc-out').addEventListener('click', function () {
+      tlc.frontAt = tlc.front; tlc.stage = 'out'; tlc.wetUntil = performance.now() + 6000; tlcButtons();
+      tlcStatus('Out of the chamber. The wet front is evaporating: mark it now!'); tlcGo();
+    });
+    $('tlc-front').addEventListener('click', function () { tlc.frontMarked = true; tlcButtons(); tlcStatus('Front marked in pencil. The plate looks blank: the compounds are colorless. Dry it, then stain it with iodine.'); tlcDraw(); });
+    $('tlc-stain').addEventListener('click', function () {
+      if (!tlc.frontMarked) { tlcStatus('Mark the solvent front first: it will be gone by the time the plate comes out of the iodine.', true); return; }
+      tlc.stage = 'stained'; tlc.stainedAt = performance.now(); tlcButtons();
+      tlcStatus('Brown spots where the compounds are. They will fade as the iodine evaporates (about half a minute here): circle them now.'); tlcGo();
+    });
+    $('tlc-circle').addEventListener('click', function () {
+      if (performance.now() - tlc.stainedAt > 30000) { tlcStatus('There is nothing left to circle: the spots have faded. Put the plate back in the iodine chamber first.', true); return; }
+      tlc.circled = true; tlcButtons(); $('tlc-measure').hidden = false;
+      tlcStatus('Spots circled. They will fade, but the pencil marks stay. Measure from the origin line to the center of each spot, and to the front.'); tlcDraw();
+    });
+    $('tlc-new').addEventListener('click', function () { if (tlc.raf) cancelAnimationFrame(tlc.raf); tlcNew(); solvLabel(); });
+    var cv = $('tlc-canvas');
+    cv.addEventListener('pointermove', function (e) { var r = cv.getBoundingClientRect(); tlc.guide = (e.clientY - r.top) * cv.height / r.height; if (!tlc.raf) tlcDraw(); });
+    cv.addEventListener('pointerleave', function () { tlc.guide = null; if (!tlc.raf) tlcDraw(); });
+    $('tlc-check').addEventListener('click', tlcCheck);
+    tlcNew(); solvLabel();
+  }
+  function num(id) { var v = parseFloat(String($(id).value).replace(',', '.')); return isNaN(v) ? null : v; }
+  function mark(id, ok) { $(id).setAttribute('data-state', ok ? 'ok' : 'no'); }
+  function tlcCheck() {
+    var d = tlc.frontAt - ORIGIN, msgs = [], allOk = true, sp = spotsNow();
+    var blank = ['m-front', 'm-d2', 'm-r2', 'm-d3', 'm-r3', 'm-d4', 'm-r4'].some(function (id) { return !String($(id).value).trim(); });
+    if (blank) { $('tlc-msg').className = 'msg'; $('tlc-msg').textContent = 'Fill in every box first: the front, then each lane’s distance and Rf.'; return; }
+    var f = num('m-front');
+    if (f === null || Math.abs(f - d) > 0.15) { mark('m-front', false); allOk = false; msgs.push('the solvent front: measure from the origin line, not the bottom of the plate'); }
+    else mark('m-front', true);
+    [2, 3, 4].forEach(function (lane) {
+      var s = sp.filter(function (q) { return q.lane === lane - 1; })[0];
+      var dd = num('m-d' + lane), rr = num('m-r' + lane);
+      var dOk = dd !== null && Math.abs(dd - (s.y - ORIGIN)) <= 0.15;
+      mark('m-d' + lane, dOk); if (!dOk) { allOk = false; msgs.push('the distance in lane ' + lane); }
+      var mine = (dd !== null && f) ? dd / f : null;
+      var rOk = rr !== null && mine !== null && Math.abs(rr - mine) <= 0.015 && Math.abs(rr - s.rf) <= 0.03;
+      mark('m-r' + lane, rOk); if (!rOk) { allOk = false; msgs.push('R<sub>f</sub> in lane ' + lane + (mine !== null && rr !== null && Math.abs(rr - mine) > 0.015 ? ' (divide your spot distance by your front distance)' : '')); }
+    });
+    var picked = ['P', 'Q', 'R'].filter(function (c) { return $('mx-' + c).checked; });
+    var mixOk = picked.length === tlc.mix.length && picked.every(function (c) { return tlc.mix.indexOf(c) >= 0; });
+    var m = $('tlc-msg');
+    if (allOk && mixOk) { m.className = 'msg ok'; m.innerHTML = 'All right. Lane 1 holds ' + tlc.mix.join(' and ') + ': its spots sit level with those standards. Now try a much more or much less polar solvent and see what happens to the same plate.'; return; }
+    m.className = 'msg';
+    m.innerHTML = (msgs.length ? 'Look again at ' + msgs.join('; ') + '. ' : '') + (mixOk ? '' : (picked.length ? 'The mixture is not right yet: which standards are its spots level with?' : 'Tick the compounds in lane 1.'));
+  }
+
+  /* ---------------- iodine chamber ---------------- */
+  function i2P(tC) { var T = tC + 273.15; return 0.0408 * Math.exp(-62400 / 8.314 * (1 / T - 1 / 298.15)); }
+  function drawI2() {
+    var t = parseFloat($('i2-t').value), svg = $('i2-svg'); clear(svg);
+    var P = i2P(t), ratio = P / i2P(25);
+    $('i2-t-val').textContent = t + ' °C';
+    var op = Math.min(0.75, 0.04 + 0.13 * Math.log10(ratio * 1.2 + 0.0001) + (ratio > 1 ? 0.04 : 0));
+    // beaker
+    el('path', { d: 'M70 70 L76 270 Q76 278 84 278 L236 278 Q244 278 244 270 L250 70', 'class': 'glass' }, svg);
+    el('path', { d: 'M78 72 L84 270 L236 270 L242 72 Z', 'class': 'vapor', 'fill-opacity': Math.max(0.02, op).toFixed(3) }, svg);
+    el('path', { d: 'M58 66 Q160 52 262 66 L262 74 Q160 62 58 74 Z', 'class': 'steel' }, svg);
+    txt(svg, 160, 40, 'aluminum foil cover', 's');
+    // iodine crystals
+    [[100, 266], [118, 262], [134, 267], [200, 265], [218, 263], [176, 268]].forEach(function (p) { el('path', { d: 'M' + p[0] + ' ' + (p[1] + 4) + ' l6 -9 l7 3 l-2 8 z', fill: '#3a2a4a' }, svg); });
+    // plate leaning in it
+    el('path', { d: 'M120 262 L190 100 L214 110 L144 266 Z', 'class': 'plate' }, svg);
+    txt(svg, 285, 172, 'I₂(g)', 's');
+    txt(svg, 160, 292, 'iodine crystals', 's');
+    $('i2-read').innerHTML = 'Vapor pressure of iodine at ' + t + ' °C: <b>' + (P < 1 ? P.toFixed(3) : P.toFixed(1)) + ' kPa</b>, ' +
+      (ratio < 1.05 ? 'the room-temperature level.' : '<b>' + (ratio < 10 ? ratio.toFixed(1) : Math.round(ratio)) + ' times</b> as much vapor as at 25 °C.') +
+      ' <span class="soft">The violet tint shows how much iodine is in the air of the beaker.</span>';
+  }
+
+  /* ---------------- follow the fatty acid ---------------- */
+  var JOURNEY = [
+    { title: 'Weigh out the oil', form: 'triglyceride', draw: 'flask', fill: 'oil',
+      todo: 'Weigh a 50 mL Erlenmeyer flask, add about 2 mL of corn oil and weigh it again.',
+      why: 'Weighing by difference gives the mass of oil you started from (report sheet 1 to 3). Oil is too viscous to measure accurately by volume.' },
+    { title: 'Saponify', form: 'potassium carboxylate (soap) + glycerol', draw: 'flaskHeat', fill: 'clear',
+      todo: 'Add 5 mL of 0.5 M KOH in ethanol, stopper the flask and keep it in a 55 °C water bath for 20 minutes.',
+      why: 'Hydroxide breaks the three ester bonds of each triglyceride (topic 3). Ethanol dissolves both the oil and the KOH; the stopper keeps the warm ethanol from evaporating.' },
+    { title: 'Acidify', form: 'free fatty acid, RCOOH', draw: 'flask', fill: 'cloudy',
+      todo: 'In the hood, with gloves, add 2.5 mL of concentrated HCl and swirl.',
+      why: 'The acid puts the proton back on each carboxylate (topic 4). The neutral fatty acids no longer dissolve in the watery solution, which turns cloudy or oily.' },
+    { title: 'Extract into petroleum ether', form: 'RCOOH, in the top layer', draw: 'funnel', hi: 'top',
+      todo: 'Pour the mixture into a separatory funnel, add 5 mL of petroleum ether, shake with venting and let the layers separate. Drain the lower layer into a flask; pour the upper layer into a test tube.',
+      why: 'The neutral fatty acids move into the petroleum ether, on top. Glycerol, KCl, the excess acid and the ethanol stay in the water layer below.' },
+    { title: 'Extract a second time', form: 'RCOOH, in the combined extracts', draw: 'funnel', hi: 'top',
+      todo: 'Put the water layer back into the funnel, extract it with another 5 mL of petroleum ether and combine the two upper layers.',
+      why: 'One extraction leaves some fatty acid behind; a second portion collects most of what is left (topic 4).' },
+    { title: 'Dry the extract', form: 'RCOOH, in dry petroleum ether', draw: 'filter',
+      todo: 'Pour the combined extracts through a funnel holding a pea-sized plug of glass wool and 10 g of anhydrous Na₂SO₄ (rinsed first with petroleum ether) into an evaporating dish. Rinse with 2 mL more.',
+      why: 'The sodium sulfate takes up the water carried over from the funnel (topic 5), which would otherwise work against the esterification.' },
+    { title: 'Evaporate the solvent', form: 'fatty acids, an oily film', draw: 'dishHeat',
+      todo: 'In the hood, warm the evaporating dish on a 60 °C water bath until the petroleum ether is gone.',
+      why: 'Petroleum ether boils at 30 to 60 °C; the fatty acids, much larger molecules, stay behind. Never use a flame: the vapor is extremely flammable.' },
+    { title: 'Make the methyl esters', form: 'fatty acid methyl ester, RCOOCH₃', draw: 'dishHeat',
+      todo: 'Add 10 mL of methanol : perchloric acid (95:5) and keep the dish on the 55 °C water bath for 10 minutes.',
+      why: 'Fischer esterification (topic 6): methanol, in large excess, converts each fatty acid to its methyl ester, catalyzed by the strong acid.' },
+    { title: 'Extract and dry the esters', form: 'RCOOCH₃, in 0.2 mL petroleum ether', draw: 'funnel', hi: 'top',
+      todo: 'Extract the esters twice with 5 mL of petroleum ether, dry the extracts through Na₂SO₄ again, evaporate on the 60 °C bath and take the residue up in 0.2 mL of petroleum ether in a clean, dry test tube.',
+      why: 'This leaves the methanol and the perchloric acid behind and gives a small, concentrated solution, so that a 1 mm spot holds enough ester to see.' },
+    { title: 'Spot and develop the plate', form: 'RCOOCH₃ on silica', draw: 'plate',
+      todo: 'On a 15 × 6.5 cm plate, handled by its edges with gloves, spot your esters in lanes 1 and 5, methyl oleate in 2, methyl linoleate in 3 and methyl palmitate in 4. Develop in hexane : diethyl ether (4:1) in a beaker covered with foil, spots above the solvent.',
+      why: 'The standards beside your sample are what lets you name its spots (topic 7). Spotting your sample twice, at both edges, shows whether the plate ran evenly.' },
+    { title: 'Stain and measure', form: 'spots stained brown by iodine', draw: 'iodine',
+      todo: 'Mark the front, dry the plate, put it in the beaker of iodine crystals, cover tightly and follow the handout for the oven and the cooling. Circle the spots in pencil and measure every distance from the origin.',
+      why: 'The esters are colorless; iodine vapor shows where they are (topic 8). R<sub>f</sub> = spot distance ÷ front distance, compared with the standards.' }
+  ];
+  var jr = 0;
+  function drawJourney() {
+    var s = JOURNEY[jr], svg = $('jr-svg'); clear(svg);
+    $('jr-title').textContent = (jr + 1) + '. ' + s.title;
+    $('jr-form').textContent = 'The fatty acid is now: ' + s.form;
+    $('jr-do').innerHTML = s.todo; $('jr-why').innerHTML = s.why;
+    Array.prototype.forEach.call($('jr-steps').children, function (b, k) { b.setAttribute('aria-pressed', k === jr ? 'true' : 'false'); });
+    $('jr-back').disabled = jr === 0; $('jr-next').disabled = jr === JOURNEY.length - 1;
+    var d = s.draw;
+    function bath() { el('rect', { x: 20, y: 150, width: 180, height: 50, rx: 6, 'class': 'water' }, svg); el('path', { d: 'M20 150 V200 H200 V150', 'class': 'glass' }, svg); txt(svg, 110, 212, d === 'dishHeat' && jr === 6 ? 'water bath, 60 °C' : 'water bath, 55 °C', 's'); }
+    if (d === 'flask' || d === 'flaskHeat') {
+      if (d === 'flaskHeat') bath();
+      var fillCls = s.fill === 'oil' ? 'oil' : s.fill === 'cloudy' ? 'cloud' : 'organic';
+      el('path', { d: 'M86 120 L56 186 L164 186 L134 120 Z', 'class': fillCls }, svg);
+      el('path', { d: 'M96 30 V70 L50 180 Q46 190 58 190 L162 190 Q174 190 170 180 L124 70 V30', 'class': 'glass' }, svg);
+      if (d === 'flaskHeat') el('rect', { x: 92, y: 18, width: 36, height: 16, rx: 4, fill: '#555' }, svg);
+      if (s.fill === 'cloudy') for (var i = 0; i < 14; i++) el('circle', { cx: 70 + (i * 37) % 80, cy: 140 + (i * 23) % 40, r: 3, 'class': 'acidtok' }, svg);
+    } else if (d === 'funnel') {
+      el('path', { d: 'M74 60 L146 60 L146 100 L120 160 L100 160 L74 100 Z', 'class': 'organic' }, svg);
+      el('path', { d: 'M74 104 L146 104 L120 160 L100 160 Z', 'class': 'water' }, svg);
+      el('path', { d: 'M96 20 V34 L70 50 V100 L100 162 L104 196 L116 196 L120 162 L150 100 V50 L124 34 V20', 'class': 'glass' }, svg);
+      el('rect', { x: 92, y: 12, width: 36, height: 10, rx: 3, 'class': 'steel' }, svg);
+      el('rect', { x: 98, y: 186, width: 24, height: 8, rx: 2, 'class': 'steel' }, svg);
+      el('rect', { x: 70, y: 56, width: 80, height: 46, rx: 4, 'class': 'hilite' }, svg);
+      for (i = 0; i < 6; i++) el('circle', { cx: 84 + i * 10, cy: 76 + (i % 2) * 10, r: 3.5, 'class': 'acidtok' }, svg);
+      txt(svg, 158, 72, 'petroleum', 's', 'start').setAttribute('style', 'font-size:12px');
+      txt(svg, 158, 86, 'ether', 's', 'start').setAttribute('style', 'font-size:12px');
+      txt(svg, 158, 130, 'water', 's', 'start').setAttribute('style', 'font-size:12px');
+    } else if (d === 'filter') {
+      el('path', { d: 'M60 30 L160 30 L116 96 L104 96 Z', fill: '#fbf3cf' }, svg);
+      el('path', { d: 'M72 46 L148 46 L120 86 L100 86 Z', fill: '#f0eee8' }, svg);
+      for (i = 0; i < 18; i++) el('rect', { x: 82 + (i * 13) % 56, y: 52 + (i * 7) % 28, width: 4, height: 4, fill: '#fff', stroke: '#9aa3a0' }, svg);
+      el('path', { d: 'M56 26 L104 98 V140 M164 26 L116 98 V140', 'class': 'glass' }, svg);
+      el('ellipse', { cx: 110, cy: 98, rx: 7, ry: 5, fill: '#e2e2e2', stroke: '#aaa' }, svg);
+      el('path', { d: 'M40 170 Q110 210 180 170 Z', 'class': 'organic' }, svg);
+      el('path', { d: 'M30 160 Q110 220 190 160', 'class': 'glass' }, svg);
+      el('circle', { cx: 110, cy: 152, r: 3, fill: '#fbf3cf', stroke: '#c9b46a' }, svg);
+      txt(svg, 186, 66, 'Na₂SO₄', 's', 'start').setAttribute('style', 'font-size:11px');
+    } else if (d === 'dishHeat') {
+      bath();
+      el('path', { d: 'M40 140 Q110 180 180 140 Z', 'class': jr === 7 ? 'organic' : 'oil' }, svg);
+      el('path', { d: 'M30 128 Q110 196 190 128', 'class': 'glass' }, svg);
+      for (i = 0; i < 4; i++) el('path', { d: 'M' + (70 + i * 26) + ' 120 q6 -10 0 -20 q-6 -10 0 -20', stroke: '#8d9994', 'stroke-width': 1.5, fill: 'none' }, svg);
+      txt(svg, 110, 40, 'in the hood', 's');
+    } else if (d === 'plate') {
+      el('path', { d: 'M40 30 L44 196 Q44 202 50 202 L170 202 Q176 202 176 196 L180 30', 'class': 'glass' }, svg);
+      el('rect', { x: 46, y: 176, width: 128, height: 24, 'class': 'organic' }, svg);
+      el('rect', { x: 60, y: 50, width: 100, height: 140, 'class': 'plate' }, svg);
+      el('path', { d: 'M64 168 H156', stroke: '#888', 'stroke-width': 1 }, svg);
+      [72, 90, 110, 130, 148].forEach(function (x, k) { el('circle', { cx: x, cy: 168, r: 2.6, fill: k === 0 || k === 4 ? '#c2410c' : '#1c4c9a' }, svg); });
+      el('path', { d: 'M34 30 Q110 16 186 30', stroke: '#9aa3a0', 'stroke-width': 4, fill: 'none' }, svg);
+      txt(svg, 110, 214, 'hexane : ether 4:1', 's');
+    } else if (d === 'iodine') {
+      el('path', { d: 'M40 30 L44 196 Q44 202 50 202 L170 202 Q176 202 176 196 L180 30', 'class': 'glass' }, svg);
+      el('path', { d: 'M46 34 L50 198 L170 198 L174 34 Z', 'class': 'vapor', 'fill-opacity': 0.18 }, svg);
+      el('path', { d: 'M34 30 Q110 16 186 30', stroke: '#9aa3a0', 'stroke-width': 4, fill: 'none' }, svg);
+      el('rect', { x: 70, y: 56, width: 80, height: 130, 'class': 'plate' }, svg);
+      [[86, 120], [100, 96], [118, 124], [134, 104], [134, 120]].forEach(function (p) { el('ellipse', { cx: p[0], cy: p[1], rx: 5, ry: 6, fill: '#8c5514', 'fill-opacity': 0.7 }, svg); });
+      for (i = 0; i < 5; i++) el('path', { d: 'M' + (56 + i * 24) + ' 196 l5 -8 l6 3 l-2 6 z', fill: '#3a2a4a' }, svg);
+      txt(svg, 110, 214, 'iodine chamber', 's');
+    }
+  }
+  function initJourney() {
+    var box = $('jr-steps');
+    JOURNEY.forEach(function (s, k) { var b = document.createElement('button'); b.type = 'button'; b.textContent = String(k + 1); b.title = s.title; b.addEventListener('click', function () { jr = k; drawJourney(); }); box.appendChild(b); });
+    $('jr-back').addEventListener('click', function () { if (jr > 0) { jr--; drawJourney(); } });
+    $('jr-next').addEventListener('click', function () { if (jr < JOURNEY.length - 1) { jr++; drawJourney(); } });
+    drawJourney();
+  }
+
+  /* ---------------- contents highlight ---------------- */
+  function initNav() {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.contents a'));
+    if (!('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); }); });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('section.topic').forEach(function (s) { obs.observe(s); });
+  }
+
+  initFa(); initTg();
+  stepper('sap', SAP); stepper('fis', FIS);
+  $('ph-range').addEventListener('input', drawPh); drawPh();
+  $('dry-add').addEventListener('click', dryAdd); $('dry-swirl').addEventListener('click', drySwirl); $('dry-reset').addEventListener('click', dryReset); dryReset();
+  $('eq-n').addEventListener('input', eqUpdate); $('eq-r').addEventListener('input', eqUpdate); eqUpdate();
+  initTlc();
+  $('i2-t').addEventListener('input', drawI2); drawI2();
+  initJourney(); initNav();
+})();
+
+</script>
+</body>
+</html>
