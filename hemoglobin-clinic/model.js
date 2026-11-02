@@ -823,6 +823,118 @@
 
   function cleanSequence(text) { return String(text || '').toUpperCase().replace(/[^ACGT]/g, ''); }
 
+  // ---- The step lights: which bench steps are done, and the one to do now ----
+  //
+  // Worked out from the bench as the room last reported it (the saved bench state), so it holds
+  // nothing about the patient. Each step names the line of the page's lists it lights
+  // (data-done in index.html). A step counts as done once the bench has moved past it, even if it
+  // can no longer be seen (a tube that has been through the thermocycler was capped and spun).
+  // It does not judge whether a step was done well: the bench's warnings and notes do that.
+
+  var BENCH_STEPS = {
+    1: ['fill', 'cap', 'spin', 'load', 'run', 'digestfill', 'digestheat', 'seqfill', 'seqheat', 'seqsend'],
+    2: ['flask', 'melt', 'pour', 'box', 'wells', 'run2', 'picture']
+  };
+  var DIGEST_MIN = 60, SEQ_MIN = 15;
+
+  function all(list, f) { return !!list && list.length > 0 && list.every(f); }
+
+  function benchProgress(b, part, info) {
+    info = info || {};
+    var steps = BENCH_STEPS[part === 2 ? 2 : 1];
+    var done = {};
+    steps.forEach(function (k) { done[k] = false; });
+    if (!b) return { done: done, next: steps[0], hint: hintFor(steps[0], null, info) };
+    var later = function (keys) { keys.forEach(function (k) { done[k] = true; }); };
+    if (part === 2) {
+      var g = b.gel || {};
+      done.flask = g.agaroseG > 0 && g.taeMl > 0;
+      done.melt = g.heatS > 0 && info.meltS != null && g.heatS >= info.meltS;
+      done.pour = !!(g.poured && g.combOut);
+      done.box = !!(g.inBox && g.bufferIn);
+      var loaded = (g.wells || []).filter(function (w) { return w.ul > 0; });
+      done.wells = loaded.some(function (w) { return w.source === 'ladder'; }) && loaded.length >= 2;
+      done.run2 = g.runMin > 0 && g.runVMin > 0 && !g.powerOn;
+      done.picture = g.photos > 0;
+      if (done.picture || g.onBlue) later(['flask', 'melt', 'pour', 'box', 'wells', 'run2']);
+      if (g.powerOn || g.runMin > 0) later(['flask', 'melt', 'pour', 'box', 'wells']);
+      if (g.inBox) later(['flask', 'melt', 'pour']);
+      if (g.poured) later(['flask', 'melt']);
+    } else {
+      var t = b.tubes || [];
+      done.fill = all(t, function (tube, i) {
+        var r = tube.r || {};
+        var dna = (r.patientNg || 0) + (r.controlNg || 0);
+        return r.masterMix > 0 && r.fwd > 0 && r.rev > 0 && (i === 2 || dna > 0);
+      });
+      done.cap = all(t, function (tube) { return tube.capped && tube.mixed; });
+      done.spin = all(t, function (tube) { return tube.spun; });
+      done.load = all(t, function (tube) { return tube.place === 'cycler'; }) && !b.lidOpen;
+      done.run = !!b.runDone;
+      var d = b.digests || [];
+      done.digestfill = all(d, function (x) { return x.productUl > 0 && x.bufferUl > 0 && x.enzymeUl > 0; });
+      done.digestheat = all(d, function (x) { return x.minutes >= DIGEST_MIN; });
+      var q = (b.seqs || [])[0] || {};
+      done.seqfill = q.productUl > 0 && q.cleanupUl > 0;
+      done.seqheat = q.at37 >= SEQ_MIN && q.at80 >= SEQ_MIN;
+      done.seqsend = !!q.sent;
+      if (done.seqsend) later(['seqfill', 'seqheat']);
+      if (done.digestheat) later(['digestfill']);
+      if (done.run || done.digestfill || done.seqfill) later(['fill', 'cap', 'spin', 'load', 'run']);
+      if (b.running) later(['fill', 'cap', 'spin', 'load']);
+      done.run = done.run || done.digestfill || done.seqfill;
+    }
+    var next = null;
+    for (var i = 0; i < steps.length; i++) if (!done[steps[i]]) { next = steps[i]; break; }
+    // while the digests have their hour at 37 °C, the sequencing tube can be made up beside them
+    if (next === 'digestheat' && !done.seqfill && b.digests && b.digests.every(function (x) { return x.place === 'heat'; })) next = 'seqfill';
+    return { done: done, next: next, hint: next ? hintFor(next, b, info) : '' };
+  }
+
+  function hintFor(key, b, info) {
+    var g = b && b.gel ? b.gel : {};
+    switch (key) {
+      case 'fill': return 'Your volumes from part 3, tube by tube. Water first, the DNA last; a fresh tip each time.';
+      case 'cap': return 'Cap each of the three tubes, then flick it to mix.';
+      case 'spin': return 'Click the microcentrifuge (or the button) for a quick spin.';
+      case 'load': return 'All three capped tubes into the thermocycler, then close its lid.';
+      case 'run': return b && b.running ? 'The run is on. "Speed up the wait" under the room shortens it.'
+        : 'Type the program and send it, then Run. The run takes a while on the bench clock: "Speed up the wait" shortens it.';
+      case 'digestfill': return 'Take the tubes out and uncap them, then fill both digests: product, buffer, water, and DdeI last.';
+      case 'digestheat': {
+        var d = b && b.digests ? b.digests : [];
+        // the minutes as the bench clock ticks (info.digestMin), or as last saved
+        var mins = d.map(function (x, i) { return info && info.digestMin && info.digestMin[i] != null ? info.digestMin[i] : (x.minutes || 0); });
+        var least = mins.length ? Math.min.apply(null, mins) : 0;
+        var inBlock = d.length && d.every(function (x) { return x.place === 'heat'; });
+        return inBlock ? 'In the heat block: ' + Math.floor(least) + ' of ' + DIGEST_MIN + ' minutes at 37 °C.'
+          : 'Both digests into the heat block at 37 °C for an hour.';
+      }
+      case 'seqfill': return 'Into "Sequencing: patient": the product and the clean-up enzymes (your volumes from part 5).';
+      case 'seqheat': {
+        var q = b && b.seqs ? b.seqs[0] : {};
+        var at37 = info && info.seqMin ? info.seqMin[0] : q.at37, at80 = info && info.seqMin ? info.seqMin[1] : q.at80;
+        if (!(at37 >= SEQ_MIN)) return 'The tube into the heat block at 37 °C: ' + Math.floor(at37 || 0) + ' of ' + SEQ_MIN + ' minutes.';
+        return 'Now 15 minutes at 80 °C: ' + Math.floor(at80 || 0) + ' of ' + SEQ_MIN + '. Take the digests out first: the heat would kill DdeI.';
+      }
+      case 'seqsend': return 'Out of the heat block: the primer and the water, then send the patient’s tube.';
+      case 'flask': return 'Weigh the agarose you worked out in part 1, and pour in the TAE.';
+      case 'melt': return 'Short bursts in the microwave, with a swirl between them, until it is all melted.';
+      case 'pour': {
+        var set = info && info.setIn != null ? info.setIn : -1;
+        if (g.poured && set > 0) return 'Setting: ' + clockText(set) + ' to go. Then take out the comb.';
+        if (g.poured) return 'It has set: take out the comb.';
+        return 'Let it cool to about 55 °C, add the stain, set the comb in the tray, and pour.';
+      }
+      case 'box': return 'The gel into the box with its wells at the black (−) end, then cover it with TAE.';
+      case 'wells': return 'Loading dye into each tube you will load, then the ladder and your samples into the wells.';
+      case 'run2': return g.powerOn ? 'Running. Switch off when the faster dye is most of the way down the gel.'
+        : 'Lid on, leads red to red and black to black, set the volts, then power on.';
+      case 'picture': return 'The gel onto the blue-light box, blue light on, amber cover on, then take the picture.';
+    }
+    return '';
+  }
+
   var api = {
     normalizeCode: normalizeCode, validCode: validCode, randomCode: randomCode,
     STOCKS: STOCKS, TARGETS: TARGETS, TUBES: TUBES, PIPETTES: PIPETTES, ROWS: ROWS, REACTION: REACTION,
@@ -841,7 +953,8 @@
     PROGRAM_FIELDS: PROGRAM_FIELDS, programStep: programStep,
     blockedText: blockedText, warnText: warnText, mistakeText: mistakeText, noticeText: noticeText,
     BLOCKED: BLOCKED, WARN: WARN, MISTAKES: MISTAKES, NOTICES: NOTICES,
-    clockText: clockText, ul: ul, cleanSequence: cleanSequence
+    clockText: clockText, ul: ul, cleanSequence: cleanSequence,
+    BENCH_STEPS: BENCH_STEPS, benchProgress: benchProgress
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.DnaLabModel = api;

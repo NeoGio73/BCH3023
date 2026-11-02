@@ -219,6 +219,7 @@
       case 'tick':
         tick = msg;
         showClock();
+        showLightsSoon(500);
         break;
       case 'warn':
         alertBox('warn', M.warnText(msg.code, msg.detail), [
@@ -228,6 +229,7 @@
         break;
       case 'blocked':
         note(M.blockedText(msg.reason), 'blocked');
+        flagStep(msg.reason);
         break;
       case 'mistake':
         alertBox('mistake', M.mistakeText(msg.code), [
@@ -273,6 +275,124 @@
     showPrimers();
     showWells();
     showClock();
+    showLights();
+  }
+
+  // ---- The step lights and the Start here box ----------------------------------------------------
+  //
+  // Beside each bench step: a hollow numbered circle (not yet), a blue ring with "Next" and a hint
+  // (the one step to do now, from model.js benchProgress), a green tick (done), and a red "!" with
+  // the bench's reason when the bench has just refused a step (the step whose button was pressed,
+  // or the one to do now); the red clears as soon as anything on the bench changes. The Start here
+  // box at the top ticks off the session's parts the same way and says where to go next.
+
+  var attention = null;            // { key, text, snap }
+  var lastPress = null;            // { key, t }: the step whose controls were used last
+
+  function benchInfo() {
+    return {
+      meltS: extra.meltS,
+      setIn: tick.setIn != null ? tick.setIn : extra.setIn,
+      digestMin: tick.digestMin || null,
+      seqMin: tick.seqMin ? [tick.seqMin[0], tick.seqMin[1]] : null
+    };
+  }
+
+  function stepLine(li, cls, text) {
+    var node = li.querySelector('.' + cls);
+    if (!node) { node = el('span', { 'class': cls }); li.appendChild(node); }
+    node.textContent = text || '';
+  }
+
+  function showLights() {
+    var b = state.bench;
+    var p = M.benchProgress(b, PART, benchInfo());
+    if (attention && attention.snap !== JSON.stringify(b)) attention = null;
+    var mine = M.BENCH_STEPS[PART];
+    document.querySelectorAll('.routine-step[data-done]').forEach(function (li) {
+      var key = li.getAttribute('data-done');
+      if (mine.indexOf(key) < 0) return;
+      var flagged = attention && attention.key === key;
+      var st = flagged ? 'attention' : p.done[key] ? 'done' : key === p.next ? 'next' : '';
+      li.setAttribute('data-state', st);
+      stepLine(li, 'routine-hint', st === 'next' ? p.hint : '');
+      stepLine(li, 'routine-alert', flagged ? attention.text : '');
+    });
+    showRoute(p);
+  }
+
+  function flagStep(reason) {
+    var p = M.benchProgress(state.bench, PART, benchInfo());
+    var key = lastPress && Date.now() - lastPress.t < 4000 ? lastPress.key : p.next;
+    if (!key) return;
+    attention = { key: key, text: M.blockedText(reason), snap: JSON.stringify(state.bench) };
+    showLights();
+  }
+
+  /** Every judged box in a part of the page is right (and there is at least one). */
+  function partRight(id) {
+    var sec = $(id);
+    if (!sec) return false;
+    var boxes = Array.prototype.slice.call(sec.querySelectorAll('input[data-state]'));
+    return boxes.length > 0 && boxes.every(function (i) { return i.getAttribute('data-state') === 'ok'; });
+  }
+
+  function routeDone(p) {
+    var b = state.bench;
+    if (PART === 1) return {
+      blast: partRight('part-blast'),
+      primers: !!(b && b.fwd),
+      recipe: partRight('part-recipe'),
+      digest: partRight('part-digest'),
+      seqprep: partRight('part-seqprep'),
+      bench: !p.next
+    };
+    var ladderOk = $('ladder-body') ? $('ladder-body').querySelectorAll('input[data-state="ok"]').length : 0;
+    var bandBoxes = $('band-body') ? Array.prototype.slice.call($('band-body').querySelectorAll('input')) : [];
+    var traces = $('traces');
+    return {
+      cast: partRight('part-cast'),
+      bench2: !!p.done.picture || !!state.picture,
+      sizes: ladderOk >= 3 && bandBoxes.length > 0 && bandBoxes.every(function (i) { return i.getAttribute('data-state') === 'ok'; }),
+      trace: !!(state.traces && state.traces.patient) && !!traces && !traces.querySelector('[data-state="no"]') && !!traces.querySelector('[data-state="ok"]'),
+      protein: !!$('prot-10') && $('prot-10').getAttribute('data-state') === 'ok',
+      diagnosis: !!(state.dx.a1 && state.dx.a2 && state.dx.name)
+    };
+  }
+
+  function showRoute(p) {
+    var list = $('route-' + PART), line = $('start-next-' + PART);
+    if (!list || !line) return;
+    var done = routeDone(p), next = null;
+    list.querySelectorAll('li[data-route]').forEach(function (li) {
+      var d = !!done[li.getAttribute('data-route')];
+      li.setAttribute('data-state', d ? 'done' : '');
+      if (!d && !next) next = li;
+    });
+    line.textContent = '';
+    if (!next) {
+      line.appendChild(el('b', null, PART === 1 ? 'Session 1 is done. ' : 'All done. '));
+      if (PART === 1) {
+        line.appendChild(document.createTextNode('Your results come back in '));
+        line.appendChild(el('a', { href: '?part=2' }, 'Session 2'));
+        line.appendChild(document.createTextNode('.'));
+      } else line.appendChild(document.createTextNode('Print the report, or save it as a PDF, at the end of part 7.'));
+      return;
+    }
+    next.setAttribute('data-state', 'next');
+    var a = next.querySelector('a');
+    line.appendChild(el('b', null, 'Next: '));
+    line.appendChild(el('a', { href: a.getAttribute('href') }, a.textContent));
+    var k = next.getAttribute('data-route');
+    // at the bench, its own next step is quoted
+    if ((k === 'bench' || k === 'bench2') && p.next && state.bench) line.appendChild(document.createTextNode(' — ' + p.hint));
+  }
+
+  // after a box is typed in (its verdict is set first), and at most twice a second while the clock runs
+  var lightsSoon = null;
+  function showLightsSoon(ms) {
+    if (lightsSoon) return;
+    lightsSoon = setTimeout(function () { lightsSoon = null; showLights(); }, ms || 0);
   }
 
   // ---- Session 1: BLAST and the primers --------------------------------------------------------
@@ -732,6 +852,7 @@
   function verdictOn(input, verdict, key) {
     var was = input.getAttribute('data-state');
     input.setAttribute('data-state', verdict === 'empty' ? '' : verdict);
+    if (was !== input.getAttribute('data-state')) showLightsSoon();
     if (key && verdict === 'no' && was !== 'no' && input === document.activeElement) {
       state.tries[key] = (state.tries[key] || 0) + 1;
       saveState();
@@ -921,6 +1042,14 @@
 
   function bind() {
     $('unknown-code').textContent = state.code;
+    // which step's controls were used last (a refusal is shown on that step)
+    var routines = document.querySelector('.routine-column');
+    if (routines) routines.addEventListener('click', function (e) {
+      var row = e.target.closest ? e.target.closest('.routine-step[data-done]') : null;
+      if (row && e.target.closest('button')) lastPress = { key: row.getAttribute('data-done'), t: Date.now() };
+    }, true);
+    document.addEventListener('input', function () { showLightsSoon(); });
+    document.addEventListener('change', function () { showLightsSoon(); });
     document.querySelectorAll('[data-steps]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var steps = btn.getAttribute('data-steps');

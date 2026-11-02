@@ -778,8 +778,64 @@ textarea.called { font-family: ui-monospace, Consolas, "Courier New", monospace;
 .report-buttons .seq-input { width: 16rem; }
 .print-copy { display: none; }
 
+/* the step lights: the shared rules draw the numbered circle, the tick and the "Next" ring;
+   these add the red "!" when the bench refuses a step, and the lines under a step's name */
+.routine-step[data-state="attention"]::before { content: "!"; background: var(--flag); border-color: var(--flag); color: #fff; font-size: 0.9rem; }
+.routine-step[data-state="attention"] .routine-name::after {
+  content: "Needs attention";
+  display: inline-block; margin-left: 7px; padding: 0 7px; border-radius: 999px;
+  font-size: 0.72rem; font-weight: 700; line-height: 1.5; vertical-align: 1px;
+  background: var(--flag-wash); color: var(--flag);
+}
+.routine-hint, .routine-alert, .routine-step > .routine-table { grid-column: 2; }
+.routine-hint, .routine-alert { font-size: 0.84rem; line-height: 1.38; }
+.routine-hint { color: var(--enamel-deep); }
+.routine-alert { color: var(--flag); font-weight: 600; }
+.routine-hint:empty, .routine-alert:empty { display: none; }
+.routine-table { min-width: 0; overflow-x: auto; }
+.routine-table .tube-table { margin-top: 4px; }
+
+/* Start here: the session's route, ticked off as it goes, and where to go next */
+.start-here {
+  margin: 14px 0 22px;
+  padding: 14px 18px 12px;
+  border: 1px solid #cfdcf1;
+  border-left: 4px solid var(--enamel);
+  border-radius: 6px;
+  background: var(--enamel-wash);
+  max-width: 60rem;
+}
+.start-title { margin: 0 0 4px; font-size: 1.15rem; color: var(--enamel-deep); }
+.start-lede { margin: 0 0 10px; max-width: 56rem; }
+.start-route { list-style: none; margin: 0 0 8px; padding: 0; counter-reset: route; }
+.start-route li {
+  position: relative;
+  counter-increment: route;
+  padding: 3px 0 3px 2.1rem;
+  line-height: 1.45;
+}
+.start-route li::before {
+  content: counter(route);
+  position: absolute; left: 0; top: 4px;
+  box-sizing: border-box;
+  width: 1.4rem; height: 1.4rem; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--rule-strong);
+  background: var(--paper); color: var(--ink-soft);
+  font-size: 0.76rem; font-weight: 700;
+}
+.start-route li[data-state="done"]::before { content: "\2713"; background: var(--good); border-color: var(--good); color: #fff; }
+.start-route li[data-state="next"]::before { border: 2px solid var(--enamel); color: var(--enamel-deep); box-shadow: 0 0 0 3px #fff; }
+.start-route li a { font-weight: 600; }
+.start-route li[data-state="done"] a { color: var(--ink-soft); }
+.start-what { color: var(--ink); }
+.start-time { color: var(--ink-soft); font-size: 0.86rem; white-space: nowrap; }
+.start-time::before { content: "\00b7\00a0"; }
+.start-next { margin: 4px 0 0; padding-top: 8px; border-top: 1px solid #cfdcf1; }
+.start-next:empty { display: none; }
+
 @media print {
-  #part-trace .trace-scroll, #part-trace button, #part-protein .viewer-wrap, .translate-tool, .read-buttons, .report-buttons, #results-go { display: none !important; }
+  #part-trace .trace-scroll, #part-trace button, #part-protein .viewer-wrap, .translate-tool, .read-buttons, .report-buttons, #results-go, .start-here, .routine-hint, .routine-alert { display: none !important; }
   .print-only { display: block; font-family: ui-monospace, Consolas, monospace; font-size: 7.5pt; white-space: pre-wrap; overflow-wrap: anywhere; }
   .checklist { columns: 1; }
 }

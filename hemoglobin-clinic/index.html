@@ -18,6 +18,34 @@
   <p class="prelab-note" data-part="1">Session 1 of 2. A patient's blood sample has come to the clinic's laboratory. Today you amplify the part of the patient's &beta;-globin gene (<i>HBB</i>) where the common hemoglobin variants lie, with primers you design yourself, alongside the clinic's control DNA and a tube with no DNA at all, and you set up a DdeI digest of the products and a tube for sequencing for next time. Before you start, read the <a href="prelab/index.html">prelab review</a>; the <a href="guide/how-to-run-the-clinic.pdf">guide</a> (a PDF) takes you through every step at the bench. <a href="?part=2">Go to Session 2</a></p>
   <p class="prelab-note" data-part="2">Session 2 of 2. Your PCR products and their digests are on the bench from Session 1. Today you cast an agarose gel, run them on it beside a ladder, photograph it on the blue-light box and read the size of every band; then you read the sequencing trace, work from the gene to the protein, and make your diagnosis. The <a href="prelab/index.html">prelab review</a> explains each method, and the <a href="guide/how-to-run-the-clinic.pdf">guide</a> (a PDF) every step. <a href="?part=1">Back to Session 1</a></p>
 
+  <section class="start-here" data-part="1" aria-labelledby="start-title-1">
+    <h2 class="start-title" id="start-title-1">Start here</h2>
+    <p class="start-lede">Work down the page. The first five parts are done at the computer and on paper; part 6 is the bench, where you make up and run what you planned. Your work is saved in this browser as you go.</p>
+    <ol class="start-route" id="route-1">
+      <li data-route="blast"><a href="#part-blast">Which gene?</a> <span class="start-what">Copy the read into BLAST and record the top hit.</span> <span class="start-time">about 10 min</span></li>
+      <li data-route="primers"><a href="#part-primers">Your primers</a> <span class="start-what">Design a pair with Primer-BLAST, check it here, then Use these primers.</span> <span class="start-time">about 30 min</span></li>
+      <li data-route="recipe"><a href="#part-recipe">The reaction</a> <span class="start-what">Every volume for the three tubes.</span> <span class="start-time">about 5 min</span></li>
+      <li data-route="digest"><a href="#part-digest">The digest</a> <span class="start-what">Its recipe, and the fragments you expect.</span> <span class="start-time">about 10 min</span></li>
+      <li data-route="seqprep"><a href="#part-seqprep">For the sequencing core</a> <span class="start-what">The sequencing tube's recipe.</span> <span class="start-time">about 5 min</span></li>
+      <li data-route="bench"><a href="#part-bench">At the bench</a> <span class="start-what">Fill and run the PCR, set up the digests, send the tube for sequencing. The waits run on the bench clock: "Speed up the wait" shortens them.</span> <span class="start-time">about 40 min</span></li>
+    </ol>
+    <p class="start-next" id="start-next-1" aria-live="polite"></p>
+  </section>
+
+  <section class="start-here" data-part="2" aria-labelledby="start-title-2">
+    <h2 class="start-title" id="start-title-2">Start here</h2>
+    <p class="start-lede">Your PCR products and digests are where you left them. Run them on a gel and read it, then read the sequence, and put it all together. Your work is saved in this browser as you go.</p>
+    <ol class="start-route" id="route-2">
+      <li data-route="cast"><a href="#part-cast">The gel</a> <span class="start-what">Its strength, and the agarose it takes.</span> <span class="start-time">about 5 min</span></li>
+      <li data-route="bench2"><a href="#part-bench">At the bench</a> <span class="start-what">Cast, load, run and photograph the gel. The gel setting and the run take time on the bench clock: "Speed up the wait" shortens them.</span> <span class="start-time">about 40 min</span></li>
+      <li data-route="sizes"><a href="#part-sizes">The sizes</a> <span class="start-what">Measure the ladder and your bands on the picture.</span> <span class="start-time">about 15 min</span></li>
+      <li data-route="trace"><a href="#part-trace">The sequence</a> <span class="start-what">Collect the results, list the double peaks and place each in the gene.</span> <span class="start-time">about 20 min</span></li>
+      <li data-route="protein"><a href="#part-protein">From gene to protein</a> <span class="start-what">The normal &beta; chain's first ten amino acids, and the structure in 3D.</span> <span class="start-time">about 10 min</span></li>
+      <li data-route="diagnosis"><a href="#part-diagnosis">Your diagnosis</a> <span class="start-what">Both alleles, your evidence, then print the report.</span> <span class="start-time">about 15 min</span></li>
+    </ol>
+    <p class="start-next" id="start-next-2" aria-live="polite"></p>
+  </section>
+
   <section class="part" id="part-blast" data-part="1" aria-labelledby="blast-title">
     <h2 id="blast-title"><span class="step" aria-hidden="true">1</span>Which gene?</h2>
     <p class="lede">The laboratory has read 500 bases of DNA from the patient's sample. Find out which gene it comes from: copy the read, paste it into NCBI's nucleotide BLAST (blastn, database "Nucleotide collection (nr/nt)" or "RefSeq Select"), run it, and read the top hit.</p>
@@ -167,19 +195,26 @@
       <div class="routine-column">
        <div data-part="1">
         <h3 class="routine-title">A. Fill the three tubes</h3>
-        <p class="routine-why">Set the pipette to the volume, put on a tip, draw from the stock and dispense into the tube (the controls are under the room). A tip that has touched one liquid carries a trace of it: use a fresh one each time it would go into something else.</p>
-        <table class="data-table tube-table">
-          <thead><tr><th scope="col">In the tube (&micro;L)</th><th scope="col">Patient</th><th scope="col">Control</th><th scope="col">No DNA</th></tr></thead>
-          <tbody id="tube-body"></tbody>
-        </table>
+        <ol class="routine">
+          <li class="routine-step" data-done="fill">
+            <span class="routine-name">Each tube's volumes from part 3</span>
+            <span class="routine-why">Set the pipette to the volume, put on a tip, draw from the stock and dispense into the tube (the controls are under the room). A tip that has touched one liquid carries a trace of it: use a fresh one each time it would go into something else.</span>
+            <div class="routine-table">
+              <table class="data-table tube-table">
+                <thead><tr><th scope="col">In the tube (&micro;L)</th><th scope="col">Patient</th><th scope="col">Control</th><th scope="col">No DNA</th></tr></thead>
+                <tbody id="tube-body"></tbody>
+              </table>
+            </div>
+          </li>
+        </ol>
 
         <h3 class="routine-title">B. Cap, mix, spin</h3>
         <ol class="routine">
-          <li class="routine-step">
+          <li class="routine-step" data-done="cap">
             <span class="routine-name">Cap each tube and flick it to mix</span>
             <span class="routine-buttons" id="tube-buttons"></span>
           </li>
-          <li class="routine-step">
+          <li class="routine-step" data-done="spin">
             <span class="routine-name">A quick spin</span>
             <span class="routine-why">A few seconds in the microcentrifuge brings every drop down to the bottom of the tube.</span>
             <span class="routine-buttons"><button type="button" class="quiet-button" data-steps="spin">Spin the tubes</button></span>
@@ -188,7 +223,7 @@
 
         <h3 class="routine-title">C. The thermocycler</h3>
         <ol class="routine">
-          <li class="routine-step">
+          <li class="routine-step" data-done="load">
             <span class="routine-name">Put the tubes in and close the lid</span>
             <span class="routine-buttons">
               <button type="button" class="quiet-button" data-steps="load patient|load control|load none">Put all three in</button>
@@ -196,7 +231,7 @@
               <button type="button" class="quiet-button" data-steps="lid">Open or close the lid</button>
             </span>
           </li>
-          <li class="routine-step">
+          <li class="routine-step" data-done="run">
             <span class="routine-name">The program</span>
             <span class="routine-why">Choose the annealing temperature from your primers' Tm, the extension time from the length of your product (Taq adds about 1000 bases a minute), and the number of cycles.</span>
             <span class="program-grid" id="program-grid"></span>
@@ -214,12 +249,28 @@
           <p class="cycler-line"><span class="cycler-key">Time left</span> <span id="cy-left">&ndash;</span></p>
         </div>
 
+        <h3 class="routine-title">D. The digests</h3>
+        <ol class="routine">
+          <li class="routine-step" data-done="digestfill">
+            <span class="routine-name">Fill the two digest tubes</span>
+            <span class="routine-why">Uncap the PCR tubes once they are out of the thermocycler. Draw from "PCR tube: Patient" into "Digest: patient", and the same for the control; then the buffer, the water and the enzyme (the enzyme last).</span>
+          </li>
+          <li class="routine-step" data-done="digestheat">
+            <span class="routine-name">An hour at 37 &deg;C</span>
+            <span class="routine-buttons">
+              <button type="button" class="quiet-button" data-steps="heat digest-patient|heat digest-control">Both into the heat block</button>
+              <button type="button" class="quiet-button" data-steps="unheat digest-patient|unheat digest-control">Both out</button>
+            </span>
+          </li>
+        </ol>
+
         <h3 class="routine-title">E. The tubes for sequencing</h3>
         <ol class="routine">
-          <li class="routine-step">
+          <li class="routine-step" data-done="seqfill">
             <span class="routine-name">Product and clean-up into "Sequencing: patient" (and the control, if you like)</span>
+            <span class="routine-why">This can be done while the digests have their hour at 37 &deg;C.</span>
           </li>
-          <li class="routine-step">
+          <li class="routine-step" data-done="seqheat">
             <span class="routine-name">15 minutes at 37 &deg;C, then 15 at 80 &deg;C</span>
             <span class="routine-why">Take the digests out of the heat block before you set it to 80 &deg;C: the heat kills DdeI too.</span>
             <span class="routine-buttons">
@@ -230,26 +281,11 @@
             </span>
             <span class="routine-state" id="seq-state"></span>
           </li>
-          <li class="routine-step">
+          <li class="routine-step" data-done="seqsend">
             <span class="routine-name">The primer, the water, and into the drop-off</span>
             <span class="routine-buttons">
               <button type="button" class="primary-button" data-steps="send seq-patient">Send the patient's tube</button>
               <button type="button" class="quiet-button" data-steps="send seq-control">Send the control's</button>
-            </span>
-          </li>
-        </ol>
-
-        <h3 class="routine-title">D. The digests</h3>
-        <ol class="routine">
-          <li class="routine-step">
-            <span class="routine-name">Fill the two digest tubes</span>
-            <span class="routine-why">Uncap the PCR tubes once they are out of the thermocycler. Draw from "PCR tube: Patient" into "Digest: patient", and the same for the control; then the buffer, the water and the enzyme (the enzyme last).</span>
-          </li>
-          <li class="routine-step">
-            <span class="routine-name">An hour at 37 &deg;C</span>
-            <span class="routine-buttons">
-              <button type="button" class="quiet-button" data-steps="heat digest-patient|heat digest-control">Both into the heat block</button>
-              <button type="button" class="quiet-button" data-steps="unheat digest-patient|unheat digest-control">Both out</button>
             </span>
           </li>
         </ol>
@@ -258,7 +294,7 @@
        <div data-part="2">
         <h3 class="routine-title">E. Cast the gel</h3>
         <ol class="routine">
-          <li class="routine-step">
+          <li class="routine-step" data-done="flask">
             <span class="routine-name">Agarose and TAE into the flask</span>
             <span class="routine-buttons">
               <label>Weigh <input type="text" inputmode="decimal" id="in-agarose" class="num-input short"> g</label>
@@ -267,7 +303,7 @@
               <button type="button" class="quiet-button" id="go-tae">Into the flask</button>
             </span>
           </li>
-          <li class="routine-step">
+          <li class="routine-step" data-done="melt">
             <span class="routine-name">Melt it in the microwave</span>
             <span class="routine-why">In short bursts, with a swirl between them, until no grains float in it.</span>
             <span class="routine-buttons">
@@ -277,7 +313,7 @@
             </span>
             <span class="routine-state" id="flask-state"></span>
           </li>
-          <li class="routine-step">
+          <li class="routine-step" data-done="pour">
             <span class="routine-name">Cool, stain, pour</span>
             <span class="routine-why">Let it cool to about 55 &deg;C. Add the stain with a pipette (10,000x: 1 &micro;L for every 10 mL), set the comb in the tray, and pour.</span>
             <span class="routine-buttons">
@@ -291,7 +327,7 @@
 
         <h3 class="routine-title">F. Into the gel box, and load it</h3>
         <ol class="routine">
-          <li class="routine-step">
+          <li class="routine-step" data-done="box">
             <span class="routine-name">The gel into the box</span>
             <span class="routine-buttons">
               <button type="button" class="quiet-button" data-steps="gelbox black">Wells at the black (&minus;) end</button>
@@ -299,7 +335,7 @@
               <button type="button" class="quiet-button" data-steps="buffer">Cover it with TAE</button>
             </span>
           </li>
-          <li class="routine-step">
+          <li class="routine-step" data-done="wells">
             <span class="routine-name">Loading dye, then the wells</span>
             <span class="routine-why">Loading dye into each tube you will load (6x: 1 &micro;L for every 5 &micro;L of sample), then each sample into its well. Keep a note of what goes where.</span>
           </li>
@@ -311,7 +347,8 @@
 
         <h3 class="routine-title">G. Run it</h3>
         <ol class="routine">
-          <li class="routine-step">
+          <li class="routine-step" data-done="run2">
+            <span class="routine-name">Lid, leads, volts, power</span>
             <span class="routine-buttons">
               <button type="button" class="quiet-button" data-steps="boxlid">Lid on or off</button>
               <button type="button" class="quiet-button" data-steps="leads right">Leads: red to red, black to black</button>
@@ -327,7 +364,8 @@
 
         <h3 class="routine-title">H. The picture</h3>
         <ol class="routine">
-          <li class="routine-step">
+          <li class="routine-step" data-done="picture">
+            <span class="routine-name">On the blue light</span>
             <span class="routine-buttons">
               <button type="button" class="quiet-button" data-steps="image">Gel onto the blue-light box</button>
               <button type="button" class="quiet-button" data-steps="blue on">Blue light on</button>

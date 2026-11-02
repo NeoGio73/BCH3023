@@ -129,6 +129,10 @@ How it works
   report's footer says how many entries were wrong before they were right.
 - The 3D structures are PDB entries 2HHB and 2HBS, shown with 3Dmol.js; they need an internet
   connection.
+- Each session opens with a "Start here" box: its parts in order, with rough times, ticked off as
+  they are done, and a link to the next. At the bench, each step has a light: the one to do now is
+  marked Next with a hint, done steps are ticked, and a step the bench refuses is marked in red
+  with the reason.
 - Work is saved in the student's own browser, and the two sessions share it: Session 2 uses the
   PCR product made in Session 1. A different browser or computer starts afresh.
 - "Print the report, or save it as a PDF" at the end of Session 2 gives the report.
