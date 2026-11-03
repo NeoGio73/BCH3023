@@ -329,12 +329,16 @@
     showLights();
   }
 
-  /** Every judged box in a part of the page is right (and there is at least one). */
+  /**
+   * Every judged box in a part of the page is right (and there is at least one). An accession the
+   * page does not know ("unsure": another record of the gene, from another database) does not
+   * hold the student back.
+   */
   function partRight(id) {
     var sec = $(id);
     if (!sec) return false;
     var boxes = Array.prototype.slice.call(sec.querySelectorAll('input[data-state]'));
-    return boxes.length > 0 && boxes.every(function (i) { return i.getAttribute('data-state') === 'ok'; });
+    return boxes.length > 0 && boxes.every(function (i) { var s = i.getAttribute('data-state'); return s === 'ok' || s === 'unsure'; });
   }
 
   function routeDone(p) {
@@ -409,7 +413,11 @@
     var lines = ['>patient read, 500 bases'];
     for (var i = 0; i < seq.length; i += 60) lines.push(seq.substr(i, 60));
     $('read-box').textContent = lines.join('\n');
-    $('read-blast').href = 'https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome&QUERY=' + seq;
+    // NCBI's BLAST page opens with the read in its query box and the human RefSeqGene records
+    // chosen: there the gene's own reference record comes out on top (in the default, core_nt, many
+    // equal records of the gene from population studies tie for first place)
+    $('read-blast').href = 'https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome' +
+      '&DATABASE=' + encodeURIComponent('genomic/9606/RefSeqGene') + '&QUERY=' + seq;
     var body = $('blast-body');
     body.textContent = '';
     BLAST_FIELDS.forEach(function (f) {

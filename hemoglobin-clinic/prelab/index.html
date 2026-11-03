@@ -104,7 +104,19 @@
     .guide { stroke: var(--ink); stroke-width: 1.6; stroke-dasharray: 5 4; fill: none; }
 
     /* blocks of sequence, with pairing marks */
-    pre.pairs { margin: 8px 0 14px; padding: 10px 14px; border: 1px solid var(--rule); border-radius: 6px; background: var(--wash); font-family: var(--mono); font-size: 0.92rem; line-height: 1.45; overflow-x: auto; max-width: 72ch; }
+    pre.pairs { margin: 8px 0 14px; padding: 10px 14px; border: 1px solid var(--rule); border-radius: 6px; background: var(--wash); font-family: var(--mono); font-size: 0.92rem; line-height: 1.45; overflow-x: auto; max-width: 90ch; }
+
+    /* a simplified drawing of NCBI's search page (not a copy of it) */
+    .mock { border: 1px solid var(--rule-strong); border-radius: 6px; background: #fff; padding: 0 12px 12px; font-size: 0.86rem; }
+    .mock-bar { margin: 0 -12px 10px; padding: 6px 12px; background: var(--enamel-wash); border-bottom: 1px solid var(--rule); border-radius: 6px 6px 0 0; font-weight: 700; color: var(--enamel-deep); }
+    .mock-label { margin: 8px 0 3px; font-weight: 700; color: var(--ink); }
+    .mock-box { border: 1px solid var(--rule-strong); border-radius: 3px; padding: 5px 7px; background: #fbfcfb; color: var(--ink-soft); }
+    .mock-seq { font-family: var(--mono); font-size: 0.8rem; min-height: 3.2em; }
+    .mock-select { display: inline-block; min-width: 15rem; }
+    .mock-radio { margin: 2px 0; color: var(--ink-soft); }
+    .mock-dot { display: inline-block; width: 0.8em; height: 0.8em; border: 1.5px solid var(--rule-strong); border-radius: 50%; vertical-align: -1px; margin-right: 4px; }
+    .mock-dot.on { background: var(--enamel); border-color: var(--enamel); }
+    .mock-button { display: inline-block; margin-top: 10px; padding: 5px 16px; border-radius: 4px; background: var(--enamel); color: #fff; font-weight: 700; }
     pre.pairs .hi { color: var(--flag); font-weight: 700; }
 
     /* the small tools and practice boxes */
@@ -419,6 +431,45 @@
           </tbody>
         </table>
       </div>
+      <h3>Running a search on NCBI's page</h3>
+      <div class="two">
+        <div class="prose">
+          <ol>
+            <li>Open BLAST and choose <b>Nucleotide BLAST</b> (blastn). In the lab, the "Open NCBI BLAST" button does this for you and puts the read in the box.</li>
+            <li>The sequence goes into the top box, <b>Enter Query Sequence</b>: just the letters, or a FASTA sequence (a first line starting with "&gt;" that names it, then the letters).</li>
+            <li>Under <b>Choose Search Set</b>, pick the <b>database</b>: which sequences your query is compared with (below).</li>
+            <li>Under <b>Program Selection</b>, leave <b>Highly similar sequences (megablast)</b> for a read from a known organism.</li>
+            <li>Press <b>BLAST</b>. The page waits and refreshes itself until the results are ready: from a few seconds to a few minutes.</li>
+            <li>The results open on the <b>Descriptions</b> tab, the list of hits. <b>Alignments</b> shows each hit base by base, <b>Graphic Summary</b> where on your query each hit lies, <b>Taxonomy</b> which organisms they come from.</li>
+          </ol>
+        </div>
+        <figure class="fig" style="margin-top:0">
+          <div class="mock" role="img" aria-label="A simplified drawing of a nucleotide BLAST search page: a query box at the top, a database list in the middle, the program choice below, and a BLAST button at the foot.">
+            <div class="mock-bar">blastn &middot; Standard Nucleotide BLAST</div>
+            <div class="mock-label">Enter Query Sequence</div>
+            <div class="mock-box mock-seq">&gt;my read<br>GATCCTTAGCAAGTCCATGA&hellip;</div>
+            <div class="mock-label">Choose Search Set &middot; Database</div>
+            <div class="mock-box mock-select">Human RefSeqGene sequences &#9662;</div>
+            <div class="mock-label">Program Selection</div>
+            <div class="mock-radio"><span class="mock-dot on"></span> Highly similar sequences (megablast)</div>
+            <div class="mock-radio"><span class="mock-dot"></span> Somewhat similar sequences (blastn)</div>
+            <div class="mock-button">BLAST</div>
+          </div>
+          <figcaption><b>The search page, simplified.</b> The real one has many more options; these are the ones that matter here.</figcaption>
+        </figure>
+      </div>
+      <div class="table-scroll">
+        <table class="ref">
+          <thead><tr><th>Database (as NCBI names it)</th><th>What it holds</th><th>For a read of human DNA</th></tr></thead>
+          <tbody>
+            <tr><td>Core nucleotide database (core_nt)</td><td>NCBI's default: a very large collection of sequences of every kind from every organism.</td><td>Finds the gene, but often as dozens of equal hits: the same gene read from many people in population studies. Any of them identifies the gene.</td></tr>
+            <tr><td>Nucleotide collection (nr/nt)</td><td>Larger still, with more genomic records.</td><td>As above.</td></tr>
+            <tr><td><b>Human RefSeqGene sequences</b></td><td>One curated genomic record (NG_) for each human gene, introns included.</td><td>The gene's own reference record comes out on top: the clearest answer, and the lab's choice.</td></tr>
+            <tr><td>RefSeq Select RNA sequences</td><td>One messenger RNA (NM_) per gene: exons only.</td><td>A read from an intron finds nothing here, since introns are not in the mRNA.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
       <h3>Reading the list of hits</h3>
       <p class="prose">Here is a made-up result for a made-up read of 500 bases, laid out as NCBI lays it out. The genes and accession numbers are invented (there is no chromosome 99).</p>
       <div class="table-scroll">
@@ -442,6 +493,48 @@
           <li><b>Accession</b>: the database's name for the record. The letters say what kind of record it is (below).</li>
         </ul>
         <p>A good identification has a tiny E value, an identity close to 100% over nearly all of the query, and a description that makes sense. The chimpanzee's copy of a human gene often comes second, at 98 to 99%: our genes are that close. A related gene in the same person (the fourth hit) matches only part of the query, less well.</p>
+        <p>When several hits share the top score and identity, they are usually the same gene read from different people or put in different records: any one of them identifies the gene. Read the description, not just the first line.</p>
+      </div>
+      <div class="tool">
+        <h3>The top hit, as the lab asks for it</h3>
+        <p>From the made-up result above, fill in the six things the lab's table asks for.</p>
+        <div class="fields">
+          <div><label for="p-bl-gene">Gene (name or symbol)</label><input type="text" id="p-bl-gene" class="short" autocomplete="off"><span class="msg" id="p-bl-gene-msg"></span></div>
+          <div><label for="p-bl-org">Organism</label><input type="text" id="p-bl-org" class="short" autocomplete="off"><span class="msg" id="p-bl-org-msg"></span></div>
+          <div><label for="p-bl-acc">Accession of the top hit</label><input type="text" id="p-bl-acc" class="short" autocomplete="off" spellcheck="false"><span class="msg" id="p-bl-acc-msg"></span></div>
+          <div><label for="p-bl-id">Per. Ident. (%)</label><input type="text" id="p-bl-id" class="short" inputmode="decimal" autocomplete="off"><span class="msg" id="p-bl-id-msg"></span></div>
+          <div><label for="p-bl-cov">Query Cover (%)</label><input type="text" id="p-bl-cov" class="short" inputmode="decimal" autocomplete="off"><span class="msg" id="p-bl-cov-msg"></span></div>
+          <div><label for="p-bl-e">E value</label><input type="text" id="p-bl-e" class="short" autocomplete="off"><span class="msg" id="p-bl-e-msg"></span></div>
+        </div>
+      </div>
+
+      <h3>Reading an alignment</h3>
+      <div class="prose">
+        <p>The <b>Alignments</b> tab shows each hit base by base. Here is a made-up one, laid out as NCBI lays it out:</p>
+      </div>
+<pre class="pairs" aria-label="A made-up alignment of 60 bases: 59 of 60 identical, on the plus strand of the query and the minus strand of the record, with one mismatch at query position 25.">Made-up gene 3 (MUG3), RefSeqGene    Sequence ID: NG_999907.1
+Score         Expect   Identities     Gaps        Strand
+104 bits(56)  4e-22    59/60(98%)     0/60(0%)    Plus/Minus
+
+Query  1     ATGCTTGACCGTAAGTCCAGATTG<span class="hi">C</span>AGGTACCTTGAGCATTCGGAATCTGCAAGTGACCA  60
+             |||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||
+Sbjct  4870  ATGCTTGACCGTAAGTCCAGATTG<span class="hi">T</span>AGGTACCTTGAGCATTCGGAATCTGCAAGTGACCA  4811</pre>
+      <div class="prose">
+        <ul>
+          <li><b>Query</b> is your sequence, <b>Sbjct</b> (subject) the database record; the numbers at each end say which bases of each the line holds.</li>
+          <li>A bar means the two bases are the same; a gap in the bars is a mismatch. <b>Identities</b> counts the bars (59 of 60 here); <b>Gaps</b> counts bases missing from one side or the other.</li>
+          <li><b>Strand Plus/Minus</b>: your query matched the record's <i>other</i> strand. The Sbjct line is then the reverse complement of the record, and its numbers count down (4870 to 4811). Plus/Plus would mean the same strand, numbers counting up.</li>
+          <li>Lowercase letters in a query mark stretches of simple, repeated sequence (runs of T, say), which BLAST does not use to start a match. They are still compared.</li>
+        </ul>
+      </div>
+      <div class="tool">
+        <h3>Find the mismatch</h3>
+        <label for="p-aln-pos">At which position of the query is the mismatch?</label>
+        <input type="text" id="p-aln-pos" class="short" inputmode="numeric" autocomplete="off"><span class="msg" id="p-aln-pos-msg"></span>
+        <label for="p-aln-base">Which base does the Sbjct line show there?</label>
+        <input type="text" id="p-aln-base" class="short" autocomplete="off"><span class="msg" id="p-aln-base-msg"></span>
+        <label for="p-aln-rec">Which base number of the record is that? (the Sbjct numbers count down)</label>
+        <input type="text" id="p-aln-rec" class="short" inputmode="numeric" autocomplete="off"><span class="msg" id="p-aln-rec-msg"></span>
       </div>
       <div class="table-scroll">
         <table class="ref">
@@ -458,6 +551,35 @@
       <details class="check">
         <summary>In the made-up result, the mRNA of the same gene matches the read perfectly (100% identity) but covers only 46% of it. Why?</summary>
         <p class="answer">Part of the read lies in an intron. Introns are spliced out of the mRNA, so the mRNA record holds only the exon parts of the read. The gene's genomic record (NG_) holds the introns too, and matches all of it.</p>
+      </details>
+
+      <h3>Comparing your read with a reference: "Align two sequences"</h3>
+      <div class="prose">
+        <p>In Session 2 you will have your own read from the sequencing core and need to know where it differs from the normal gene. A double peak shows a change on one copy, but a change on <i>both</i> copies gives a clean peak of the new base, and only a comparison with the reference finds it. BLAST does that comparison:</p>
+        <ol>
+          <li>On the Nucleotide BLAST page, tick <b>Align two or more sequences</b> under the query box. A second box appears, <b>Enter Subject Sequence</b>.</li>
+          <li>Put your read (the bases called from your trace) in the query box, and the reference in the subject box: its accession (for example an NG_ record) or its sequence.</li>
+          <li>Press BLAST and open <b>Alignments</b>. Every gap in the bars is a place where your read differs from the reference; an IUPAC letter in your read (R, Y and so on, a double peak) shows as a mismatch too.</li>
+        </ol>
+        <p>A made-up read compared with a made-up reference:</p>
+      </div>
+<pre class="pairs" aria-label="A made-up read of 50 bases aligned with a made-up reference: 49 of 50 identical, plus strand on both, one mismatch at read position 18.">Score         Expect   Identities     Gaps        Strand
+87.9 bits(47)  5e-21   49/50(98%)     0/50(0%)    Plus/Plus
+
+Query  1     TTGACAGGCTACCATGA<span class="hi">G</span>TTCCAGGACTTAGCAATGTCGAACTTGGCATG  50
+             ||||||||||||||||| ||||||||||||||||||||||||||||||||
+Sbjct  1201  TTGACAGGCTACCATGA<span class="hi">A</span>TTCCAGGACTTAGCAATGTCGAACTTGGCATG  1250</pre>
+      <div class="tool">
+        <h3>A change with no double peak</h3>
+        <p>The trace this read came from had no double peak at all.</p>
+        <label for="p-b2-pos">At which position of the read does it differ from the reference?</label>
+        <input type="text" id="p-b2-pos" class="short" inputmode="numeric" autocomplete="off"><span class="msg" id="p-b2-pos-msg"></span>
+        <label for="p-b2-change">The reference's base, then the read's (for example "C to T")</label>
+        <input type="text" id="p-b2-change" class="short" autocomplete="off"><span class="msg" id="p-b2-change-msg"></span>
+      </div>
+      <details class="check">
+        <summary>The read differs from the reference at that one place, and its trace had no double peak there. What does that tell you about the person's two copies of the gene?</summary>
+        <p class="answer">Both copies carry the same change (the person is homozygous for it). With one changed copy and one normal one, the trace would show two peaks of about half height at that place. (A single misread base is the other possibility; a read from the other primer would settle it.)</p>
       </details>
     </section>
 
@@ -1134,6 +1256,20 @@ primer 2                  3′-<span class="hi">GGTCG</span>TTACCAGTAAGCT-5′</
   }
   // the reverse complement of GATTCCAGTTGCAAGCTGAC
   wire('p-rc', function (t) { return clean(t) === 'GTCAGCTTGCAACTGGAATC'; }, 'Write the bases backwards, then swap A for T and G for C.');
+  // the made-up BLAST result's top hit: MUG1, Homo sapiens, NG_999901.1, 100%, 100%, 0.0
+  wire('p-bl-gene', function (t) { return /^(MUG1|made[- ]up gene 1)\b/i.test(t.trim()); }, 'The gene is named in the top hit’s Description (its symbol is in brackets).');
+  wire('p-bl-org', function (t) { return /homo sapiens|human/i.test(t); }, 'The Scientific name column of the top hit.');
+  wire('p-bl-acc', function (t) { return /^NG_999901(\.1)?$/i.test(t.replace(/\s/g, '')); }, 'Copy it from the Accession column of the first row, version (.1) and all.');
+  wire('p-bl-id', function (t) { return Math.abs(num(t.replace('%', '')) - 100) < 0.05; }, 'Per. ident of the first row.');
+  wire('p-bl-cov', function (t) { return Math.abs(num(t.replace('%', '')) - 100) < 0.05; }, 'Query cover of the first row.');
+  wire('p-bl-e', function (t) { var e = t.replace(/\s/g, ''); return /^0(\.0+)?$/.test(e) || Number(e) < 1e-150; }, 'The E value of the first row (a long, perfect match is printed as 0.0).');
+  // the made-up alignment: query 25 is C, the Sbjct line shows T, the record's base 4870 - 24 = 4846
+  wire('p-aln-pos', function (t) { return num(t) === 25; }, 'Count along the Query line from its first base (1), to the gap in the bars.');
+  wire('p-aln-base', function (t) { return clean(t) === 'T'; }, 'Read the letter on the Sbjct line, under the gap in the bars.');
+  wire('p-aln-rec', function (t) { return num(t) === 4846; }, 'The Sbjct line starts at 4870 and counts down one per base.');
+  // the made-up read against its reference: position 18, reference A, read G
+  wire('p-b2-pos', function (t) { return num(t) === 18; }, 'Count along the Query line (the read) to the gap in the bars.');
+  wire('p-b2-change', function (t) { var m = t.toUpperCase().match(/^\s*([ACGT])\s*(?:TO|>|→|->|-|\/)?\s*([ACGT])\s*$/); return !!m && m[1] === 'A' && m[2] === 'G'; }, 'The Sbjct line is the reference, the Query line your read.');
   wire('p-rule', function (t) { return clean(t) === 'B'; }, 'Look for four of the same base in a row.');
   // the two letters named (A to D standing alone), in any order
   wire('p-dimer', function (t) { var c = (t.toUpperCase().match(/\b[A-D]\b/g) || []).sort().join(''); return c === 'CD'; }, 'Write each primer’s reverse complement and compare it with the others (the tool above can help).');
