@@ -218,6 +218,22 @@
     .draw .silica { fill: #f3efe6; stroke: none; }
     .draw .celite { fill: #efe9dc; stroke: none; }
     .draw .cells { fill: #c9b79a; stroke: none; }
+    /* numbered figures, the glossary, and printing */
+    main { counter-reset: fig; }
+    figure.fig.draw figcaption::before, figure.fig.tool-fig figcaption::before { counter-increment: fig; content: "Figure " counter(fig) ". "; font-weight: 700; color: var(--enamel-deep); }
+    dl.glossary { max-width: 76ch; margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; }
+    dl.glossary dt { font-weight: 650; }
+    dl.glossary dd { margin: 0; color: var(--ink-soft); }
+    @media (max-width: 640px) { dl.glossary { grid-template-columns: 1fr; } dl.glossary dd { margin-bottom: 8px; } }
+    @media print {
+      nav.contents, .lab-button, .tool { display: none; }
+      .page { display: block; }
+      section.topic { break-inside: auto; }
+      figure.fig, .box, .check { break-inside: avoid; }
+      .check details { display: block; }
+      .check details > summary { display: none; }
+      body { font-size: 12pt; }
+    }
   </style>
 </head>
 <body>
@@ -241,7 +257,8 @@
     <div class="nav-group"><p class="nav-part">B. Enzymes as reagents</p>
       <ol><li><a href="#t4"><span class="n">4</span>Baker&rsquo;s yeast reduces a ketone</a></li><li><a href="#t5"><span class="n">5</span>A lipase on beads, in hexane</a></li><li><a href="#t6"><span class="n">6</span>Kinetic resolution and E</a></li><li><a href="#t7"><span class="n">7</span>The Kazlauskas rule</a></li></ol></div>
     <div class="nav-group"><p class="nav-part">C. At the bench</p>
-      <ol><li><a href="#t8"><span class="n">8</span>Filtering through Celite</a></li><li><a href="#t9"><span class="n">9</span>Salting out and extracting</a></li><li><a href="#t10"><span class="n">10</span>Drying and evaporating</a></li><li><a href="#t11"><span class="n">11</span>TLC and the flash column</a></li><li><a href="#t12"><span class="n">12</span>Reading an NMR for purity</a></li><li><a href="#t13"><span class="n">13</span>Safety</a></li></ol></div>
+      <ol><li><a href="#t8"><span class="n">8</span>Filtering through Celite</a></li><li><a href="#t9"><span class="n">9</span>Salting out and extracting</a></li><li><a href="#t10"><span class="n">10</span>Drying and evaporating</a></li><li><a href="#t11"><span class="n">11</span>TLC and the flash column</a></li><li><a href="#t12"><span class="n">12</span>NMR from the beginning</a></li><li><a href="#t13"><span class="n">13</span>Using the spectrum</a></li><li><a href="#t14"><span class="n">14</span>Safety</a></li></ol></div>
+    <div class="nav-group"><p class="nav-part">Reference</p><ol><li><a href="#glossary"><span class="n">&nbsp;</span>Key terms</a></li></ol></div>
   </div>
 </nav>
 
@@ -255,7 +272,7 @@
 
 <div class="box start">
   <h3>How to use this review</h3>
-  <p>Read it in order before your first session: Parts A and B are the ideas, Part C is the bench. It is long on purpose. Each topic has a picture, ends with <b>In short</b> (what to remember) and <b>Check yourself</b> (questions whose answers you can open), and some have a <span class="pill try">Try it</span> box: a small calculator or plot. Use them. All the numbers in them are made up.</p>
+  <p>Read it in order before your first session: Parts A and B are the ideas, Part C is the bench, and topics 12 and 13 teach NMR from the beginning for anyone who has not met it or is rusty. It is long on purpose; the key terms are collected at the end. Each topic has a numbered figure, ends with <b>In short</b> (what to remember) and <b>Check yourself</b> (questions whose answers you can open), and some have a <span class="pill try">Try it</span> box: a small calculator or plot. Use them. All the numbers in them are made up.</p>
 </div>
 <div class="box goals">
   <h3>By the end you should be able to</h3>
@@ -266,7 +283,8 @@
     <li>Explain how yeast cells and a lipase do organic chemistry, what the beads are, and why vinyl acetate makes the lipase&rsquo;s reaction one-way.</li>
     <li>Follow a kinetic resolution: why it stops near 50%, how the two ee values change, and how E is worked out from them.</li>
     <li>Apply the Kazlauskas rule to a secondary alcohol, with a drawing.</li>
-    <li>Run a Celite filtration, an extraction (and know which layer is which), a drying, a rotary evaporation, a TLC and a flash column, and read an NMR for what else is in a product.</li>
+    <li>Run a Celite filtration, an extraction (and know which layer is which), a drying, a rotary evaporation, a TLC and a flash column.</li>
+    <li>Read a <sup>1</sup>H NMR spectrum from scratch: the ppm scale, what shifts a signal, integrals, splitting and the OH, and use it to confirm a structure and count an impurity.</li>
   </ol>
 </div>
 
@@ -1063,10 +1081,122 @@
 </section>
 
 <section class="topic" id="t12">
-  <h2 class="topic-title"><span class="step">12</span>Reading an NMR for purity</h2>
-  <p class="lead">A <sup>1</sup>H NMR spectrum confirms that you made what you meant to, and it shows what else is in the flask. Comparing integrals gives the amount of each.</p>
+  <h2 class="topic-title"><span class="step">12</span>NMR from the beginning: how the instrument works and what a spectrum shows</h2>
+  <p class="lead">Nuclear magnetic resonance (NMR) is the chemist&rsquo;s way of seeing a molecule&rsquo;s skeleton. A <sup>1</sup>H NMR spectrum gives one signal for each kind of hydrogen in the molecule, and the position, size and shape of each signal tell you where that hydrogen is and what is next to it. This topic assumes you have never read one.</p>
   <div class="prose">
-    <p>Each set of equivalent hydrogens in a molecule gives a signal at its own <b>chemical shift</b> (in ppm: hydrogens next to oxygen come at 3.5 to 4.5, those on a plain CH<sub>3</sub> near 1). The signal is <b>split</b> by the hydrogens on the neighbouring carbon, n of them giving n + 1 lines. Its <b>integral</b> (the area under it) is proportional to how many hydrogens it holds.</p>
+    <h3>What the instrument does</h3>
+    <p>A hydrogen nucleus, a single proton, spins, and a spinning charge is a tiny magnet. Put the sample in a very strong magnetic field and each of those tiny magnets can point with the field or against it; the two states differ in energy by a small, exact amount that falls in the radio range. The spectrometer sends in a short radio pulse, which tips the nuclei, and then listens: as they settle back they broadcast a faint radio hum that fades over a second or two. The computer sorts the hum into its separate frequencies, the way a chord can be sorted into the notes that make it, and plots them as a spectrum. The lab&rsquo;s spectrometer is a 400 MHz instrument: a hydrogen in it resonates near 400 million cycles per second.</p>
+    <figure class="fig draw">
+<svg viewBox="0 0 780 330" role="img" aria-label="How an NMR spectrometer works: the sample tube between the magnet's poles, a radio pulse in, the decaying signal out, and the computer turning it into a spectrum">
+  <!-- the magnet -->
+  <rect x="40" y="60" width="70" height="200" rx="6" fill="#cfd6d9" stroke="#74807c" stroke-width="1.5"/>
+  <rect x="230" y="60" width="70" height="200" rx="6" fill="#cfd6d9" stroke="#74807c" stroke-width="1.5"/>
+  <text class="b" x="75" y="52" text-anchor="middle" font-size="14">N</text>
+  <text class="b" x="265" y="52" text-anchor="middle" font-size="14">S</text>
+  <text class="s" x="170" y="285" text-anchor="middle" font-size="14">a very strong, very steady magnetic field</text>
+  <g stroke="#8d9994" stroke-width="1" stroke-dasharray="5 4"><line x1="112" y1="100" x2="228" y2="100"/><line x1="112" y1="140" x2="228" y2="140"/><line x1="112" y1="180" x2="228" y2="180"/><line x1="112" y1="220" x2="228" y2="220"/></g>
+  <!-- the tube -->
+  <rect x="163" y="80" width="14" height="150" rx="5" fill="#fff" stroke="#55606b" stroke-width="1.6"/>
+  <rect x="165" y="130" width="10" height="98" rx="4" fill="#fbf3cf"/>
+  <text class="s" x="170" y="72" text-anchor="middle" font-size="13">the sample, in CDCl₃</text>
+  <!-- the coil, the pulse in and the signal out -->
+  <path d="M150,150 q10,-6 20,0 t20,0 t20,0" fill="none" stroke="#c2410c" stroke-width="2"/>
+  <line class="arr" x1="330" y1="110" x2="312" y2="130"/>
+  <text class="o" x="338" y="104" font-size="14">a short radio pulse in</text>
+  <text class="s" x="338" y="122" font-size="13">tips the nuclei's tiny magnets</text>
+  <path d="M312,170 q10,-18 18,0 t14,0 t12,0 t10,0 t8,0 t6,0 t5,0" fill="none" stroke="#1c4c9a" stroke-width="2"/>
+  <line class="arrb" x1="400" y1="170" x2="500" y2="170"/>
+  <text class="bl" x="338" y="200" font-size="14">the signal out: a radio hum</text>
+  <text class="s" x="338" y="218" font-size="12">that fades in a second or two</text>
+  <text class="s" x="338" y="236" font-size="12">(the free induction decay)</text>
+  <!-- the computer and the spectrum -->
+  <rect class="box" x="520" y="60" width="240" height="190"/>
+  <text class="b" x="640" y="84" text-anchor="middle" font-size="14">the computer</text>
+  <text class="s" x="640" y="102" text-anchor="middle" font-size="12">sorts the hum into its notes</text>
+  <text class="s" x="640" y="117" text-anchor="middle" font-size="12">(a Fourier transform)</text>
+  <line x1="540" y1="200" x2="740" y2="200" stroke="#55606b"/>
+  <path d="M540,200 L580,200 L584,135 L588,200 L620,200 L623,170 L626,200 L650,200 L653,155 L656,200 L680,200 L683,115 L686,200 L740,200" fill="none" stroke="#17211e" stroke-width="1.6"/>
+  <text class="s" x="640" y="240" text-anchor="middle" font-size="12">one peak per kind of hydrogen</text>
+  <text class="s" x="544" y="216" font-size="11">10</text><text class="s" x="738" y="216" font-size="11" text-anchor="end">0 ppm</text>
+</svg>
+<figcaption><b>How an NMR spectrometer works.</b> The sample sits in a very strong magnet. Each hydrogen nucleus is a tiny magnet of its own, and in the field it can point with or against it, two states a little apart in energy. A short radio pulse tips the nuclei; as they settle back they broadcast a faint radio hum, which dies away over a second or two. The computer sorts that hum into its separate notes, and each note is one kind of hydrogen in the molecule. The whole measurement takes a few minutes.</figcaption>
+</figure>
+
+    <p>The sample is a few milligrams of your compound dissolved in about half a millilitre of <b>CDCl<sub>3</sub></b>, chloroform in which the hydrogen has been replaced by deuterium, so that the solvent itself gives almost no hydrogen signal (a little ordinary CHCl<sub>3</sub> is always left in it and shows as a small peak at 7.26 ppm). A trace of <b>TMS</b>, tetramethylsilane, is added as the zero of the scale: its twelve hydrogens are all alike and give one sharp peak that is set to 0.</p>
+    <h3>The scale: chemical shift in ppm</h3>
+    <p>Not every hydrogen resonates at exactly the same frequency. The electrons around a hydrogen shield it a little from the magnet, so a hydrogen with fewer electrons about it feels more of the field and resonates at a slightly higher frequency. The difference is tiny, a few hundred cycles out of 400 million, so it is given in <b>parts per million</b> of the spectrometer&rsquo;s frequency, the <b>chemical shift</b>, &delta;. On a 400 MHz instrument 1 ppm is 400 Hz; on a 60 MHz one it is 60 Hz, but the shift in ppm is the same, which is why the scale is written this way. By convention the scale runs from right to left: 0 ppm at the right, 10 ppm at the left. A signal further to the left is said to be <b>downfield</b>.</p>
+    <figure class="fig draw">
+<svg viewBox="0 -2 700 332" role="img" aria-label="A chart of where common kinds of hydrogen appear in a 1H NMR spectrum, from 0 to 10 ppm">
+  <line x1="40" y1="250" x2="660" y2="250" stroke="#17211e" stroke-width="1.5"/>
+  <g font-size="13" fill="#17211e">
+    <text x="660" y="272" text-anchor="middle">0</text><text x="598" y="272" text-anchor="middle">1</text><text x="536" y="272" text-anchor="middle">2</text><text x="474" y="272" text-anchor="middle">3</text><text x="412" y="272" text-anchor="middle">4</text><text x="350" y="272" text-anchor="middle">5</text><text x="288" y="272" text-anchor="middle">6</text><text x="226" y="272" text-anchor="middle">7</text><text x="164" y="272" text-anchor="middle">8</text><text x="102" y="272" text-anchor="middle">9</text><text x="40" y="272" text-anchor="middle">10</text>
+  </g>
+  <g stroke="#17211e" stroke-width="1"><line x1="660" y1="250" x2="660" y2="256"/><line x1="598" y1="250" x2="598" y2="256"/><line x1="536" y1="250" x2="536" y2="256"/><line x1="474" y1="250" x2="474" y2="256"/><line x1="412" y1="250" x2="412" y2="256"/><line x1="350" y1="250" x2="350" y2="256"/><line x1="288" y1="250" x2="288" y2="256"/><line x1="226" y1="250" x2="226" y2="256"/><line x1="164" y1="250" x2="164" y2="256"/><line x1="102" y1="250" x2="102" y2="256"/><line x1="40" y1="250" x2="40" y2="256"/></g>
+  <text class="s" x="350" y="296" text-anchor="middle" font-size="13">chemical shift, δ (ppm)  ·  higher numbers to the left ("downfield")  ·  TMS at 0</text>
+  <text class="s" x="80" y="316" font-size="12">← less shielded: near oxygen, a C=O or a ring</text>
+  <text class="s" x="640" y="316" text-anchor="end" font-size="12">more shielded: plain alkyl →</text>
+  <!-- bars: x = 660 - ppm*62 -->
+  <g font-size="12">
+    <rect x="598" y="218" width="68" height="14" rx="3" fill="#d9e4f5" stroke="#1c4c9a"/><text x="632" y="229" text-anchor="middle" fill="#17211e">CH₃–C</text>
+    <rect x="567" y="196" width="50" height="14" rx="3" fill="#d9e4f5" stroke="#1c4c9a"/><text x="592" y="207" text-anchor="middle" fill="#17211e">C–CH₂–C</text>
+    <rect x="517" y="174" width="56" height="14" rx="3" fill="#f6dccb" stroke="#c2410c"/><text x="545" y="185" text-anchor="middle" fill="#17211e">CH₃–C=O</text>
+    <rect x="493" y="152" width="56" height="14" rx="3" fill="#f6dccb" stroke="#c2410c"/><text x="521" y="163" text-anchor="middle" fill="#17211e">CH₂–C=O</text>
+    <rect x="430" y="130" width="62" height="14" rx="3" fill="#e9eff9" stroke="#1c4c9a"/><text x="461" y="141" text-anchor="middle" fill="#17211e">CH₃–O</text>
+    <rect x="368" y="108" width="100" height="14" rx="3" fill="#e9eff9" stroke="#1c4c9a"/><text x="418" y="119" text-anchor="middle" fill="#17211e">CH₂–O, CH–O</text>
+    <rect x="288" y="86" width="74" height="14" rx="3" fill="#e9eff9" stroke="#1c4c9a"/><text x="325" y="97" text-anchor="middle" fill="#17211e">CH–O–C=O</text>
+    <rect x="226" y="64" width="125" height="14" rx="3" fill="#fdf1ee" stroke="#ab2a1c"/><text x="288" y="75" text-anchor="middle" fill="#17211e">C=C–H (alkenes)</text>
+    <rect x="164" y="42" width="112" height="14" rx="3" fill="#fdf1ee" stroke="#ab2a1c"/><text x="220" y="53" text-anchor="middle" fill="#17211e">aromatic ring H</text>
+    <rect x="40" y="20" width="50" height="14" rx="3" fill="#fdf1ee" stroke="#ab2a1c"/><text x="65" y="31" text-anchor="middle" fill="#17211e">O=C–H</text>
+    <rect x="350" y="14" width="300" height="8" rx="3" fill="#f3f6f4" stroke="#8d9994" stroke-dasharray="3 2"/><text x="500" y="10" text-anchor="middle" fill="#4b5854" font-size="11">O–H of an alcohol: broad, anywhere from 1 to 5 ppm</text>
+  </g>
+</svg>
+<figcaption><b>Where hydrogens appear.</b> A hydrogen's electrons shield it a little from the magnet, so a hydrogen with fewer electrons around it (one next to an oxygen, a C=O or a benzene ring) feels more of the field and resonates further to the left, at a higher ppm. Plain alkyl hydrogens sit on the right. The ranges overlap, so a shift alone rarely settles an assignment: the integral and the splitting do the rest.</figcaption>
+</figure>
+
+    <p>The chart gives the rule of thumb. An oxygen next door pulls electrons away and moves a hydrogen downfield by 2 to 3 ppm: CH<sub>3</sub>&ndash;C sits near 0.9, but CH<sub>3</sub>&ndash;O near 3.4 and CH<sub>2</sub>&ndash;O near 4.1. A carbonyl next door moves a hydrogen to about 2.1 to 2.4. A hydrogen on a carbon that carries an ester oxygen (CH&ndash;O&ndash;C=O) sits near 5, further downfield than the same hydrogen in the alcohol (CH&ndash;OH, near 4). That last difference, about 1 ppm, is the one you will meet in Session 2.</p>
+    <h3>One signal per kind of hydrogen</h3>
+    <p>Hydrogens that are in identical surroundings are <b>equivalent</b> and give one signal between them: the three hydrogens of a CH<sub>3</sub>, the two of most CH<sub>2</sub> groups, the six of the two identical CH<sub>3</sub> groups of an isopropyl group. So the first thing a spectrum tells you is how many different kinds of hydrogen the molecule has. One exception matters in this lab: when a CH<sub>2</sub> sits next to a stereocenter, its two hydrogens are no longer in identical surroundings (one is a little closer to the OH side, the other to the H side), and they can give two separate signals that also split each other.</p>
+    <h3>The integral: how many hydrogens</h3>
+    <p>The area under a signal is proportional to the number of hydrogens that give it. The spectrometer draws a running total of the area, the <b>integral</b>, as a stepped line over the spectrum; the height of each step is that signal&rsquo;s area. Integrals give ratios, not counts: a 3 : 2 : 1 pattern of steps could be CH<sub>3</sub> : CH<sub>2</sub> : CH, or 6 : 4 : 2 hydrogens. You decide the scale from the molecular formula or from a signal whose count you know.</p>
+    <h3>Splitting: who is next door</h3>
+    <p>A signal is often not one line but a small cluster: a doublet, a triplet, a quartet. The cause is the hydrogens on the <em>neighbouring</em> carbon, each a tiny magnet of its own.</p>
+    <figure class="fig draw">
+<svg viewBox="0 0 700 300" role="img" aria-label="Why a signal splits: one neighbouring hydrogen can point up or down, so the signal becomes two lines; two neighbours give three lines in the ratio 1 to 2 to 1">
+  <text class="big" x="170" y="26" text-anchor="middle">One neighbouring H</text>
+  <text class="s" x="170" y="46" text-anchor="middle" font-size="13">its tiny magnet points up or down</text>
+  <!-- the two cases -->
+  <g transform="translate(60,96)">
+    <text class="b" x="0" y="0" font-size="13">H</text><text class="s" x="14" y="0" font-size="13">–C–C–</text><text class="o" x="62" y="0" font-size="13">H</text>
+    <line class="arr" x1="96" y1="12" x2="96" y2="-10"/>
+    <text class="s" x="112" y="4" font-size="12">neighbour up: a little more field</text>
+  </g>
+  <g transform="translate(60,136)">
+    <text class="b" x="0" y="0" font-size="13">H</text><text class="s" x="14" y="0" font-size="13">–C–C–</text><text class="o" x="62" y="0" font-size="13">H</text>
+    <line class="arr" x1="96" y1="-22" x2="96" y2="0"/>
+    <text class="s" x="112" y="4" font-size="12">neighbour down: a little less</text>
+  </g>
+  <line x1="60" y1="230" x2="290" y2="230" stroke="#55606b"/>
+  <line class="ln" x1="160" y1="230" x2="160" y2="172"/><line class="ln" x1="190" y1="230" x2="190" y2="172"/>
+  <line x1="160" y1="163" x2="190" y2="163" stroke="#c2410c" stroke-width="1.5"/><text class="o" x="200" y="167" text-anchor="start" font-size="12">J</text>
+  <text class="b" x="175" y="252" text-anchor="middle" font-size="13">a doublet, 1 : 1</text>
+  <text class="s" x="175" y="270" text-anchor="middle" font-size="12">half the molecules see "up", half "down"</text>
+  <!-- two neighbours -->
+  <text class="big" x="520" y="26" text-anchor="middle">Two neighbouring H</text>
+  <text class="s" x="520" y="46" text-anchor="middle" font-size="13">up-up, up-down, down-up, down-down</text>
+  <g font-size="13" fill="#c2410c" font-weight="650">
+    <text x="440" y="90">↑↑</text><text x="500" y="90">↑↓</text><text x="540" y="90">↓↑</text><text x="600" y="90">↓↓</text>
+  </g>
+  <text class="s" x="440" y="110" font-size="12">1 way</text><text class="s" x="520" y="110" font-size="12" text-anchor="middle">2 ways</text><text class="s" x="600" y="110" font-size="12">1 way</text>
+  <line x1="420" y1="230" x2="640" y2="230" stroke="#55606b"/>
+  <line class="ln" x1="500" y1="230" x2="500" y2="195"/><line class="ln" x1="530" y1="230" x2="530" y2="160"/><line class="ln" x1="560" y1="230" x2="560" y2="195"/>
+  <text class="b" x="530" y="252" text-anchor="middle" font-size="13">a triplet, 1 : 2 : 1</text>
+  <text class="s" x="530" y="270" text-anchor="middle" font-size="12">the middle line is twice as likely</text>
+  <text class="s" x="350" y="292" text-anchor="middle" font-size="13">n neighbours on the next carbon → n + 1 lines, with the heights of Pascal's triangle</text>
+</svg>
+<figcaption><b>Why a signal splits.</b> A hydrogen on the next carbon is itself a tiny magnet, pointing with or against the field. In half the molecules it adds a little to the field the first hydrogen feels, in the other half it takes a little away, so the signal appears as two lines, a doublet, J hertz apart. Two neighbours can point four ways, two of which give the same result, so three lines in the ratio 1 : 2 : 1. Three give a 1 : 3 : 3 : 1 quartet. Only hydrogens on the next carbon count, and hydrogens that are equivalent to each other do not split one another.</figcaption>
+</figure>
+
+    <p>The rule: a set of hydrogens with <b>n</b> equivalent neighbours on the next carbon gives <b>n + 1</b> lines. A CH<sub>3</sub> next to a CH<sub>2</sub> is a triplet; that CH<sub>2</sub>, if nothing is on its other side, is a quartet (three neighbours). The spacing of the lines is the <b>coupling constant</b>, J, in hertz, and it is the same for both partners, which lets you pair them up: a triplet and a quartet with the same J are an ethyl group talking to itself. A hydrogen with no hydrogens on the next carbon is a <b>singlet</b>, like the CH<sub>3</sub> of an acetyl group, CH<sub>3</sub>&ndash;C=O, or a hydrogen next to a C=O on one side and an O on the other.</p>
     <figure class="fig draw wide">
 <svg viewBox="0 0 760 222" role="img" aria-label="Four NMR multiplets: a singlet, a doublet, a triplet and a quartet, with the number of neighbouring hydrogens that gives each, and the integral drawn over one">
   <line class="thin" x1="20" y1="150" x2="740" y2="150"/>
@@ -1097,20 +1227,72 @@
 <figcaption><b>Reading a multiplet.</b> A signal is split by the hydrogens on the neighbouring carbon: one neighbour gives two lines, two give three, three give four, with the heights shown. The gap between the lines, J (in hertz), is the same for both partners, which is how you pair a doublet with the signal that split it. The integral (blue) is a running total of the area: the height of each step counts the hydrogens.</figcaption>
 </figure>
 
-    <p>Another compound in the sample gives its own signals beside yours. To compare amounts, divide each integral by the number of hydrogens that signal stands for; the results are in the ratio of the <b>moles</b> of the two compounds. To turn a mole ratio into a mass ratio, multiply each by its molar mass. That mass fraction is what corrects a polarimeter reading for an impurity (topic 2).</p>
-    <p>Two things the spectrum cannot do: it cannot tell the two enantiomers apart (topic 1), and it cannot see a compound that has no hydrogens. Water in a wet sample does show, as a broad hump.</p>
+    <h3>The O&ndash;H signal</h3>
+    <p>An alcohol&rsquo;s OH hydrogen is a special case. It trades places with the OH hydrogens of other molecules many times a second, so it usually shows as a broad hump, often with no splitting and splitting nothing else, and its position moves with concentration and temperature, anywhere from 1 to 5 ppm. A quick test: shake the sample with a drop of D<sub>2</sub>O and the OH signal disappears, because the hydrogen has been swapped for deuterium.</p>
+    <h3>Reading a spectrum, step by step</h3>
+    <ol>
+      <li><b>Find the reference peaks</b> and ignore them: TMS at 0, the solvent&rsquo;s CHCl<sub>3</sub> at 7.26, and a water hump near 1.6 if the sample was wet.</li>
+      <li><b>Count the signals.</b> That is how many kinds of hydrogen there are.</li>
+      <li><b>Read the integrals</b> and turn the ratio into a count of hydrogens for each signal.</li>
+      <li><b>Place each signal</b> from its shift: near 1 is alkyl, 2 to 2.5 is next to a carbonyl, 3.5 to 4.5 is on a carbon carrying an oxygen, near 5 is a CH&ndash;O of an ester.</li>
+      <li><b>Read the splitting</b> to see what each set has next door, and pair up partners by their J.</li>
+      <li><b>Draw the pieces and join them.</b> A CH<sub>3</sub> triplet with a CH<sub>2</sub> quartet is an ethyl; a CH<sub>3</sub> doublet with a CH multiplet is a CH<sub>3</sub>&ndash;CH.</li>
+    </ol>
   </div>
-  <div class="box worked"><h4>Worked example (made up)</h4><p>Compound X&rsquo;s CH<sub>2</sub> (2 H) integrates to 2.00; a singlet from compound Y&rsquo;s CH<sub>3</sub> (3 H) integrates to 0.30. Per hydrogen: X 2.00 / 2 = 1.00, Y 0.30 / 3 = 0.10. So Y is 0.10 / (1.00 + 0.10) = 9.1 mol% of the mixture. If X is 150 g/mol and Y 100 g/mol, by mass Y is (0.10 &times; 100) / (1.00 &times; 150 + 0.10 &times; 100) = 6.3%.</p></div>
-  <div class="box key"><h4></h4><ul><li>Shift says what kind of hydrogen; splitting says how many neighbours; the integral says how many hydrogens.</li><li>Integral per hydrogen gives the mole ratio of two compounds; molar masses turn it into a mass ratio.</li><li>It shows impurities and water, never the ee.</li></ul></div>
+  <div class="tool"><h3>Make a multiplet</h3>
+    <p class="small soft">Choose how many equivalent hydrogens sit on the neighbouring carbon and watch the signal split.</p>
+    <p><span class="seg" role="group" aria-label="Number of neighbouring hydrogens"><button type="button" data-split="0" aria-pressed="false">0</button><button type="button" data-split="1" aria-pressed="true">1</button><button type="button" data-split="2" aria-pressed="false">2</button><button type="button" data-split="3" aria-pressed="false">3</button><button type="button" data-split="4" aria-pressed="false">4</button><button type="button" data-split="6" aria-pressed="false">6</button></span></p>
+    <figure class="fig"><canvas id="split-canvas" width="900" height="220" aria-label="A multiplet for the chosen number of neighbours"></canvas></figure>
+    <p class="out" id="split-out"></p>
+  </div>
+  <div class="tool point"><h3>A practice spectrum: isopropyl acetate</h3>
+    <p class="small soft">Isopropyl acetate, (CH<sub>3</sub>)<sub>2</sub>CH&ndash;O&ndash;C(=O)&ndash;CH<sub>3</sub>, is a solvent, not one of the lab&rsquo;s compounds. Point at the spectrum to read a shift, then assign each signal. The integral steps are drawn in blue.</p>
+    <figure class="fig"><canvas id="ipa-canvas" width="900" height="300" aria-label="The 1H NMR spectrum of isopropyl acetate, made up for practice"></canvas><figcaption id="ipa-cap">The spectrum, 0 to 6 ppm. Signals at about 5.0 (1 H), 2.0 (3 H) and 1.2 (6 H); TMS at 0.</figcaption></figure>
+    <div class="readout" id="ipa-read">Point at a signal.</div>
+    <div class="fields">
+      <label>5.0 ppm, septet, 1 H <select id="ipa-a"><option value="">choose…</option><option value="ch">the CH, on the carbon that carries the ester oxygen</option><option value="ac">the CH₃ of the acetyl group (next to the C=O)</option><option value="me">the two CH₃ groups of the isopropyl</option></select><span class="msg" id="ipa-a-msg"></span></label>
+      <label>2.0 ppm, singlet, 3 H <select id="ipa-b"><option value="">choose…</option><option value="ch">the CH, on the carbon that carries the ester oxygen</option><option value="ac">the CH₃ of the acetyl group (next to the C=O)</option><option value="me">the two CH₃ groups of the isopropyl</option></select><span class="msg" id="ipa-b-msg"></span></label>
+      <label>1.2 ppm, doublet, 6 H <select id="ipa-c"><option value="">choose…</option><option value="ch">the CH, on the carbon that carries the ester oxygen</option><option value="ac">the CH₃ of the acetyl group (next to the C=O)</option><option value="me">the two CH₃ groups of the isopropyl</option></select><span class="msg" id="ipa-c-msg"></span></label>
+    </div>
+  </div>
+  <div class="box worked"><h4>Worked example: the practice spectrum</h4><p>Three signals, so three kinds of hydrogen. Integrals 1 : 3 : 6 add up to the ten hydrogens of C<sub>5</sub>H<sub>10</sub>O<sub>2</sub>, so they are counts. The 6 H doublet at 1.2 is two identical CH<sub>3</sub> groups with one hydrogen next door: an isopropyl group&rsquo;s methyls. The 1 H septet (seven lines) at 5.0 is the hydrogen they split, with six neighbours, on a carbon pushed far downfield by an ester oxygen: the isopropyl&rsquo;s CH. The 3 H singlet at 2.0 is a CH<sub>3</sub> with no hydrogens next door, next to a carbonyl: the acetyl group. The pieces join as (CH<sub>3</sub>)<sub>2</sub>CH&ndash;O&ndash;CO&ndash;CH<sub>3</sub>. If this were made from isopropyl alcohol, the CH would have moved from about 4.0 to 5.0 on acetylation and the 2.0 singlet would be new: that is how an NMR tells an acetate from the alcohol it came from.</p></div>
+  <div class="box key"><h4></h4><ul><li>Each kind of hydrogen gives one signal. Its <b>shift</b> (ppm, from TMS at 0) says what it is near: oxygen or a C=O moves it downfield (left).</li><li>Its <b>integral</b> says how many hydrogens; its <b>splitting</b> (n + 1 lines) says how many hydrogens are on the next carbon; partners share the same J.</li><li>An OH is a broad hump that moves about and vanishes with D<sub>2</sub>O. CHCl<sub>3</sub> at 7.26 and TMS at 0 are not yours.</li><li>Read in order: reference peaks, count, integrals, shifts, splitting, then join the pieces.</li></ul></div>
   <div class="check"><h4>Check yourself</h4><ol>
-    <li>A singlet (3 H) integrates to 0.15 beside your compound&rsquo;s 2 H signal at 2.00. Mole percent of the impurity?<details><summary>Answer</summary><p class="answer">0.15 / 3 = 0.05 per hydrogen against 1.00: 0.05 / 1.05 = 4.8 mol%.</p></details></li>
-    <li>Can this NMR tell you your product&rsquo;s ee?<details><summary>Answer</summary><p class="answer">No: both enantiomers give the same spectrum (topic 1). It tells you what else is there.</p></details></li>
-    <li>A CH<sub>3</sub> next to a CH gives what kind of signal?<details><summary>Answer</summary><p class="answer">A doublet: one neighbouring hydrogen, so 1 + 1 = 2 lines.</p></details></li>
+    <li>On a 400 MHz spectrometer, how many hertz is 2.5 ppm?<details><summary>Answer</summary><p class="answer">2.5 &times; 400 = 1000 Hz.</p></details></li>
+    <li>A CH<sub>2</sub> has a CH<sub>3</sub> on one side and an oxygen on the other. What splitting does it show, and roughly where?<details><summary>Answer</summary><p class="answer">A quartet (three neighbouring hydrogens; the oxygen has none), near 3.5 to 4.2 ppm because of the oxygen.</p></details></li>
+    <li>Two signals integrate to 2.00 and 3.05. What could they be?<details><summary>Answer</summary><p class="answer">A CH<sub>2</sub> and a CH<sub>3</sub>, or 4 and 6 hydrogens: integrals give ratios, so you need the formula or a known signal to fix the scale.</p></details></li>
+    <li>A broad hump at 2.8 ppm vanishes after a D<sub>2</sub>O shake. What was it?<details><summary>Answer</summary><p class="answer">An O&ndash;H (or N&ndash;H): its hydrogen swapped for deuterium, which the <sup>1</sup>H spectrum does not see.</p></details></li>
+    <li>Why can a CH<sub>2</sub> next to a stereocenter give two signals?<details><summary>Answer</summary><p class="answer">Its two hydrogens are not in identical surroundings (one sits nearer the stereocenter&rsquo;s OH, the other nearer its H), so they have slightly different shifts, and they split each other as well.</p></details></li>
   </ol></div>
 </section>
 
 <section class="topic" id="t13">
-  <h2 class="topic-title"><span class="step">13</span>Safety</h2>
+  <h2 class="topic-title"><span class="step">13</span>Using the spectrum: what you made, and what else is in the flask</h2>
+  <p class="lead">In this lab the NMR has two jobs: to confirm that the product is the compound you meant to make, and to show what else came out of the flask with it, and how much.</p>
+  <div class="prose">
+    <h3>Confirming the structure</h3>
+    <p>Work through the spectrum as in topic 12 and compare it with the structure you expect. Every kind of hydrogen in the structure should have a signal of the right size, in the right place, with the right splitting; a signal that has no place in the structure belongs to something else. In Session 1 the product is an alcohol made from a ketone, so look for the new CH&ndash;O hydrogen (near 4 ppm) and the new OH, and for the ketone&rsquo;s own signals, which should be gone. In Session 2 each fraction from the column should be one compound: the acetate shows its CH&ndash;O near 5 ppm and the acetyl singlet near 2.0; the alcohol shows its CH&ndash;O near 4 and no singlet near 2.0.</p>
+    <h3>Counting an impurity</h3>
+    <p>Another compound in the sample gives its own signals beside yours. To compare amounts, divide each integral by the number of hydrogens that signal stands for; the results are in the ratio of the <b>moles</b> of the two compounds. To turn a mole ratio into a mass ratio, multiply each by its molar mass. That mass fraction is what corrects a polarimeter reading for an impurity (topic 2): the impurity was weighed into the sample but turned no light.</p>
+  </div>
+  <div class="box worked"><h4>Worked example (made up)</h4><p>Compound X&rsquo;s CH<sub>2</sub> (2 H) integrates to 2.00; a singlet from compound Y&rsquo;s CH<sub>3</sub> (3 H) integrates to 0.30. Per hydrogen: X 2.00 / 2 = 1.00, Y 0.30 / 3 = 0.10. So Y is 0.10 / (1.00 + 0.10) = 9.1 mol% of the mixture. If X is 150 g/mol and Y 100 g/mol, by mass Y is (0.10 &times; 100) / (1.00 &times; 150 + 0.10 &times; 100) = 6.3%, and the X in the sample is 93.7% of its mass.</p></div>
+  <div class="prose">
+    <h3>What the spectrum cannot do</h3>
+    <ul>
+      <li>It cannot tell the two <b>enantiomers</b> apart (topic 1): in an ordinary solvent they give the same spectrum, so the ee comes from the polarimeter or the chiral GC, never from here.</li>
+      <li>It cannot see a compound with no hydrogens, and it sees water only as a broad hump near 1.6 ppm.</li>
+      <li>A small impurity under a big signal is hard to measure: pick an impurity signal that stands on its own.</li>
+    </ul>
+  </div>
+  <div class="box key"><h4></h4><ul><li>Match every expected hydrogen to a signal; a signal with no place in the structure is something else.</li><li>Integral per hydrogen gives the mole ratio; molar masses turn it into a mass ratio.</li><li>Acetylation moves the CH&ndash;O from about 4 to about 5 ppm and adds a singlet near 2.0.</li><li>The spectrum never gives the ee.</li></ul></div>
+  <div class="check"><h4>Check yourself</h4><ol>
+    <li>A singlet (3 H) integrates to 0.15 beside your compound&rsquo;s 2 H signal at 2.00. Mole percent of the impurity?<details><summary>Answer</summary><p class="answer">0.15 / 3 = 0.05 per hydrogen against 1.00: 0.05 / 1.05 = 4.8 mol%.</p></details></li>
+    <li>Your alcohol fraction from the column shows a singlet at 2.05 integrating to 0.6 against its CH&ndash;O at 4.1 integrating to 1.0. What happened?<details><summary>Answer</summary><p class="answer">Some acetate came off the column with the alcohol (0.6 / 3 = 0.2 against 1.0: about 17 mol%). The eluent was too polar, or the fractions were combined carelessly.</p></details></li>
+    <li>Can this NMR tell you your product&rsquo;s ee?<details><summary>Answer</summary><p class="answer">No: both enantiomers give the same spectrum. It tells you what else is there.</p></details></li>
+  </ol></div>
+</section>
+<section class="topic" id="t14">
+  <h2 class="topic-title"><span class="step">14</span>Safety</h2>
   <div class="prose">
     <ul>
       <li><b>Hexane, ethyl acetate, vinyl acetate</b> are highly flammable: no flames or hot plates near open solvent, and vinyl acetate (which also irritates eyes and nose) stays in the hood. Hexane harms the nerves with long exposure: cap the bottle.</li>
@@ -1121,6 +1303,47 @@
       <li><b>The separatory funnel</b> builds pressure when shaken: vent it, stem away from everyone, and never point a stoppered funnel at anyone.</li>
     </ul>
   </div>
+</section>
+
+<section class="topic" id="glossary">
+  <h2 class="topic-title"><span class="step">&nbsp;</span>Key terms</h2>
+  <p class="lead">The words this lab uses, each in a sentence. The topic in brackets says more.</p>
+  <dl class="glossary">
+    <dt>Chiral</dt><dd>Not the same as its mirror image, like a hand. A carbon with four different groups makes a molecule chiral. (1)</dd>
+    <dt>Enantiomers</dt><dd>The two mirror-image forms of a chiral molecule. (1)</dd>
+    <dt>Stereocenter</dt><dd>The carbon with four different groups whose two arrangements are the enantiomers. (1)</dd>
+    <dt>R and S</dt><dd>The names of a stereocenter&rsquo;s two arrangements, from the CIP ranks of its groups. A label, not a shape. (1, 7)</dd>
+    <dt>Racemic</dt><dd>A 50 : 50 mixture of the two enantiomers. (1)</dd>
+    <dt>Enantiomeric excess, ee</dt><dd>How far a sample is from racemic: (major &minus; minor) / (major + minor). (1)</dd>
+    <dt>Specific rotation, [&alpha;]</dt><dd>The polarimeter&rsquo;s angle divided by the tube length (dm) and the concentration (g/mL): a property of the compound. (2)</dd>
+    <dt>Optical purity</dt><dd>A sample&rsquo;s [&alpha;] as a share of the pure enantiomer&rsquo;s; taken as its ee. (2)</dd>
+    <dt>Chiral stationary phase</dt><dd>A GC column coating that is itself handed (a cyclodextrin), so the two enantiomers are held for different times. (3)</dd>
+    <dt>Retention time</dt><dd>How long a compound takes to come through the GC column. (3)</dd>
+    <dt>Integrator</dt><dd>The GC&rsquo;s software that finds the peaks and reports each one&rsquo;s time and area. (3)</dd>
+    <dt>Standard</dt><dd>A pure sample of a known compound, run the same way, so that a peak can be named. (3)</dd>
+    <dt>NADPH</dt><dd>The cell&rsquo;s carrier of hydride for reductions; sugar keeps it topped up. (4)</dd>
+    <dt>Reductase</dt><dd>An enzyme that hands a hydride from NADPH to a ketone, from one face. (4)</dd>
+    <dt>Lipase</dt><dd>An enzyme made to hydrolyse fats; in dry solvent it makes esters instead. (5)</dd>
+    <dt>Catalytic triad</dt><dd>The serine, histidine and aspartate in a lipase&rsquo;s active site that do the chemistry. (5)</dd>
+    <dt>Acyl-enzyme</dt><dd>The lipase with the acetyl group parked on its serine, halfway through its cycle. (5)</dd>
+    <dt>Acyl donor</dt><dd>The ester that gives the lipase its acetyl group: vinyl acetate here, whose leaving group becomes acetaldehyde so the step is one-way. (5)</dd>
+    <dt>Kinetic resolution</dt><dd>Separating enantiomers by letting a catalyst change one of them much faster than the other, then stopping halfway. (6)</dd>
+    <dt>Conversion, c</dt><dd>The fraction of the starting material that has reacted; near 0.5 at the stop. (6)</dd>
+    <dt>Enantioselectivity, E</dt><dd>How many times faster the enzyme handles the fast enantiomer than the slow one. (6)</dd>
+    <dt>Kazlauskas rule</dt><dd>With the H away, the enantiomer whose OH &rarr; large &rarr; medium runs clockwise is the one lipases acylate faster. (7)</dd>
+    <dt>Celite</dt><dd>Diatomaceous earth, a powder that packs into a filter bed which catches fine solids in its depth. (8)</dd>
+    <dt>Salting out</dt><dd>Dissolving salt into the water layer so that an organic compound is pushed into the organic layer. (9)</dd>
+    <dt>Emulsion</dt><dd>Droplets of one liquid suspended in the other, so the layers will not part. (9)</dd>
+    <dt>Drying agent</dt><dd>Anhydrous magnesium sulfate, which binds the water dissolved in an organic extract. (10)</dd>
+    <dt>Rotary evaporator</dt><dd>The instrument that takes a solvent off under vacuum at a low temperature while the flask turns. (10)</dd>
+    <dt>R<sub>f</sub></dt><dd>On a TLC plate, how far a spot moved divided by how far the solvent front moved. (11)</dd>
+    <dt>Eluent</dt><dd>The solvent that carries compounds along a TLC plate or down a column. (11)</dd>
+    <dt>Flash column</dt><dd>Silica in a tube, run under a little air pressure, that separates compounds by how strongly they stick. (11)</dd>
+    <dt>Chemical shift, &delta;</dt><dd>Where a hydrogen&rsquo;s signal sits in an NMR spectrum, in ppm from TMS. (12)</dd>
+    <dt>Integral</dt><dd>The area under an NMR signal, proportional to the number of hydrogens that give it. (12)</dd>
+    <dt>Multiplet</dt><dd>A signal split into lines by the hydrogens on the next carbon: n neighbours, n + 1 lines. (12)</dd>
+    <dt>Coupling constant, J</dt><dd>The spacing of a multiplet&rsquo;s lines, in hertz; the same for both partners. (12)</dd>
+  </dl>
 </section>
 
 <p class="made-up">Every compound, number, chromatogram and drawing in this review is for practice, and none is one of the lab&rsquo;s compounds (lactic acid, carvone and 1-cyclohexylethanol are real but not in the lab). Sources for the methods: Org. Synth. 1985, 63, 1 (the yeast reduction); Chen, Fujimoto, Girdaukas &amp; Sih, J. Am. Chem. Soc. 1982, 104, 7294 (E); Kazlauskas et al., J. Org. Chem. 1991, 56, 2656 (the rule); Uppenberg et al. 1994 and 1995 (CAL-B&rsquo;s structure); Pavia and Nichols (the techniques). This is a review for a simulated lab.</p>
@@ -1235,6 +1458,68 @@
     });
   });
   drawTlc('4:1');
+
+  // ---- 12: make a multiplet ----
+  var sc = $('split-canvas');
+  function pascal(n) { var r = [1]; for (var k = 0; k < n; k++) { var nx = [1]; for (var i = 1; i < r.length; i++) nx.push(r[i - 1] + r[i]); nx.push(1); r = nx; } return r; }
+  function drawSplit(n) {
+    var ctx = sc.getContext('2d'), W = sc.width, H = sc.height, base = H - 40, top = 20, mid = W / 2, J = 42, h = pascal(n), most = Math.max.apply(null, h);
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = '#55606b'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(40, base + 0.5); ctx.lineTo(W - 40, base + 0.5); ctx.stroke();
+    ctx.strokeStyle = '#1b2a3a'; ctx.lineWidth = 2.2;
+    for (var i = 0; i <= n; i++) { var x = mid + (i - n / 2) * J; ctx.beginPath(); ctx.moveTo(x, base); ctx.lineTo(x, base - (base - top) * h[i] / most); ctx.stroke(); }
+    if (n > 0) { ctx.strokeStyle = '#c2410c'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(mid - n / 2 * J, top + 10); ctx.lineTo(mid - n / 2 * J + J, top + 10); ctx.stroke(); ctx.fillStyle = '#c2410c'; ctx.font = '13px system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('J', mid - n / 2 * J + J / 2, top + 4); }
+    ctx.fillStyle = '#4b5854'; ctx.font = '13px system-ui, sans-serif'; ctx.textAlign = 'center';
+    for (i = 0; i <= n; i++) ctx.fillText(String(h[i]), mid + (i - n / 2) * J, base + 18);
+    var names = ['singlet', 'doublet', 'triplet', 'quartet', 'quintet', 'sextet', 'septet'];
+    $('split-out').textContent = n + ' neighbouring H → ' + (n + 1) + ' lines, a ' + names[n] + ', in the ratio ' + h.join(' : ') + '.' + (n === 6 ? ' (An isopropyl CH sees six: the two CH₃ groups together.)' : '');
+  }
+  document.querySelectorAll('[data-split]').forEach(function (b) {
+    b.addEventListener('click', function () { document.querySelectorAll('[data-split]').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); }); drawSplit(+b.getAttribute('data-split')); });
+  });
+  drawSplit(1);
+
+  // ---- 12: the practice spectrum (isopropyl acetate, drawn from its three signals; not a lab compound) ----
+  var ipa = $('ipa-canvas'), IPA_HI = 6.0, IPA_LO = -0.4, MHZ = 400;
+  function lines(ppm, h, n, J) { var out = [], c = pascal(n), tot = c.reduce(function (a, b) { return a + b; }, 0); for (var i = 0; i <= n; i++) out.push({ ppm: ppm + (i - n / 2) * J / MHZ, a: h * c[i] / tot }); return out; }
+  var IPA = [].concat(lines(4.99, 1, 6, 6.3), lines(2.01, 3, 0, 0), lines(1.22, 6, 1, 6.3), lines(0, 0.5, 0, 0));
+  var IPA_SIGNALS = [{ ppm: 4.99, text: 'the septet at 4.99 ppm: 1 H, J 6.3 Hz' }, { ppm: 2.01, text: 'the singlet at 2.01 ppm: 3 H' }, { ppm: 1.22, text: 'the doublet at 1.22 ppm: 6 H, J 6.3 Hz' }, { ppm: 0, text: 'TMS, the reference, at 0.00' }];
+  function ipaHeight(p) { var y = 0, hw = 0.0011; IPA.forEach(function (l) { var d = p - l.ppm; y += l.a * hw / (d * d + hw * hw); }); return y; }
+  function drawIpa() {
+    var ctx = ipa.getContext('2d'), W = ipa.width, H = ipa.height, base = H - 44, top = 16, ys = [], most = 0, px;
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    for (px = 0; px < W; px++) { var y = 0; for (var k = 0; k < 4; k++) y = Math.max(y, ipaHeight(IPA_HI - (px + k / 4) / W * (IPA_HI - IPA_LO))); ys.push(y); if (IPA_HI - px / W * (IPA_HI - IPA_LO) > 0.3) most = Math.max(most, y); }
+    var sc2 = (base - top) * 0.85 / most;
+    ctx.strokeStyle = '#1b2a3a'; ctx.lineWidth = 1.2; ctx.beginPath();
+    for (px = 0; px < W; px++) { var yy = Math.max(top, base - ys[px] * sc2); if (px) ctx.lineTo(px, yy); else ctx.moveTo(px, yy); } ctx.stroke();
+    // the integral steps: 1 : 3 : 6
+    ctx.strokeStyle = '#1c4c9a'; ctx.lineWidth = 1.6;
+    [[5.3, 4.7, 1], [2.3, 1.7, 3], [1.5, 0.9, 6]].forEach(function (r) {
+      var x0 = (IPA_HI - r[0]) / (IPA_HI - IPA_LO) * W, x1 = (IPA_HI - r[1]) / (IPA_HI - IPA_LO) * W, sum = 0, tot = 0, q, rise = 60 * r[2] / 6, start = base - 20;
+      for (q = Math.round(x0); q < x1; q++) tot += ys[q];
+      ctx.beginPath(); ctx.moveTo(x0, start); for (q = Math.round(x0); q < x1; q++) { sum += ys[q]; ctx.lineTo(q, start - rise * sum / tot); } ctx.stroke();
+      ctx.fillStyle = '#1c4c9a'; ctx.font = '13px system-ui, sans-serif'; ctx.textAlign = 'left'; ctx.fillText(r[2] + ' H', x1 + 10, start - rise + 4);
+    });
+    ctx.strokeStyle = '#55606b'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, base + 0.5); ctx.lineTo(W, base + 0.5); ctx.stroke();
+    ctx.fillStyle = '#33404c'; ctx.font = '13px system-ui, sans-serif'; ctx.textAlign = 'center';
+    for (var t = 0; t <= 6; t++) { var x = (IPA_HI - t) / (IPA_HI - IPA_LO) * W; ctx.beginPath(); ctx.moveTo(x, base); ctx.lineTo(x, base + 6); ctx.stroke(); ctx.fillText(String(t), x, base + 22); }
+    ctx.fillText('ppm', W - 24, base + 40);
+  }
+  ipa.addEventListener('mousemove', function (e) {
+    var r = ipa.getBoundingClientRect(), p = IPA_HI - (e.clientX - r.left) / r.width * (IPA_HI - IPA_LO), near = null;
+    IPA_SIGNALS.forEach(function (s) { if (Math.abs(p - s.ppm) < 0.25 && (!near || Math.abs(p - s.ppm) < Math.abs(p - near.ppm))) near = s; });
+    $('ipa-read').innerHTML = '<b>' + p.toFixed(2) + ' ppm.</b> ' + (near ? 'Near ' + near.text + '.' : 'Nothing here: the baseline.');
+  });
+  drawIpa();
+  var IPA_ANSWERS = { 'ipa-a': 'ch', 'ipa-b': 'ac', 'ipa-c': 'me' };
+  Object.keys(IPA_ANSWERS).forEach(function (id) {
+    $(id).addEventListener('change', function () {
+      var v = $(id).value, m = $(id + '-msg');
+      if (!v) { m.textContent = ''; m.className = 'msg'; $(id).removeAttribute('data-state'); return; }
+      var ok = v === IPA_ANSWERS[id];
+      m.textContent = ok ? 'Right.' : 'Not that one: look at the integral and the splitting again.'; m.className = ok ? 'msg ok' : 'msg'; $(id).setAttribute('data-state', ok ? 'ok' : 'no');
+    });
+  });
 
   // ---- the contents: mark the topic in view ----
   var links = Array.prototype.slice.call(document.querySelectorAll('nav.contents a'));
