@@ -8,6 +8,7 @@
   var STORE_KEY = 'handshake-lab:v1';
   var unity = null, configured = false;
   var state = { view: 'wet' };
+  var arrived = '';
   try { var saved = JSON.parse(window.localStorage.getItem(STORE_KEY) || 'null'); if (saved && saved.view) state.view = saved.view; } catch (e) { /* not kept */ }
 
   function $(id) { return document.getElementById(id); }
@@ -37,6 +38,7 @@
       case 'configured': configured = true; $('stage-cover').hidden = true; if (window.HandPart2 && window.HandPart2.active) window.HandPart2.onConfigured(); break;
       case 'part2': case 'gc': if (window.HandPart2 && window.HandPart2.active) window.HandPart2.onUnity(e); break;
       case 'view': state.view = e.view; save(); showViews(); break;
+      case 'arrived': arrived = e.view; break;     // the camera has stopped at this view (tests wait for it)
       case 'click': if (window.HandPart2 && window.HandPart2.active) { if (window.HandPart2.click) window.HandPart2.click(e.item); } else if (window.HandPart1) window.HandPart1.click(e.item); break;
       case 'hover': if (window.HandPart2 && window.HandPart2.active) { if (window.HandPart2.hover) window.HandPart2.hover(e.item); } else if (window.HandPart1) window.HandPart1.hover(e.item); break;
     }
@@ -65,7 +67,8 @@
     show: function (view) { if (configured) send('Show', JSON.stringify(view)); },
     call: function (method, value) { if (configured) send(method, value); },
     hint: function (text) { $('stage-note').textContent = text; },
-    configured: function () { return configured; }
+    configured: function () { return configured; },
+    arrived: function () { return arrived; }
   };
   if (window.HandLab.isMock) $('stage-status').textContent = 'The 3D room is not loaded on this page.';
 })();

@@ -282,17 +282,26 @@
     balance: 'The balance: a click weighs out your alcohol, or later the two fractions.',
     fridge: 'The fridge: a click takes out the Novozym 435 beads your handout gives and adds them.',
     shaker: 'The shaker incubator: a click sets it to 40 °C, then lets it shake for 15 minutes.',
-    gcport: 'The GC with its chiral column: a click injects a sample (the racemic alcohol before the enzyme is in).',
-    tlc: 'The TLC jar: a click runs a plate in 9:1 hexanes : ethyl acetate.',
-    column: 'The flash column: a click runs it in 9:1 hexanes : ethyl acetate.',
+    gcport: 'The GC with its chiral column: a click injects a sample (the racemic alcohol before the enzyme is in). The vials beside it: the racemic alcohol, the (R) standard, your sample.',
+    tlc: 'The TLC jar: a click runs a plate in 9:1 hexanes : ethyl acetate; the plate then stands in the jar with its two spots.',
+    column: 'The flash column: a click runs it in 9:1 hexanes : ethyl acetate; the fractions collect in the tubes under it.',
     rotavap: 'The rotary evaporator: a click takes the solvent off the fractions.'
   };
   function hover(item) { if (window.HandLab && window.HandLab.hint) window.HandLab.hint(item ? THINGS[item] || '' : ''); }
 
-  /** The room's picture of Part 2 (HandManager.BenchView): the vial in the shaker, the hexane, the beads until they are filtered off. */
+  /**
+   * The room's picture of Part 2 (HandManager.BenchView): the vial in the shaker, the hexane, the beads
+   * until they are filtered off; the TLC plate with its spots; the column's bands and fractions, then the
+   * product flasks; the sample vial by the GC.
+   */
   function roomView() {
-    var b = state.bench;
-    return { vial: b.weighed, vialLiquid: !!b.hexane, vialBeads: b.started && b.stopped === null, screen: '-----' };
+    var b = state.bench, tlc = b.tlc.length ? M.RF[b.tlc[b.tlc.length - 1]] : null, col = b.eluent ? M.RF[b.eluent] : null;
+    return {
+      vial: b.weighed, vialLiquid: !!b.hexane, vialBeads: b.started && b.stopped === null, screen: '-----',
+      tlc: !!tlc, tlcAcetate: tlc ? tlc.acetate : 0.55, tlcAlcohol: tlc ? tlc.alcohol : 0.25,
+      column: b.evaporated ? 2 : b.column ? 1 : 0, columnAcetate: col ? col.acetate : 0.55, columnAlcohol: col ? col.alcohol : 0.25,
+      sampleVial: b.samples.length > 0
+    };
   }
   function tellRoom() { if (window.HandLab && window.HandLab.show) window.HandLab.show(roomView()); }
 

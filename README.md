@@ -285,7 +285,10 @@ How it works
   of 17 alcohols with published CAL-B selectivities they resolve, and how much enzyme their handout
   gives.
 - Every step can be done in the 3D room, by clicking the thing it uses, or with its button on the
-  page. Mistakes are allowed and warned about, never blocked: water too hot for the yeast, no Celite
+  page, and the room shows the work as it goes: the broth and its foam, the filtrate, the layers in
+  the separatory funnel, the polarimeter's reading; in Session 2 the vial in the shaker, the TLC plate
+  with its spots, the column's bands and the fractions in their tubes, the two flasks of product and
+  the GC vials. Mistakes are allowed and warned about, never blocked: water too hot for the yeast, no Celite
   bed, an emulsion, wet solvent, too much enzyme, a warm shaker, an air bubble in the polarimeter
   tube, an overloaded GC sample, the wrong eluent.
 - The page checks the student's own numbers as they are entered: the yield, the specific rotation
