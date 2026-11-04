@@ -895,6 +895,4 @@ fieldset.choice label { margin-right: 18px; }
   .row:has(> button.quiet-button) { display: none !important; }
   .gc-run, .nmr-wrap, table { break-inside: avoid; }
   #report-name { border: 0; font-weight: 600; }
-  /* on paper the survey link shows its address */
-  .survey-note a::after { content: " (" attr(href) ")"; font-weight: 400; }
 }
