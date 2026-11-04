@@ -265,6 +265,10 @@
   }
 
   function showNmr() {
+    var ready = !!state.bench.weighed, sect = $('p1-nmr-section');
+    sect.classList.toggle('waiting', !ready);
+    $('p1-nmr-wait').hidden = ready;
+    document.querySelectorAll('[data-nmr]').forEach(function (b) { b.disabled = !ready; });
     var box = $('p1-nmr');
     box.hidden = !state.nmr.run;
     if (!state.nmr.run) return;

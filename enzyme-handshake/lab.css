@@ -270,6 +270,10 @@ body {
 .quiet-button:hover { background: var(--wash); }
 .quiet-button.danger { border-color: var(--flag); color: var(--flag); }
 .quiet-button.danger:hover { background: var(--flag-wash); }
+.quiet-button:disabled { opacity: 0.5; cursor: default; }
+.quiet-button:disabled:hover { background: var(--paper); }
+#p1-nmr-section.waiting { opacity: 0.55; }
+#p1-nmr-section.waiting .routine-title { color: var(--ink-faint); }
 
 .primary-button {
   padding: 9px 18px;
